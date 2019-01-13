@@ -111,7 +111,7 @@
                                          <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                              <select class="form-control select">
+                                              <select class="form-control ">
                                                         <option>Select Division (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
@@ -134,8 +134,9 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                                <button class="btn btn-primary"><span class="fa fa-camera">  Upload Image</span></button>
-                                           
+                                        <input type="file" id="imgupload" accept="image/*" style="display:none"/> 
+                                        <button class="btn btn-primary" id="OpenImgUpload"><span class="fa fa-camera"></span>Image Upload</button>
+                                               
                                             </div>
                                             <div class="pull-right">
                                                 <button class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
@@ -175,8 +176,12 @@
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus dolor id orci lacinia, eget aliquam velit consequat.</p>
                                             <p>Vivamus at tincidunt lectus, faucibus condimentum quam. Duis facilisis sem sed eros malesuada, vel dignissim diam ornare. Etiam rhoncus, nibh non auctor mattis, ligula diam mattis dolor, non tincidunt lectus velit nec metus. 
                                                Phasellus dictum justo vitae ornare lobortis. Integer ut lectus vel mauris tempor ultricies eget vitae turpis. Sed eleifend odio quis rutrum volutpat.</p>
-                                                                                    
+                                            <div class="pull-right">
+                                                <a href="#"><span class="glyphicon glyphicon-trash"></span>.....</a> 
+                                              
+                                            </div>                                       
                                         </div>
+
                                           <div class="timeline-body comments">
                                             <div class="comment-item">
                                                 <img src="assets/images/users/no-image.jpg"/>
@@ -210,7 +215,9 @@
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus dolor id orci lacinia, eget aliquam velit consequat.</p>
                                             <p>Vivamus at tincidunt lectus, faucibus condimentum quam. Duis facilisis sem sed eros malesuada, vel dignissim diam ornare. Etiam rhoncus, nibh non auctor mattis, ligula diam mattis dolor, non tincidunt lectus velit nec metus. 
                                                Phasellus dictum justo vitae ornare lobortis. Integer ut lectus vel mauris tempor ultricies eget vitae turpis. Sed eleifend odio quis rutrum volutpat.</p>
-                                                                                     
+                                            <div class="pull-right">
+                                            <a href="#"><span class="glyphicon glyphicon-trash"></span>.....</a>
+                                            </div>                                       
                                         </div>
                                         <div class="timeline-body comments">
                                             <div class="comment-item">
@@ -255,6 +262,10 @@
                                                         <img src="assets/images/gallery/nature-3.jpg" class="img-responsive img-text"/>
                                                     </a>
                                                 </div>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="#"><span class="glyphicon glyphicon-trash"></span>.....</a> 
+                                              
                                             </div>
                                         </div>
                                        <div class="timeline-body comments">
@@ -371,12 +382,14 @@
                     links = this.getElementsByTagName('a');
                 blueimp.Gallery(links, options);
             };
+
+            $('#OpenImgUpload').click(function(){ $('#imgupload').trigger('click'); });
         </script>        
         
     <!-- END SCRIPTS -->         
     </body>
 
-<!-- Mirrored from themifycloud.com/demos/templates/joli/pages-timeline-simple.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:38:14 GMT -->
+
 </html>
 
 
