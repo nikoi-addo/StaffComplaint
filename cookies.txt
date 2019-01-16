@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-themifycloud.com	TRUE	/	FALSE	1999999999	PHPSESSID	m9nukscti86t9bqsvbsvig28s1
-themifycloud.com	TRUE	/	FALSE	1999999999	edd_items_in_cart	deleted
-
