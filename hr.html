@@ -193,7 +193,7 @@
                                            
                                         </div> 
                                         <div class="comment-write">                                                
-                                                <textarea class="form-control" placeholder="Write a comment" rows="1"></textarea>                                                
+                                    <textarea class="form-control" name="comment" id="comment" placeholder="Write a comment" rows="1" tabindex="-1" ></textarea>                                                
                                             </div>     
                                                                       
                                         
@@ -383,6 +383,14 @@
             };
 
             $('#OpenImgUpload').click(function(){ $('#imgupload').trigger('click'); });
+
+            $("#textareaId").keypress(function (e) {
+             if(e.which == 13 && !e.shiftKey) {        
+            $(this).closest("form").submit();
+            e.preventDefault();
+            return false;
+    }
+});
         </script>        
         
     <!-- END SCRIPTS -->         
