@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+  include 'handlers/dbcon.php';
+  $timely = time();
+?>
 <head>
         <!-- META SECTION -->
         <title>NCA Internal Complaint</title>
@@ -105,7 +109,7 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" name="problem" maxlength="2048" placeholder="What's happening? (Character Limit: 2048)"/>
+                                                <input class="form-control" name="problem" maxlength="2048" placeholder="What's happening? (Limit: 2048 Characters)"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -163,40 +167,80 @@
                                 </div>
                                 <!-- END TIMELINE ITEM -->
 
-                                 <!-- START TIMELINE ITEM -->
-                                <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">Yesterday</div>
-                                    <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-heading">
-                                            <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> made a complaint
-                                        </div>
-                                        <div class="timeline-body">
 
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus dolor id orci lacinia, eget aliquam velit consequat.</p>
-                                            <p>Vivamus at tincidunt lectus, faucibus condimentum quam. Duis facilisis sem sed eros malesuada, vel dignissim diam ornare. Etiam rhoncus, nibh non auctor mattis, ligula diam mattis dolor, non tincidunt lectus velit nec metus.
-                                               Phasellus dictum justo vitae ornare lobortis. Integer ut lectus vel mauris tempor ultricies eget vitae turpis. Sed eleifend odio quis rutrum volutpat.</p>
+                                <?php
+                                    //Complaint sql query
+                                    $sql_complaintdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $timely SORT BY DESC";
+                                    //Execution of Complaint Query
+                                    $success_complaintdisplay = mysqli_query($link, $sql_complaintdisplay);
 
-                                        </div>
-                                          <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                                <img src="assets/images/users/no-image.jpg"/>
-                                                <p class="comment-head">
-                                                    <b>Human Resource Division</b>
-                                                </p>
-                                                <p>Awesome, man, that is awesome...</p>
-                                                <small class="text-muted">10h ago</small>
-                                            </div>
+                                    if ($success_complaintdisplay->num_rows > 0) {
+                                      while($rows = $success_complaintdisplay->fetch_assoc()){
+                                ?>
+                                <!-- START TIMELINE ITEM -->
+                                 <div class="timeline-item timeline-item-right">
+                                     <div class="timeline-item-info"> <?php echo date("d M h:i a", $rows['c_date_created']); ?> </div>
+                                     <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
+                                     <div class="timeline-item-content">
+                                         <div class="timeline-heading">
+                                             <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
+                                         </div>
+                                         <div class="timeline-body">
 
-                                        </div>
+                                             <p><?php echo $rows['c_value']; ?></p>
+
+                                         </div>
+
+                                         <?php
+                                          //Comment id
+                                          $comment_id = $rows['c_id'];
+                                          //Query for comment display
+                                          $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                          //Execution for comment display
+                                          $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
+
+                                          if ($success_commentdisplay->num_rows > 0) {
+                                            while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                          ?>
+                                          <!-- Comments -->
+                                            <div class="timeline-body comments">
+                                              <div class="comment-item">
+                                                  <img src="assets/images/users/no-image.jpg"/>
+                                                  <p class="comment-head">
+                                                      <b>Human Resource Division</b>
+                                                  </p>
+                                                  <!-- Comment from Database -->
+                                                  <p><?php echo $cm_rows['cm_value']; ?></p>
+                                                  <small class="text-muted">10h ago</small>
+                                              </div>
+
+                                          </div>
+                                          <?php
+                                            }
+
+                                          }
+                                         ?>
 
 
-                                    </div>
-                                </div>
-                                <!-- END TIMELINE ITEM -->
+                                     </div>
+                                 </div>
+                                 <!-- END TIMELINE ITEM -->
+                                <?php
+                                      }
+
+                                    }
+                                    else {
+                                      echo "No Complaints available currently";
+                                    }
+
+
+                                ?>
+
+
+
 
                                 <!-- START TIMELINE ITEM -->
-                                <div class="timeline-item timeline-item-right">
+                                <!-- <div class="timeline-item timeline-item-right">
                                     <div class="timeline-item-info">Yesterday</div>
                                     <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                     <div class="timeline-item-content">
@@ -224,11 +268,11 @@
 
 
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- END TIMELINE ITEM -->
 
                                 <!-- START TIMELINE ITEM -->
-                                <div class="timeline-item timeline-item-right">
+                                <!-- <div class="timeline-item timeline-item-right">
                                     <div class="timeline-item-info">29 Sep 2014</div>
                                     <div class="timeline-item-icon"><span class="fa fa-image"></span></div>
                                     <div class="timeline-item-content">
@@ -267,7 +311,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- END TIMELINE ITEM -->
 
 
