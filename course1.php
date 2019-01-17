@@ -45,19 +45,19 @@
                     </li>
                    <li class="xn-title"><b>Navigation</b></li>                    
                     <li>
-                        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
+                        <a href="index.html"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
                     
                     <li class="xn-title"><b>Status</b></li>                    
                     <li>
-                        <a href="stage1.php"><span class="fa fa-minus"></span> <span class="xn-text">Deleted Posts</span></a>
+                        <a href="stage1.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
                     </li>                   
                     <li>
-                        <a href="stage2.php"><span class="fa fa-shield"></span> <span class="xn-text">Inactive Posts</span></a>
+                        <a href="stage2.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
                     </li>
                     
                     <li>
-                        <a href="stage3.php"><span class="fa fa-check-circle-o"></span> <span class="xn-text">Active Posts</span></a>
+                        <a href="stage3.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
 
 
