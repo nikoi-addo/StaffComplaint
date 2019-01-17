@@ -138,11 +138,13 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                              <input type="file" name="images" accept="image/*">
+                                        <input type="file" id="real-file" hidden="hidden" name="images" accept="image/*" style="display: none;" />
+                            <button class="btn btn-primary" type="button" id="custom-button"><span class="fa fa-camera"></span>Image Upload</button>
+                                        <span id="custom-text">No file chosen, yet.</span>
+                                               
                                             </div>
-                                            <div><input type="hidden" name="form_type" value="ComplainForm"></div>
                                             <div class="pull-right">
-                                                <button type="submit" class="btn btn-danger"><span class="fa fa-share"></span> SEND</button>
+                                                <button class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
                                             </div>
                                         </div>
                                     </div>
@@ -405,6 +407,25 @@
             };
 
              $('#OpenImgUpload').click(function(){ $('#imgupload').trigger('click'); });
+
+             const realFileBtn = document.getElementById("real-file");
+const customBtn = document.getElementById("custom-button");
+const customTxt = document.getElementById("custom-text");
+
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
+
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
+             
         </script>
 
     <!-- END SCRIPTS -->

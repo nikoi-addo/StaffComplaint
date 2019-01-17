@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>        
+
+<head>
         <!-- META SECTION -->
-        <title>Internal Complaint - Admin</title>            
+        <title>Internal Complaint - Admin</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <!-- END META SECTION -->
-        
-        <!-- CSS INCLUDE -->        
+
+        <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                     
+        <!-- EOF CSS INCLUDE -->
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
 
-             <!-- START PAGE SIDEBAR -->
+            <!-- START PAGE SIDEBAR -->
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="#">Administrator</a>
+                        <a href="table-export.php"><b>AcaCell</b></a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -39,142 +40,127 @@
                                 <div class="profile-data-name">Admin</div>
                                 <div class="profile-data-title">Internal Issues</div>
                             </div>
-                            
-                        </div>                                                                        
+
+                        </div>
                     </li>
-                    <li class="xn-title"><b>Navigation</b></li>                    
+                   <li class="xn-title"><b>Navigation</b></li>                    
                     <li>
-                        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
+                        <a href="index.html"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
                     
                     <li class="xn-title"><b>Status</b></li>                    
                     <li>
-                        <a href="stage1.php"><span class="fa fa-minus"></span> <span class="xn-text">Deleted Posts</span></a>
+                        <a href="stage1.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
                     </li>                   
                     <li>
-                        <a href="stage2.php"><span class="fa fa-shield"></span> <span class="xn-text">Inactive Posts</span></a>
+                        <a href="stage2.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
                     </li>
                     
                     <li>
-                        <a href="stage3.php"><span class="fa fa-check-circle-o"></span> <span class="xn-text">Active Posts</span></a>
+                        <a href="stage3.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
-                        
-                                      
-                                       
-                </ul>
+
+
+
+                        </ul>
+
+
+
                 <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
- 
-            
-          
-            
+
             <!-- PAGE CONTENT -->
             <div class="page-content">
-                
+
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
-                   
-                    <li class="xn-icon-button pull-left">
-                       <img src="img/logo.png"/>
-                      
-                    </li>
-                   
-                    
+                    <!-- TOGGLE NAVIGATION -->
+
+
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
-                    </li> 
-                    <!-- END SIGN OUT -->
-                    <!-- MESSAGES -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>                                
-                                <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-online"></div>
-                                    <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                                    <span class="contacts-title">John Doe</span>
-                                    <p>Praesent placerat tellus id augue condimentum</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
-                                    <span class="contacts-title">Dmitry Ivaniuk</span>
-                                    <p>Donec risus sapien, sagittis et magna quis</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                                    <span class="contacts-title">Nadia Ali</span>
-                                    <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-offline"></div>
-                                    <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
-                                    <span class="contacts-title">Darth Vader</span>
-                                    <p>I want my money back!</p>
-                                </a>
-                            </div>     
-                            <div class="panel-footer text-center">
-                                <a href="pages-messages.html">Show all messages</a>
-                            </div>                            
-                        </div>                        
+                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
                     </li>
-                    <!-- END MESSAGES -->
-                   
+                    <!-- END SIGN OUT -->
+
+
                 </ul>
-                <!-- END X-NAVIGATION VERTICAL -->                     
-                
-                <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
+                <!-- END X-NAVIGATION VERTICAL -->
+
+                    <ul class="breadcrumb">
                     
                     <li class="active">Deleted . Active . Inactive Database for Admin</li>
                 </ul>
-                <!-- END BREADCRUMB -->
-                
+
                 <!-- PAGE TITLE -->
-                <div class="page-title">                    
-                    <h2><span class="fa fa-archive"></span> Admin Table</h2>
+                <div class="page-title">
+                    <h2><span class="fa fa-users"></span> Admin Table for <i><b><?php echo $sdate ; ?></b></i></h2>
                 </div>
-                <!-- END PAGE TITLE -->                
-                
+                <!-- END PAGE TITLE -->
+
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-                
-                   
-                    <!-- START RESPONSIVE TABLES -->
+
+
+
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="panel panel-default">
 
+                            <!-- START DATATABLE EXPORT -->
+                            <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Responsive tables</h3>
+
+                                    <div>
+                                    <div class="btn-group pull-left">
+                                        <!-- Form code begins -->
+                                        <form class="form-inline" method="get" action="course1.php" >
+                                          <div class="form-group"> <!-- Date input -->
+                                            <label class="control-label" for="date">Date :</label>
+                                            <input class="form-control" name="sdate"  value="<?php echo $sdate; ?>"  type="date"/>
+                                            <input class="btn btn-primary" type="submit" name="submit">
+                                          </div>
+
+                                        </form>
+                                         <!-- Form code ends -->
+                                    </div>
+                                    <div class="btn-group pull-right">
+                                        <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
+                                        <ul class="dropdown-menu">
+
+
+                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src='img/icons/xml.png' width="24"/> XML</a></li>
+                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'sql'});"><img src='img/icons/sql.png' width="24"/> SQL</a></li>
+                                            <li class="divider"></li>
+
+                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="24"/> TXT</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src='img/icons/xls.png' width="24"/> XLS</a></li>
+                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src='img/icons/word.png' width="24"/> Word</a></li>
+                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src='img/icons/ppt.png' width="24"/> PowerPoint</a></li>
+                                            <li class="divider"></li>
+
+                                        </ul>
+                                    </div>
                                 </div>
 
-                                <div class="panel-body panel-body-table">
-
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-actions">
-                                            <thead>
-                                                <tr>
-                                                    <th width="50">id</th>
+                                </div>
+                                <div class="panel-body">
+                                    <table id="customers2" class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th width="50">id</th>
                                                     <th>post</th>
                                                     <th>reply from HR</th>
                                                     <th width="100">status</th>
                                                     <th width="100">ip</th>
                                                     <th width="100">date</th>
                                                     <th width="100">actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>                                            
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>                                            
                                                 <tr id="trow_1">
                                                     <td class="text-center">1</td>
                                                     <td><strong>John Doe</strong></td>
@@ -220,55 +206,38 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
-                                    </div>                                
+                                    </table>
 
                                 </div>
-                            </div>                                                
+                            </div>
+                            <!-- END DATATABLE EXPORT -->
+
+
 
                         </div>
                     </div>
-                    <!-- END RESPONSIVE TABLES -->
-                    
-                <!-- END PAGE CONTENT WRAPPER -->                                    
-                </div>         
-            </div>            
+
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->
+            </div>
             <!-- END PAGE CONTENT -->
         </div>
-        <!-- END PAGE CONTAINER -->    
+        <!-- END PAGE CONTAINER -->
 
-        <!-- MESSAGE BOX-->
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-times"></span> Remove <strong>Data</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to remove this row?</p>                    
-                        <p>Press Yes if you sure.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <button class="btn btn-success btn-lg mb-control-yes">Yes</button>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END MESSAGE BOX-->        
-        
+
+
         <!-- MESSAGE BOX-->
         <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
                     <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+                        <p>Are you sure you want to log out?</p>
+                        <p>Press No if you want to continue work. Press Yes to logout .</p>
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
+                            <a href="logOut.php" class="btn btn-success btn-lg">Yes</a>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>
@@ -280,35 +249,36 @@
         <!-- START PRELOADS -->
         <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
         <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
-        <!-- END PRELOADS -->                      
+        <!-- END PRELOADS -->
 
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
         <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
+        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
         <!-- END PLUGINS -->
-        
-        <!-- START THIS PAGE PLUGINS-->        
+
+        <!-- START THIS PAGE PLUGINS-->
         <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
         <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-        
-        <script type="text/javascript" src="js/demo_tables.js"></script>     
-        <!-- END THIS PAGE PLUGINS-->  
-        
+
+        <script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
+	<script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
+	<script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
+	<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+	<script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
+	<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>
+        <!-- END THIS PAGE PLUGINS-->
+
         <!-- START TEMPLATE -->
         <script type="text/javascript" src="js/settings.js"></script>
-        
-        <script type="text/javascript" src="js/plugins.js"></script>        
-        <script type="text/javascript" src="js/actions.js"></script>        
+
+        <script type="text/javascript" src="js/plugins.js"></script>
+        <script type="text/javascript" src="js/actions.js"></script>
         <!-- END TEMPLATE -->
-    <!-- END SCRIPTS -->                 
+    <!-- END SCRIPTS -->
     </body>
 
+<!-- Mirrored from themifycloud.com/demos/templates/joli/table-export.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:41:43 GMT -->
 </html>
-
-
-
-
-
-

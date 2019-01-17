@@ -393,7 +393,7 @@ body.page-container-boxed .page-container {
   line-height: 20px;
   font-weight: 300;
   font-size: 13px;
-  color: #8b91a0;
+  color: #FFFFFF;
   border-bottom: 1px solid #14699F;
 }
 .x-navigation > li.xn-openable:before {
@@ -616,7 +616,7 @@ body.page-container-boxed .page-container {
 .x-navigation.x-navigation-horizontal ul.xn-drop-white li > a {
   color: #333;
   text-shadow: none;
-  border-bottom: 1px solid #E9E9E9;
+  border-bottom: 1px solid #FFFFFF;
 }
 .x-navigation.x-navigation-horizontal ul.xn-drop-white li > a:hover {
   background: #F5F5F5;
@@ -629,7 +629,7 @@ body.page-container-boxed .page-container {
 .x-navigation.x-navigation-horizontal ul.xn-drop-white li.active > a {
   color: #333;
   text-shadow: none;
-  border-bottom: 1px solid #E9E9E9;
+  border-bottom: 1px solid #FFFFFF;
 }
 .x-navigation.x-navigation-horizontal ul.xn-drop-white li.active.xn-openable:before {
   color: #333;
@@ -789,7 +789,7 @@ body.page-container-boxed .page-container {
 }
 .x-navigation.x-navigation-custom li > a:hover .fa,
 .x-navigation.x-navigation-custom li > a:hover .glyphicon {
-  color: #b5c1d1;
+  color: #FFFFFF;
 }
 .x-navigation.x-navigation-custom li > a .fa,
 .x-navigation.x-navigation-custom li > a .glyphicon {
@@ -819,7 +819,7 @@ body.page-container-boxed .page-container {
   border-left: 3px solid #b5c1d1;
 }
 .x-navigation.x-navigation-custom > li.xn-openable:before {
-  color: #CCC;
+  color: #FFFFFF;
   top: 12px;
 }
 .x-navigation.x-navigation-custom > li.xn-title {
