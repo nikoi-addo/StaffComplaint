@@ -118,7 +118,7 @@
                                           <div class="form-group"> <!-- Date input -->
                                             <label class="control-label" for="date">Date :</label>
                                             <input class="form-control" name="sdate"  value="<?php echo $sdate; ?>"  type="date"/>
-                                            <input class="sbtn btn-primary" type="submit" name="submit">
+                                            <input class="btn btn-primary" type="submit" name="submit">
                                           </div>
 
                                         </form>
