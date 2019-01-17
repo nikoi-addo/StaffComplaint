@@ -14,7 +14,7 @@
         <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->
-        
+
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
@@ -100,18 +100,18 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <h3>Any Internal Issues?</h3>
-                                    <form class="form-horizontal" role="form">
+                                    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form" name="complainform">
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" maxlength="200" placeholder="What's happening? (*character limit:200)"/>
+                                                <input class="form-control" name="problem" maxlength="2048" placeholder="What's happening? (Character Limit: 2048)"/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                                  <select class="form-control ">
+                                                  <select class="form-control" name="division">
                                                         <option>Select Division (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
@@ -134,11 +134,11 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                        <input type="file" id="imgupload" accept="image/*" style="display:none"/> 
-                                        <button class="btn btn-primary" id="OpenImgUpload"><span class="fa fa-camera"></span>Image Upload</button>
+                                              <input type="file" name="images" accept="image/*">
                                             </div>
+                                            <div><input type="hidden" name="form_type" value="ComplainForm"></div>
                                             <div class="pull-right">
-                                                <button class="btn btn-danger"><span class="fa fa-share"></span> SEND</button>
+                                                <button type="submit" class="btn btn-danger"><span class="fa fa-share"></span> SEND</button>
                                             </div>
                                         </div>
                                     </div>
@@ -270,12 +270,6 @@
                                 </div>
                                 <!-- END TIMELINE ITEM -->
 
-                                 <!-- START TIMELINE ITEM -->
-                                 <div class="timeline-item timeline-main">
-                                    <div class="timeline-date"><a href="#"><span class="fa fa-ellipsis-h"></span></a></div>
-                                </div>
-                                <!-- END TIMELINE ITEM -->
-
 
                             </div>
                             <!-- END TIMELINE -->
@@ -288,7 +282,6 @@
 
             </div>
             <!-- END PAGE CONTENT -->
-            
         <!-- END PAGE CONTAINER -->
 
         <!-- BLUEIMP GALLERY -->
