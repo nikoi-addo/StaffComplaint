@@ -138,10 +138,9 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                        <input type="file" id="real-file" hidden="hidden" name="images" accept="image/*" style="display: none;" />
-                            <button class="btn btn-primary" type="button" id="custom-button"><span class="fa fa-camera"></span>Image Upload</button>
-                                        <span id="custom-text">No file chosen, yet.</span>
-
+                                            <input type="file" id="real-file" hidden="hidden" name="images" accept="image/*" />
+                                              <!-- <button class="btn btn-primary" type="button" id="custom-button" target="#real-fie"><span class="fa fa-camera"></span>Image Upload</button>
+                                              <span id="custom-text">No file chosen, yet.</span> -->
                                             </div>
                                             <div class="pull-right">
                                                 <button class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
@@ -172,7 +171,7 @@
 
                                 <?php
                                     //Complaint sql query
-                                    $sql_complaintdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $timely";
+                                    $sql_complaintdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $timely ORDER BY c_date_created DESC";
                                     //Execution of Complaint Query
                                     $success_complaintdisplay = mysqli_query($link, $sql_complaintdisplay);
 
