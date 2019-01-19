@@ -186,7 +186,7 @@
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
-                                             <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> <?php if ($rows['c_division'] != "") {
+                                             <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <?php if ($rows['c_division'] != "") {
                                               echo "<i>from</i> <u>". $rows['c_division'];
                                              } ?></u> made a complaint
                                          </div>
@@ -225,7 +225,7 @@
                                           <!-- Comments -->
                                             <div class="timeline-body comments">
                                               <div class="comment-item">
-                                                  <img src="assets/images/users/no-image.jpg"/>
+                                                  <img src="assets/images/users/avatar.jpg"/>
                                                   <p class="comment-head">
                                                       <b>Human Resource Division</b>
                                                   </p>
