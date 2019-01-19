@@ -43,19 +43,19 @@
 
                         </div>
                     </li>
-                   <li class="xn-title"><b>Navigation</b></li>                    
+                   <li class="xn-title"><b>Navigation</b></li>
                     <li>
                         <a href="index.html"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
-                    
-                    <li class="xn-title"><b>Status</b></li>                    
+
+                    <li class="xn-title"><b>Status</b></li>
                     <li>
                         <a href="stage1.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
-                    </li>                   
+                    </li>
                     <li>
                         <a href="stage2.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
                     </li>
-                    
+
                     <li>
                         <a href="stage3.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
@@ -89,7 +89,7 @@
                 <!-- END X-NAVIGATION VERTICAL -->
 
                     <ul class="breadcrumb">
-                    
+
                     <li class="active">Deleted . Active . Inactive Database for Admin</li>
                 </ul>
 
@@ -160,7 +160,7 @@
 
                                             </tr>
                                         </thead>
-                                        <tbody>                                            
+                                        <tbody>
                                                 <tr id="trow_1">
                                                     <td class="text-center">1</td>
                                                     <td><strong>John Doe</strong></td>

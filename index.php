@@ -5,6 +5,7 @@
   include 'handlers/dbcon.php';
   $timely = time();
 ?>
+
 <head>
         <!-- META SECTION -->
         <title>NCA Internal Complaint</title>
@@ -104,7 +105,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <h3>Any Internal Issues?</h3>
-                                    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form" name="complainform">
+                                    <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form">
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="input-group">
@@ -138,12 +139,13 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                            <input type="file" id="real-file" hidden="hidden" name="images" accept="image/*" />
+                                            <input type="hidden" name="form_type" value="ComplainForm">
+                                            <input type="file" name="images" accept="image/*" />
                                               <!-- <button class="btn btn-primary" type="button" id="custom-button" target="#real-fie"><span class="fa fa-camera"></span>Image Upload</button>
                                               <span id="custom-text">No file chosen, yet.</span> -->
                                             </div>
                                             <div class="pull-right">
-                                                <button class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
+                                                <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
                                             </div>
                                         </div>
                                     </div>
@@ -184,11 +186,28 @@
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
-                                             <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
+                                             <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> <?php if ($rows['c_division'] != "") {
+                                              echo "<i>from</i> <u>". $rows['c_division'];
+                                             } ?></u> made a complaint
                                          </div>
                                          <div class="timeline-body">
-
                                              <p><?php echo $rows['c_value']; ?></p>
+
+                                             <!-- Check if there is an image stored in the database for the particular comment -->
+                                             <?php
+                                                if ($rows['c_image_name1'] != "") {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <a href="uploads/<?php echo $rows['c_image_name1']; ?>" data-gallery>
+                                                        <img src="uploads/<?php echo $rows['c_image_name1']; ?>" class="img-responsive img-text"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <?php
+                                                }
+
+                                             ?>
 
                                          </div>
 
@@ -212,7 +231,7 @@
                                                   </p>
                                                   <!-- Comment from Database -->
                                                   <p><?php echo $cm_rows['cm_value']; ?></p>
-                                                  <small class="text-muted">10h ago</small>
+                                                  <small class="text-muted"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
                                               </div>
 
                                           </div>

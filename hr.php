@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+  include 'handlers/dbcon.php';
+  $timely = time();
+?>
+
 <head>
         <!-- META SECTION -->
         <title>Internal Complaint - Human Resource</title>
@@ -12,6 +17,7 @@
         <!-- END META SECTION -->
 
         <!-- CSS INCLUDE -->
+        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->
     </head>
@@ -162,143 +168,100 @@
                                 </div>
                                 <!-- END TIMELINE ITEM -->
 
-                                 <!-- START TIMELINE ITEM -->
-                                <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">Yesterday</div>
-                                    <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-heading">
-                                            <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> made a complaint
-                                        </div>
-                                        <div class="timeline-body">
+                                <?php
+                                    //Complaint sql query
+                                    $sql_complaintdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $timely ORDER BY c_date_created DESC";
+                                    //Execution of Complaint Query
+                                    $success_complaintdisplay = mysqli_query($link, $sql_complaintdisplay);
 
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus dolor id orci lacinia, eget aliquam velit consequat.</p>
-                                            <p>Vivamus at tincidunt lectus, faucibus condimentum quam. Duis facilisis sem sed eros malesuada, vel dignissim diam ornare. Etiam rhoncus, nibh non auctor mattis, ligula diam mattis dolor, non tincidunt lectus velit nec metus.
-                                               Phasellus dictum justo vitae ornare lobortis. Integer ut lectus vel mauris tempor ultricies eget vitae turpis. Sed eleifend odio quis rutrum volutpat.</p>
-                                            <div class="pull-right">
-                                                <a href="#"><span class="glyphicon glyphicon-trash"></span>.....</a>
+                                    if ($success_complaintdisplay->num_rows > 0) {
+                                      while($rows = $success_complaintdisplay->fetch_assoc()){
+                                ?>
 
-                                            </div>
-                                        </div>
+                                <!-- START TIMELINE ITEM -->
+                                 <div class="timeline-item timeline-item-right">
+                                     <div class="timeline-item-info"> <?php echo date("d M h:i a", $rows['c_date_created']); ?> </div>
+                                     <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
+                                     <div class="timeline-item-content">
+                                         <div class="timeline-heading">
+                                             <img src="assets/images/users/no-image.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
+                                         </div>
+                                         <div class="timeline-body">
+                                           <!-- Display Complaint from Database -->
+                                           <p><?php echo $rows['c_value']; ?></p>
 
-                                          <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                                <img src="assets/images/users/no-image.jpg"/>
-                                                <p class="comment-head">
-                                                    <b>Human Resource Division</b>
-                                                </p>
-                                                <p>Awesome, man, that is awesome...</p>
-                                                <small class="text-muted">10h ago</small>
-                                            </div>
-
-                                        </div>
-                                        <div class="comment-write">
-
-                                          <form action="handlers/ops.php" method="post">
-                                            <div class="row">
-                                              <div class="col-md-10">
-                                                <input type="text" class="form-control" name="comment" placeholder="Write a comment" >
+                                           <!-- Check if there is an image stored in the database for the particular comment -->
+                                           <?php
+                                              if ($rows['c_image_name1'] != "") {
+                                          ?>
+                                          <div class="row">
+                                              <div class="col-md-4">
+                                                  <a href="uploads/<?php echo $rows['c_image_name1']; ?>" data-gallery>
+                                                      <img src="uploads/<?php echo $rows['c_image_name1']; ?>" class="img-responsive img-text"/>
+                                                  </a>
                                               </div>
-                                              <input type="hidden" name="form_type" value="UploadComment">
-                                              <input type="hidden" name="comment_id" value="4">
+                                          </div>
+                                          <?php
+                                              }
 
-                                                <div class="col-md-2">
-                                                  <div class="pull-left">
-                                                      <button class="btn btn-primary"><span class="fa fa-send"></span> SEND</button>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                          </form>
-
-                                        </div>
+                                           ?>
 
 
-                                    </div>
-                                </div>
-                                <!-- END TIMELINE ITEM -->
+                                           <!-- Delete button -->
+                                           <div class="pull-right">
 
-                                <!-- START TIMELINE ITEM -->
-                                <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">Yesterday</div>
-                                    <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-heading">
-                                            <img src="assets/images/users/no-image.jpg"/>  <b>Anonymus</b> made a complaint
-                                        </div>
-                                        <div class="timeline-body">
-                                            <img src="assets/images/gallery/nature-4.jpg" class="img-text" width="150" align="left"/>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus dolor id orci lacinia, eget aliquam velit consequat.</p>
-                                            <p>Vivamus at tincidunt lectus, faucibus condimentum quam. Duis facilisis sem sed eros malesuada, vel dignissim diam ornare. Etiam rhoncus, nibh non auctor mattis, ligula diam mattis dolor, non tincidunt lectus velit nec metus.
-                                               Phasellus dictum justo vitae ornare lobortis. Integer ut lectus vel mauris tempor ultricies eget vitae turpis. Sed eleifend odio quis rutrum volutpat.</p>
-                                            <div class="pull-right">
-                                            <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                                <img src="assets/images/users/no-image.jpg"/>
-                                                <p class="comment-head">
-                                                    <b>Human Resource Division</b>
-                                                </p>
-                                                <p>Awesome, man, that is awesome...</p>
-                                                <small class="text-muted">10h ago</small>
-                                            </div>
-                                            <div class="comment-write">
-                                                <textarea class="form-control" placeholder="Write a comment" rows="1"></textarea>
-                                            </div>
-                                        </div>
+                                               <button class="btn btn-danger" data-box="#delmodal"><span class="fa fa-trash">Delete</span></button>
+                                           </div>
 
-                                    </div>
-                                </div>
-                                <!-- END TIMELINE ITEM -->
+                                         </div>
 
-                                <!-- START TIMELINE ITEM -->
-                                <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">29 Sep 2014</div>
-                                    <div class="timeline-item-icon"><span class="fa fa-image"></span></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-heading">
-                                            <img src="assets/images/users/no-image.jpg"/>  <b>Anonymus</b> made a complaint
-                                        </div>
-                                        <div class="timeline-body" id="links">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <a href="assets/images/gallery/nature-1.jpg" title="Nature Image 1" data-gallery>
-                                                        <img src="assets/images/gallery/nature-1.jpg" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <a href="assets/images/gallery/nature-2.jpg" title="Nature Image 2" data-gallery>
-                                                        <img src="assets/images/gallery/nature-2.jpg" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <a href="assets/images/gallery/nature-3.jpg" title="Nature Image 3" data-gallery>
-                                                        <img src="assets/images/gallery/nature-3.jpg" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="pull-right">
-                                                <a href="#"><span class="glyphicon glyphicon-trash"></span>.....</a>
+                                         <?php
+                                          //Comment id
+                                          $comment_id = $rows['c_id'];
+                                          //Query for comment display
+                                          $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                          //Execution for comment display
+                                          $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
 
-                                            </div>
-                                        </div>
-                                       <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                                <img src="assets/images/users/no-image.jpg"/>
-                                                <p class="comment-head">
-                                                    <b>Human Resource Division</b>
-                                                </p>
-                                                <p>Awesome, man, that is awesome...</p>
-                                                <small class="text-muted">10h ago</small>
-                                            </div>
+                                          if ($success_commentdisplay->num_rows > 0) {
+                                            while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                          ?>
+                                          <!-- Comments -->
+                                            <div class="timeline-body comments">
+                                              <div class="comment-item">
+                                                  <img src="assets/images/users/no-image.jpg"/>
+                                                  <p class="comment-head">
+                                                      <b>Human Resource Division</b>
+                                                  </p>
+                                                  <!-- Comment from Database -->
+                                                  <p><?php echo $cm_rows['cm_value']; ?></p>
+                                                  <small class="text-muted"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+                                              </div>
 
-                                        </div>
-                                        <div class="comment-write">
-                                                <textarea class="form-control" placeholder="Write a comment" rows="1"></textarea>
-                                            </div>
-                                    </div>
-                                </div>
+                                          </div>
+                                          <?php
+                                            }
+
+                                          }
+                                         ?>
+
+
+                                     </div>
+
+                                 </div>
+
+
+                                <?php
+                                      }
+
+                                    }
+                                    else {
+                                      echo "No Complaints available currently";
+                                      echo mysqli_error($link);
+                                    }
+
+
+                                ?>
                                 <!-- END TIMELINE ITEM -->
 
 
@@ -316,6 +279,7 @@
 
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->
+
 
             </div>
             <!-- END PAGE CONTENT -->
@@ -353,6 +317,7 @@
             </div>
         </div>
         <!-- END MESSAGE BOX-->
+
 
         <!-- START PRELOADS -->
         <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
@@ -409,7 +374,8 @@
 });
         </script>
 
-    <!-- END SCRIPTS -->
+    <!-- END
+    SCRIPTS -->
     </body>
 
 

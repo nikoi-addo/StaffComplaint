@@ -5,13 +5,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       //Form Submitted
-      // $cur_time = $ipaddress = $division = $comment = $c_day "";
-
-
       $form_type = $_POST['form_type'];
       //Users IP Address
       $ipaddress = $_SERVER["REMOTE_ADDR"];
-      $cur_time = time(); //Time
+      $cur_time = time();
 
       #########################################################
       #################### MAKE A COMPLAINT ###################
@@ -20,9 +17,13 @@
         //User Problem
         $problem = test_input($_POST['problem']);
         //User Division
+        if ($_POST['division'] === "Select Division (optional)") {
+          $division = "";
+        }
         $division = test_input($_POST['division']);
         $n_responsetime = strtotime("+72 Hours"); //3 Working Days
         $w_responsetime = strtotime("+132 Hours"); //3 Working Days Weekend inclusive
+
 
         $c_day = date("l"); //Complaint day
         $c_day = strtolower($c_day);
@@ -35,49 +36,63 @@
         else {
           $stop_day = $n_responsetime;
         }
-        //Generate picture name
-        $fileName = time() . '_' .basename($_FILES["images"]["name"]);
+        $fileName = "";
+        //If Picture available
+        if ($_FILES) {
+          //Generate picture name
+          $fileName = time() . '_' .basename($_FILES["images"]["name"]);
 
-        //Upload path
-        $targetDir = "../uploads/";
-        $targetFilePath = $targetDir . $fileName;
+          //Upload path
+          $targetDir = "../uploads/";
+          $targetFilePath = $targetDir . $fileName;
 
-        //Allowed file formals
-        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-        //Convert format to lowercase
-        $fileType = strtolower($fileType);
-        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+          //Allowed file formals
+          $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+          //Convert format to lowercase
+          $fileType = strtolower($fileType);
+          $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+          //Check if file type is correct
+          if(in_array($fileType, $allowTypes)){
 
-        //Check if file type is correct
-        if(in_array($fileType, $allowTypes)){
+            //Upload file to the Uploads Folder
+            if(move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath)){
+              echo "Image has been Uploaded Successfully";
 
-          //Upload file to the Uploads Folder
-          if(move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath)){
-
-            $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$fileName')";
-
-            //Insert Complaint into Database
-            $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
-
-            if ($success_insertcomplaint) {
-              echo "Image Upload successful";
             }
-            else {
-              $errorist = mysqli_error($link);
-              echo $errorist;
+            else{
+              echo "Unable to Upload the File, Retry!";
+
             }
-
-
           }
           else{
-            echo "Unable to Upload the File, Retry!";
+            echo "File Type is not Supported!";
 
           }
         }
-        else{
-          echo "File Type is not Supported!";
+        //Query to Insert complaints details
+        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$fileName')";
 
+        //Insert Complaint into Database
+        $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
+
+        if ($success_insertcomplaint) {
+          echo "Complaint has been submitted";
         }
+        else {
+          $errorist = mysqli_error($link);
+          echo $errorist;
+        }
+
+
+
+
+
+
+
+
+
+
+
       }
 
 
