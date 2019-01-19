@@ -210,7 +210,7 @@
                                            <!-- Delete button -->
                                            <div class="pull-right">
 
-                                               <button class="btn btn-danger" data-box="#delmodal"><span class="fa fa-trash">Delete</span></button>
+                                              <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_2');"><span class="fa fa-times"></span>Delete</button>
                                            </div>
 
                                          </div>
