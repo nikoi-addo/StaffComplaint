@@ -180,7 +180,7 @@
 
                                 <!-- START TIMELINE ITEM -->
                                  <div class="timeline-item timeline-item-right">
-                                     <div class="timeline-item-info"> <?php echo date("d M h:i a", $rows['c_date_created']); ?> </div>
+                                     <div class="timeline-item-info"> <?php echo date("d M G:i", $rows['c_date_created']); ?> </div>
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
@@ -209,8 +209,20 @@
 
                                            <!-- Delete button -->
                                            <div class="pull-right">
-
-                                              <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_2');"><span class="fa fa-times"></span>Delete</button>
+                                             <!-- Form to submit the delete input -->
+                                             <form class="" action="handlers/ops.php" method="post">
+                                               <!-- Specify form type as hidden -->
+                                               <input type="hidden" name="form_type" value="DeleteComplaint">
+                                               <!-- Pass complaint Info -->
+                                               <input type="hidden" name="complaint_value" value=" <?php echo $rows['c_value']; ?> ">
+                                               <input type="hidden" name="complaint_division" value=" <?php echo $rows['c_division']; ?> ">
+                                               <input type="hidden" name="complaint_date_created" value=" <?php echo $rows['c_date_created']; ?> ">
+                                               <input type="hidden" name="complaint_ip_address" value=" <?php echo $rows['c_ip_address']; ?> ">
+                                               <input type="hidden" name="complaint_date_stop_display" value=" <?php echo $rows['c_date_stop_display']; ?> ">
+                                               <input type="hidden" name="complaint_image_name1" value=" <?php echo $rows['c_image_name1']; ?> ">
+                                               <input type="hidden" name="complaint_id" value=" <?php echo $rows['c_id']; ?> ">
+                                               <a href="#" data-toggle="tooltip" data-placement="left" title="You can't Undo Delete"><button class="btn btn-danger btn-rounded btn-sm" type="submit"><span class="fa fa-times"></span>Delete</button></a>
+                                             </form>
                                            </div>
 
                                          </div>
@@ -244,7 +256,15 @@
 
                                           }
                                          ?>
-
+                                         <!-- Insert new comment -->
+                                         <div class="comment-item">
+                                           <form action="handlers/ops.php" method="post">
+                                             <input type="hidden" name="form_type" value="UploadComment">
+                                             <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
+                                             <div class="col-xs-10"><input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)" required></div>
+                                             <button class="btn btn-primary btn-rounded btn-sm" type="submit"><span class="fa fa-send"> Send</span></button>
+                                          </form>
+                                         </div>
 
                                      </div>
 
@@ -305,7 +325,7 @@
                     <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
                     <div class="mb-content">
                         <p>Are you sure you want to log out?</p>
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+                        <p>Press No if you want to continue work. Press Yes to logout current user.</p>
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
@@ -348,6 +368,12 @@
         <script type="text/javascript" src="js/actions.js"></script>
         <script type="text/javascript" src="js/demo_maps.js"></script>
         <!-- END TEMPLATE -->
+
+        <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        </script>
 
         <script>
             document.getElementById('links').onclick = function (event) {

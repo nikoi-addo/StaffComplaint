@@ -182,7 +182,7 @@
                                 ?>
                                 <!-- START TIMELINE ITEM -->
                                  <div class="timeline-item timeline-item-right">
-                                     <div class="timeline-item-info"> <?php echo date("d M h:i a", $rows['c_date_created']); ?> </div>
+                                     <div class="timeline-item-info"> <?php echo date("d M G:i", $rows['c_date_created']); ?> </div>
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
@@ -256,84 +256,6 @@
 
 
                                 ?>
-
-
-
-
-                                <!-- START TIMELINE ITEM -->
-                                <!-- <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">Yesterday</div>
-                                    <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-heading">
-                                            <img src="assets/images/users/no-image.jpg"/><b>Anonymus</b> made a complaint
-                                        </div>
-                                        <div class="timeline-body">
-                                            <img src="assets/images/gallery/nature-4.jpg" class="img-text" width="150" align="left"/>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus dolor id orci lacinia, eget aliquam velit consequat.</p>
-                                            <p>Vivamus at tincidunt lectus, faucibus condimentum quam. Duis facilisis sem sed eros malesuada, vel dignissim diam ornare. Etiam rhoncus, nibh non auctor mattis, ligula diam mattis dolor, non tincidunt lectus velit nec metus.
-                                               Phasellus dictum justo vitae ornare lobortis. Integer ut lectus vel mauris tempor ultricies eget vitae turpis. Sed eleifend odio quis rutrum volutpat.</p>
-
-                                        </div>
-                                          <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                                <img src="assets/images/users/no-image.jpg"/>
-                                                <p class="comment-head">
-                                                    <b>Human Resource Division</b>
-                                                </p>
-                                                <p>Awesome, man, that is awesome...</p>
-                                                <small class="text-muted">10h ago</small>
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-                                </div> -->
-                                <!-- END TIMELINE ITEM -->
-
-                                <!-- START TIMELINE ITEM -->
-                                <!-- <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">29 Sep 2014</div>
-                                    <div class="timeline-item-icon"><span class="fa fa-image"></span></div>
-                                    <div class="timeline-item-content">
-                                        <div class="timeline-heading">
-                                            <img src="assets/images/users/no-image.jpg"/>  <b>Anonymus</b> made a complaint
-                                        </div>
-                                        <div class="timeline-body" id="links">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <a href="assets/images/gallery/nature-1.jpg" title="Nature Image 1" data-gallery>
-                                                        <img src="assets/images/gallery/nature-1.jpg" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <a href="assets/images/gallery/nature-2.jpg" title="Nature Image 2" data-gallery>
-                                                        <img src="assets/images/gallery/nature-2.jpg" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <a href="assets/images/gallery/nature-3.jpg" title="Nature Image 3" data-gallery>
-                                                        <img src="assets/images/gallery/nature-3.jpg" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                         <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                                <img src="assets/images/users/no-image.jpg"/>
-                                                <p class="comment-head">
-                                                    <b>Human Resource Division</b>
-                                                </p>
-                                                <p>Awesome, man, that is awesome...</p>
-                                                <small class="text-muted">10h ago</small>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div> -->
-                                <!-- END TIMELINE ITEM -->
 
 
                             </div>
