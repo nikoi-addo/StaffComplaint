@@ -105,12 +105,46 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <h3>Any Internal Issues?</h3>
+                                    <?php if (isset($_GET) && $_GET['rsp'] == "mgplderror" ) {
+                                      $msg ="<div class='alert alert-danger'>
+                                        <center>Unable to upload image, Please retry!!!
+                                        <a class='close' data-dismiss='alert'>&times;</a>
+                                        </center>
+                                      </div>";
+                                      echo $msg;
+                                    }
+                                    elseif (isset($_GET) && $_GET['rsp'] == "ddtyperror"){
+                                      $msg ="<div class='alert alert-danger'>
+                                        <center>Image format not supported. Upload a .gif, .jpg, .png or .jpeg Image file!!!
+                                        <a class='close' data-dismiss='alert'>&times;</a>
+                                        </center>
+                                      </div>";
+                                      echo $msg;
+                                    }
+                                    elseif (isset($_GET) && $_GET['rsp'] == "cmperror"){
+                                      $msg ="<div class='alert alert-danger'>
+                                        <center>Unable to Upload Complaint. Please retry!!!
+                                        <a class='close' data-dismiss='alert'>&times;</a>
+                                        </center>
+                                      </div>";
+                                      echo $msg;
+                                    }
+                                    elseif (isset($_GET) && $_GET['rsp'] == "cmpsuccess" ){
+                                      $msg ="<div class='alert alert-success'>
+                                        <center>Complaint Uploaded Successfully!!!
+                                        <a class='close' data-dismiss='alert'>&times;</a>
+                                        </center>
+                                      </div>";
+                                      echo $msg;
+                                    }
+                                    ?>
+
                                     <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form">
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" name="problem" maxlength="2048" placeholder="What's happening? (Limit: 2048 Characters)"/>
+                                                <input class="form-control" name="problem" maxlength="2048" placeholder="What's happening? (Limit: 2048 Characters)" required/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -251,7 +285,6 @@
                                     }
                                     else {
                                       echo "No Complaints available currently";
-                                      echo mysqli_error($link);
                                     }
 
 
@@ -266,6 +299,7 @@
 
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->
+
 
             </div>
             <!-- END PAGE CONTENT -->
@@ -283,25 +317,6 @@
         </div>
         <!-- END BLUEIMP GALLERY -->
 
-        <!-- MESSAGE BOX-->
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-                    </div>
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                            <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
-                            <button class="btn btn-default btn-lg mb-control-close">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END MESSAGE BOX-->
 
         <!-- START PRELOADS -->
         <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>

@@ -38,7 +38,7 @@
         }
         $fileName = "";
         //If Picture available
-        if ($_POST['images'] != "") {
+        if ($_POST['images'] !== "") {
           //Generate picture name
           $fileName = time() . '_' .basename($_FILES["images"]["name"]);
           //Upload path
@@ -54,17 +54,15 @@
           if(in_array($fileType, $allowTypes)){
 
             //Upload file to the Uploads Folder
-            if(move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath)){
-              echo "Image has been Uploaded Successfully";
+            move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath);
 
-            }
-            else{
-              echo "Unable to Upload the File, Retry!";
-
+            if(!move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath)){
+              //Error to display if image is not Uploaded
+              header("location:../index.php?rsp=mgplderror");
             }
           }
           else{
-            echo "File Type is not Supported!";
+            header("location:../index.php?rsp=dttyperror");
 
           }
         }
@@ -75,11 +73,11 @@
         $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
 
         if ($success_insertcomplaint) {
-          echo "Complaint has been submitted";
+          // echo "Complaint has been submitted";
+          header("location:../index.php?rsp=cmpsuccess");
         }
         else {
-          $errorist = mysqli_error($link);
-          echo $errorist;
+          header("location:../index.php?rsp=cmperror");
         }
       }
 
@@ -104,11 +102,12 @@
         $success_uploadcomment = mysqli_query($link, $sql_uploadcomment);
 
         if ($success_uploadcomment) {
-          echo "Comment Uploaded";
+          //Upload comment success
+          header("location:../hr.php?rsp=$complaint_id&cmrsp=1");
         }
         else{
-          echo mysqli_error($link);
-          echo "<br>Comment upload incomplete";
+          //Error in comment success
+          header("location:../hr.php?rsp=$complaint_id&cmrsp=0");
         }
       }
 
@@ -146,14 +145,16 @@
 
           //Delete success
           if ($success_delcompfromtable) {
-            echo "Deletion Complete";
+            header("location:../hr.php?delrsp=0");
           }
+          //Delete Unsuccessful
           else {
-            echo mysqli_error($link);
+            header("location:../hr.php?delrsp=1");
           }
         }
+        //Move Unsuccessful
         else {
-          echo mysqli_error($link);
+          header("location:../hr.php?delrsp=2");
         }
 
       }

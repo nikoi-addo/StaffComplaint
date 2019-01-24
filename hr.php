@@ -110,13 +110,13 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" placeholder="What's happening?"/>
+                                                <input class="form-control" placeholder="What's happening?" required/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                              <select class="form-control ">
+                                              <select class="form-control">
                                                         <option>Select Division (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
@@ -150,6 +150,34 @@
                                     </div>
                                     </form>
                                 </div>
+                                <?php
+                                //Delete successful
+                                  if(isset($_GET['delrsp']) && $_GET['delrsp'] == 0){
+                                    $msg ="<div class='alert alert-success'>
+                                      <center>Complaint Successfully Deleted!!!
+                                      <a class='close' data-dismiss='alert'>&times;</a>
+                                      </center>
+                                    </div>";
+                                    echo $msg;
+                                  }
+                                  //Delete Error
+                                  elseif(isset($_GET['delrsp']) && $_GET['delrsp'] == 1){
+                                    $msg ="<div class='alert alert-danger'>
+                                      <center>Error Deleting Complaint!!!
+                                      <a class='close' data-dismiss='alert'>&times;</a>
+                                      </center>
+                                    </div>";
+                                    echo $msg;
+                                  }
+                                  elseif(isset($_GET['delrsp']) && $_GET['delrsp'] == 2){
+                                    $msg ="<div class='alert alert-danger'>
+                                      <center>Error Changing Complaint Status!!!
+                                      <a class='close' data-dismiss='alert'>&times;</a>
+                                      </center>
+                                    </div>";
+                                    echo $msg;
+                                  }
+                                 ?>
                             </div>
                             <!-- END NEW RECORD -->
 
@@ -185,10 +213,23 @@
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
                                              <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
+                                             <div class="pull-right">
+                                             <!-- Delete button -->
+                                                 <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-danger btn-rounded btn-sm" type="submit"><span class="fa fa-times"></span></button>
+                                             </div>
                                          </div>
                                          <div class="timeline-body">
-                                           <!-- Display Complaint from Database -->
-                                           <p><?php echo $rows['c_value']; ?></p>
+                                           <div class="row">
+                                             <div class="col-md-10">
+                                               <!-- Display Complaint from Database -->
+                                               <p><?php echo $rows['c_value']; ?></p>
+                                             </div>
+                                             <div class="col-md-2">
+
+                                             </div>
+
+                                           </div>
+
 
                                            <!-- Check if there is an image stored in the database for the particular comment -->
                                            <?php
@@ -205,25 +246,6 @@
                                               }
 
                                            ?>
-
-
-                                           <!-- Delete button -->
-                                           <div class="pull-right">
-                                             <!-- Form to submit the delete input -->
-                                             <form class="" action="handlers/ops.php" method="post">
-                                               <!-- Specify form type as hidden -->
-                                               <input type="hidden" name="form_type" value="DeleteComplaint">
-                                               <!-- Pass complaint Info -->
-                                               <input type="hidden" name="complaint_value" value=" <?php echo $rows['c_value']; ?> ">
-                                               <input type="hidden" name="complaint_division" value=" <?php echo $rows['c_division']; ?> ">
-                                               <input type="hidden" name="complaint_date_created" value=" <?php echo $rows['c_date_created']; ?> ">
-                                               <input type="hidden" name="complaint_ip_address" value=" <?php echo $rows['c_ip_address']; ?> ">
-                                               <input type="hidden" name="complaint_date_stop_display" value=" <?php echo $rows['c_date_stop_display']; ?> ">
-                                               <input type="hidden" name="complaint_image_name1" value=" <?php echo $rows['c_image_name1']; ?> ">
-                                               <input type="hidden" name="complaint_id" value=" <?php echo $rows['c_id']; ?> ">
-                                               <a href="#" data-toggle="tooltip" data-placement="left" title="You can't Undo Delete"><button class="btn btn-danger btn-rounded btn-sm" type="submit"><span class="fa fa-times"></span>Delete</button></a>
-                                             </form>
-                                           </div>
 
                                          </div>
 
@@ -261,7 +283,33 @@
                                            <form action="handlers/ops.php" method="post">
                                              <input type="hidden" name="form_type" value="UploadComment">
                                              <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
-                                             <div class="col-xs-10"><input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)" required></div>
+
+                                             <!-- Check if a comment has been submitted -->
+                                             <?php
+                                             // If comment is sent successfully
+                                             if (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $complaint_id && $_GET['cmrsp'] == 1) {
+                                               $msg ="<div class='alert alert-success'>
+                                                 <center>Comment Sent!!!
+                                                 <a class='close' data-dismiss='alert'>&times;</a>
+                                                 </center>
+                                               </div>";
+                                               echo $msg;
+                                             }
+                                             //If comment is not sent
+                                             elseif (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $complaint_id && $_GET['cmrsp'] == 0) {
+                                               $msg ="<div class='alert alert-danger'>
+                                                 <center>Unable to Upload Comment. Retry!!!
+                                                 <a class='close' data-dismiss='alert'>&times;</a>
+                                                 </center>
+                                               </div>";
+                                               echo $msg;
+                                             } ?>
+                                             <div class="col-xs-10"><input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)"
+                                               <?php
+                                                  if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id']) {
+                                                  //Focus on the comment you just sent
+                                                  echo "autofocus";
+                                                  } ?> required></div>
                                              <button class="btn btn-primary btn-rounded btn-sm" type="submit"><span class="fa fa-send"> Send</span></button>
                                           </form>
                                          </div>
@@ -269,7 +317,38 @@
                                      </div>
 
                                  </div>
+                                 <!-- MESSAGE BOX-->
+                                 <div class="message-box animated fadeIn" id="mb-delcomp<?php echo $rows['c_id']; ?>">
+                                     <div class="mb-container">
+                                         <div class="mb-middle">
+                                             <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Complaint</strong> ?</div>
+                                             <div class="mb-content">
+                                                 <p>Are you sure you want to delete this complaint?</p>
+                                                 <p>Press No if you want to Cancel. Press Yes to Delete.</p>
+                                             </div>
+                                             <div class="mb-footer">
+                                                 <div class="pull-right">
+                                                   <form class="" action="handlers/ops.php" method="post">
+                                                     <!-- Specify form type as hidden -->
+                                                     <input type="hidden" name="form_type" value="DeleteComplaint">
+                                                     <!-- Pass complaint Information also hidden -->
+                                                     <input type="hidden" name="complaint_value" value=" <?php echo $rows['c_value']; ?> ">
+                                                     <input type="hidden" name="complaint_division" value=" <?php echo $rows['c_division']; ?> ">
+                                                     <input type="hidden" name="complaint_date_created" value=" <?php echo $rows['c_date_created']; ?> ">
+                                                     <input type="hidden" name="complaint_ip_address" value=" <?php echo $rows['c_ip_address']; ?> ">
+                                                     <input type="hidden" name="complaint_date_stop_display" value=" <?php echo $rows['c_date_stop_display']; ?> ">
+                                                     <input type="hidden" name="complaint_image_name1" value=" <?php echo $rows['c_image_name1']; ?> ">
+                                                     <input type="hidden" name="complaint_id" value=" <?php echo $rows['c_id']; ?> ">
 
+                                                     <button class="btn btn-danger btn-lg" type="submit">Yes</a>
+                                                     <button class="btn btn-default btn-lg mb-control-close">No</button>
+                                                     </form>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!-- END MESSAGE BOX-->
 
                                 <?php
                                       }
@@ -277,14 +356,11 @@
                                     }
                                     else {
                                       echo "No Complaints available currently";
-                                      echo mysqli_error($link);
                                     }
 
 
                                 ?>
                                 <!-- END TIMELINE ITEM -->
-
-
 
                                 <!-- START TIMELINE ITEM -->
                                 <div class="timeline-item timeline-main">
