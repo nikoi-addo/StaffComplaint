@@ -38,7 +38,9 @@
         }
         $fileName = "";
         //If Picture available
-        if ($_POST['images'] !== "") {
+       
+        if ($_FILES ['images'][tmp_name]) {
+        
           //Generate picture name
           $fileName = time() . '_' .basename($_FILES["images"]["name"]);
           //Upload path

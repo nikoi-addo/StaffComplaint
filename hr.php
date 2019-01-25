@@ -215,7 +215,7 @@
                                              <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
                                              <div class="pull-right">
                                              <!-- Delete button -->
-                                                 <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-danger btn-rounded btn-sm" type="submit"><span class="fa fa-times"></span></button>
+                                                 <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-danger btn-rounded btn-sm" type="submit"><span class="fa fa-times"></span>Delete</button>
                                              </div>
                                          </div>
                                          <div class="timeline-body">
@@ -287,7 +287,7 @@
                                              <!-- Check if a comment has been submitted -->
                                              <?php
                                              // If comment is sent successfully
-                                             if (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $complaint_id && $_GET['cmrsp'] == 1) {
+                                             if (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 1) {
                                                $msg ="<div class='alert alert-success'>
                                                  <center>Comment Sent!!!
                                                  <a class='close' data-dismiss='alert'>&times;</a>
@@ -296,7 +296,7 @@
                                                echo $msg;
                                              }
                                              //If comment is not sent
-                                             elseif (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $complaint_id && $_GET['cmrsp'] == 0) {
+                                             elseif (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 0) {
                                                $msg ="<div class='alert alert-danger'>
                                                  <center>Unable to Upload Comment. Retry!!!
                                                  <a class='close' data-dismiss='alert'>&times;</a>
