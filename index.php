@@ -105,39 +105,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <h3>Any Internal Issues?</h3>
-                                    <?php if (isset($_GET) && $_GET['rsp'] == "mgplderror" ) {
-                                      $msg ="<div class='alert alert-danger'>
-                                        <center>Unable to upload image, Please retry!!!
-                                        <a class='close' data-dismiss='alert'>&times;</a>
-                                        </center>
-                                      </div>";
-                                      echo $msg;
-                                    }
-                                    elseif (isset($_GET) && $_GET['rsp'] == "ddtyperror"){
-                                      $msg ="<div class='alert alert-danger'>
-                                        <center>Image format not supported. Upload a .gif, .jpg, .png or .jpeg Image file!!!
-                                        <a class='close' data-dismiss='alert'>&times;</a>
-                                        </center>
-                                      </div>";
-                                      echo $msg;
-                                    }
-                                    elseif (isset($_GET) && $_GET['rsp'] == "cmperror"){
-                                      $msg ="<div class='alert alert-danger'>
-                                        <center>Unable to Upload Complaint. Please retry!!!
-                                        <a class='close' data-dismiss='alert'>&times;</a>
-                                        </center>
-                                      </div>";
-                                      echo $msg;
-                                    }
-                                    elseif (isset($_GET) && $_GET['rsp'] == "cmpsuccess" ){
-                                      $msg ="<div class='alert alert-success'>
-                                        <center>Complaint Uploaded Successfully!!!
-                                        <a class='close' data-dismiss='alert'>&times;</a>
-                                        </center>
-                                      </div>";
-                                      echo $msg;
-                                    }
-                                    ?>
+                                   
 
                                     <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form">
                                     <div class="form-group">

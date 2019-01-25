@@ -215,7 +215,7 @@
                                              <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
                                              <div class="pull-right">
                                              <!-- Delete button -->
-                                                 <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-danger btn-rounded btn-sm" type="submit"><span class="fa fa-times"></span>Delete</button>
+                                             <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>
                                              </div>
                                          </div>
                                          <div class="timeline-body">
@@ -304,13 +304,13 @@
                                                </div>";
                                                echo $msg;
                                              } ?>
-                                             <div class="col-xs-10"><input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)"
+                                             <div class="col-md-11"><input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)"
                                                <?php
                                                   if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id']) {
                                                   //Focus on the comment you just sent
                                                   echo "autofocus";
                                                   } ?> required></div>
-                                             <button class="btn btn-primary btn-rounded btn-sm" type="submit"><span class="fa fa-send"> Send</span></button>
+                                             <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button>
                                           </form>
                                          </div>
 
