@@ -45,7 +45,7 @@
                     </li>
                    <li class="xn-title"><b>Navigation</b></li>                    
                     <li>
-                        <a href="index.html"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
+                        <a href="admin.php"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
                     
                     <li class="xn-title"><b>Status</b></li>                    
@@ -117,7 +117,7 @@
                                         <form class="form-inline" method="get" action="course1.php" >
                                           <div class="form-group"> <!-- Date input -->
                                             <label class="control-label" for="date">Date :</label>
-                                            <input class="form-control" name="sdate"  value="<?php echo $sdate; ?>"  type="date"/>
+                                            <input class="form-control" name="sdate"  value=""  type="date"/>
                                             <input class="btn btn-primary" type="submit" name="submit">
                                           </div>
 
@@ -167,44 +167,13 @@
                                                     <td><span class="label label-success">New</span></td>
                                                     <td>$430.20</td>
                                                     <td>24/09/2014</td>
+                                                    <td>24/09/2014</td>
                                                     <td>
                                                         <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
                                                         <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
                                                     </td>
                                                 </tr>
-                                                <tr id="trow_2">
-                                                    <td class="text-center">2</td>
-                                                    <td><strong>Dmitry Ivaniuk</strong></td>
-                                                    <td><span class="label label-warning">Pending</span></td>
-                                                    <td>$1,351.00</td>
-                                                    <td>23/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_2');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
-                                                <tr id="trow_3">
-                                                    <td class="text-center">3</td>
-                                                    <td><strong>Nadia Ali</strong></td>
-                                                    <td><span class="label label-info">In Queue</span></td>
-                                                    <td>$2,621.00</td>
-                                                    <td>22/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
-                                                <tr id="trow_3">
-                                                    <td class="text-center">3</td>
-                                                    <td><strong>Nadia Ali</strong></td>
-                                                    <td><span class="label label-info">In Queue</span></td>
-                                                    <td>$2,621.00</td>
-                                                    <td>22/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
+                                              
                                             </tbody>
                                     </table>
 

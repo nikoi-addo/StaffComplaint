@@ -143,8 +143,7 @@
                                             <div class="btn-group pull-left">
                                             <input type="hidden" name="form_type" value="ComplainForm">
                                             <input type="file" name="images" accept="image/*" />
-                                              <!-- <button class="btn btn-primary" type="button" id="custom-button" target="#real-fie"><span class="fa fa-camera"></span>Image Upload</button>
-                                              <span id="custom-text">No file chosen, yet.</span> -->
+                                              
                                             </div>
                                             <div class="pull-right">
                                                 <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>

@@ -309,12 +309,14 @@
                                                </div>";
                                                echo $msg;
                                              } ?>
-                                             <div class="col-md-11"><input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)"
+                                             <div class="col-md-11">
+                                            <input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)"
                                                <?php
                                                   if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id']) {
                                                   //Focus on the comment you just sent
                                                   echo "autofocus";
-                                                  } ?> required></div>
+                                                  } ?> required>
+                                              </div>
                                              <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button>
                                           </form>
                                          </div>
