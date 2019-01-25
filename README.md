@@ -14,3 +14,8 @@ Database has an extra table del_complaints to hold the info of the deleted colum
 The image upload too has been modified to ensure that the spaces that do not have images do not  show any broken image view. If they do appear then it means an image was uploaded on one end and did not reflect on the other side.
 The comment function too has been completed and I think that if there need be any aesthetic designs you can implement those ones too.
 In addition find the new database file attached also.
+
+25 January
+
+1.Made front end changes to delete and send button on the hr.php
+2.Added new page message.php to display messages from hr when posted.
