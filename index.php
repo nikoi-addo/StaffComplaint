@@ -230,10 +230,12 @@
                                                   <img src="assets/images/users/avatar.jpg"/>
                                                   <p class="comment-head">
                                                       <b>Human Resource Division</b>
+                                                      <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+
                                                   </p>
                                                   <!-- Comment from Database -->
-                                                  <p><?php echo $cm_rows['cm_value']; ?></p>
-                                                  <small class="text-muted"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+                                                  <p><?php echo $cm_rows['cm_value']; ?><p>
+                                                  
                                               </div>
 
                                           </div>

@@ -109,8 +109,12 @@
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-tag"></span></span>
+                                                <input class="form-control" placeholder="Subject of Message..." required/>
+                                            </div>
+                                            <br><div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" placeholder="What's happening?" required/>
+                                                <input class="form-control" placeholder="What's happening?..." required/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -266,10 +270,11 @@
                                                   <img src="assets/images/users/avatar.jpg"/>
                                                   <p class="comment-head">
                                                       <b>Human Resource Division</b>
+                                                       <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
                                                   </p>
                                                   <!-- Comment from Database -->
                                                   <p><?php echo $cm_rows['cm_value']; ?></p>
-                                                  <small class="text-muted"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+                                                 
                                               </div>
 
                                           </div>
