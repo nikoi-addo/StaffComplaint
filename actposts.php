@@ -49,7 +49,7 @@
                     </li>
                    <li class="xn-title"><b>Navigation</b></li>
                     <li>
-                        <a href="index.html"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
+                        <a href="admin.php"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
 
                     <li class="xn-title"><b>Status</b></li>
@@ -267,5 +267,5 @@
     <!-- END SCRIPTS -->
     </body>
 
-<!-- Mirrored from themifycloud.com/demos/templates/joli/table-export.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:41:43 GMT -->
+
 </html>
