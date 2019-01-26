@@ -1,10 +1,14 @@
+<?php
+  include 'handlers/dbcon.php';
+  $curr_time = time();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
         <!-- META SECTION -->
-        <title>Internal Complaint - Admin</title>
+        <title>Internal Complaint - Admin Active Posts</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,19 +54,16 @@
 
                     <li class="xn-title"><b>Status</b></li>
                     <li>
-                        <a href="stage1.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
+                        <a href="delposts.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
                     </li>
                     <li>
-                        <a href="stage2.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
+                        <a href="inactposts.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
                     </li>
 
-                    <li>
-                        <a href="stage3.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
+                    <li class="active">
+                        <a href="actposts.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
-
-
-
-                        </ul>
+                  </ul>
 
 
 
@@ -109,20 +110,20 @@
 
                             <!-- START DATATABLE EXPORT -->
                             <div class="panel panel-default">
-                                <div class="panel-heading">
+                                <!-- <div class="panel-heading">
 
                                     <div>
                                     <div class="btn-group pull-left">
-                                        <!-- Form code begins -->
+
                                         <form class="form-inline" method="get" action="course1.php" >
-                                          <div class="form-group"> <!-- Date input -->
+                                          <div class="form-group">
                                             <label class="control-label" for="date">Date :</label>
                                             <input class="form-control" name="sdate"  value="<?php echo $sdate; ?>"  type="date"/>
                                             <input class="btn btn-primary" type="submit" name="submit">
                                           </div>
 
                                         </form>
-                                         <!-- Form code ends -->
+
                                     </div>
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
@@ -142,7 +143,7 @@
 
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 </div>
                                 <div class="panel-body">
@@ -150,61 +151,47 @@
                                         <thead>
                                             <tr>
                                                 <th width="50">id</th>
-                                                    <th>post</th>
-                                                    <th>reply from HR</th>
-                                                    <th width="100">status</th>
-                                                    <th width="100">ip</th>
-                                                    <th width="100">date</th>
-                                                    <th width="100">actions</th>
-
-
+                                                <th width="300">Post</th>
+                                                <th width="200">Reply from HR</th>
+                                                <th width="100">Status</th>
+                                                <th width="100">IP Address</th>
+                                                <th width="100">Date</th>
+                                                <th width="100">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr id="trow_1">
-                                                    <td class="text-center">1</td>
-                                                    <td><strong>John Doe</strong></td>
-                                                    <td><span class="label label-success">New</span></td>
-                                                    <td>$430.20</td>
-                                                    <td>24/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
-                                                <tr id="trow_2">
-                                                    <td class="text-center">2</td>
-                                                    <td><strong>Dmitry Ivaniuk</strong></td>
-                                                    <td><span class="label label-warning">Pending</span></td>
-                                                    <td>$1,351.00</td>
-                                                    <td>23/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_2');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
-                                                <tr id="trow_3">
-                                                    <td class="text-center">3</td>
-                                                    <td><strong>Nadia Ali</strong></td>
-                                                    <td><span class="label label-info">In Queue</span></td>
-                                                    <td>$2,621.00</td>
-                                                    <td>22/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
-                                                <tr id="trow_3">
-                                                    <td class="text-center">3</td>
-                                                    <td><strong>Nadia Ali</strong></td>
-                                                    <td><span class="label label-info">In Queue</span></td>
-                                                    <td>$2,621.00</td>
-                                                    <td>22/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
+                                          <?php
+                                            //Select only those whose time has not elapsed.
+                                            $sql_actpostdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $curr_time ORDER BY c_date_created DESC";
+                                            $success_actpostdisplay = mysqli_query($link, $sql_actpostdisplay);
+                                            if ($success_actpostdisplay->num_rows > 0) {
+                                              $i = 1;
+                                              while($rows = $success_actpostdisplay->fetch_assoc()){
+                                          ?>
+                                          <tr id="trow<?php echo $rows['c_id']; ?>">
+                                            <td class="text-center"><?php echo $i; ?></td>
+                                            <td><strong><?php echo $rows['c_value']; ?></strong></td>
+                                            <td><span class="label label-success">New</span></td>
+                                            <td><?php
+                                              //Display time not exceeded
+                                              if ($cur_time < $rows['c_date_stop_display']) {
+                                                echo "<span class='label label-success'>Active</span>";
+                                              }
+                                              //Display time exceeded
+                                              elseif ($cur_time > $rows['c_date_stop_display']){
+                                                echo "<span class='label label-danger'>Inactive</span>";
+                                              } ?>
+                                              </td>
+                                              <td><?php echo $rows['c_ip_address']; ?></td>
+                                              <td><?php echo date("M d, Y @ h:i a", $rows['c_date_created']); ?></td>
+                                              <td>Yet to decide</td>
+                                          </tr>
+                                          <?php
+                                              $i++;
+                                                }
+
+                                              }
+                                          ?>
                                             </tbody>
                                     </table>
 

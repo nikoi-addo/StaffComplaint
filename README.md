@@ -7,15 +7,20 @@ Finally make the time as 24 Hours
 
 --end--
 
-----signed Mingle
+
 Changed the time to reflect the 24hour format in both hr.php and index.php files primarily with the complaint. The comments retained the am and pm module
 Deletion Functionality complete with the issue of confirmation of delete put a tooltip to inform user that deletion is irreversable.
 Database has an extra table del_complaints to hold the info of the deleted columns. In addition the status row in the complaints table has been removed for now. Inactive posts can be fetched without specifying active or inactive by using the c_date_stop_display
 The image upload too has been modified to ensure that the spaces that do not have images do not  show any broken image view. If they do appear then it means an image was uploaded on one end and did not reflect on the other side.
 The comment function too has been completed and I think that if there need be any aesthetic designs you can implement those ones too.
 In addition find the new database file attached also.
+----signed Mingle
 
 25 January
 
 1.Made front end changes to delete and send button on the hr.php
 2.Added new page message.php to display messages from hr when posted.
+
+26 January
+Backend to display posts from compaints table in database to actposts.php and inactposts.php and the del_complaints table to the delposts.php pages.
+----signed mingle
