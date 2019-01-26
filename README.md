@@ -23,4 +23,6 @@ In addition find the new database file attached also.
 
 26 January
 Backend to display posts from compaints table in database to actposts.php and inactposts.php and the del_complaints table to the delposts.php pages.
+There is need however to check on the exact info to refelect in these cases.
+NB: Commit messages should be short but capture majority of changes made.
 ----signed mingle
