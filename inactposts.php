@@ -96,7 +96,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">
-                    <h2><span class="fa fa-users"></span> Admin Table for <i></b></i></h2>
+                    <h2><span class="fa fa-users"></span> Admin Table for <i>Inactive Posts</b></i></h2>
                 </div>
                 <!-- END PAGE TITLE -->
 

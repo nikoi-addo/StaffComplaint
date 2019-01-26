@@ -96,7 +96,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">
-                    <h2><span class="fa fa-users"></span> Admin Table for <i><b><?php echo $sdate ; ?></b></i></h2>
+                    <h2><span class="fa fa-users"></span> Admin Table for <i><b>Active Posts</b></i></h2>
                 </div>
                 <!-- END PAGE TITLE -->
 
@@ -174,7 +174,7 @@
                                             <td><span class="label label-success">New</span></td>
                                             <td><?php
                                               //Display time not exceeded
-                                              if ($cur_time < $rows['c_date_stop_display']) {
+                                              if ($curr_time < $rows['c_date_stop_display']) {
                                                 echo "<span class='label label-success'>Active</span>";
                                               }
                                               //Display time exceeded
