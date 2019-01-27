@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+  include 'handlers/dbcon.php';
+  $curr_time = time();
+?>
 
 <head>
         <!-- META SECTION -->
@@ -25,7 +28,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                       
+
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -43,19 +46,19 @@
 
                         </div>
                     </li>
-                   <li class="xn-title"><b>Navigation</b></li>                    
-                    <li>
+                   <li class="xn-title"><b>Navigation</b></li>
+                    <li class="active">
                         <a href="admin.php"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
-                    
-                    <li class="xn-title"><b>Status</b></li>                    
+
+                    <li class="xn-title"><b>Status</b></li>
                     <li>
                         <a href="delposts.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
-                    </li>                   
+                    </li>
                     <li>
                         <a href="inactposts.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
                     </li>
-                    
+
                     <li>
                         <a href="actposts.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
@@ -89,7 +92,7 @@
                 <!-- END X-NAVIGATION VERTICAL -->
 
                     <ul class="breadcrumb">
-                    
+
                     <li class="active">Deleted . Active . Inactive Database for Admin</li>
                 </ul>
 
@@ -109,72 +112,72 @@
 
                             <!-- START DATATABLE EXPORT -->
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-
-                                    <div>
-                                    <div class="btn-group pull-left">
-                                        <!-- Form code begins -->
-                                        <form class="form-inline" method="get" action="course1.php" >
-                                          <div class="form-group"> <!-- Date input -->
-                                            <label class="control-label" for="date">Date :</label>
-                                            <input class="form-control" name="sdate"  value=""  type="date"/>
-                                            <input class="btn btn-primary" type="submit" name="submit">
-                                          </div>
-
-                                        </form>
-                                         <!-- Form code ends -->
-                                    </div>
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
-                                        <ul class="dropdown-menu">
-
-
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src='img/icons/xml.png' width="24"/> XML</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'sql'});"><img src='img/icons/sql.png' width="24"/> SQL</a></li>
-                                            <li class="divider"></li>
-
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="24"/> TXT</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src='img/icons/xls.png' width="24"/> XLS</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src='img/icons/word.png' width="24"/> Word</a></li>
-                                            <li><a href="#" onClick ="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src='img/icons/ppt.png' width="24"/> PowerPoint</a></li>
-                                            <li class="divider"></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                </div>
                                 <div class="panel-body">
                                     <table id="customers2" class="table datatable">
                                         <thead>
-                                            <tr>
-                                                <th width="50">id</th>
-                                                    <th>post</th>
-                                                    <th>reply from HR</th>
-                                                    <th width="100">status</th>
-                                                    <th width="100">ip</th>
-                                                    <th width="100">date</th>
-                                                    <th width="100">actions</th>
-
-
-                                            </tr>
+                                          <tr>
+                                              <th width="50">id</th>
+                                              <th width="300">Post</th>
+                                              <th width="100">Reply from HR</th>
+                                              <th width="100">Status</th>
+                                              <th width="100">IP Address</th>
+                                              <th width="100">Date</th>
+                                              <th width="100">Actions</th>
+                                          </tr>
                                         </thead>
-                                        <tbody>                                            
-                                                <tr id="trow_1">
-                                                    <td class="text-center">1</td>
-                                                    <td><strong>John Doe</strong></td>
-                                                    <td><span class="label label-success">New</span></td>
-                                                    <td>$430.20</td>
-                                                    <td>24/09/2014</td>
-                                                    <td>24/09/2014</td>
-                                                    <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                                </tr>
-                                              
-                                            </tbody>
+                                        <tbody>
+                                                <?php
+                                                  //Union of the two tables
+                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1  FROM complaints UNION ALL SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1 FROM del_complaints ORDER BY c_date_created";
+                                                  $success_adminpostdisplay = mysqli_query($link, $sql_adminpostdisplay);
+
+                                                  if($success_adminpostdisplay->num_rows > 0){
+                                                    while ($rows = $success_adminpostdisplay->fetch_assoc()){
+                                                      $id = $rows['c_id'];
+                                                      $sql_commentpresent = "SELECT * FROM comments WHERE c_id = '$id'";
+                                                      $success_commentpresent = mysqli_query($link, $sql_commentpresent);
+                                                      ?>
+                                                      <tr id="trow_1<?php echo $id; ?>">
+                                                          <td class="text-center"><?php echo $id; ?></td>
+                                                          <td><strong><?php echo $rows['c_value']; ?></strong></td>
+                                                          <td><?php
+                                                          if ($success_commentpresent->num_rows > 0) {?>
+                                                              <span class='label label-success'>Responded</span>
+                                                          <?php }
+                                                          elseif ($success_commentpresent->num_rows == 0) {?>
+                                                            <span class='label label-danger'>Not Responded</span>
+                                                          <?php } ?>
+                                                          </td>
+                                                          <td><?php
+                                                            //Display time not exceeded
+                                                            if ($curr_time < $rows['c_date_stop_display']) {
+                                                              echo "<span class='label label-success'>Active</span>";
+                                                            }
+                                                            //Display time exceeded
+                                                            elseif ($curr_time > $rows['c_date_stop_display']){
+                                                              echo "<span class='label label-danger'>Inactive</span>";
+                                                            }
+                                                            //Check and Display if the item is deleted
+                                                            $sql_checkdelete = "SELECT * FROM del_complaints WHERE c_id = $id";
+                                                            $success_checkdelete = mysqli_query($link, $sql_checkdelete);
+                                                            if ($success_checkdelete->num_rows > 0) {
+                                                              echo "<span class='label label-danger'>Deleted</span>";
+                                                            }
+                                                            ?>
+                                                            </td>
+                                                            <td><?php echo $rows['c_ip_address']; ?></td>
+                                                            <td><?php echo date("M d, Y @ h:i a", $rows['c_date_created']); ?></td>
+                                                            <td>Yet to decide</td>
+                                                      </tr>
+                                                  <?php
+                                                    }
+                                                  }
+                                                  else {
+                                                    echo mysqli_error($link);
+                                                  }
+
+                                                ?>
+                                              </tbody>
                                     </table>
 
                                 </div>
@@ -251,3 +254,4 @@
 
 <!-- Mirrored from themifycloud.com/demos/templates/joli/table-export.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:41:43 GMT -->
 </html>
+<!--  -->

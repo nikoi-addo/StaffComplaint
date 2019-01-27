@@ -152,7 +152,7 @@
                                             <tr>
                                                 <th width="50">id</th>
                                                 <th width="300">Post</th>
-                                                <th width="200">Reply from HR</th>
+                                                <th width="100">Reply from HR</th>
                                                 <th width="100">Status</th>
                                                 <th width="100">IP Address</th>
                                                 <th width="100">Date</th>
@@ -167,18 +167,29 @@
                                             if ($success_actpostdisplay->num_rows > 0) {
                                               $i = 1;
                                               while($rows = $success_actpostdisplay->fetch_assoc()){
+                                                $id = $rows['c_id'];
+                                                $sql_commentpresent = "SELECT * FROM comments WHERE c_id = '$id'";
+                                                $success_commentpresent = mysqli_query($link, $sql_commentpresent);
                                           ?>
                                           <tr id="trow<?php echo $rows['c_id']; ?>">
                                             <td class="text-center"><?php echo $i; ?></td>
-                                            <td><strong><?php echo $rows['c_value']; ?></strong></td>
-                                            <td><span class="label label-success">New</span></td>
+                                            <td><strong> <?php echo $rows['c_value']; ?> </strong></td>
+                                            <td>
+                                              <?php
+                                              if ($success_commentpresent->num_rows > 0) {?>
+                                                  <span class='label label-success'>Responded</span>
+                                              <?php }
+                                              elseif ($success_commentpresent->num_rows == 0) {?>
+                                                <span class='label label-danger'>Not Responded</span>
+                                              <?php } ?>
+                                            </td>
                                             <td><?php
                                               //Display time not exceeded
                                               if ($curr_time < $rows['c_date_stop_display']) {
                                                 echo "<span class='label label-success'>Active</span>";
                                               }
                                               //Display time exceeded
-                                              elseif ($cur_time > $rows['c_date_stop_display']){
+                                              elseif ($curr_time > $rows['c_date_stop_display']){
                                                 echo "<span class='label label-danger'>Inactive</span>";
                                               } ?>
                                               </td>

@@ -26,3 +26,9 @@ Backend to display posts from compaints table in database to actposts.php and in
 There is need however to check on the exact info to refelect in these cases.
 NB: Commit messages should be short but capture majority of changes made.
 ----signed mingle
+
+27 January
+Worked to Check if comment has been replied or not.
+Updated the admin.php page too.
+Added a new table in the Database so you have need to import the new database
+--signed Mingle

@@ -38,9 +38,9 @@
         }
         $fileName = "";
         //If Picture available
-       
+
         if ($_FILES ['images'][tmp_name]) {
-        
+
           //Generate picture name
           $fileName = time() . '_' .basename($_FILES["images"]["name"]);
           //Upload path
@@ -131,7 +131,7 @@
         $complaint_image_name1 = $_POST['complaint_image_name1'];
 
         //Move complaint to del_complaint table
-        $sql_movecomplaint = "INSERT INTO del_complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$complaint_value', '$complaint_division', $complaint_date_created, '$compaint_ip_address', $complaint_date_stop_display, '$complaint_image_name1')";
+        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display, '$complaint_image_name1')";
         //Delete finally from Complaint Table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
         $sql_movecomplaint = test_input($sql_movecomplaint);
