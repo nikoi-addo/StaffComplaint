@@ -110,18 +110,18 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-tag"></span></span>
-                                                <input class="form-control" placeholder="Subject of Message..." required/>
+                                                <input class="form-control" name="subject" placeholder="Subject of Message..." required/>
                                             </div>
                                             <br><div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" placeholder="What's happening?..." required/>
+                                                <input class="form-control" name="hrmessage" maxlength="2048" placeholder="What's happening?..." required/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                              <select class="form-control">
-                                                        <option>Select Division (optional)</option>
+                                              <select class="form-control" name="addivision">
+                                                        <option>All Divisions (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
                                                         <option>Cybersecurity Division</option>
@@ -143,12 +143,12 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                        <input type="file" id="imgupload" accept="image/*" style="display:none"/>
-                                        <button class="btn btn-primary" id="OpenImgUpload"><span class="fa fa-camera"></span>Image Upload</button>
-
+                                            <input type="hidden" name="form_type" value="ComplainForm">
+                                            <input type="file" name="hrimages" accept="image/*" />
+                                              
                                             </div>
                                             <div class="pull-right">
-                                                <button class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
+                                                <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
                                             </div>
                                         </div>
                                     </div>
