@@ -95,6 +95,11 @@
                                   <h3><?php echo $rows['m_subject']; ?> <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> <?php echo date("d M,Y G:i", $rows['m_date_created']); ?></small></h3>
                                   <p>Hello \Username\,</p>
                                   <p> <?php echo $rows['m_message']; ?> </p>
+                                  <?php if ($rows['m_image_name'] !== ""): ?>
+                                    <div class="image">
+                                      <img src="uploads/<?php echo $rows['m_image_name']; ?>" alt="">
+                                    </div>
+                                  <?php endif; ?>
                                   <p class="text-muted"><strong>Best Regards<br/>John Doe</strong></p>
                               </div>
                           </div>
