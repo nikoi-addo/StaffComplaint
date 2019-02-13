@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 13, 2019 at 12:04 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Host: localhost
+-- Generation Time: Feb 13, 2019 at 10:44 PM
+-- Server version: 5.7.24-0ubuntu0.16.04.1
+-- PHP Version: 7.0.32-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -165,11 +163,22 @@ INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_da
 
 CREATE TABLE `messagehr` (
   `m_id` int(32) NOT NULL,
-  `m_message` varchar(200) NOT NULL,
+  `m_message` varchar(2048) NOT NULL,
   `m_subject` varchar(50) NOT NULL,
-  `m_address` varchar(50) NOT NULL,
+  `m_ip_address` varchar(50) NOT NULL,
+  `m_image_name` varchar(64) NOT NULL,
+  `m_division` varchar(64) NOT NULL,
   `m_date_created` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messagehr`
+--
+
+INSERT INTO `messagehr` (`m_id`, `m_message`, `m_subject`, `m_ip_address`, `m_image_name`, `m_division`, `m_date_created`) VALUES
+(11, 'Something gotta give it gets pretty hard to go from here with the many accounts that have been given but we will get by in due course and time I believe so and it will be all that I have to see from the time we start even to the time it ain\'t good to stay', 'Lets see', '127.0.0.1', '1550077269_m_Screenshot_2017-06-10-12-49-22-1-1.png', 'All Divisions (optional)', 1550077269),
+(12, 'I will tell you in a bit', 'Another one', '127.0.0.1', '', 'Administration Division', 1550078567),
+(13, 'I will tell you soon', 'something for the other guys', '127.0.0.1', '', 'Legal Division', 1550078787);
 
 --
 -- Indexes for dumped tables
@@ -207,27 +216,22 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
 ALTER TABLE `del_complaints`
   MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `messagehr`
 --
 ALTER TABLE `messagehr`
-  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
+  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
