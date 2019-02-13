@@ -42,7 +42,7 @@
                     </li>
 
                     <!-- MESSAGES -->
-                    <li class="xn-icon-button pull-right">
+                    <!-- <li class="xn-icon-button pull-right">
                         <a href="#"><span class="fa fa-comments"></span></a>
                         <div class="informer informer-danger">4</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
@@ -82,7 +82,7 @@
                                 <a href="pages-messages.html">Show all messages</a>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <!-- END MESSAGES -->
 
                 </ul>
@@ -105,7 +105,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <h3>Any Internal Issues?</h3>
-                                    <form class="form-horizontal" role="form">
+                                    <form class="form-horizontal" enctype="multipart/form-data" action="handlers/ops.php" method="post">
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <div class="input-group">
@@ -119,8 +119,8 @@
                                         </div>
                                          <div class="col-md-6">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                              <select class="form-control" name="addivision">
+                                              <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
+                                              <select class="form-control" name="add_division">
                                                         <option>All Divisions (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
@@ -137,15 +137,15 @@
 
                                                     </select>
                                             </div>
+                                            <input type="hidden" name="form_type" value="HRMessage">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                            <input type="hidden" name="form_type" value="ComplainForm">
                                             <input type="file" name="hrimages" accept="image/*" />
-                                              
+
                                             </div>
                                             <div class="pull-right">
                                                 <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
@@ -274,7 +274,7 @@
                                                   </p>
                                                   <!-- Comment from Database -->
                                                   <p><?php echo $cm_rows['cm_value']; ?></p>
-                                                 
+
                                               </div>
 
                                           </div>
@@ -361,9 +361,13 @@
                                       }
 
                                     }
-                                    else {
-                                      echo "No Complaints available currently";
-                                    }
+                                    else {?>
+                                      <div class="timeline-item timeline-item-right">
+                                        <div class="timeline-item-content"> <br><center>
+                                          <h3>No Complaints available currently</h3></center>
+                                        </div>
+                                      </div>
+                                    <?php }
 
 
                                 ?>

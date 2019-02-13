@@ -48,15 +48,40 @@
                         <div class="informer informer-danger">4</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages from HR</h3>
+                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages From HR</h3>
                                 <div class="pull-right">
                                     <span class="label label-danger">4 new</span>
                                 </div>
                             </div>
-                            
+                            <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
 
+                              <?php
+                                //SQL Query to show messages
+                                $sql_showhrmessages = "SELECT * FROM messagehr WHERE m_division = 'All Divisions (optional)' OR m_division ='Administration Division'";
+                                // The type of user signed in will determine as to which query to give to the division
+                                //Execture show HR messages query
+                                $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
+
+                                //Check if execution returned true
+                                if ($success_showhrmessages->num_rows > 0) {
+                                    while($mrows = $success_showhrmessages->fetch_assoc()){?>
+                                  <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
+                                      <div class="list-group-status status-online"></div>
+                                      <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
+                                      <!-- Use the substr() function to get a specific length of the message to show -->
+                                      <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
+                                  </a>
+                                <?php }
+                                }
+                                else {
+                                  echo "Error here";
+                                  echo mysqli_error($link);
+                                }
+
+
+                              ?>
                             <div class="panel-footer text-center">
-                                <a href="pages-messages.html">Show all messages</a>
+                                <a href="message.php">Show all messages</a>
                             </div>
                         </div>
                     </li>
@@ -81,7 +106,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <h3>Any Internal Issues?</h3>
-                                   
+
 
                                     <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form">
                                     <div class="form-group">
@@ -119,7 +144,7 @@
                                             <div class="btn-group pull-left">
                                             <input type="hidden" name="form_type" value="ComplainForm">
                                             <input type="file" name="images" accept="image/*" />
-                                              
+
                                             </div>
                                             <div class="pull-right">
                                                 <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
@@ -210,7 +235,7 @@
                                                   </p>
                                                   <!-- Comment from Database -->
                                                   <p><?php echo $cm_rows['cm_value']; ?><p>
-                                                  
+
                                               </div>
 
                                           </div>
@@ -228,9 +253,13 @@
                                       }
 
                                     }
-                                    else {
-                                      echo "No Complaints available currently";
-                                    }
+                                    else {?>
+                                      <div class="timeline-item timeline-item-right">
+                                        <div class="timeline-item-content"> <br><center>
+                                          <h3>No Complaints available currently</h3></center>
+                                        </div>
+                                      </div>
+                                    <?php }
 
 
                                 ?>
@@ -327,8 +356,8 @@
   }
 });
 
-      
-      
+
+
         </script>
 
     <!-- END SCRIPTS -->

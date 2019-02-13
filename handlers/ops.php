@@ -39,7 +39,7 @@
         $fileName = "";
         //If Picture available
 
-        if ($_FILES ['images'][tmp_name]) {
+        if ($_FILES ['images']["tmp_name"]) {
 
           //Generate picture name
           $fileName = time() . '_' .basename($_FILES["images"]["name"]);
@@ -161,6 +161,70 @@
 
       }
 
+      #########################################################
+      ##################### SEND HR MESSAGE ###################
+      #########################################################
+
+      if ($form_type == 'HRMessage') {
+        $m_subject = $_POST['subject'];
+        $m_message = $_POST['hrmessage'];
+        $m_division = $_POST['add_division'];
+
+        $fileName = "";
+
+        #CHECK FOR AVAILABILITY OF IMAGE#
+        if ($_FILES ["hrimages"]["tmp_name"]) {
+
+          //Generate picture name
+          $fileName = time() . '_m_' .basename($_FILES["hrimages"]["name"]);
+          //Upload path
+          $targetDir = "../uploads/";
+          $targetFilePath = $targetDir . $fileName;
+
+          //Allowed file formals
+          $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+          //Convert format to lowercase
+          $fileType = strtolower($fileType);
+          $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+          //Check if file type is correct
+          if(in_array($fileType, $allowTypes)){
+
+            if(move_uploaded_file($_FILES["hrimages"]["tmp_name"], $targetFilePath)){
+
+            }
+            else {
+              header("location:../hr.php?errorsome");
+              END;
+            }
+          }
+          else{
+            header("location:../hr.php?rsp=dttyperror");
+
+          }
+        }
+        #END CHECK FOR AVAILABILY OF IMAGE#
+
+        // Query for inserting HR Message
+        $sql_sendhrmessage = "INSERT INTO messagehr(m_message, m_subject, m_ip_address, m_image_name, m_division, m_date_created) VALUES('$m_message', '$m_subject', '$ipaddress', '$fileName', '$m_division', $cur_time)";
+        $sql_sendhrmessage = test_input($sql_sendhrmessage);
+        // Execute sql for insert HR Message
+        $success_sendhrmessage = mysqli_query($link, $sql_sendhrmessage);
+
+        // Check Success of insert hr message query
+        if ($success_sendhrmessage) {
+          header("location:../hr.php");
+        }
+        else {
+          header("location:../hr.php");
+        }
+
+      }
+
+      //Sending Message Unsuccessful
+      else {
+        header("location:../hr.php");
+      }
+
 
 
     }
@@ -178,5 +242,5 @@
      #########################################################
 
 
-    
+
 ?>
