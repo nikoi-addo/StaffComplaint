@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 27, 2019 at 11:21 PM
--- Server version: 5.7.24-0ubuntu0.16.04.1
--- PHP Version: 7.0.32-0ubuntu0.16.04.1
+-- Host: 127.0.0.1
+-- Generation Time: Feb 13, 2019 at 12:04 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -48,7 +50,8 @@ INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`)
 (8, 'We would gladly support you guys on this', '127.0.0.1', 24, 1548341409),
 (9, 'I want to check something here', '127.0.0.1', 25, 1548364928),
 (10, 'Let us see about this side too if hope doth indeed come alive', '127.0.0.1', 13, 1548364953),
-(11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977);
+(11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977),
+(12, 'ok sure', '::1', 57, 1548674149);
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,8 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `c_date_created`, `c_
 (50, 'ajfkajdl', 'Select Division (optional)', 1548374960, '127.0.0.1', 1548850160, ''),
 (51, 'jljkajlfj', 'Select Division (optional)', 1548375775, '127.0.0.1', 1548850975, '1548375775_dakd.jpg'),
 (55, 'Hope comes to be yet still', 'Select Division (optional)', 1548631007, '127.0.0.1', 1549106207, ''),
-(56, 'Hope with a file', 'Select Division (optional)', 1548631019, '127.0.0.1', 1549106219, '1548631019_dakd.jpg');
+(56, 'Hope with a file', 'Select Division (optional)', 1548631019, '127.0.0.1', 1549106219, '1548631019_dakd.jpg'),
+(57, 'dfsjhfdjhoriejgitjhge', 'Select Division (optional)', 1548674006, '::1', 1549149206, '');
 
 -- --------------------------------------------------------
 
@@ -149,7 +153,23 @@ INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_da
 (10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433, '  '),
 (15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899, ' 1548376699_dakd.jpg '),
 (16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886, '  '),
-(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, '  ');
+(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, '  '),
+(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677, '  '),
+(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213, '  ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messagehr`
+--
+
+CREATE TABLE `messagehr` (
+  `m_id` int(32) NOT NULL,
+  `m_message` varchar(200) NOT NULL,
+  `m_subject` varchar(50) NOT NULL,
+  `m_address` varchar(50) NOT NULL,
+  `m_date_created` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -174,6 +194,12 @@ ALTER TABLE `del_complaints`
   ADD PRIMARY KEY (`del_c_id`);
 
 --
+-- Indexes for table `messagehr`
+--
+ALTER TABLE `messagehr`
+  ADD PRIMARY KEY (`m_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -181,17 +207,27 @@ ALTER TABLE `del_complaints`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
 ALTER TABLE `del_complaints`
-  MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `messagehr`
+--
+ALTER TABLE `messagehr`
+  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,10 +1,10 @@
 <?php
-include('connect.php');
+include('dbcon.php');
 
 
 if(isset($_POST['view'])){
 
-// $con = mysqli_connect("localhost", "root", "", "notif");
+
 
 if($_POST["view"] != '')
 {

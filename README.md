@@ -32,3 +32,11 @@ Worked to Check if comment has been replied or not.
 Updated the admin.php page too.
 Added a new table in the Database so you have need to import the new database
 --signed Mingle
+
+13 February
+1. Created imcomplete table for HR message (messagehr)
+2. Add more input to hr.php 
+3. Changed style of hr reply and delete buttons
+4. Exported new database for you to import
+5. New code for hr message is inside handlers folder
+--signed Maestro 
