@@ -87,7 +87,7 @@
                               <div class="panel-heading">
                                   <div class="pull-left">
                                       <img src="assets/images/users/avatar.jpg" class="panel-title-image" alt="John Doe"/>
-                                      <h3 class="panel-title">Addressed to All Divisions</h3>
+                                      <h3 class="panel-title"><?php echo $rows['m_division']; ?></h3>
                                   </div>
 
                               </div>

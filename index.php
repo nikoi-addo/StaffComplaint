@@ -57,7 +57,7 @@
 
                               <?php
                                 //SQL Query to show messages
-                                $sql_showhrmessages = "SELECT * FROM messagehr WHERE m_division = 'All Divisions (optional)' OR m_division ='Administration Division'";
+                                $sql_showhrmessages = "SELECT * FROM messagehr WHERE ORDER BY m_date_created DESC";
                                 // The type of user signed in will determine as to which query to give to the division
                                 //Execture show HR messages query
                                 $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
