@@ -42,7 +42,7 @@
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
 
-                    <li class="xn-icon-button pull-left">
+                    <li href="index.php" class="xn-icon-button pull-left">
                        <img src="img/logo.png"/>
 
                     </li>
@@ -92,15 +92,27 @@
 
                               </div>
                               <div class="panel-body">
-                                  <h3><?php echo $rows['m_subject']; ?> <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> <?php echo date("d M,Y G:i", $rows['m_date_created']); ?></small></h3>
-                                  <p>Hello \Username\,</p>
+                                  <h3><?php echo $rows['m_subject']; ?> <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> 
+
+                                    <?php echo date("d M,Y G:i", $rows['m_date_created']); ?></small></h3>
+                                  
+                                  <p>Hello Username,</p>
                                   <p> <?php echo $rows['m_message']; ?> </p>
                                   <?php if ($rows['m_image_name'] !== ""): ?>
-                                    <div class="image">
-                                      <img src="uploads/<?php echo $rows['m_image_name']; ?>" alt="">
+                                     
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="image">
+                                        <a href="uploads/<?php echo $rows['m_image_name']; ?>" data-gallery>
+                                          <img src="uploads/<?php echo $rows['m_image_name']; ?>" class="img-responsive img-text"/>
+                                        </a>
+                                      </div>
                                     </div>
+                                  </div>
+
                                   <?php endif; ?>
-                                  <p class="text-muted"><strong>Best Regards<br/>John Doe</strong></p>
+                                  <br>
+                                  <p class="text-muted"><strong>Best Regards<br/>The Human Resource Division</strong></p>
                               </div>
                           </div>
                     </div>
@@ -126,6 +138,20 @@
              ?>
         </div>
         <!-- END PAGE CONTAINER -->
+
+       
+
+         <!-- BLUEIMP GALLERY -->
+        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+        </div>
+        <!-- END BLUEIMP GALLERY -->
 
 
 
@@ -155,6 +181,23 @@
         <script type="text/javascript" src="js/actions.js"></script>
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->
+
+
+      <script>
+            document.getElementById('links').onclick = function (event) {
+                event = event || window.event;
+                var target = event.target || event.srcElement,
+                    link = target.src ? target.parentNode : target,
+                    options = {index: link, event: event,onclosed: function(){
+                        setTimeout(function(){
+                            $("body").css("overflow","");
+                        },200);
+                    }},
+                    links = this.getElementsByTagName('a');
+                blueimp.Gallery(links, options);
+            };
+
+        </script>
     </body>
 
 
