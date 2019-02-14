@@ -141,7 +141,7 @@
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
                                             <input type="hidden" name="form_type" value="ComplainForm">
-                                            <input type="file" name="images" accept="image/*" />
+                                            <input type="file" name="images" accept="image/*"  />
 
                                             </div>
                                             <div class="pull-right">
@@ -196,7 +196,8 @@
                                              <!-- Check if there is an image stored in the database for the particular comment -->
                                              <?php
                                                 if ($rows['c_image_name1'] != "") {
-                                            ?>
+                                             ?>
+                                           
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <a href="uploads/<?php echo $rows['c_image_name1']; ?>" data-gallery>
@@ -208,6 +209,8 @@
                                                 }
 
                                              ?>
+
+
 
                                          </div>
 

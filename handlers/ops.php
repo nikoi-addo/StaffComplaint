@@ -43,31 +43,41 @@
 
           //Generate picture name
           $fileName = time() . '_' .basename($_FILES["images"]["name"]);
+
+          //Placing the images in an array
+          
+          
           //Upload path
           $targetDir = "../uploads/";
           $targetFilePath = $targetDir . $fileName;
 
           //Allowed file formals
           $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+          
           //Convert format to lowercase
           $fileType = strtolower($fileType);
           $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+         
           //Check if file type is correct
           if(in_array($fileType, $allowTypes)){
 
+
+
             //Upload file to the Uploads Folder
             move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath);
+
 
             if(!move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath)){
               //Error to display if image is not Uploaded
               header("location:../index.php?rsp=mgplderror");
             }
           }
-          else{
-            header("location:../index.php?rsp=dttyperror");
+         	 else{
+            	header("location:../index.php?rsp=dttyperror");
 
           }
         }
+        
         //Query to Insert complaints details
         $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$fileName')";
 
