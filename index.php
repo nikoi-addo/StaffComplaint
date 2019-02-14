@@ -44,13 +44,13 @@
 
                     <!-- MESSAGES -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
+                        <a href="#"><span class="fa fa-inbox"></span></a>
+                        <div class="informer informer-danger">HR</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages From HR</h3>
+                                <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
                                 <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
+                                    <span class="label label-danger"></span>
                                 </div>
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
@@ -80,9 +80,7 @@
 
 
                               ?>
-                            <div class="panel-footer text-center">
-                                <a href="message.php">Show all messages</a>
-                            </div>
+                            
                         </div>
                     </li>
                     <!-- END MESSAGES -->
@@ -248,6 +246,7 @@
 
                                      </div>
                                  </div>
+
                                  <!-- END TIMELINE ITEM -->
                                 <?php
                                       }
@@ -263,10 +262,15 @@
 
 
                                 ?>
-
+                                   <!-- START TIMELINE ITEM -->
+                                <div class="timeline-item timeline-main">
+                                    <div class="timeline-date"><a href="#"><span class="fa fa-ellipsis-h"></span></a></div>
+                                </div>                                
+                                <!-- END TIMELINE ITEM -->
 
                             </div>
                             <!-- END TIMELINE -->
+
 
                         </div>
                     </div>

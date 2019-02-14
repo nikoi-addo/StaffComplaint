@@ -42,47 +42,46 @@
                     </li>
 
                     <!-- MESSAGES -->
-                    <!-- <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
+                    <li class="xn-icon-button pull-right">
+                        <a href="#"><span class="fa fa-inbox"></span></a>
+                        <div class="informer informer-danger">HR</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages From HR</h3>
+                                <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
                                 <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
+                                    <span class="label label-danger"></span>
                                 </div>
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-online"></div>
-                                    <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                                    <span class="contacts-title">John Doe</span>
-                                    <p>Praesent placerat tellus id augue condimentum</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
-                                    <span class="contacts-title">Dmitry Ivaniuk</span>
-                                    <p>Donec risus sapien, sagittis et magna quis</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-away"></div>
-                                    <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                                    <span class="contacts-title">Nadia Ali</span>
-                                    <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <div class="list-group-status status-offline"></div>
-                                    <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
-                                    <span class="contacts-title">Darth Vader</span>
-                                    <p>I want my money back!</p>
-                                </a>
-                            </div>
-                            <div class="panel-footer text-center">
-                                <a href="pages-messages.html">Show all messages</a>
-                            </div>
+
+                              <?php
+                                //SQL Query to show messages
+                                $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created DESC";
+                                // The type of user signed in will determine as to which query to give to the division
+                                //Execture show HR messages query
+                                $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
+
+                                //Check if execution returned true
+                                if ($success_showhrmessages->num_rows > 0) {
+                                    while($mrows = $success_showhrmessages->fetch_assoc()){?>
+                                  <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
+                                      <div class="list-group-status status-online"></div>
+                                      <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
+                                      <!-- Use the substr() function to get a specific length of the message to show -->
+                                      <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
+                                  </a>
+                                <?php }
+                                }
+                                else {
+                                  echo "Error here";
+                                  echo mysqli_error($link);
+                                }
+
+
+                              ?>
+                            
                         </div>
-                    </li> -->
+                    </li>
                     <!-- END MESSAGES -->
 
                 </ul>
@@ -284,7 +283,8 @@
                                           }
                                          ?>
                                          <!-- Insert new comment -->
-                                         <div class="comment-item">
+                                         <div class="timeline-body comments">
+                                          <div class="comment-write">
                                            <form action="handlers/ops.php" method="post">
                                              <input type="hidden" name="form_type" value="UploadComment">
                                              <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
@@ -319,6 +319,7 @@
                                               </div>
                                              <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button>
                                           </form>
+                                        </div>
                                          </div>
 
                                      </div>
