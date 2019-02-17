@@ -91,7 +91,7 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
 
-                    <li class="active">Staff Complaint Portal</li>
+                    <li class="active">NCA Staff Ideas Portal</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
@@ -103,7 +103,7 @@
                             <!-- START NEW RECORD -->
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Any Internal Issues?</h3>
+                                    <h3>What's New (Any Ideas or Feedback)?</h3>
 
 
                                     <form enctype="multipart/form-data" class="form-horizontal" method="post" action="handlers/ops.php" role="form">
@@ -111,7 +111,7 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" name="problem" maxlength="2048" placeholder="What's happening? (Limit: 2048 Characters)" required/>
+                                                <input class="form-control" name="problem" maxlength="2048" placeholder="We are listening (Limit: 2048 Characters)" required/>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -188,7 +188,7 @@
                                          <div class="timeline-heading">
                                              <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <?php if ($rows['c_division'] != "") {
                                               echo "<i>from</i> <u>". $rows['c_division'];
-                                             } ?></u> made a complaint
+                                             } ?></u> shared an idea
                                          </div>
                                          <div class="timeline-body">
                                              <p><?php echo $rows['c_value']; ?></p>

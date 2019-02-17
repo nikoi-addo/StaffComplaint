@@ -104,6 +104,7 @@
       if ($form_type == 'UploadComment') {
         //HR Comment
         $comment = $_POST['comment'];
+        $html_comm = mb_convert_encoding($comment, ENT_QUOTES);
         $comment = test_input($comment);
         //Complaint ID
         $complaint_id = $_POST['complaint_id'];

@@ -66,7 +66,7 @@
                     <!-- START CONTENT FRAME TOP -->
                     <div class="content-frame-top">
                         <div class="page-title">
-                            <h2><span class="fa fa-file-text"></span> Message From Human Resource Division</h2>
+                            <h3><span class="fa fa-file-text"></span> Message From Human Resource Division</h3>
                         </div>
 
 
@@ -96,7 +96,7 @@
 
                                     <?php echo date("d M,Y G:i", $rows['m_date_created']); ?></small></h3>
                                   
-                                  <p>Hello Username,</p>
+                                  <p>Hello Everyone,</p>
                                   <p> <?php echo $rows['m_message']; ?> </p>
                                   <?php if ($rows['m_image_name'] !== ""): ?>
                                      

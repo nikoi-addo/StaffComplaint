@@ -10,6 +10,7 @@
         <!-- META SECTION -->
         <title>Internal Complaint - Human Resource</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -103,7 +104,7 @@
                           <!-- START NEW RECORD -->
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Any Internal Issues?</h3>
+                                    <h3>The Human Resource Official?</h3>
                                     <form class="form-horizontal" enctype="multipart/form-data" action="handlers/ops.php" method="post">
                                     <div class="form-group">
                                         <div class="col-md-6">
@@ -120,7 +121,7 @@
                                             <div class="input-group">
                                               <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
                                               <select class="form-control" name="add_division">
-                                                        <option>All Divisions (optional)</option>
+                                                        <option>All Divisions</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
                                                         <option>Cybersecurity Division</option>
@@ -215,7 +216,7 @@
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
-                                             <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> made a complaint
+                                             <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> shared an idea
                                              <div class="pull-right">
                                              <!-- Delete button -->
                                              <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>
@@ -310,7 +311,7 @@
                                                echo $msg;
                                              } ?>
                                              <div class="col-md-11">
-                                            <input class="form-control" type="text" name="comment" placeholder="Enter Comments here(Limit: 1024 Characters)"
+                                            <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
                                                <?php
                                                   if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id']) {
                                                   //Focus on the comment you just sent
@@ -329,9 +330,9 @@
                                  <div class="message-box animated fadeIn" id="mb-delcomp<?php echo $rows['c_id']; ?>">
                                      <div class="mb-container">
                                          <div class="mb-middle">
-                                             <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Complaint</strong> ?</div>
+                                             <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Post</strong> ?</div>
                                              <div class="mb-content">
-                                                 <p>Are you sure you want to delete this complaint?</p>
+                                                 <p>Are you sure you want to delete this post?</p>
                                                  <p>Press No if you want to Cancel. Press Yes to Delete.</p>
                                              </div>
                                              <div class="mb-footer">
