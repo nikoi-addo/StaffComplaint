@@ -15,12 +15,14 @@
       #########################################################
       if ($form_type == 'ComplainForm') {
         //User Problem
-        $problem = test_input($_POST['problem']);
+        $problem = $_POST['problem'];
+        //Escape the special characters in the query
+        $problem = mysqli_real_escape_string($link, $problem);
         //User Division
         if ($_POST['division'] === "Select Division (optional)") {
           $division = "";
         }
-        $division = test_input($_POST['division']);
+        $division = $_POST['division'];
         $n_responsetime = strtotime("+72 Hours"); //3 Working Days
         $w_responsetime = strtotime("+132 Hours"); //3 Working Days Weekend inclusive
 
@@ -45,19 +47,19 @@
           $fileName = time() . '_' .basename($_FILES["images"]["name"]);
 
           //Placing the images in an array
-          
-          
+
+
           //Upload path
           $targetDir = "../uploads/";
           $targetFilePath = $targetDir . $fileName;
 
           //Allowed file formals
           $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-          
+
           //Convert format to lowercase
           $fileType = strtolower($fileType);
           $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-         
+
           //Check if file type is correct
           if(in_array($fileType, $allowTypes)){
 
@@ -77,7 +79,7 @@
 
           }
         }
-        
+
         //Query to Insert complaints details
         $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$fileName')";
 
@@ -104,13 +106,13 @@
       if ($form_type == 'UploadComment') {
         //HR Comment
         $comment = $_POST['comment'];
-        $html_comm = mb_convert_encoding($comment, ENT_QUOTES);
-        $comment = test_input($comment);
+        //Escape comments to take care of apostrophes in comment side
+        $comment = mysqli_real_escape_string($link, $comment);
+        // $html_comm = mb_convert_encoding($comment, ENT_QUOTES);
         //Complaint ID
         $complaint_id = $_POST['complaint_id'];
         //Query to Insert Comment in DB
         $sql_uploadcomment = "INSERT INTO comments(cm_value, cm_ip_address, c_id, cm_date) VALUES('$comment', '$ipaddress', $complaint_id, $cur_time)";
-        $sql_uploadcomment = test_input($sql_uploadcomment);
         //Execute query
         $success_uploadcomment = mysqli_query($link, $sql_uploadcomment);
 
@@ -145,8 +147,6 @@
         $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display, '$complaint_image_name1')";
         //Delete finally from Complaint Table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
-        $sql_movecomplaint = test_input($sql_movecomplaint);
-        $sql_delcompfromtable = test_input($sql_delcompfromtable);
         //Execute move complaint
         $success_movecomplaint = mysqli_query($link, $sql_movecomplaint);
 
@@ -177,8 +177,12 @@
       #########################################################
 
       if ($form_type == 'HRMessage') {
+        //Subject input and escaping
         $m_subject = $_POST['subject'];
+        $m_subject = mysqli_real_escape_string($link, $m_subject);
+        //Message input and escaping to prevent errors
         $m_message = $_POST['hrmessage'];
+        $m_message = mysqli_real_escape_string($link, $m_message);
         $m_division = $_POST['add_division'];
 
         $fileName = "";
@@ -217,7 +221,6 @@
 
         // Query for inserting HR Message
         $sql_sendhrmessage = "INSERT INTO messagehr(m_message, m_subject, m_ip_address, m_image_name, m_division, m_date_created) VALUES('$m_message', '$m_subject', '$ipaddress', '$fileName', '$m_division', $cur_time)";
-        $sql_sendhrmessage = test_input($sql_sendhrmessage);
         // Execute sql for insert HR Message
         $success_sendhrmessage = mysqli_query($link, $sql_sendhrmessage);
 
@@ -227,6 +230,7 @@
         }
         else {
           header("location:../hr.php");
+          // echo mysqli_;
         }
 
       }
