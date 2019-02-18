@@ -8,7 +8,7 @@
 
 <head>
         <!-- META SECTION -->
-        <title>Internal Complaint - Human Resource</title>
+        <title>NCA Staff Ideas Portal - Human Resource</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
