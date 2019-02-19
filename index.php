@@ -74,13 +74,13 @@
                                 <?php }
                                 }
                                 else {
-                                  echo "Error here";
-                                  echo mysqli_error($link);
+                                  // echo "Error here";
+                                  // echo mysqli_error($link);
                                 }
 
 
                               ?>
-                            
+
                         </div>
                     </li>
                     <!-- END MESSAGES -->
@@ -141,7 +141,8 @@
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
                                             <input type="hidden" name="form_type" value="ComplainForm">
-                                            <input type="file" name="images" accept="image/*"  />
+                                            <!-- Add array and multiple attribute to show for multiple images -->
+                                            <input type="file" name="images[]" accept="image/*"  multiple/>
 
                                             </div>
                                             <div class="pull-right">
@@ -193,23 +194,26 @@
                                          <div class="timeline-body">
                                              <p><?php echo $rows['c_value']; ?></p>
 
-                                             <!-- Check if there is an image stored in the database for the particular comment -->
                                              <?php
-                                                if ($rows['c_image_name1'] != "") {
-                                             ?>
-                                           
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <a href="uploads/<?php echo $rows['c_image_name1']; ?>" data-gallery>
-                                                        <img src="uploads/<?php echo $rows['c_image_name1']; ?>" class="img-responsive img-text"/>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <?php
-                                                }
+                                             //Check if an image exists for the specifice message
+                                             $sql_checkimage = "SELECT * FROM imagine WHERE ref_id = $rows[c_id] AND ref_name = 'complaint'";
+                                             $success_checkimage = mysqli_query($link, $sql_checkimage);
+                                             if ($success_checkimage): ?>
 
-                                             ?>
+                                             <div class="row">
+                                               <?php while ($rows = $success_checkimage->fetch_assoc()) {
+                                                 ?>
+                                               <div class="col-md-4">
+                                                 <div class="image">
+                                                   <a href="uploads/<?php echo $rows['im_name']; ?>" data-gallery>
+                                                     <img src="uploads/<?php echo $rows['im_name']; ?>" class="img-responsive img-text"/>
+                                                   </a>
+                                                 </div>
+                                               </div>
+                                             <?php }?>
+                                             </div>
 
+                                             <?php endif; ?>
 
 
                                          </div>
@@ -268,7 +272,7 @@
                                    <!-- START TIMELINE ITEM -->
                                 <div class="timeline-item timeline-main">
                                     <div class="timeline-date"><a href="#"><span class="fa fa-ellipsis-h"></span></a></div>
-                                </div>                                
+                                </div>
                                 <!-- END TIMELINE ITEM -->
 
                             </div>

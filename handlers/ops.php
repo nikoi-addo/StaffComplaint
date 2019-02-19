@@ -38,60 +38,35 @@
         else {
           $stop_day = $n_responsetime;
         }
-        $fileName = "";
-        //If Picture available
 
-        if ($_FILES ['images']["tmp_name"]) {
-
-          //Generate picture name
-          $fileName = time() . '_' .basename($_FILES["images"]["name"]);
-
-          //Placing the images in an array
-
-
-          //Upload path
-          $targetDir = "../uploads/";
-          $targetFilePath = $targetDir . $fileName;
-
-          //Allowed file formals
-          $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
-          //Convert format to lowercase
-          $fileType = strtolower($fileType);
-          $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-
-          //Check if file type is correct
-          if(in_array($fileType, $allowTypes)){
-
-
-
-            //Upload file to the Uploads Folder
-            move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath);
-
-
-            if(!move_uploaded_file($_FILES["images"]["tmp_name"], $targetFilePath)){
-              //Error to display if image is not Uploaded
-              header("location:../index.php?rsp=mgplderror");
-            }
-          }
-         	 else{
-            	header("location:../index.php?rsp=dttyperror");
-
-          }
-        }
-
-        //Query to Insert complaints details
-        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$fileName')";
+        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, 'aomw')";
 
         //Insert Complaint into Database
         $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
 
         if ($success_insertcomplaint) {
-          // echo "Complaint has been submitted";
-          header("location:../index.php?rsp=cmpsuccess");
+          //Get id for inserted message
+          $last_insert_id = mysqli_insert_id($link);
+
+          //Upload each of the images
+          foreach ($_FILES["images"]["error"] as $key => $error) {
+              if ($error == UPLOAD_ERR_OK) {
+                  $tmp_name = $_FILES["images"]["tmp_name"][$key];
+                  // basename() may prevent filesystem traversal attacks;
+                  // further validation/sanitation of the filename may be appropriate
+                  $name = time() . '_cm_' .basename($_FILES["images"]["name"][$key]);
+                  if (move_uploaded_file($tmp_name, "../uploads/$name")) {
+                    $sql_insertimage = "INSERT INTO imagine(im_name, ref_id, ref_name) VALUES ('$name', $last_insert_id, 'complaint')";
+                    mysqli_query($link, $sql_insertimage);
+                  }
+              }
+          }
+          echo "It worked";
+          // header("location:../index.php?rsp=cmpsuccess");
         }
         else {
-          header("location:../index.php?rsp=cmperror");
+          echo mysqli_error($link);
+          // header("location:../index.php?rsp=cmperror");
         }
       }
 
@@ -122,7 +97,8 @@
         }
         else{
           //Error in comment success
-          header("location:../hr.php?rsp=$complaint_id&cmrsp=0");
+          // header("location:../hr.php?rsp=$complaint_id&cmrsp=0");
+          echo mysqli_error($link);
         }
       }
 
@@ -185,52 +161,35 @@
         $m_message = mysqli_real_escape_string($link, $m_message);
         $m_division = $_POST['add_division'];
 
-        $fileName = "";
-
-        #CHECK FOR AVAILABILITY OF IMAGE#
-        if ($_FILES ["hrimages"]["tmp_name"]) {
-
-          //Generate picture name
-          $fileName = time() . '_m_' .basename($_FILES["hrimages"]["name"]);
-          //Upload path
-          $targetDir = "../uploads/";
-          $targetFilePath = $targetDir . $fileName;
-
-          //Allowed file formals
-          $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-          //Convert format to lowercase
-          $fileType = strtolower($fileType);
-          $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-          //Check if file type is correct
-          if(in_array($fileType, $allowTypes)){
-
-            if(move_uploaded_file($_FILES["hrimages"]["tmp_name"], $targetFilePath)){
-
-            }
-            else {
-              header("location:../hr.php?errorsome");
-              END;
-            }
-          }
-          else{
-            header("location:../hr.php?rsp=dttyperror");
-
-          }
-        }
-        #END CHECK FOR AVAILABILY OF IMAGE#
-
         // Query for inserting HR Message
-        $sql_sendhrmessage = "INSERT INTO messagehr(m_message, m_subject, m_ip_address, m_image_name, m_division, m_date_created) VALUES('$m_message', '$m_subject', '$ipaddress', '$fileName', '$m_division', $cur_time)";
+        $sql_sendhrmessage = "INSERT INTO messagehr(m_message, m_subject, m_ip_address, m_image_name, m_division, m_date_created) VALUES('$m_message', '$m_subject', '$ipaddress', 'iamge', '$m_division', $cur_time)";
         // Execute sql for insert HR Message
         $success_sendhrmessage = mysqli_query($link, $sql_sendhrmessage);
 
         // Check Success of insert hr message query
         if ($success_sendhrmessage) {
+          //Get id for inserted message
+          $last_insert_id = mysqli_insert_id($link);
+
+          //Upload each of the images
+          foreach ($_FILES["hrimages"]["error"] as $key => $error) {
+              if ($error == UPLOAD_ERR_OK) {
+                  $tmp_name = $_FILES["hrimages"]["tmp_name"][$key];
+                  // basename() may prevent filesystem traversal attacks;
+                  // further validation/sanitation of the filename may be appropriate
+                  $name = time() . '_hr_' .basename($_FILES["hrimages"]["name"][$key]);
+                  if (move_uploaded_file($tmp_name, "../uploads/$name")) {
+                    $sql_insertimage = "INSERT INTO imagine(im_name, ref_id, ref_name) VALUES ('$name', $last_insert_id, 'hrmessage')";
+                    mysqli_query($link, $sql_insertimage);
+                  }
+              }
+          }
+
           header("location:../hr.php");
         }
         else {
-          header("location:../hr.php");
-          // echo mysqli_;
+          // header("location:../hr.php");
+          echo mysqli_error($link);
         }
 
       }

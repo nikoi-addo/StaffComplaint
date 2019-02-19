@@ -35,8 +35,16 @@ Added a new table in the Database so you have need to import the new database
 
 13 February
 1. Created imcomplete table for HR message (messagehr)
-2. Add more input to hr.php 
+2. Add more input to hr.php
 3. Changed style of hr reply and delete buttons
 4. Exported new database for you to import
 5. New code for hr message is inside handlers folder
---signed Maestro 
+--signed Maestro
+
+18 February
+Worked on the handlers.php file to include the multiple file uploads.
+Created a new table that hosts the names of the images and a reference to show from which of the activities it is from(message or complaint)
+Took out the image_name from the complaint and the message tables also.
+In addition for the code for the multiple images I changed the input element by introducing the multiple attribute and adding one extra array for the file name also.
+In the rendering of the images for the hr and index and also the images, I have put in the select statement to pick from the image database called "imaginary".
+Had problems with the commment upload though and can't seem to find the head and tail fo that one so I think you can check on that.

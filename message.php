@@ -92,22 +92,30 @@
 
                               </div>
                               <div class="panel-body">
-                                  <h3><?php echo $rows['m_subject']; ?> <small class="pull-right text-muted"><span class="fa fa-clock-o"></span> 
+                                  <h3><?php echo $rows['m_subject']; ?> <small class="pull-right text-muted"><span class="fa fa-clock-o"></span>
 
                                     <?php echo date("d M,Y G:i", $rows['m_date_created']); ?></small></h3>
-                                  
+
                                   <p>Hello Everyone,</p>
                                   <p> <?php echo $rows['m_message']; ?> </p>
-                                  <?php if ($rows['m_image_name'] !== ""): ?>
-                                     
+
+                                  <?php
+                                  //Check if an image exists for the specifice message
+                                  $sql_checkimage = "SELECT * from imagine WHERE ref_id = $rows[m_id] AND ref_name = 'hrmessage'";
+                                  $success_checkimage = mysqli_query($link, $sql_checkimage);
+                                  if ($success_checkimage): ?>
+
                                   <div class="row">
+                                    <?php while ($row = $success_checkimage->fetch_assoc()) {
+                                      ?>
                                     <div class="col-md-4">
                                       <div class="image">
-                                        <a href="uploads/<?php echo $rows['m_image_name']; ?>" data-gallery>
-                                          <img src="uploads/<?php echo $rows['m_image_name']; ?>" class="img-responsive img-text"/>
+                                        <a href="uploads/<?php echo $rows['im_name']; ?>" data-gallery>
+                                          <img src="uploads/<?php echo $rows['im_name']; ?>" class="img-responsive img-text"/>
                                         </a>
                                       </div>
                                     </div>
+                                  <?php }?>
                                   </div>
 
                                   <?php endif; ?>
@@ -139,7 +147,7 @@
         </div>
         <!-- END PAGE CONTAINER -->
 
-       
+
 
          <!-- BLUEIMP GALLERY -->
         <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">

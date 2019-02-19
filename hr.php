@@ -80,7 +80,7 @@
 
 
                               ?>
-                            
+
                         </div>
                     </li>
                     <!-- END MESSAGES -->
@@ -144,7 +144,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
-                                            <input type="file" name="hrimages" accept="image/*" />
+                                            <input type="file" name="hrimages[]" accept="image/*" multiple/>
 
                                             </div>
                                             <div class="pull-right">
@@ -234,22 +234,26 @@
 
                                            </div>
 
-
-                                           <!-- Check if there is an image stored in the database for the particular comment -->
                                            <?php
-                                              if ($rows['c_image_name1'] != "") {
-                                          ?>
-                                          <div class="row">
-                                              <div class="col-md-4">
-                                                  <a href="uploads/<?php echo $rows['c_image_name1']; ?>" data-gallery>
-                                                      <img src="uploads/<?php echo $rows['c_image_name1']; ?>" class="img-responsive img-text"/>
-                                                  </a>
-                                              </div>
-                                          </div>
-                                          <?php
-                                              }
+                                           //Check if an image exists for the specifice message
+                                           $sql_checkimage = "SELECT * FROM imagine WHERE ref_id = $rows[c_id] AND ref_name = 'complaint'";
+                                           $success_checkimage = mysqli_query($link, $sql_checkimage);
+                                           if ($success_checkimage): ?>
 
-                                           ?>
+                                           <div class="row">
+                                             <?php while ($rows = $success_checkimage->fetch_assoc()) {
+                                               ?>
+                                             <div class="col-md-4">
+                                               <div class="image">
+                                                 <a href="uploads/<?php echo $rows['im_name']; ?>" data-gallery>
+                                                   <img src="uploads/<?php echo $rows['im_name']; ?>" class="img-responsive img-text"/>
+                                                 </a>
+                                               </div>
+                                             </div>
+                                           <?php }?>
+                                           </div>
+
+                                           <?php endif; ?>
 
                                          </div>
 
