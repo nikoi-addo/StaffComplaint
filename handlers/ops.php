@@ -1,7 +1,7 @@
 <?php
   //This file handles all major backend operations
 
-    include 'dbcon.php'; //Initialize the database connection
+    include 'dbcon.php'; //Include the database connection
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       //Form Submitted
@@ -62,11 +62,11 @@
                   }
               }
           }
-          
+
           header("location:../index.php?rsp=cmpsuccess");
         }
         else {
-          
+
           header("location:../index.php?rsp=cmperror");
         }
       }
@@ -84,7 +84,7 @@
         $comment = $_POST['comment'];
         //Escape comments to take care of apostrophes in comment side
         $comment = mysqli_real_escape_string($link, $comment);
-       
+
         //Complaint ID
         $complaint_id = $_POST['complaint_id'];
         //Query to Insert Comment in DB
@@ -118,12 +118,13 @@
         $complaint_date_created = $_POST['complaint_date_created'];
         $complaint_ip_address = $_POST['complaint_ip_address'];
         $complaint_date_stop_display = $_POST['complaint_date_stop_display'];
-        $complaint_image_name1 = $_POST['complaint_image_name1'];
 
         //Move complaint to del_complaint table
-        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display, '$complaint_image_name1')";
+        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display)";
         //Delete finally from Complaint Table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
+        //Update image table
+        $sql_updateimage = "UPDATE imagine SET ref_status = 'deleted' WHERE c_id = $complaint_id AND ref_name='complaint'";
         //Execute move complaint
         $success_movecomplaint = mysqli_query($link, $sql_movecomplaint);
 
@@ -132,9 +133,10 @@
           $last = $link->insert_id;
           //Execute Deletion from Complaint Table
           $success_delcompfromtable = mysqli_query($link, $sql_delcompfromtable);
+          $success_updateimage = mysqli_query($link, $sql_updateimage);
 
-          //Delete success
-          if ($success_delcompfromtable) {
+          //Delete and Update success
+          if ($success_delcompfromtable && $success_updateimage) {
             header("location:../hr.php?delrsp=0");
           }
           //Delete Unsuccessful
