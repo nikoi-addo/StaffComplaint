@@ -59,9 +59,9 @@
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
 
-                              <?php
+                             <?php
                                 //SQL Query to show messages
-                                $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created ASC";
+                                $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created DESC";
                                 // The type of user signed in will determine as to which query to give to the division
                                 //Execture show HR messages query
                                 $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
@@ -78,8 +78,8 @@
                                 <?php }
                                 }
                                 else {
-                                  // echo "Error here";
-                                  // echo mysqli_error($link);
+                                  echo "Error here";
+                                  echo mysqli_error($link);
                                 }
 
 
