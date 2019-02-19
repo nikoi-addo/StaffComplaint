@@ -83,7 +83,7 @@
         $comment = $_POST['comment'];
         //Escape comments to take care of apostrophes in comment side
         $comment = mysqli_real_escape_string($link, $comment);
-        // $html_comm = mb_convert_encoding($comment, ENT_QUOTES);
+       
         //Complaint ID
         $complaint_id = $_POST['complaint_id'];
         //Query to Insert Comment in DB
