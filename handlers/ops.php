@@ -5,6 +5,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       //Form Submitted
+      $form_type = "";
       $form_type = $_POST['form_type'];
       //Users IP Address
       $ipaddress = $_SERVER["REMOTE_ADDR"];
