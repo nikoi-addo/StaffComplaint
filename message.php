@@ -106,12 +106,12 @@
                                   if ($success_checkimage): ?>
 
                                   <div class="row">
-                                    <?php while ($row = $success_checkimage->fetch_assoc()) {
+                                    <?php while ($rowly = $success_checkimage->fetch_assoc()) {
                                       ?>
                                     <div class="col-md-4">
                                       <div class="image">
-                                        <a href="uploads/<?php echo $rows['im_name']; ?>" data-gallery>
-                                          <img src="uploads/<?php echo $rows['im_name']; ?>" class="img-responsive img-text"/>
+                                        <a href="uploads/<?php echo $rowly['im_name']; ?>" data-gallery>
+                                          <img src="uploads/<?php echo $rowly['im_name']; ?>" class="img-responsive img-text"/>
                                         </a>
                                       </div>
                                     </div>

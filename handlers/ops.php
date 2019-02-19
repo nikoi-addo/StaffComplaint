@@ -114,6 +114,7 @@
       if ($form_type == 'DeleteComplaint') {
         $complaint_id = $_POST['complaint_id'];
         $complaint_value = $_POST['complaint_value'];
+        $complaint_value = mysqli_real_escape_string($complaint_value);
         $complaint_division = $_POST['complaint_division'];
         $complaint_date_created = $_POST['complaint_date_created'];
         $complaint_ip_address = $_POST['complaint_ip_address'];
@@ -124,12 +125,11 @@
         //Delete finally from Complaint Table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
         //Update image table
-        $sql_updateimage = "UPDATE imagine SET ref_status = 'deleted' WHERE c_id = $complaint_id AND ref_name='complaint'";
+        $sql_updateimage = "UPDATE imagine SET ref_status = 'deleted' WHERE ref_id = $complaint_id AND ref_name='complaint'";
         //Execute move complaint
         $success_movecomplaint = mysqli_query($link, $sql_movecomplaint);
 
         if ($success_movecomplaint) {
-          echo "Success was able to move Table entry";
           $last = $link->insert_id;
           //Execute Deletion from Complaint Table
           $success_delcompfromtable = mysqli_query($link, $sql_delcompfromtable);
@@ -146,6 +146,7 @@
         }
         //Move Unsuccessful
         else {
+
           header("location:../hr.php?delrsp=2");
         }
 

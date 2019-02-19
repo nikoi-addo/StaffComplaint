@@ -32,7 +32,7 @@
 
             <!-- PAGE CONTENT -->
             <div class="page-content">
-                  
+
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
 
@@ -57,7 +57,7 @@
 
                               <?php
                                 //SQL Query to show messages
-                                $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created ASC";
+                                $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created DESC";
                                 // The type of user signed in will determine as to which query to give to the division
                                 //Execture show HR messages query
                                 $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
@@ -368,7 +368,7 @@
   }
 });
 
-  
+
 </script>
 
     <!-- END SCRIPTS -->
