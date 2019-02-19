@@ -201,12 +201,12 @@
                                              if ($success_checkimage): ?>
 
                                              <div class="row">
-                                               <?php while ($rows = $success_checkimage->fetch_assoc()) {
+                                               <?php while ($rowly = $success_checkimage->fetch_assoc()) {
                                                  ?>
                                                <div class="col-md-4">
                                                  <div class="image">
-                                                   <a href="uploads/<?php echo $rows['im_name']; ?>" data-gallery>
-                                                     <img src="uploads/<?php echo $rows['im_name']; ?>" class="img-responsive img-text"/>
+                                                   <a href="uploads/<?php echo $rowly['im_name']; ?>" data-gallery>
+                                                     <img src="uploads/<?php echo $rowly['im_name']; ?>" class="img-responsive img-text"/>
                                                    </a>
                                                  </div>
                                                </div>
@@ -220,7 +220,7 @@
 
                                          <?php
                                           //Comment id
-                                          $comment_id = $rows['c_id'];
+                                          $comment_id = $rows[c_id];
                                           //Query for comment display
                                           $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
                                           //Execution for comment display

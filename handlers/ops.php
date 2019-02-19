@@ -39,7 +39,7 @@
           $stop_day = $n_responsetime;
         }
 
-        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, 'aomw')";
+        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display)";
 
         //Insert Complaint into Database
         $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
