@@ -128,7 +128,7 @@
                                         <tbody>
                                                 <?php
                                                   //Union of the two tables
-                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1  FROM complaints UNION ALL SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, c_image_name1 FROM del_complaints ORDER BY c_date_created";
+                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display FROM del_complaints ORDER BY c_date_created";
                                                   $success_adminpostdisplay = mysqli_query($link, $sql_adminpostdisplay);
 
                                                   if($success_adminpostdisplay->num_rows > 0){
