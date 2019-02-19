@@ -119,9 +119,9 @@
                                             </div>
                                         </div>
                                          <div class="col-md-6">
-                                            <div class="input-group fixed">
+                                            <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                                  <select class="form-control select" name="division">
+                                                  <select class="form-control" name="division">
                                                         <option>Select Division (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
