@@ -32,7 +32,7 @@
 
             <!-- PAGE CONTENT -->
             <div class="page-content">
-
+                  
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
 
@@ -152,6 +152,7 @@
                                     </div>
                                     </form>
                                 </div>
+
                             </div>
                             <!-- END NEW RECORD -->
 
@@ -220,7 +221,7 @@
 
                                          <?php
                                           //Comment id
-                                          $comment_id = $rows[c_id];
+                                          $comment_id = $rows['c_id'];
                                           //Query for comment display
                                           $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
                                           //Execution for comment display
@@ -333,7 +334,7 @@
         <script type="text/javascript" src="js/demo_maps.js"></script>
         <!-- END TEMPLATE -->
 
-        <script>
+<script>
             document.getElementById('links').onclick = function (event) {
                 event = event || window.event;
                 var target = event.target || event.srcElement,
@@ -367,9 +368,8 @@
   }
 });
 
-
-
-        </script>
+  
+</script>
 
     <!-- END SCRIPTS -->
     </body>
