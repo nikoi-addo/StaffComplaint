@@ -165,7 +165,7 @@
         $m_division = $_POST['add_division'];
 
         // Query for inserting HR Message
-        $sql_sendhrmessage = "INSERT INTO messagehr(m_message, m_subject, m_ip_address, m_image_name, m_division, m_date_created) VALUES('$m_message', '$m_subject', '$ipaddress', 'iamge', '$m_division', $cur_time)";
+        $sql_sendhrmessage = "INSERT INTO messagehr(m_message, m_subject, m_ip_address, m_division, m_date_created) VALUES('$m_message', '$m_subject', '$ipaddress', '$m_division', $cur_time)";
         // Execute sql for insert HR Message
         $success_sendhrmessage = mysqli_query($link, $sql_sendhrmessage);
 
