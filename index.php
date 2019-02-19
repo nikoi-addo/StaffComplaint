@@ -32,6 +32,10 @@
 
             <!-- PAGE CONTENT -->
             <div class="page-content">
+
+              <style type="text/css">
+                .fixed{z-index: 999;}
+              </style>
                   
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
@@ -115,9 +119,9 @@
                                             </div>
                                         </div>
                                          <div class="col-md-6">
-                                            <div class="input-group">
+                                            <div class="input-group fixed">
                                                 <span class="input-group-addon"><span class="fa fa-suitcase"></span></span>
-                                                  <select class="form-control" name="division">
+                                                  <select class="form-control select" name="division">
                                                         <option>Select Division (optional)</option>
                                                         <option>Administration Division</option>
                                                         <option>Consumer and Corporate Affairs Division</option>
