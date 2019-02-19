@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2019 at 01:17 AM
+-- Generation Time: Feb 19, 2019 at 03:03 PM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -49,7 +49,9 @@ INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`)
 (9, 'I want to check something here', '127.0.0.1', 25, 1548364928),
 (10, 'Let us see about this side too if hope doth indeed come alive', '127.0.0.1', 13, 1548364953),
 (11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977),
-(12, 'ok sure', '::1', 57, 1548674149);
+(12, 'ok sure', '::1', 57, 1548674149),
+(13, 'Comments are coming', '127.0.0.1', 69, 1550540445),
+(14, 'Good to know that they are working now', '127.0.0.1', 69, 1550540456);
 
 -- --------------------------------------------------------
 
@@ -145,24 +147,23 @@ CREATE TABLE `del_complaints` (
   `c_division` varchar(64) NOT NULL,
   `c_date_created` int(16) NOT NULL,
   `c_ip_address` varchar(64) NOT NULL,
-  `c_date_stop_display` int(16) NOT NULL,
-  `c_image_name1` varchar(64) NOT NULL
+  `c_date_stop_display` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `del_complaints`
 --
 
-INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_date_created`, `c_ip_address`, `c_date_stop_display`, `c_image_name1`) VALUES
-(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596, ' 1548025396_dakd.jpg '),
-(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713, ' 1548340513_42510328_1937291789905358_5376408871080296448_n.jpg '),
-(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350, '  '),
-(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433, '  '),
-(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899, ' 1548376699_dakd.jpg '),
-(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886, '  '),
-(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, '  '),
-(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677, '  '),
-(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213, '  ');
+INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_date_created`, `c_ip_address`, `c_date_stop_display`) VALUES
+(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596),
+(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713),
+(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350),
+(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433),
+(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899),
+(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886),
+(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985),
+(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677),
+(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213);
 
 -- --------------------------------------------------------
 
@@ -174,16 +175,17 @@ CREATE TABLE `imagine` (
   `im_id` int(255) NOT NULL,
   `im_name` varchar(128) NOT NULL,
   `ref_id` int(255) NOT NULL,
-  `ref_name` varchar(16) NOT NULL
+  `ref_name` varchar(16) NOT NULL,
+  `ref_status(deleted or active)` varchar(8) DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `imagine`
 --
 
-INSERT INTO `imagine` (`im_id`, `im_name`, `ref_id`, `ref_name`) VALUES
-(20, '1550537668_cm_maestro.png', 69, 'complaint'),
-(21, '1550537668_cm_maestro2.png', 69, 'complaint');
+INSERT INTO `imagine` (`im_id`, `im_name`, `ref_id`, `ref_name`, `ref_status(deleted or active)`) VALUES
+(20, '1550537668_cm_maestro.png', 69, 'complaint', 'active'),
+(21, '1550537668_cm_maestro2.png', 69, 'complaint', 'active');
 
 -- --------------------------------------------------------
 
@@ -286,7 +288,7 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `complaints`
 --
