@@ -65,8 +65,8 @@
           header("location:../index.php?rsp=cmpsuccess");
         }
         else {
-          echo mysqli_error($link);
-          // header("location:../index.php?rsp=cmperror");
+          
+          header("location:../index.php?rsp=cmperror");
         }
       }
 
