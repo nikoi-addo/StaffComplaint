@@ -220,7 +220,7 @@
 
                                          <?php
                                           //Comment id
-                                          $comment_id = $rows[c_id];
+                                          $comment_id = $rows['c_id'];
                                           //Query for comment display
                                           $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
                                           //Execution for comment display
