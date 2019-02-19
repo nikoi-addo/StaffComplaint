@@ -241,12 +241,12 @@
                                            if ($success_checkimage): ?>
 
                                            <div class="row">
-                                             <?php while ($rows = $success_checkimage->fetch_assoc()) {
+                                             <?php while ($rowly = $success_checkimage->fetch_assoc()) {
                                                ?>
                                              <div class="col-md-4">
                                                <div class="image">
-                                                 <a href="uploads/<?php echo $rows['im_name']; ?>" data-gallery>
-                                                   <img src="uploads/<?php echo $rows['im_name']; ?>" class="img-responsive img-text"/>
+                                                 <a href="uploads/<?php echo $rowly['im_name']; ?>" data-gallery>
+                                                   <img src="uploads/<?php echo $rowly['im_name']; ?>" class="img-responsive img-text"/>
                                                  </a>
                                                </div>
                                              </div>
@@ -297,23 +297,23 @@
                                              <!-- Check if a comment has been submitted -->
                                              <?php
                                              // If comment is sent successfully
-                                             if (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 1) {
-                                               $msg ="<div class='alert alert-success'>
-                                                 <center>Comment Sent!!!
-                                                 <a class='close' data-dismiss='alert'>&times;</a>
-                                                 </center>
-                                               </div>";
-                                               echo $msg;
-                                             }
+                                             // if (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 1) {
+                                             //   $msg ="<div class='alert alert-success'>
+                                             //     <center>Comment Sent!!!
+                                             //     <a class='close' data-dismiss='alert'>&times;</a>
+                                             //     </center>
+                                             //   </div>";
+                                             //   echo $msg;
+                                             // }
                                              //If comment is not sent
-                                             elseif (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 0) {
-                                               $msg ="<div class='alert alert-danger'>
-                                                 <center>Unable to Upload Comment. Retry!!!
-                                                 <a class='close' data-dismiss='alert'>&times;</a>
-                                                 </center>
-                                               </div>";
-                                               echo $msg;
-                                             } ?>
+                                             // elseif (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 0) {
+                                             //   $msg ="<div class='alert alert-danger'>
+                                             //     <center>Unable to Upload Comment. Retry!!!
+                                             //     <a class='close' data-dismiss='alert'>&times;</a>
+                                             //     </center>
+                                             //   </div>";
+                                             //   echo $msg;
+                                             // } ?>
                                              <div class="col-md-11">
                                             <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
                                                <?php

@@ -97,8 +97,8 @@
         }
         else{
           //Error in comment success
-          // header("location:../hr.php?rsp=$complaint_id&cmrsp=0");
-          echo mysqli_error($link);
+          header("location:../hr.php?rsp=$complaint_id&cmrsp=0");
+
         }
       }
 
