@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 20, 2019 at 11:03 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Host: localhost
+-- Generation Time: Feb 20, 2019 at 10:28 AM
+-- Server version: 5.7.25-0ubuntu0.16.04.2
+-- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -135,7 +133,7 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `c_date_created`, `c_
 (62, 'Let me see again', 'Consumer and Corporate Affairs Division', 1550099699, '127.0.0.1', 1550574899),
 (63, '&quot;any ideas', 'Select Division (optional)', 1550520739, '127.0.0.1', 1550995939),
 (64, '\'something funny very funny', 'Select Division (optional)', 1550522506, '127.0.0.1', 1550997706),
-(65, 'Other thing\'s are \"getting on my nerves\"', 'Select Division (optional)', 1550522527, '127.0.0.1', 1550997727),
+(65, 'Other thing\'s are "getting on my nerves"', 'Select Division (optional)', 1550522527, '127.0.0.1', 1550997727),
 (66, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536392, '127.0.0.1', 1551011592),
 (67, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536523, '127.0.0.1', 1551011723),
 (68, 'Another one maybe', 'Consumer and Corporate Affairs Division', 1550537389, '127.0.0.1', 1551012589),
@@ -145,11 +143,7 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `c_date_created`, `c_
 (72, 'slow one', 'Engineering Division', 1550575999, '::1', 1551051199),
 (73, 'Helper', 'Research and Business Development', 1550576080, '::1', 1551051280),
 (76, 'I\'m in love with Jesus ', 'Engineering Division', 1550581432, '192.168.43.137', 1551056632),
-(77, 'I know who you are ', 'Cybersecurity Division', 1550581588, '192.168.43.137', 1551056788),
-(82, 'Love', 'Select Division (optional)', 1550604137, '192.168.43.137', 1551079337),
-(83, 'See me now', 'Select Division (optional)', 1550604164, '192.168.43.137', 1551079364),
-(84, 'listen', 'Select Division (optional)', 1550604175, '::1', 1551079375),
-(85, 'Nope ', 'Select Division (optional)', 1550604219, '192.168.43.137', 1551079419);
+(82, 'Love', 'Select Division (optional)', 1550604137, '192.168.43.137', 1551079337);
 
 -- --------------------------------------------------------
 
@@ -164,30 +158,33 @@ CREATE TABLE `del_complaints` (
   `c_division` varchar(64) NOT NULL,
   `c_date_created` int(16) NOT NULL,
   `c_ip_address` varchar(64) NOT NULL,
-  `c_date_stop_display` int(16) NOT NULL,
-  `c_image_name1` varchar(64) NOT NULL
+  `c_date_stop_display` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `del_complaints`
 --
 
-INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_date_created`, `c_ip_address`, `c_date_stop_display`, `c_image_name1`) VALUES
-(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596, ' 1548025396_dakd.jpg '),
-(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713, ' 1548340513_42510328_1937291789905358_5376408871080296448_n.jpg '),
-(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350, '  '),
-(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433, '  '),
-(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899, ' 1548376699_dakd.jpg '),
-(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886, '  '),
-(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, '  '),
-(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677, '  '),
-(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213, '  '),
-(20, 74, ' helpers ', ' Select Division (optional) ', 1550576149, ' ::1 ', 1551051349, ' <br />\r\n<b>Notice</b>:  Undefined index: c_image_name1 in <b>C:'),
-(21, 75, ' Laughter is healthy  ', ' Information Technology (IT) Division ', 1550577038, ' 192.168.43.137 ', 1551052238, ' <br />\r\n<b>Notice</b>:  Undefined index: c_image_name1 in <b>C:'),
-(22, 81, ' Index me ', ' Policy, Strategy and Innovation Division ', 1550599720, ' ::1 ', 1551074920, ''),
-(23, 78, ' Three ', ' Finance Division ', 1550591483, ' 192.168.43.137 ', 1551066683, ''),
-(24, 80, '', ' Regulatory Administration Division ', 1550594793, ' 192.168.43.137 ', 1551069993, ''),
-(25, 79, '', ' Select Division (optional) ', 1550591968, ' 192.168.43.137 ', 1551067168, '');
+INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_date_created`, `c_ip_address`, `c_date_stop_display`) VALUES
+(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596),
+(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713),
+(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350),
+(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433),
+(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899),
+(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886),
+(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985),
+(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677),
+(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213),
+(20, 74, ' helpers ', ' Select Division (optional) ', 1550576149, ' ::1 ', 1551051349),
+(21, 75, ' Laughter is healthy  ', ' Information Technology (IT) Division ', 1550577038, ' 192.168.43.137 ', 1551052238),
+(22, 81, ' Index me ', ' Policy, Strategy and Innovation Division ', 1550599720, ' ::1 ', 1551074920),
+(23, 78, ' Three ', ' Finance Division ', 1550591483, ' 192.168.43.137 ', 1551066683),
+(24, 80, '', ' Regulatory Administration Division ', 1550594793, ' 192.168.43.137 ', 1551069993),
+(25, 79, '', ' Select Division (optional) ', 1550591968, ' 192.168.43.137 ', 1551067168),
+(26, 85, '', ' Select Division (optional) ', 1550604219, ' 192.168.43.137 ', 1551079419),
+(27, 84, '', ' Select Division (optional) ', 1550604175, ' ::1 ', 1551079375),
+(28, 83, '', ' Select Division (optional) ', 1550604164, ' 192.168.43.137 ', 1551079364),
+(29, 77, '', ' Cybersecurity Division ', 1550581588, ' 192.168.43.137 ', 1551056788);
 
 -- --------------------------------------------------------
 
@@ -199,33 +196,34 @@ CREATE TABLE `imagine` (
   `im_id` int(255) NOT NULL,
   `im_name` varchar(128) NOT NULL,
   `ref_id` int(255) NOT NULL,
-  `ref_name` varchar(16) NOT NULL
+  `ref_name` varchar(16) NOT NULL,
+  `ref_status` varchar(16) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `imagine`
 --
 
-INSERT INTO `imagine` (`im_id`, `im_name`, `ref_id`, `ref_name`) VALUES
-(20, '1550537668_cm_maestro.png', 69, 'complaint'),
-(21, '1550537668_cm_maestro2.png', 69, 'complaint'),
-(22, '1550575428_cm_DlyKySNW4AA36KO.jpg', 70, 'complaint'),
-(23, '1550575486_cm_DeiWhjZW0AAWpn6.jpg', 71, 'complaint'),
-(24, '1550575486_cm_DeTZYhpWkAE6K70.jpg', 71, 'complaint'),
-(25, '1550575999_cm_barcelona-16-17-home-kit-7.jpg', 72, 'complaint'),
-(26, '1550575999_cm_Black-ish - S04E04 - Advance to Go (Collect $200) SDTV.mkv_000327200.jpg', 72, 'complaint'),
-(27, '1550577038_cm_IMG_20190217_204329.jpg', 75, 'complaint'),
-(28, '1550577038_cm_IMG_20190217_202328.jpg', 75, 'complaint'),
-(29, '1550581588_cm_IMG_20190211_233122.jpg', 77, 'complaint'),
-(30, '1550591483_cm_IMG_20190218_235302.jpg', 78, 'complaint'),
-(31, '1550591483_cm_IMG_20190218_235018.jpg', 78, 'complaint'),
-(32, '1550591483_cm_IMG_20190218_235013.jpg', 78, 'complaint'),
-(33, '1550591968_cm_IMG-20190219-WA0036.jpg', 79, 'complaint'),
-(34, '1550598796_hr_190cdcx43uqgmjpg.jpg', 50, 'hrmessage'),
-(35, '1550598796_hr_500_F_95992405_I3gKQKglkE2TOF5C5b8UhxVYB7wRYflg.jpg', 50, 'hrmessage'),
-(36, '1550598796_hr_1559_D500_front.png', 50, 'hrmessage'),
-(37, '1550599119_hr_IMG-20160218-WA0004.jpg', 51, 'hrmessage'),
-(38, '1550599720_cm_IMG-20160218-WA0004.jpg', 81, 'complaint');
+INSERT INTO `imagine` (`im_id`, `im_name`, `ref_id`, `ref_name`, `ref_status`) VALUES
+(20, '1550537668_cm_maestro.png', 69, 'complaint', 'active'),
+(21, '1550537668_cm_maestro2.png', 69, 'complaint', 'active'),
+(22, '1550575428_cm_DlyKySNW4AA36KO.jpg', 70, 'complaint', 'active'),
+(23, '1550575486_cm_DeiWhjZW0AAWpn6.jpg', 71, 'complaint', 'active'),
+(24, '1550575486_cm_DeTZYhpWkAE6K70.jpg', 71, 'complaint', 'active'),
+(25, '1550575999_cm_barcelona-16-17-home-kit-7.jpg', 72, 'complaint', 'active'),
+(26, '1550575999_cm_Black-ish - S04E04 - Advance to Go (Collect $200) SDTV.mkv_000327200.jpg', 72, 'complaint', 'active'),
+(27, '1550577038_cm_IMG_20190217_204329.jpg', 75, 'complaint', 'active'),
+(28, '1550577038_cm_IMG_20190217_202328.jpg', 75, 'complaint', 'active'),
+(29, '1550581588_cm_IMG_20190211_233122.jpg', 77, 'complaint', 'deleted'),
+(30, '1550591483_cm_IMG_20190218_235302.jpg', 78, 'complaint', 'active'),
+(31, '1550591483_cm_IMG_20190218_235018.jpg', 78, 'complaint', 'active'),
+(32, '1550591483_cm_IMG_20190218_235013.jpg', 78, 'complaint', 'active'),
+(33, '1550591968_cm_IMG-20190219-WA0036.jpg', 79, 'complaint', 'active'),
+(34, '1550598796_hr_190cdcx43uqgmjpg.jpg', 50, 'hrmessage', 'active'),
+(35, '1550598796_hr_500_F_95992405_I3gKQKglkE2TOF5C5b8UhxVYB7wRYflg.jpg', 50, 'hrmessage', 'active'),
+(36, '1550598796_hr_1559_D500_front.png', 50, 'hrmessage', 'active'),
+(37, '1550599119_hr_IMG-20160218-WA0004.jpg', 51, 'hrmessage', 'active'),
+(38, '1550599720_cm_IMG-20160218-WA0004.jpg', 81, 'complaint', 'active');
 
 -- --------------------------------------------------------
 
@@ -331,32 +329,26 @@ ALTER TABLE `messagehr`
 --
 ALTER TABLE `comments`
   MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
   MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
-
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
 ALTER TABLE `del_complaints`
-  MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
+  MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `imagine`
 --
 ALTER TABLE `imagine`
   MODIFY `im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
 --
 -- AUTO_INCREMENT for table `messagehr`
 --
 ALTER TABLE `messagehr`
   MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

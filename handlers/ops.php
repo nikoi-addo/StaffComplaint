@@ -122,9 +122,9 @@
 
         //Move complaint to del_complaint table
         $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display)";
-        //Delete finally from Complaint Table
+        //Delete complaint from complaint table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
-        //Update image table
+        //Update image table to show image as deleted
         $sql_updateimage = "UPDATE imagine SET ref_status = 'deleted' WHERE ref_id = $complaint_id AND ref_name='complaint'";
         //Execute move complaint
         $success_movecomplaint = mysqli_query($link, $sql_movecomplaint);
@@ -146,7 +146,6 @@
         }
         //Move Unsuccessful
         else {
-
           header("location:../hr.php?delrsp=2");
         }
 
