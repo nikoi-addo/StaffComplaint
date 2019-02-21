@@ -97,7 +97,7 @@
                                     <?php echo date("d M,Y G:i", $rows['m_date_created']); ?></small></h3>
 
                                   <p>Hello Everyone,</p>
-                                  <p> <?php echo $rows['m_message']; ?> </p>
+                                  <p style="white-space:pre-wrap;"> <?php echo $rows['m_message']; ?> </p>
 
                                   <?php
                                   //Check if an image exists for the specifice message

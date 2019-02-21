@@ -115,7 +115,7 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" name="problem" maxlength="2048" placeholder="We are listening (Limit: 2048 Characters)" required/>
+                                                <textarea style="resize: none ; white-space: normal;" class="form-control" name="problem" rows="1" maxlength="2048" placeholder="We are listening (Limit: 2048 Characters)" required/></textarea>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -197,7 +197,7 @@
                                              } ?></u> shared an idea
                                          </div>
                                          <div class="timeline-body">
-                                             <p><?php echo $rows['c_value']; ?></p>
+                                             <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])); ?></p>
 
                                              <?php
                                              //Check if an image exists for the specifice message

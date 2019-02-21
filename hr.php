@@ -114,7 +114,7 @@
                                             </div>
                                             <br><div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input class="form-control" name="hrmessage" maxlength="2048" placeholder="What's happening?..." required/>
+                                                <textarea style="resize: none ; white-space: normal;" class="form-control" name="hrmessage" maxlength="2048" placeholder="What's happening?..." required/></textarea>
                                             </div>
                                         </div>
                                          <div class="col-md-6">
@@ -147,10 +147,10 @@
                                             <input type="file" name="hrimages[]" accept="image/*" multiple/>
 
                                             </div>
-                                            <div class="pull-right">
-                                                <button type="button" data-toggle="modal" id="myBtn" data-target="#myModal" class="btn btn-danger ">Run Polls For Staff</button>
-                                                <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
-                                            </div>
+                                     <div class="pull-right">
+                                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_basic"><span class="fa fa-thumbs-o-up"></span>  Run Poll For Staff</button>
+                                          <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
+                                     </div>
 
                                         </div>
                                     </div>
@@ -192,71 +192,44 @@
                         </div>
                     </div>
 
-                    <div class="row modal " id="myModal">
-                        <div class="col-md-7">
 
                            
 
-                            <!-- START PANEL WITH HIDDEN CONTROLS -->
-                            <div class="panel panel-colorful panel-hidden-controls">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Run Polls For Staff</h3>
-                                      <ul class="panel-controls">
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                    </ul>                                   
-                                </div>
-                                <div class="panel-body has-warning">
-
-                                      <textarea class="form-control" placeholder="Ask Something..." ></textarea>
-                                     
-                                </div> 
-                                 <div class="panel-body has-success">
-                                      <input type="text" class="form-control" placeholder="Option 1"/><br>
-                                      <input type="text" class="form-control" placeholder="Option 2"/><br>
-                                      <input type="text" class="form-control" placeholder="Option 3"/><br>
-                                      <input type="text" class="form-control" placeholder="Option 4"/><br>
-                                      
-                                </div>  
-
-                                <div class="panel-footer">                
-                                    <button class="btn btn-danger pull-right"><span class="fa fa-share"></span>Post</button>
-                                    <select class="btn btn-warning pull-left">
-                                         <option>1 Week</option>
-                                         <option>2 Weeks</option>
-                                         <option>3 Weeks</option>
-                                         <option>4 Weeks</option>
-                                         
-                                    </select>
-                                    <label class="col-md-5 control-label"><span class="fa fa-clock-o"></span> Poll Time Duration</label>
-                                </div>                            
-                            </div>
-                            <!-- END PANEL WITH HIDDEN CONTROLS -->
-                        </div>
+                            <!-- MODALS -->        
+        <div class="modal" id="modal_basic" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="defModalHead">Run Polls For Staff</h4>
                     </div>
+                    <div class="modal-body">
+                       <div class="panel-body has-warning">
 
-                    <style>
-                        /* The Modal (background) */
-                        .modal {
-                          display: none; /* Hidden by default */
-                          position: fixed; /* Stay in place */
-                          z-index: 1010; /* Sit on top */
-                          padding-top: 10%; /* Location of the box */
-                          padding-left: 35%; /* Location of the box */
-                          padding-right: 0px !important;
-                          transform: translate(-50%, -50%);
-                          left: 50%;
-                          top: 50%;
-                          overflow-y: auto;
-                          overflow: auto;
-                          width: 100%; /* Full width */
-                          height: 100%; /* Full height */
-                          overflow: auto; /* Enable scroll if needed */
-                          background-color: rgb(0,0,0); /* Fallback color */
-                          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                        }
-
+                            <textarea class="form-control" placeholder="Ask Something..." ></textarea>
+                                     
+                        </div> 
+                        <div class="panel-body has-success">
+                            <input type="text" class="form-control" placeholder="Option 1"/><br>
+                            <input type="text" class="form-control" placeholder="Option 2"/><br>
+                            <input type="text" class="form-control" placeholder="Option 3"/><br>
+                            <input type="text" class="form-control" placeholder="Option 4"/><br>
+                                      
+                        </div>  
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-md btn-warning pull-right col-md-4"><span class="fa fa-share"></span>Post Poll</button>
+                        <select class="btn btn-warning pull-left">
+                                <option>1 Week</option>
+                                <option>2 Weeks</option>
+                                <option>3 Weeks</option>
+                                <option>4 Weeks</option>
+                        </select>
                         
-                        </style>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -298,7 +271,7 @@
                                            <div class="row">
                                              <div class="col-md-10">
                                                <!-- Display Complaint from Database -->
-                                               <p><?php echo $rows['c_value']; ?></p>
+                                               <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])) ; ?></p>
                                              </div>
                                              <div class="col-md-2">
 
@@ -386,7 +359,7 @@
                                              //   </div>";
                                              //   echo $msg;
                                              // } ?>
-                                             <div class="col-md-11">
+                                             <div class="comment-write col-md-11">
                                             <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
                                                <?php
                                                   if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id']) {
@@ -394,7 +367,7 @@
                                                   echo "autofocus";
                                                   } ?> required>
                                               </div>
-                                             <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button>
+                                              <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
                                           </form>
                                         </div>
                                          </div>
@@ -564,31 +537,7 @@
     }
 });
 
-            // Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("panel-remove")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+           
         </script>
 
     <!-- END
