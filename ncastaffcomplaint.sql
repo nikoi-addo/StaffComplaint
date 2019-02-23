@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2019 at 12:04 AM
+-- Generation Time: Feb 23, 2019 at 01:53 AM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -300,7 +300,7 @@ CREATE TABLE `poll` (
   `question` text NOT NULL,
   `poll_date` double NOT NULL,
   `options` varchar(250) NOT NULL,
-  `votes` varchar(250) DEFAULT '0',
+  `votes` varchar(250) NOT NULL DEFAULT '0',
   `number_options` tinyint(3) NOT NULL,
   `poll_timeout` double DEFAULT NULL,
   `voters` int(11) DEFAULT '0',
@@ -312,8 +312,27 @@ CREATE TABLE `poll` (
 --
 
 INSERT INTO `poll` (`id`, `question`, `poll_date`, `options`, `votes`, `number_options`, `poll_timeout`, `voters`, `last_vote_date`) VALUES
-(56, 'Who are you', 1550879748, 'I am me|I am myself', '0|0', 2, NULL, NULL, NULL),
-(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '0|0|0|0', 4, NULL, NULL, NULL);
+(56, 'Who are you', 1550879748, 'I am me|I am myself', '6|3', 2, NULL, 9, 1550886024),
+(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|1', 4, NULL, 5, 1550886145);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `poll_voters`
+--
+
+CREATE TABLE `poll_voters` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `poll_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `poll_voters`
+--
+
+INSERT INTO `poll_voters` (`id`, `user_id`, `poll_id`) VALUES
+(10, 23, 57);
 
 --
 -- Indexes for dumped tables
@@ -356,6 +375,12 @@ ALTER TABLE `poll`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `poll_voters`
+--
+ALTER TABLE `poll_voters`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -389,6 +414,11 @@ ALTER TABLE `messagehr`
 --
 ALTER TABLE `poll`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+--
+-- AUTO_INCREMENT for table `poll_voters`
+--
+ALTER TABLE `poll_voters`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
