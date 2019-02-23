@@ -157,7 +157,7 @@
                                     </form>
                                 </div>
                                   <!-- START PANELS WITH CONTROLS -->
-                    
+
                                 <?php
                                 //Delete successful
                                   if(isset($_GET['delrsp']) && $_GET['delrsp'] == 0){
@@ -193,9 +193,9 @@
                     </div>
 
 
-                           
 
-                            <!-- MODALS -->        
+
+                            <!-- MODALS -->
         <div style="z-index: 999" class="modal" id="modal_basic" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -205,27 +205,29 @@
                     </div>
                     <div class="modal-body">
                        <div class="panel-body has-warning">
+                         <form action="handlers/ops.php" method="post">
+                            <textarea class="form-control" placeholder="Ask Something..." name="question"></textarea>
 
-                            <textarea class="form-control" placeholder="Ask Something..." ></textarea>
-                                     
-                        </div> 
+                        </div>
                         <div class="panel-body has-success">
-                            <input type="text" class="form-control" placeholder="Option 1"/><br>
-                            <input type="text" class="form-control" placeholder="Option 2"/><br>
-                            <input type="text" class="form-control" placeholder="Option 3"/><br>
-                            <input type="text" class="form-control" placeholder="Option 4"/><br>
-                                      
-                        </div>  
+                            <input type="text" name="opinion1" class="form-control" placeholder="Option 1"/><br>
+                            <input type="text" name="opinion2" class="form-control" placeholder="Option 2"/><br>
+                            <a data-toggle="collapse" href="#more_opinions">More Opinions +</a>
+                            <div id="more_opinions" class="collapse">
+                              <br><input type="text" name="opinion3" placeholder="Option 3" class="form-control"><br>
+                              <input type="text" name="opinion4" placeholder="Option 4" class="form-control">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-md btn-warning pull-right col-md-4"><span class="fa fa-share"></span>Post Poll</button>
+                        <button class="btn btn-md btn-warning pull-right col-md-4" name="postpoll"><span class="fa fa-share"></span>Post Poll</button>
                         <select class="btn btn-warning pull-left">
                                 <option>1 Week</option>
                                 <option>2 Weeks</option>
                                 <option>3 Weeks</option>
                                 <option>4 Weeks</option>
                         </select>
-                        
+                      </form>
                     </div>
                 </div>
             </div>
@@ -335,7 +337,7 @@
                                          <!-- Insert new comment -->
                                          <div class="timeline-body comments">
                                           <div class="comment-write">
-                                           <form action="handlers/ops.php" method="post">
+                                           <form action="handlers/ops.php" method="post" name>
                                              <input type="hidden" name="form_type" value="UploadComment">
                                              <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
 
@@ -537,7 +539,7 @@
     }
 });
 
-           
+
         </script>
 
     <!-- END

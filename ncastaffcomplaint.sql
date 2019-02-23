@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2019 at 10:28 AM
+-- Generation Time: Feb 23, 2019 at 12:04 AM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -56,7 +56,8 @@ INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`)
 (16, 'yes sir', '::1', 68, 1550574844),
 (17, 'nice gun....Who\'s is it?', '::1', 70, 1550575716),
 (18, 'don\'t be stupid', '::1', 78, 1550591801),
-(19, 'and so what?', '192.168.43.137', 79, 1550592008);
+(19, 'and so what?', '192.168.43.137', 79, 1550592008),
+(20, 'Comments are coming', '127.0.0.1', 86, 1550878972);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,8 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `c_date_created`, `c_
 (72, 'slow one', 'Engineering Division', 1550575999, '::1', 1551051199),
 (73, 'Helper', 'Research and Business Development', 1550576080, '::1', 1551051280),
 (76, 'I\'m in love with Jesus ', 'Engineering Division', 1550581432, '192.168.43.137', 1551056632),
-(82, 'Love', 'Select Division (optional)', 1550604137, '192.168.43.137', 1551079337);
+(82, 'Love', 'Select Division (optional)', 1550604137, '192.168.43.137', 1551079337),
+(86, 'I want freedom', 'Administration Division', 1550878938, '127.0.0.1', 1551354138);
 
 -- --------------------------------------------------------
 
@@ -284,7 +286,34 @@ INSERT INTO `messagehr` (`m_id`, `m_message`, `m_subject`, `m_ip_address`, `m_di
 (48, 'jldajlkdjlakfjldkajfklajfkl', 'alkjdkljalk', '127.0.0.1', 'All Divisions', 1550535215),
 (49, 'jldajlkdjlakfjldkajfklajfkl', 'alkjdkljalk', '127.0.0.1', 'All Divisions', 1550535290),
 (50, 'Love is good', 'Love', '::1', 'All Divisions', 1550598796),
-(51, 'Live is good', 'Love 2', '::1', 'All Divisions', 1550599119);
+(51, 'Live is good', 'Love 2', '::1', 'All Divisions', 1550599119),
+(52, 'Someone call 911', 'Loads', '127.0.0.1', 'All Divisions', 1550878983);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `poll`
+--
+
+CREATE TABLE `poll` (
+  `id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `poll_date` double NOT NULL,
+  `options` varchar(250) NOT NULL,
+  `votes` varchar(250) DEFAULT '0',
+  `number_options` tinyint(3) NOT NULL,
+  `poll_timeout` double DEFAULT NULL,
+  `voters` int(11) DEFAULT '0',
+  `last_vote_date` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `poll`
+--
+
+INSERT INTO `poll` (`id`, `question`, `poll_date`, `options`, `votes`, `number_options`, `poll_timeout`, `voters`, `last_vote_date`) VALUES
+(56, 'Who are you', 1550879748, 'I am me|I am myself', '0|0', 2, NULL, NULL, NULL),
+(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '0|0|0|0', 4, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -321,6 +350,12 @@ ALTER TABLE `messagehr`
   ADD PRIMARY KEY (`m_id`);
 
 --
+-- Indexes for table `poll`
+--
+ALTER TABLE `poll`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -328,12 +363,12 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
@@ -348,7 +383,12 @@ ALTER TABLE `imagine`
 -- AUTO_INCREMENT for table `messagehr`
 --
 ALTER TABLE `messagehr`
-  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+--
+-- AUTO_INCREMENT for table `poll`
+--
+ALTER TABLE `poll`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -196,6 +196,45 @@
         }
 
       }
+      #########################################################
+      ###################### MAKE A POLL ######################
+      #########################################################
+      if (isset($_POST['postpoll'])) {
+        $question = $opinion1 = $opinion2 = $opinion3 = $opinion4 = $ctime = "";
+        $d_votes = "0|0";
+        $question = $_POST['question'];
+        $question = mysqli_real_escape_string($link, $question);
+        $opinion1 = $_POST['opinion1'];
+        $opinion1 = mysqli_real_escape_string($link, $opinion1);
+        $opinion2 = $_POST['opinion2'];
+        $opinion2 = mysqli_real_escape_string($link, $opinion2);
+        $opinion3 = $_POST['opinion3'];
+        $opinion3 = mysqli_real_escape_string($link, $opinion3);
+        $opinion4 = $_POST['opinion4'];
+        $opinion4 = mysqli_real_escape_string($link, $opinion4);
+
+        $opinion1 = $opinion1 . "|" . $opinion2; //Setting Default Vote to 0|0
+        //Check if there is a third opinion
+        if (!empty($opinion3)) {
+          $opinion1 = $opinion1 . "|" . $opinion3;
+          $d_votes .= "|0"; //Setting Default Vote to 0|0|0
+        }
+        //Check if there is a fourth opinion
+        if (!empty($opinion4)) {
+          $opinion1 = $opinion1 . "|" . $opinion4;
+          $d_votes .= "|0"; //Setting Default Vote to 0|0|0|0
+        }
+        $number_options = count(explode("|", $opinion1));
+        // $number_options = 2;
+        $sql_insertpoll = "INSERT INTO poll(question, poll_date, options, votes, number_options) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options)";
+        $success = mysqli_query($link, $sql_insertpoll);
+        if ($success) {
+          echo "Poll has been submitted";
+        }
+      }
+
+
+
     }
 
 
