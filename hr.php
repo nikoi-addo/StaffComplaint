@@ -215,7 +215,10 @@
                             <a data-toggle="collapse" href="#more_opinions">More Opinions +</a>
                             <div id="more_opinions" class="collapse">
                               <br><input type="text" name="opinion3" placeholder="Option 3" class="form-control"><br>
-                              <input type="text" name="opinion4" placeholder="Option 4" class="form-control">
+                              <a data-toggle="collapse" href="#more_opinions2">More Opinions +</a>
+                              <div id="more_opinions2" class="collapse">
+                                <br><input type="text" name="opinion4" placeholder="Option 4" class="form-control">
+                              </div>
                             </div>
                         </div>
                     </div>
