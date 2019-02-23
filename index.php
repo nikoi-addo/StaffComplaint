@@ -180,7 +180,7 @@
                                 <!-- START POLL TIMELINE ITEM -->
                                 <?php
                                   //Query to select polls that have not expired
-                                  $sql_polldisplay = "SELECT * FROM poll";
+                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY poll_date DESC";
                                   $success_polldisplay = mysqli_query($link, $sql_polldisplay);
                                   foreach ($success_polldisplay as $poll) {
                                     //Set Poll Options as an array
@@ -246,7 +246,7 @@
                                 ?>
                                 <!-- START POLL ITEM VOTED -->
                                 <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info">><?php echo date("d M G:i", $poll['poll_date']); ?></div>
+                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['poll_date']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
