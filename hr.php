@@ -249,6 +249,59 @@
                                     <div class="timeline-date">2019</div>
                                 </div>
                                 <!-- END TIMELINE ITEM -->
+                                <!-- START POLL TIMELINE ITEM -->
+                                <?php
+                                  //Query to select polls that have not expired
+                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY poll_date DESC";
+                                  $success_polldisplay = mysqli_query($link, $sql_polldisplay);
+                                  foreach ($success_polldisplay as $poll) {
+                                    //Set Poll Options as an array
+                                    $pollOptions = explode("|", $poll['options']);
+                                    $votes = explode("|", $poll['votes']);
+                                    $poll_id = $poll['id'];?>
+                                    <!-- START POLL ITEM VOTED -->
+                                    <div class="timeline-item timeline-item-right">
+                                        <div class="timeline-item-info"><?php echo date("d M G:i", $poll['poll_date']); ?></div>
+                                        <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
+                                        <div class="timeline-item-content">
+                                            <div class="timeline-heading">
+                                                <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p style="white-space:pre-wrap;"><?php echo $poll['question']; ?></p>
+                                                <span class="pull-right"><?php echo $poll['voters']; ?> Votes</span>
+                                            </div>
+                                            <div class="timeline-body comments">
+                                                <div class="comment-item">
+                                                   <div class="form-group">
+                                                     <?php
+                                                     //Display all the Options for the Poll
+                                                     for ($i=0; $i < count($pollOptions) ; $i++) {
+                                                       $votePercent = round(($votes[$i]/$poll['voters'])*100);
+                                                      ?>
+                                                       <div class="col-md-6">
+                                                          <div class="progress">
+                                                               <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$votePercent";  ?>%">
+                                                                   <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                      <?php
+                                                      }
+                                                      ?>
+
+                                                   </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END TIMELINE ITEM -->
+
+
+                                  <?php
+
+                                  }
+                                  ?>
 
                                 <?php
                                     //Complaint sql query
