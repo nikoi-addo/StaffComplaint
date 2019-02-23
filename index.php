@@ -210,7 +210,7 @@
                                             <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
                                         </div>
                                         <div class="timeline-body">
-                                            <p style="white-space:pre-wrap;"><?php echo $poll['question']; ?></p>
+                                            <p style="white-space:pre-wrap;"><?php echo(trim($poll['question'])); ?></p>
                                             <span class="pull-right"><?php echo $poll['voters']; ?> Votes</span>
                                         </div>
                                         <form action="handlers/ops.php" method="post">
