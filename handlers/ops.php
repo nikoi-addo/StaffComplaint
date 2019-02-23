@@ -233,6 +233,47 @@
         }
       }
 
+      #########################################################
+      ###################### VOTE ON A POLL ######################
+      #########################################################
+      if (isset($_POST['pollvote'])) {
+        //Poll Data holding Option user voted for
+        $pollVoteData = array(
+          'id' => $_POST['id'],
+          'pollOptions' => $_POST['option']
+        );
+        $id = $_POST['id'];
+        $user_id = $_POST['user_id'];
+        //Select Votes Cast for each category and Number of Votes
+        $sql_getvotes = "SELECT votes, voters FROM poll WHERE id = $id";
+        $success_getvotes = mysqli_query($link, $sql_getvotes);
+        if ($success_getvotes) {
+          $row = $success_getvotes->fetch_assoc();
+          $votes = explode("|", $row['votes']);
+          //Increate the Category of Users vote by 1
+          $votes[$pollVoteData['pollOptions']] += 1;
+          $votes = implode("|", $votes);
+          // echo $votes;
+          //Increate Voter count
+          $voters = $row['voters'];
+          $voters  += 1;
+          echo $id;
+          $sql_updatepoll = "UPDATE poll SET votes ='$votes' , voters = $voters, last_vote_date = $cur_time WHERE id=$id";
+          $success_updatepoll = mysqli_query($link,$sql_updatepoll);
+          $sql_votedetails = "INSERT INTO poll_voters(user_id, poll_id) VALUES($user_id, $id)";
+          $success_votedetails = mysqli_query($link, $sql_votedetails);
+          if ($success_updatepoll && $success_votedetails) {
+            header('location:../index.php');
+          }//End success_updatepoll
+          else {
+            echo mysqli_error($link);
+          } //End !$success_updatepoll
+        } //End success_getvotes
+        else { //if !success_getvotes
+          echo mysqli_error($link);
+        } //End !success_getvotes
+      } //End Post of pollvote
+
 
 
     }
