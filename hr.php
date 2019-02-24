@@ -224,11 +224,12 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-md btn-warning pull-right col-md-4" name="postpoll"><span class="fa fa-share"></span>Post Poll</button>
-                        <select class="btn btn-warning pull-left">
-                                <option>1 Week</option>
-                                <option>2 Weeks</option>
-                                <option>3 Weeks</option>
-                                <option>4 Weeks</option>
+                        <select class="btn btn-warning pull-left" name="duration">
+                                <option value="1">1 Day</option>
+                                <option value="2">2 Day</option>
+                                <option value="3">3 Day</option>
+                                <option value="4">4 Day</option>
+                                <option value="5">5 Day</option>
                         </select>
                       </form>
                     </div>
@@ -266,6 +267,10 @@
                                         <div class="timeline-item-content">
                                             <div class="timeline-heading">
                                                 <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
+                                                <div class="pull-right">
+                                                <!-- Delete button -->
+                                                <button href="#" data-box="#mb-delpoll<?php echo $poll_id; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>
+                                                </div>
                                             </div>
                                             <div class="timeline-body">
                                                 <p style="white-space:pre-wrap;"><?php echo $poll['question']; ?></p>
@@ -297,7 +302,38 @@
                                     </div>
                                     <!-- END TIMELINE ITEM -->
 
+                                    <!-- DELETE POLL MESSAGE BOX-->
+                                    <div class="message-box animated fadeIn" id="mb-delpoll<?php echo $poll_id; ?>">
+                                        <div class="mb-container">
+                                            <div class="mb-middle">
+                                                <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Post</strong> ?</div>
+                                                <div class="mb-content">
+                                                    <p>Are you sure you want to delete this post?</p>
+                                                    <p>Press No if you want to Cancel. Press Yes to Delete.</p>
+                                                </div>
+                                                <div class="mb-footer">
+                                                    <div class="pull-right">
+                                                      <form class="" action="handlers/ops.php" method="post">
+                                                        <!-- Specify form type as hidden -->
+                                                        <input type="hidden" name="form_type" value="DeleteComplaint">
+                                                        <!-- Pass complaint Information also hidden -->
+                                                        <input type="hidden" name="complaint_value" value=" <?php echo $rows['c_value']; ?> ">
+                                                        <input type="hidden" name="complaint_division" value=" <?php echo $rows['c_division']; ?> ">
+                                                        <input type="hidden" name="complaint_date_created" value=" <?php echo $rows['c_date_created']; ?> ">
+                                                        <input type="hidden" name="complaint_ip_address" value=" <?php echo $rows['c_ip_address']; ?> ">
+                                                        <input type="hidden" name="complaint_date_stop_display" value=" <?php echo $rows['c_date_stop_display']; ?> ">
+                                                        <input type="hidden" name="complaint_image_name1" value=" <?php echo $rows['c_image_name1']; ?> ">
+                                                        <input type="hidden" name="complaint_id" value=" <?php echo $rows['c_id']; ?> ">
 
+                                                        <button class="btn btn-danger btn-lg" type="submit">Yes</a>
+                                                        <button class="btn btn-default btn-lg mb-control-close">No</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END MESSAGE BOX-->
                                   <?php
 
                                   }
@@ -433,7 +469,7 @@
                                      </div>
 
                                  </div>
-                                 <!-- MESSAGE BOX-->
+                                 <!-- DELETE COMPLAINT MESSAGE BOX-->
                                  <div class="message-box animated fadeIn" id="mb-delcomp<?php echo $rows['c_id']; ?>">
                                      <div class="mb-container">
                                          <div class="mb-middle">

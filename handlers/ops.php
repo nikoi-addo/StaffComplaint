@@ -212,6 +212,8 @@
         $opinion3 = mysqli_real_escape_string($link, $opinion3);
         $opinion4 = $_POST['opinion4'];
         $opinion4 = mysqli_real_escape_string($link, $opinion4);
+        $duration = $_POST['duration'];
+        $poll_timeout = strtotime("+". $duration ." Days");
 
         $opinion1 = $opinion1 . "|" . $opinion2; //Setting Default Vote to 0|0
         //Check if there is a third opinion
@@ -226,7 +228,7 @@
         }
         $number_options = count(explode("|", $opinion1));
         // $number_options = 2;
-        $sql_insertpoll = "INSERT INTO poll(question, poll_date, options, votes, number_options) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options)";
+        $sql_insertpoll = "INSERT INTO poll(question, poll_date, options, votes, number_options, poll_timeout) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, '$poll_timeout')";
         $success = mysqli_query($link, $sql_insertpoll);
         if ($success) {
           echo "Poll has been submitted";
