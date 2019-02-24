@@ -35,7 +35,12 @@
             <div class="page-content">
 
               <style type="text/css">
-                .fixed{z-index: 999;}
+                .fixed{z-index: 999;
+                	   position: fixed;
+                       top: 0;
+                       width: 100%;
+                       overflow: hidden;
+                      }
               </style>
 
                 <!-- START X-NAVIGATION VERTICAL -->
@@ -481,6 +486,9 @@
     customTxt.innerHTML = "No file chosen, yet.";
   }
 });
+
+
+
 
 </script>
 
