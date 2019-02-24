@@ -273,7 +273,7 @@
                                                 </div>
                                             </div>
                                             <div class="timeline-body">
-                                                <p style="white-space:pre-wrap;"><?php echo $poll['question']; ?></p>
+                                                <p style="white-space:pre-wrap;"><?php echo(trim($poll['question'])); ?></p>
                                                 <span class="pull-right"><?php echo $poll['voters']; ?> Votes</span>
                                             </div>
                                             <div class="timeline-body comments">
