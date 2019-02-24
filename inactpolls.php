@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
   include 'handlers/dbcon.php';
   $curr_time = time();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
         <!-- META SECTION -->
-        <title>NCA Staff Ideas Portal - Admin</title>
+        <title>Internal Complaint - Admin Inactive Posts</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,7 +29,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-
+                        <a href="table-export.php"><b>AcaCell</b></a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -47,36 +48,22 @@
                         </div>
                     </li>
                    <li class="xn-title"><b>Navigation</b></li>
-                    <li class="active">
+                    <li>
                         <a href="admin.php"><span class="fa fa-desktop" style="color: white;"></span> <span class="xn-text" style="color: white;">Dashboard</span></a>
                     </li>
 
                     <li class="xn-title"><b>Status</b></li>
                     <li>
-                        <a href="delposts.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
+                        <a href="delposts.php"><span class="fa fa-minus" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Posts</span></a>
                     </li>
-                    <li>
+                    <li  class="active">
                         <a href="inactposts.php"><span class="fa fa-shield" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Posts</span></a>
                     </li>
 
                     <li>
                         <a href="actposts.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
-
-                     <li class="xn-title"><b>Polls Records</b></li>
-                     <li>
-                        <a href="delpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
-                    </li>
-                     <li>
-                        <a href="inactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
-                    </li>
-                    <li>
-                        <a href="actpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
-                    </li>
-
-
-
-                        </ul>
+                  </ul>
 
 
 
@@ -109,7 +96,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">
-                    <h2><span class="fa fa-users"></span> Admin Table for <b>Ideas</b></h2>
+                    <h2><span class="fa fa-users"></span> Admin Table for <i>Inactive Posts</b></i></h2>
                 </div>
                 <!-- END PAGE TITLE -->
 
@@ -123,72 +110,55 @@
 
                             <!-- START DATATABLE EXPORT -->
                             <div class="panel panel-default">
+                                </div>
                                 <div class="panel-body">
                                     <table id="customers2" class="table datatable">
                                         <thead>
-                                          <tr>
-                                              <th width="50">id</th>
-                                              <th width="300">Post</th>
-                                              <th width="100">Reply from HR</th>
-                                              <th width="100">Status</th>
-                                              <th width="100">IP Address</th>
-                                              <th width="100">Date</th>
-                                              <th width="100">Actions</th>
-                                          </tr>
+                                            <tr>
+                                                <th width="50">id</th>
+                                                <th width="300">Post</th>
+                                                <th width="100">Reply from HR</th>
+                                                <th width="100">Status</th>
+                                                <th width="100">IP Address</th>
+                                                <th width="100">Date</th>
+                                                <th width="100">Actions</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                                <?php
-                                                  //Union of the two tables
-                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display FROM del_complaints ORDER BY c_date_created";
-                                                  $success_adminpostdisplay = mysqli_query($link, $sql_adminpostdisplay);
+                                          <?php
+                                            //Select only those whose stop time has elapsed
+                                            $sql_delpostsdisplay = "SELECT * FROM complaints WHERE c_date_stop_display < $curr_time ORDER BY c_date_created DESC";
+                                            $success_delpostdisplay = mysqli_query($link, $sql_delpostsdisplay);
+                                            $cur_time = time();
+                                            if ($success_delpostdisplay->num_rows > 0) {
+                                              while($rows = $success_delpostdisplay->fetch_assoc()){
+                                                $id = $rows['c_id'];
+                                                $sql_commentpresent = "SELECT * FROM comments WHERE c_id = '$id'";
+                                                $success_commentpresent = mysqli_query($link, $sql_commentpresent);
+                                          ?>
+                                                <tr id="trow<?php echo $rows['c_id']; ?>">
+                                                  <td class="text-center"> <?php echo $rows['c_id'];; ?> </td>
+                                                  <td><strong><?php echo $rows['c_value']; ?></strong></td>
+                                                  <td>
+                                                    <?php
+                                                    if ($success_commentpresent->num_rows > 0) {?>
+                                                        <span class='label label-success'>Responded</span>
+                                                    <?php }
+                                                    elseif ($success_commentpresent->num_rows == 0) {?>
+                                                      <span class='label label-danger'>Not Responded</span>
+                                                    <?php } ?>
+                                                  </td>
+                                                  <td><?php echo "<span class='label label-danger'>Inactive</span>";?></td>
+                                                  <td><?php echo $rows['c_ip_address']; ?></td>
+                                                  <td><?php echo date("M d, Y @ h:i a", $rows['c_date_created']); ?></td>
+                                                  <td>Yet to decide</td>
+                                                </tr>
+                                          <?php
+                                                }
+                                              }
+                                          ?>
 
-                                                  if($success_adminpostdisplay->num_rows > 0){
-                                                    while ($rows = $success_adminpostdisplay->fetch_assoc()){
-                                                      $id = $rows['c_id'];
-                                                      $sql_commentpresent = "SELECT * FROM comments WHERE c_id = '$id'";
-                                                      $success_commentpresent = mysqli_query($link, $sql_commentpresent);
-                                                      ?>
-                                                      <tr id="trow_1<?php echo $id; ?>">
-                                                          <td class="text-center"><?php echo $id; ?></td>
-                                                          <td><strong><?php echo $rows['c_value']; ?></strong></td>
-                                                          <td><?php
-                                                          if ($success_commentpresent->num_rows > 0) {?>
-                                                              <span class='label label-success'>Responded</span>
-                                                          <?php }
-                                                          elseif ($success_commentpresent->num_rows == 0) {?>
-                                                            <span class='label label-danger'>Not Responded</span>
-                                                          <?php } ?>
-                                                          </td>
-                                                          <td><?php
-                                                            //Display time not exceeded
-                                                            if ($curr_time < $rows['c_date_stop_display']) {
-                                                              echo "<span class='label label-success'>Active</span>";
-                                                            }
-                                                            //Display time exceeded
-                                                            elseif ($curr_time > $rows['c_date_stop_display']){
-                                                              echo "<span class='label label-danger'>Inactive</span>";
-                                                            }
-                                                            //Check and Display if the item is deleted
-                                                            $sql_checkdelete = "SELECT * FROM del_complaints WHERE c_id = $id";
-                                                            $success_checkdelete = mysqli_query($link, $sql_checkdelete);
-                                                            if ($success_checkdelete->num_rows > 0) {
-                                                              echo "<span class='label label-danger'>Deleted</span>";
-                                                            }
-                                                            ?>
-                                                            </td>
-                                                            <td><?php echo $rows['c_ip_address']; ?></td>
-                                                            <td><?php echo date("M d, Y @ h:i a", $rows['c_date_created']); ?></td>
-                                                            <td>Yet to decide</td>
-                                                      </tr>
-                                                  <?php
-                                                    }
-                                                  }
-                                                  else {
-                                                    echo mysqli_error($link);
-                                                  }
-
-                                                ?>
-                                              </tbody>
+                                            </tbody>
                                     </table>
 
                                 </div>
@@ -262,7 +232,4 @@
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->
     </body>
-
-<!-- Mirrored from themifycloud.com/demos/templates/joli/table-export.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:41:43 GMT -->
 </html>
-<!--  -->
