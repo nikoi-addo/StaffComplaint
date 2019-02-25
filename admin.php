@@ -27,10 +27,7 @@
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
-                    <li class="xn-logo">
-
-                        <a href="#" class="x-navigation-control"></a>
-                    </li>
+                    
                     <li class="xn-profile">
                         <a href="#" class="profile-mini">
                             <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
@@ -41,7 +38,7 @@
                             </div>
                             <div class="profile-data">
                                 <div class="profile-data-name">Admin</div>
-                                <div class="profile-data-title">Internal Issues</div>
+                                <div class="profile-data-title">Ideas Generation Portal</div>
                             </div>
 
                         </div>

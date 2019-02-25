@@ -12,7 +12,7 @@
         <title>NCA Staff Ideas Portal</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="refresh" content="60" />
+        <meta http-equiv="refresh" content="2000" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
