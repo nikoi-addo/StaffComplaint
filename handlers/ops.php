@@ -232,6 +232,7 @@
         $success = mysqli_query($link, $sql_insertpoll);
         if ($success) {
 
+
           header('location:../hr.php');
 
         }

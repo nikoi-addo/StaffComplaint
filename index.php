@@ -186,13 +186,13 @@
                                 <!-- START POLL TIMELINE ITEM -->
                                 <?php
                                   //Query to select polls that have not expired
-                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY poll_date DESC";
+                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY p_date DESC";
                                   $success_polldisplay = mysqli_query($link, $sql_polldisplay);
                                   foreach ($success_polldisplay as $poll) {
                                     //Set Poll Options as an array
-                                    $pollOptions = explode("|", $poll['options']);
-                                    $votes = explode("|", $poll['votes']);
-                                    $poll_id = $poll['id'];
+                                    $pollOptions = explode("|", $poll['p_options']);
+                                    $votes = explode("|", $poll['p_votes']);
+                                    $poll_id = $poll['p_id'];
                                     //Check if user has voted already
                                     $sql_votestatus ="SELECT * FROM poll_voters WHERE user_id=$user_id AND poll_id=$poll_id";
                                     $success_votestatus = mysqli_query($link, $sql_votestatus);
@@ -209,15 +209,15 @@
                                 ?>
                                 <!-- START POLL ITEM NOT VOTED -->
                                 <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['poll_date']); ?></div>
+                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['p_date']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
                                             <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
                                         </div>
                                         <div class="timeline-body">
-                                            <p style="white-space:pre-wrap;"><?php echo(trim($poll['question'])); ?></p>
-                                            <span class="pull-right"><?php echo $poll['voters']; ?> Votes</span>
+                                            <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
+                                            <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                         </div>
                                         <form action="handlers/ops.php" method="post">
                                         <div class="timeline-body comments">
@@ -237,7 +237,7 @@
                                         </div>
                                         <div class="modal-footer" style="clear: both;">
                                             <!-- Submit ID of Poll -->
-                                            <input type="hidden" name="id" value="<?php echo $poll['id']; ?>"/>
+                                            <input type="hidden" name="id" value="<?php echo $poll['p_id']; ?>"/>
                                             <!-- Submit User's ID -->
                                             <input type="hidden" name="user_id" value="<?php echo $user_id?>">
                                             <button name="pollvote"class="btn btn-default btn-warning col-md-1 pull-right" type="submit"><span class="fa fa-send"></span>Vote</button>
@@ -252,15 +252,15 @@
                                 ?>
                                 <!-- START POLL ITEM VOTED -->
                                 <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['poll_date']); ?></div>
+                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['p_date']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
                                             <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
                                         </div>
                                         <div class="timeline-body">
-                                            <p style="white-space:pre-wrap;"><?php echo (trim($poll['question'])); ?></p>
-                                            <span class="pull-right"><?php echo $poll['voters']; ?> Votes</span>
+                                            <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
+                                            <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                         </div>
                                         <div class="timeline-body comments">
                                             <div class="comment-item">
@@ -268,7 +268,7 @@
                                                  <?php
                                                  //Display all the Options for the Poll
                                                  for ($i=0; $i < count($pollOptions) ; $i++) {
-                                                   $votePercent = round(($votes[$i]/$poll['voters'])*100);
+                                                   $votePercent = round(($votes[$i]/$poll['p_voters'])*100);
                                                   ?>
                                                    <div class="col-md-6">
                                                       <div class="progress">

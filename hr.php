@@ -254,16 +254,16 @@
                                 <!-- START POLL TIMELINE ITEM -->
                                 <?php
                                   //Query to select polls that have not expired
-                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY poll_date DESC";
+                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY p_date DESC";
                                   $success_polldisplay = mysqli_query($link, $sql_polldisplay);
                                   foreach ($success_polldisplay as $poll) {
                                     //Set Poll Options as an array
-                                    $pollOptions = explode("|", $poll['options']);
-                                    $votes = explode("|", $poll['votes']);
-                                    $poll_id = $poll['id'];?>
+                                    $pollOptions = explode("|", $poll['p_options']);
+                                    $votes = explode("|", $poll['p_votes']);
+                                    $poll_id = $poll['p_id'];?>
                                     <!-- START POLL ITEM VOTED -->
                                     <div class="timeline-item timeline-item-right">
-                                        <div class="timeline-item-info"><?php echo date("d M G:i", $poll['poll_date']); ?></div>
+                                        <div class="timeline-item-info"><?php echo date("d M G:i", $poll['p_date']); ?></div>
                                         <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                         <div class="timeline-item-content">
                                             <div class="timeline-heading">
@@ -274,8 +274,8 @@
                                                 </div>
                                             </div>
                                             <div class="timeline-body">
-                                                <p style="white-space:pre-wrap;"><?php echo(trim($poll['question'])); ?></p>
-                                                <span class="pull-right"><?php echo $poll['voters']; ?> Votes</span>
+                                                <p style="white-space:pre-wrap;"><?php echo $poll['p_question']; ?></p>
+                                                <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                             </div>
                                             <div class="timeline-body comments">
                                                 <div class="comment-item">
@@ -283,7 +283,7 @@
                                                      <?php
                                                      //Display all the Options for the Poll
                                                      for ($i=0; $i < count($pollOptions) ; $i++) {
-                                                       $votePercent = round(($votes[$i]/$poll['voters'])*100);
+                                                       $votePercent = round(($votes[$i]/$poll['p_voters'])*100);
                                                       ?>
                                                        <div class="col-md-6">
                                                           <div class="progress">
@@ -307,26 +307,26 @@
                                     <div class="message-box animated fadeIn" id="mb-delpoll<?php echo $poll_id; ?>">
                                         <div class="mb-container">
                                             <div class="mb-middle">
-                                                <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Post</strong> ?</div>
+                                                <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Poll<span class="fa fa-thumbs-up"></span></strong> ?</div>
                                                 <div class="mb-content">
-                                                    <p>Are you sure you want to delete this post?</p>
+                                                    <p>Are you sure you want to delete this poll?</p>
                                                     <p>Press No if you want to Cancel. Press Yes to Delete.</p>
                                                 </div>
                                                 <div class="mb-footer">
                                                     <div class="pull-right">
                                                       <form class="" action="handlers/ops.php" method="post">
-                                                        <!-- Specify form type as hidden -->
-                                                        <input type="hidden" name="form_type" value="DeleteComplaint">
                                                         <!-- Pass complaint Information also hidden -->
-                                                        <input type="hidden" name="complaint_value" value=" <?php echo $rows['c_value']; ?> ">
-                                                        <input type="hidden" name="complaint_division" value=" <?php echo $rows['c_division']; ?> ">
-                                                        <input type="hidden" name="complaint_date_created" value=" <?php echo $rows['c_date_created']; ?> ">
-                                                        <input type="hidden" name="complaint_ip_address" value=" <?php echo $rows['c_ip_address']; ?> ">
-                                                        <input type="hidden" name="complaint_date_stop_display" value=" <?php echo $rows['c_date_stop_display']; ?> ">
-                                                        <input type="hidden" name="complaint_image_name1" value=" <?php echo $rows['c_image_name1']; ?> ">
-                                                        <input type="hidden" name="complaint_id" value=" <?php echo $rows['c_id']; ?> ">
+                                                        <input type="hidden" name="poll_question" value="<?php echo $poll['p_question']; ?>">
+                                                        <input type="hidden" name="poll_date" value="<?php echo $poll['p_date']; ?> ">
+                                                        <input type="hidden" name="poll_options" value="<?php echo $poll['p_options']; ?> ">
+                                                        <input type="hidden" name="poll_votes" value="<?php echo $poll['p_votes']; ?> ">
+                                                        <input type="hidden" name="poll_number_options" value="<?php echo $poll['p_number_options']; ?> ">
+                                                        <input type="hidden" name="poll_timeout" value="<?php echo $poll['p_timeout']; ?> ">
+                                                        <input type="hidden" name="poll_voters" value="<?php echo $poll['p_voters']; ?> ">
+                                                        <input type="hidden" name="poll_last_vote_date" value="<?php echo $poll['p_last_vote_date']; ?> ">
+                                                        <input type="hidden" name="poll_id" value="<?php echo $poll_id; ?>">
 
-                                                        <button class="btn btn-danger btn-lg" type="submit">Yes</a>
+                                                        <button class="btn btn-danger btn-lg" type="submit"  name="delpoll">Yes</a>
                                                         <button class="btn btn-default btn-lg mb-control-close">No</button>
                                                         </form>
                                                     </div>
@@ -474,7 +474,7 @@
                                  <div class="message-box animated fadeIn" id="mb-delcomp<?php echo $rows['c_id']; ?>">
                                      <div class="mb-container">
                                          <div class="mb-middle">
-                                             <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Post</strong> ?</div>
+                                             <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Post<span class="fa fa-bullhorn"></span></strong> ?</div>
                                              <div class="mb-content">
                                                  <p>Are you sure you want to delete this post?</p>
                                                  <p>Press No if you want to Cancel. Press Yes to Delete.</p>
@@ -485,13 +485,13 @@
                                                      <!-- Specify form type as hidden -->
                                                      <input type="hidden" name="form_type" value="DeleteComplaint">
                                                      <!-- Pass complaint Information also hidden -->
-                                                     <input type="hidden" name="complaint_value" value=" <?php echo $rows['c_value']; ?> ">
-                                                     <input type="hidden" name="complaint_division" value=" <?php echo $rows['c_division']; ?> ">
-                                                     <input type="hidden" name="complaint_date_created" value=" <?php echo $rows['c_date_created']; ?> ">
-                                                     <input type="hidden" name="complaint_ip_address" value=" <?php echo $rows['c_ip_address']; ?> ">
-                                                     <input type="hidden" name="complaint_date_stop_display" value=" <?php echo $rows['c_date_stop_display']; ?> ">
-                                                     <input type="hidden" name="complaint_image_name1" value=" <?php echo $rows['c_image_name1']; ?> ">
-                                                     <input type="hidden" name="complaint_id" value=" <?php echo $rows['c_id']; ?> ">
+                                                     <input type="hidden" name="complaint_value" value="<?php echo $rows['c_value']; ?> ">
+                                                     <input type="hidden" name="complaint_division" value="<?php echo $rows['c_division']; ?> ">
+                                                     <input type="hidden" name="complaint_date_created" value="<?php echo $rows['c_date_created']; ?> ">
+                                                     <input type="hidden" name="complaint_ip_address" value="<?php echo $rows['c_ip_address']; ?> ">
+                                                     <input type="hidden" name="complaint_date_stop_display" value="<?php echo $rows['c_date_stop_display']; ?> ">
+                                                     <input type="hidden" name="complaint_image_name1" value="<?php echo $rows['c_image_name1']; ?> ">
+                                                     <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?> ">
 
                                                      <button class="btn btn-danger btn-lg" type="submit">Yes</a>
                                                      <button class="btn btn-default btn-lg mb-control-close">No</button>
