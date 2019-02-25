@@ -228,12 +228,13 @@
         }
         $number_options = count(explode("|", $opinion1));
         // $number_options = 2;
-        $sql_insertpoll = "INSERT INTO poll(question, poll_date, options, votes, number_options, poll_timeout) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, '$poll_timeout')";
+        $sql_insertpoll = "INSERT INTO poll(p_question, p_date, p_options, p_votes, p_number_options, p_timeout) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, $poll_timeout)";
         $success = mysqli_query($link, $sql_insertpoll);
         if ($success) {
-          echo "Poll has been submitted";
+          header('location:../hr.php');
         }
       }
+
 
       #########################################################
       ###################### VOTE ON A POLL ###################
@@ -276,6 +277,51 @@
         } //End !success_getvotes
       } //End Post of pollvote
 
+
+      #########################################################
+      ###################### DELETE A POLL ####################
+      #########################################################
+      if (isset($_POST['delpoll'])) {
+        $poll_id = $_POST['poll_id'];
+        $poll_question = $_POST['poll_question'];
+        $poll_question = mysqli_real_escape_string($link, $poll_question);
+        $poll_date = $_POST['poll_date'];
+        $poll_options = $_POST['poll_options'];
+        $poll_options = mysqli_real_escape_string($link, $poll_options);
+        $poll_votes = $_POST['poll_votes'];
+        $poll_number_options = $_POST['poll_number_options'];
+        $poll_timeout = $_POST['poll_timeout'];
+        $poll_voters = $_POST['poll_voters'];
+        $poll_last_vote_date = $_POST['poll_last_vote_date'];
+
+        //Move complaint to del_poll table
+        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, p_date, p_options, p_votes, p_number_options, p_timeout, p_voters, p_last_vote_date) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date)";
+        //Delete complaint from poll table
+        $sql_delpollfromtable = "DELETE FROM poll WHERE p_id = $poll_id";
+        //Execute move complaint
+        $success_movepoll = mysqli_query($link, $sql_movepoll);
+
+        if ($success_movepoll) {
+          $last = $link->insert_id;
+          //Execute Deletion from Poll Table
+          $success_delpollfromtable = mysqli_query($link, $sql_delpollfromtable);
+
+          //Deletesuccess
+          if ($success_delpollfromtable) {
+            header("location:../hr.php?delrsp=0");
+
+          }
+          //Delete of Poll Unsuccessful
+          else {
+            header("location:../hr.php?delrsp=1");
+
+          }
+        }
+        //Move of Poll Unsuccessful
+        else {
+          header("location:../hr.php?delrsp=2");
+        }
+      }
 
 
     }
