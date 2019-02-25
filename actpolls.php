@@ -162,7 +162,7 @@
                                               } ?>
                                               </td>
                                               <td><?php echo date("M d, Y @ h:i a", $rows['p_date']); ?></td>
-                                              <td><?php echo $rows['p_last_vote_date']; ?></td>
+                                              <td><?php echo date("M d, Y @ h:i a", $rows['p_last_vote_date']); ?></td>
                                               <td><?php echo $rows['p_voters'] ?></td>
                                           </tr>
                                           <?php
