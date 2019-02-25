@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2019 at 01:53 AM
+-- Generation Time: Feb 25, 2019 at 09:35 PM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -191,6 +191,33 @@ INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `c_da
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `del_poll`
+--
+
+CREATE TABLE `del_poll` (
+  `del_p_id` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL,
+  `p_question` text NOT NULL,
+  `p_date` double NOT NULL,
+  `p_options` varchar(250) NOT NULL,
+  `p_votes` varchar(250) NOT NULL,
+  `p_number_options` tinyint(4) NOT NULL,
+  `p_timeout` double NOT NULL,
+  `p_voters` int(11) NOT NULL,
+  `p_last_vote_date` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `del_poll`
+--
+
+INSERT INTO `del_poll` (`del_p_id`, `p_id`, `p_question`, `p_date`, `p_options`, `p_votes`, `p_number_options`, `p_timeout`, `p_voters`, `p_last_vote_date`) VALUES
+(18, 68, 'Time and time again', 1551130091, 'Let us see|Let us know ', '0|0 ', 2, 1551216491, 0, 0),
+(19, 69, 'Last time', 1551130222, 'Time is running |Debugging is not even star ', '0|0 ', 2, 1551216622, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `imagine`
 --
 
@@ -296,24 +323,24 @@ INSERT INTO `messagehr` (`m_id`, `m_message`, `m_subject`, `m_ip_address`, `m_di
 --
 
 CREATE TABLE `poll` (
-  `id` int(11) NOT NULL,
-  `question` text NOT NULL,
-  `poll_date` double NOT NULL,
-  `options` varchar(250) NOT NULL,
-  `votes` varchar(250) NOT NULL DEFAULT '0',
-  `number_options` tinyint(3) NOT NULL,
-  `poll_timeout` double DEFAULT NULL,
-  `voters` int(11) DEFAULT '0',
-  `last_vote_date` double DEFAULT NULL
+  `p_id` int(11) NOT NULL,
+  `p_question` text NOT NULL,
+  `p_date` double NOT NULL,
+  `p_options` varchar(250) NOT NULL,
+  `p_votes` varchar(250) NOT NULL DEFAULT '0',
+  `p_number_options` tinyint(3) NOT NULL,
+  `p_timeout` double DEFAULT NULL,
+  `p_voters` int(11) DEFAULT '0',
+  `p_last_vote_date` double DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `poll`
 --
 
-INSERT INTO `poll` (`id`, `question`, `poll_date`, `options`, `votes`, `number_options`, `poll_timeout`, `voters`, `last_vote_date`) VALUES
-(56, 'Who are you', 1550879748, 'I am me|I am myself', '6|3', 2, NULL, 9, 1550886024),
-(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|1', 4, NULL, 5, 1550886145);
+INSERT INTO `poll` (`p_id`, `p_question`, `p_date`, `p_options`, `p_votes`, `p_number_options`, `p_timeout`, `p_voters`, `p_last_vote_date`) VALUES
+(56, 'Who are you', 1550879748, 'I am me|I am myself', '7|3', 2, 1551127323, 10, 1550888499),
+(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|1', 4, 1551213723, 5, 1550886145);
 
 -- --------------------------------------------------------
 
@@ -332,7 +359,8 @@ CREATE TABLE `poll_voters` (
 --
 
 INSERT INTO `poll_voters` (`id`, `user_id`, `poll_id`) VALUES
-(10, 23, 57);
+(10, 23, 57),
+(11, 23, 56);
 
 --
 -- Indexes for dumped tables
@@ -357,6 +385,12 @@ ALTER TABLE `del_complaints`
   ADD PRIMARY KEY (`del_c_id`);
 
 --
+-- Indexes for table `del_poll`
+--
+ALTER TABLE `del_poll`
+  ADD PRIMARY KEY (`del_p_id`);
+
+--
 -- Indexes for table `imagine`
 --
 ALTER TABLE `imagine`
@@ -372,7 +406,7 @@ ALTER TABLE `messagehr`
 -- Indexes for table `poll`
 --
 ALTER TABLE `poll`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`p_id`);
 
 --
 -- Indexes for table `poll_voters`
@@ -400,6 +434,11 @@ ALTER TABLE `complaints`
 ALTER TABLE `del_complaints`
   MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
+-- AUTO_INCREMENT for table `del_poll`
+--
+ALTER TABLE `del_poll`
+  MODIFY `del_p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
 -- AUTO_INCREMENT for table `imagine`
 --
 ALTER TABLE `imagine`
@@ -413,12 +452,12 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `poll`
 --
 ALTER TABLE `poll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `poll_voters`
 --
 ALTER TABLE `poll_voters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
