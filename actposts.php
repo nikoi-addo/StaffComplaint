@@ -63,6 +63,17 @@
                     <li class="active">
                         <a href="actposts.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
+
+                    <li class="xn-title"><b>Polls Records</b></li>
+                    <li>
+                       <a href="delpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
+                   </li>
+                    <li>
+                       <a href="inactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
+                   </li>
+                   <li>
+                       <a href="actpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
+                   </li>
                   </ul>
 
 

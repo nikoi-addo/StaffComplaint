@@ -251,11 +251,11 @@
         $id = $_POST['id'];
         $user_id = $_POST['user_id'];
         //Select Votes Cast for each category and Number of Votes
-        $sql_getvotes = "SELECT votes, voters FROM poll WHERE id = $id";
+        $sql_getvotes = "SELECT p_votes, p_voters FROM poll WHERE p_id = $id";
         $success_getvotes = mysqli_query($link, $sql_getvotes);
         if ($success_getvotes) {
           $row = $success_getvotes->fetch_assoc();
-          $votes = explode("|", $row['votes']);
+          $votes = explode("|", $row['p_votes']);
           //Increate the Category of Users vote by 1
           $votes[$pollVoteData['pollOptions']] += 1;
           $votes = implode("|", $votes);
@@ -264,7 +264,7 @@
           $voters = $row['voters'];
           $voters  += 1;
           echo $id;
-          $sql_updatepoll = "UPDATE poll SET votes ='$votes' , voters = $voters, last_vote_date = $cur_time WHERE id=$id";
+          $sql_updatepoll = "UPDATE poll SET p_votes ='$votes' , p_voters = $voters, p_last_vote_date = $cur_time WHERE p_id=$id";
           $success_updatepoll = mysqli_query($link,$sql_updatepoll);
           $sql_votedetails = "INSERT INTO poll_voters(user_id, poll_id) VALUES($user_id, $id)";
           $success_votedetails = mysqli_query($link, $sql_votedetails);
