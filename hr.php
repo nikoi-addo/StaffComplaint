@@ -10,6 +10,7 @@
         <!-- META SECTION -->
         <title>NCA Staff Ideas Portal - Human Resource</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="refresh" content="60" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -382,10 +383,10 @@
                                            <div class="row">
                                              <?php while ($rowly = $success_checkimage->fetch_assoc()) {
                                                ?>
-                                             <div class="col-md-4">
+                                             <div class="col-md-4" style="width: auto; height: 200px;">
                                                <div class="image">
-                                                 <a href="uploads/<?php echo $rowly['im_name']; ?>" data-gallery>
-                                                   <img src="uploads/<?php echo $rowly['im_name']; ?>" class="img-responsive img-text"/>
+                                                 <a href="uploads/<?php echo (trim($rowly['im_name'])); ?>" data-gallery>
+                                                   <img src="uploads/<?php echo (trim($rowly['im_name'])); ?>" class="img-responsive img-text" style="width: auto; height: 200px;"/>
                                                  </a>
                                                </div>
                                              </div>

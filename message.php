@@ -108,10 +108,10 @@
                                   <div class="row">
                                     <?php while ($rowly = $success_checkimage->fetch_assoc()) {
                                       ?>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4" style="width: auto; height: 400px;">
                                       <div class="image">
                                         <a href="uploads/<?php echo $rowly['im_name']; ?>" data-gallery>
-                                          <img src="uploads/<?php echo $rowly['im_name']; ?>" class="img-responsive img-text"/>
+                                          <img src="uploads/<?php echo $rowly['im_name']; ?>" class="img-responsive img-text" style="width: auto; height: 400px;"/>
                                         </a>
                                       </div>
                                     </div>
