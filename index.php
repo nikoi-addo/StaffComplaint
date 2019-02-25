@@ -153,7 +153,7 @@
                                             <div class="btn-group pull-left">
                                             <input type="hidden" name="form_type" value="ComplainForm">
                                             <!-- Add array and multiple attribute to show for multiple images -->
-                                            <input type="file" name="images[]" accept="image/*"  multiple/>
+                                            <input type="file" name="images[]" accept="image/*" multiple />
 
                                             </div>
                                             <div class="pull-right">
@@ -272,7 +272,7 @@
                                                   ?>
                                                    <div class="col-md-6">
                                                       <div class="progress">
-                                                           <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$votePercent";  ?>%">
+                                                           <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$votePercent";  ?>%">
                                                                <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
                                                            </div>
                                                        </div>
