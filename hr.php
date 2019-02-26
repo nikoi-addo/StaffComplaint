@@ -307,7 +307,7 @@
                                     <div class="message-box animated fadeIn" id="mb-delpoll<?php echo $poll_id; ?>">
                                         <div class="mb-container">
                                             <div class="mb-middle">
-                                                <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong>Poll<span class="fa fa-thumbs-up"></span></strong> ?</div>
+                                                <div class="mb-title"><span class="fa fa-sign-out"></span> Delete <strong> Poll<span class="fa fa-thumbs-up"></span></strong> ?</div>
                                                 <div class="mb-content">
                                                     <p>Are you sure you want to delete this poll?</p>
                                                     <p>Press No if you want to Cancel. Press Yes to Delete.</p>

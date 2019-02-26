@@ -28,14 +28,14 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="e-mail" class="form-control" name="user_email" placeholder="Enter Staff Mail"/>
-                            <button class="btn btn-info btn-block" name="sendemail">Request Passord</button>
+                            <button class="btn btn-info btn-block" name="sendemail">Request Password</button>
                         </div>
                     </div>
                     <form>
                   <?php }
                   else {
                     ?>
-                    <div class="login-title"><strong>Welcome</strong>, Please login</div>
+                    <br><br><div class="login-title"><strong>Welcome</strong>, Please login</div>
                     <form action="handlers/ops.php" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
