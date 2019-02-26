@@ -188,6 +188,7 @@
                                   //Query to select polls that have not expired
                                   $sql_polldisplay = "SELECT * FROM poll ORDER BY p_date DESC";
                                   $success_polldisplay = mysqli_query($link, $sql_polldisplay);
+                                  $poll = "";
                                   foreach ($success_polldisplay as $poll) {
                                     //Set Poll Options as an array
                                     $pollOptions = explode("|", $poll['p_options']);
