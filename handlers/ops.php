@@ -261,7 +261,7 @@
           $votes = implode("|", $votes);
           // echo $votes;
           //Increate Voter count
-          $voters = $row['voters'];
+          $voters = $row['p_voters'];
           $voters  += 1;
           echo $id;
           $sql_updatepoll = "UPDATE poll SET p_votes ='$votes' , p_voters = $voters, p_last_vote_date = $cur_time WHERE p_id=$id";

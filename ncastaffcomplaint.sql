@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 26, 2019 at 03:18 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Host: localhost
+-- Generation Time: Feb 26, 2019 at 02:38 PM
+-- Server version: 5.7.25-0ubuntu0.16.04.2
+-- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -136,7 +134,7 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `c_date_created`, `c_
 (62, 'Let me see again', 'Consumer and Corporate Affairs Division', 1550099699, '127.0.0.1', 1550574899),
 (63, '&quot;any ideas', 'Select Division (optional)', 1550520739, '127.0.0.1', 1550995939),
 (64, '\'something funny very funny', 'Select Division (optional)', 1550522506, '127.0.0.1', 1550997706),
-(65, 'Other thing\'s are \"getting on my nerves\"', 'Select Division (optional)', 1550522527, '127.0.0.1', 1550997727),
+(65, 'Other thing\'s are "getting on my nerves"', 'Select Division (optional)', 1550522527, '127.0.0.1', 1550997727),
 (66, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536392, '127.0.0.1', 1551011592),
 (67, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536523, '127.0.0.1', 1551011723),
 (68, 'Another one maybe', 'Consumer and Corporate Affairs Division', 1550537389, '127.0.0.1', 1551012589),
@@ -481,9 +479,9 @@ CREATE TABLE `poll` (
 --
 
 INSERT INTO `poll` (`p_id`, `p_question`, `p_date`, `p_options`, `p_votes`, `p_number_options`, `p_timeout`, `p_voters`, `p_last_vote_date`) VALUES
-(56, 'Who are you', 1550879748, 'I am me|I am myself', '7|4', 2, 1551127323, 1, 1551176143),
-(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|2', 4, 1551213723, 1, 1551176109),
-(71, 'Which Phone would you prefer?', 1551133646, 'Samsung Galaxy s10|iPhone Xs Max|Huawei Mate 20 pro|One plus 7T', '1|0|0|1', 4, 1551220046, 1, 1551176102);
+(56, 'Who are you', 1550879748, 'I am me|I am myself', '7|4', 2, 1551127323, 11, 1551176143),
+(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|2', 4, 1551213723, 6, 1551176109),
+(71, 'Which Phone would you prefer?', 1551133646, 'Samsung Galaxy s10|iPhone Xs Max|Huawei Mate 20 pro|One plus 7T', '1|0|0|1', 4, 1551220046, 2, 1551176102);
 
 -- --------------------------------------------------------
 
@@ -574,56 +572,46 @@ ALTER TABLE `poll_voters`
 --
 ALTER TABLE `comments`
   MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
   MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
-
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
 ALTER TABLE `del_complaints`
   MODIFY `del_c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
 --
 -- AUTO_INCREMENT for table `del_poll`
 --
 ALTER TABLE `del_poll`
   MODIFY `del_p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
 --
 -- AUTO_INCREMENT for table `imagine`
 --
 ALTER TABLE `imagine`
   MODIFY `im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
 --
 -- AUTO_INCREMENT for table `login_info`
 --
 ALTER TABLE `login_info`
   MODIFY `no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
-
 --
 -- AUTO_INCREMENT for table `messagehr`
 --
 ALTER TABLE `messagehr`
   MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
 --
 -- AUTO_INCREMENT for table `poll`
 --
 ALTER TABLE `poll`
   MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
-
 --
 -- AUTO_INCREMENT for table `poll_voters`
 --
 ALTER TABLE `poll_voters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
