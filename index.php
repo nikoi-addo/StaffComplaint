@@ -186,7 +186,7 @@
                                 <!-- START POLL TIMELINE ITEM -->
                                 <?php
                                   //Query to select polls that have not expired
-                                  $sql_polldisplay = "SELECT * FROM poll ORDER BY p_date DESC";
+                                  $sql_polldisplay = "SELECT * FROM poll WHERE p_timeout > $timely ORDER BY p_date DESC";
                                   $success_polldisplay = mysqli_query($link, $sql_polldisplay);
                                   if($success_polldisplay->num_rows > 0){
                                   while ($poll = $success_polldisplay->fetch_assoc()) {
