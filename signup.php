@@ -23,27 +23,25 @@
             <div class="login-box animated fadeInDown">
                 <div class="login-logo"></div>
                 <div class="login-body">
-                    <div class="login-title"><strong>Welcome</strong>, Please login</div>
-                    <form action="handlers/ops.php" class="form-horizontal" method="post">
+                    <div class="login-title"><strong>Welcome</strong>, SignUp Below</div>
+                    <form action="handlers/ops.php" method="post" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="e-mail" class="form-control" placeholder="E-mail" required/>
+                            <input type="e-mail" class="form-control" name="user_email" placeholder="Enter Staff Mail"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" class="form-control" placeholder="Password" required/>
-                        </div>
+                      <div class="col-md-12">
+                          <input type="password" class="form-control" name="user_password" placeholder="Enter New Password" id="user_password"/>
+                      </div>
                     </div>
                     <div class="form-group">
-
-                        <div class="col-md-12">
-                            <button class="btn btn-info btn-block" name="login">Log In</button>
-                            </form>
-                        <br>
-                        </div>
+                      <div class="col-md-12">
+                          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" id="confirm_password"/>
+                      </div>
                     </div>
-                    <a href="signup.php"><button class="btn btn-info btn-block" name="requestsignup">SignUp</button></a>
+                    <button class="btn btn-info btn-block" name="signup">SignUp</button>
+                    <form>
 
 
                 </div>
@@ -60,6 +58,21 @@
             </div>
 
         </div>
+
+        <script type="text/javascript">
+        var password = document.getElementById("user_password"), confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword(){
+          if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+          } else {
+            confirm_password.setCustomValidity('');
+          }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+        </script>
 
     </body>
 
