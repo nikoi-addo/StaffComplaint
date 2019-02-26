@@ -2,6 +2,10 @@
 <html lang="en" class="body-full-height">
 <?php
 session_start();
+$e_val = "";
+if (isset($_SESSION['email'])) {
+  $eval = $_SESSION['email'];
+}
 ?>
 
 
