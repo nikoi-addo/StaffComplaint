@@ -195,8 +195,8 @@
                                     $poll_id = $poll['p_id'];
                                     //Check if user has voted already
                                     $sql_votestatus ="SELECT * FROM poll_voters WHERE user_id=$user_id AND poll_id=$poll_id";
-                                    echo mysqli_error($link);
                                     $success_votestatus = mysqli_query($link, $sql_votestatus);
+                                    echo mysqli_error($link);
                                     if ($success_votestatus->num_rows > 0) {
                                       //Set Voted to Yes
                                       $voted = "y";
