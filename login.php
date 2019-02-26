@@ -27,7 +27,8 @@
                     <form action="handlers/ops.php" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" value="<?php if (isset($_SESSION['email'])) {echo $_SESSION['email'];} else{echo "";}  ?>" required/>
+                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" value="<?php if (isset($_SESSION['email'])) {
+                              echo $_SESSION['email'];}?>" required/>
                         </div>
                     </div>
                     <div class="form-group">
