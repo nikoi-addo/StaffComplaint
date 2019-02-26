@@ -2,6 +2,13 @@
 <html lang="en" class="body-full-height">
 <?php
 session_start();
+<<<<<<< HEAD
+=======
+$e_val = "";
+if (isset($_SESSION['email'])) {
+  $eval = $_SESSION['email'];
+}
+>>>>>>> cc9b16650368b93c263528b9ec2b81ca135920b2
 ?>
 
 
@@ -30,7 +37,11 @@ session_start();
                     <form action="handlers/ops.php" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
+<<<<<<< HEAD
                             <input type="e-mail" class="form-control" name="email" placeholder="E-mail" required/>
+=======
+                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" value="<?php echo $e_val; ?>" required/>
+>>>>>>> cc9b16650368b93c263528b9ec2b81ca135920b2
                         </div>
                     </div>
                     <div class="form-group">
