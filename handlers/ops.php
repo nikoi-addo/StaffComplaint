@@ -421,7 +421,7 @@
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = ucfirst(strtolower($_SESSION['username']));
               }
-              header("location:../index.php'");
+              header("location:../index.php");
             }
             else {
               session_start();
