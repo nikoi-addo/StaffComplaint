@@ -42,7 +42,7 @@
                       </div>
                     </div>
                     <button class="btn btn-info btn-block" name="signup">SignUp</button>
-                    <form>
+                  </form>
 
 
                 </div>
