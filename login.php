@@ -2,11 +2,10 @@
 <html lang="en" class="body-full-height">
 <?php
 session_start();
-<<<<<<< HEAD
+
 if (isset($_SESSION['email'])) {
   $u_email = $_SESSION['email'];
 }
-=======
 
 $e_val = "";
 if (isset($_SESSION['email'])) {
@@ -14,7 +13,7 @@ if (isset($_SESSION['email'])) {
 }
 
 
->>>>>>> 32fd5877ca7ef95f164c2e22762227afab4aca22
+
 ?>
 
 
@@ -43,12 +42,11 @@ if (isset($_SESSION['email'])) {
                     <form action="handlers/ops.php" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
-<<<<<<< HEAD
-                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" value="<?php if (isset($_SESSION['email'])){echo $u_email;} ?>" required/>
-=======
-                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" required/>
 
->>>>>>> 32fd5877ca7ef95f164c2e22762227afab4aca22
+                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" value="<?php if (isset($_SESSION['email'])){echo $u_email;} ?>" required/>
+
+
+
                         </div>
                     </div>
                     <?php if(isset($_SESSION['error'])){echo $_SESSION['error'];} ?>
