@@ -24,20 +24,21 @@
                 <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Welcome</strong>, SignUp Below</div>
+                    <?php session_start(); if (isset($_SESSION['error'])) { echo $_SESSION['error']; session_unset(); session_destroy();} ?>
                     <form action="handlers/ops.php" method="post" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="e-mail" class="form-control" name="user_email" placeholder="Enter Staff Mail"/>
+                            <input type="email" class="form-control" name="user_email" placeholder="Enter Staff Mail" required id="user_email"/>
                         </div>
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
-                          <input type="password" class="form-control" name="user_password" placeholder="Enter New Password" id="user_password"/>
+                          <input type="password" class="form-control" name="user_password" placeholder="Enter New Password" id="user_password" required/>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-md-12">
-                          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" id="confirm_password"/>
+                          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required/>
                       </div>
                     </div>
                     <button class="btn btn-info btn-block" name="signup">SignUp</button>

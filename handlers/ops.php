@@ -374,14 +374,71 @@
         $user_email = $_POST['user_email'];
         $user_password = $_POST['user_password'];
         $confirm_password = $_POST['confirm_password'];
-        $success_checkemail = mysqli_query($link, "SELECT email FROM users WHERE user_email = '$user_email'");
-        if ($success_checkemail) {
-          // code...
+        $confirm_password = md5($confirm_password);
+        $success_checkemail = mysqli_query($link, "SELECT u_email FROM login_info WHERE u_email = '$user_email'");
+        if ($success_checkemail->num_rows > 0 ) {
+          $sql_updatelogin = "UPDATE login_info SET u_password = '$confirm_password', u_signup_date='$cur_time', u_status = 'activated' WHERE u_email = '$user_email'";
+          $success_updatelogin = mysqli_query($link, $sql_updatelogin);
+          if ($success_updatelogin) {
+            echo "<center>Password has been set. You will be redirected to the Login Page...</center>";
+            header("Refresh: 2;url='../login.php");
+          }
+          else {
+            echo "Unable to Login";
+          }
         }
         else {
-          header('location:../signup.php?error=email');
+          session_start();
+          $_SESSION['error'] = "<div class='alert alert-danger'><center>Kindly use a correct Staff Email, or contact the Administrator</center></div>";
+          header("location:../signup.php");
         }
       }
+
+      #########################################################
+      ###################### USER LOGIN ####################
+      #########################################################
+      if (isset($_POST['login'])) {
+        $u_mail = $_POST['email'];
+        $u_passwd = $_POST['password'];
+        $u_passwd = md5($u_passwd);
+
+        $sql_checkloginmail = "SELECT u_email FROM login_info WHERE u_email = '$u_mail'";
+        $success_checkloginmail = mysqli_query($link, $sql_checkloginmail);
+
+        if ($success_checkloginmail->num_rows > 0) {
+          $sql_checkstatus = "SELECT u_email FROM login_info WHERE u_email = '$u_mail' AND u_status = 'activated'";
+          $success_checkstatus = mysqli_query($link, $sql_checkstatus);
+
+          if ($success_checkstatus->num_rows > 0) {
+            $sql_checkpassword = "SELECT * FROM login_info WHERE u_email = '$u_mail' AND u_status = 'activated' AND u_password = '$u_passwd'";
+            $success_checkpassword = mysqli_query($link, $sql_checkpassword);
+
+            if ($success_checkpassword->num_rows > 0) {
+              echo "You have logged in Sucessfully";
+              // header('location:../index.php');
+              header("Refresh: 5;url='../index.php'");
+            }
+            else {
+              echo "Password is Incorrect";
+              session_start();
+              $_SESSION['email'] = $u_mail;
+              $_SESSION['error'] = "<div class='alert alert-danger fade in'><center>Password Incorrect</center><a class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>";
+              header("Refresh: 2;url='../login.php");
+            }
+          }
+          else{
+            echo "Email has not been activated. Yet";
+            header("Refresh: 2;url='../signup.php'");
+          }
+        }
+        else {
+          echo "Email Does not Exist. Contact Admin";
+        }
+
+      }
+
+
+
 
     }
 
