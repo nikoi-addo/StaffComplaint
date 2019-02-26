@@ -6,13 +6,6 @@ session_start();
 if (isset($_SESSION['email'])) {
   $u_email = $_SESSION['email'];
 }
-$e_val = "";
-if (isset($_SESSION['email'])) {
-  $eval = $_SESSION['email'];
-}
-
-
-
 ?>
 
 
@@ -48,7 +41,7 @@ if (isset($_SESSION['email'])) {
 
                         </div>
                     </div>
-                    <?php if(isset($_SESSION['error'])){echo $_SESSION['error'];} ?>
+                    <?php if(isset($_SESSION['error'])){echo $_SESSION['error']; session_unset(); session_destroy();} ?>
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="password" class="form-control" name="password" placeholder="Password" required/>
