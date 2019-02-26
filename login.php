@@ -2,11 +2,6 @@
 <html lang="en" class="body-full-height">
 <?php
 session_start();
-$e_val = "";
-if (isset($_SESSION['email'])) {
-  $eval = $_SESSION['email'];
-}
->>>>>>> 21161e5f01a83ef110a2cefe341e4dcf29d69674
 ?>
 
 
@@ -36,7 +31,6 @@ if (isset($_SESSION['email'])) {
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="e-mail" class="form-control" name="email" placeholder="E-mail" required/>
->>>>>>> 21161e5f01a83ef110a2cefe341e4dcf29d69674
                         </div>
                     </div>
                     <div class="form-group">
