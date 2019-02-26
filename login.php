@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" class="body-full-height">
 <?php
 session_start();
 
@@ -7,8 +5,8 @@ if (isset($_SESSION['email'])) {
   $u_email = $_SESSION['email'];
 }
 ?>
-
-
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
 <head>
         <!-- META SECTION -->
         <title>NCA Staff Ideas Portal Login</title>

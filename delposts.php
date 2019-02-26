@@ -1,5 +1,9 @@
 <?php
-    include 'handlers/dbcon.php';
+session_start();
+include 'handlers/dbcon.php';
+$curr_time = time();
+
+if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -252,3 +256,8 @@
 
 <!-- Mirrored from themifycloud.com/demos/templates/joli/table-export.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:41:43 GMT -->
 </html>
+<?php
+}else {
+  header('location:admin.php');
+}
+ ?>

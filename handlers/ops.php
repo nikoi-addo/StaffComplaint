@@ -382,7 +382,7 @@
           $success_updatelogin = mysqli_query($link, $sql_updatelogin);
           if ($success_updatelogin) {
             echo "<center>Password has been set. You will be redirected to the Login Page...</center>";
-            header("location../login.php");
+            header("Refresh: 2;url='../login.php'");
           }
           else {
             echo "User Email has already been registered";
@@ -416,12 +416,21 @@
 
             if ($success_checkpassword->num_rows > 0) {
               session_start();
-              while ($row = $success_checkpassword->fetch_assoc()) {
-                $_SESSION['u_id'] = $row['no'];
+              if ($u_mail == "nikoi.addo@nca.org.gh") {
+                $_SESSION['admin'] = true;
                 $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = ucfirst(strtolower($_SESSION['username']));
+                header("location:../hr.php");
+
               }
-              header("location:../index.php'");
+              else {
+                while ($row = $success_checkpassword->fetch_assoc()) {
+                  $_SESSION['u_id'] = $row['no'];
+                  $_SESSION['loggedin'] = true;
+                  $_SESSION['username'] = ucfirst(strtolower($_SESSION['username']));
+                }
+                header("location:../index.php");
+
+              }
             }
             else {
               session_start();

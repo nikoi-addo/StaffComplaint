@@ -1,6 +1,9 @@
 <?php
-  include 'handlers/dbcon.php';
-  $curr_time = time();
+session_start();
+include 'handlers/dbcon.php';
+$curr_time = time();
+
+if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -243,3 +246,8 @@
     <!-- END SCRIPTS -->
     </body>
 </html>
+<?php
+}else {
+  header('location:admin.php');
+}
+ ?>

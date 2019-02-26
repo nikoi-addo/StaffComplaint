@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_POST['adminlogin'])) {
+  if ($_POST['admin_username'] == 'admin' && $_POST['password'] == 'admin') {
+    $_SESSION['loggedin'] = true;
+    $_SESSION['adminpanel'] = true;
+  }
+}
+
+if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -27,7 +38,7 @@
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
-                    
+
                     <li class="xn-profile">
                         <a href="#" class="profile-mini">
                             <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
@@ -244,11 +255,11 @@
 
         <script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
-	<script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
-	<script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
-	<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
-	<script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
-	<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>
+  <script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
+  <script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
+  <script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+  <script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
+  <script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>
         <!-- END THIS PAGE PLUGINS-->
 
         <!-- START TEMPLATE -->
@@ -263,3 +274,71 @@
 <!-- Mirrored from themifycloud.com/demos/templates/joli/table-export.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Feb 2018 15:41:43 GMT -->
 </html>
 <!--  -->
+<?php
+}
+else {?>
+  <!DOCTYPE html>
+  <html lang="en" class="body-full-height">
+  <head>
+          <!-- META SECTION -->
+          <title>NCA Staff Ideas Portal Login</title>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+          <link rel="icon" href="favicon.ico" type="image/x-icon" />
+          <!-- END META SECTION -->
+
+          <!-- CSS INCLUDE -->
+          <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+          <!-- EOF CSS INCLUDE -->
+      </head>
+      <body>
+
+          <div class="login-container">
+
+              <div class="login-box animated fadeInDown">
+                  <div class="login-logo"></div>
+                  <div class="login-body">
+                      <div class="login-title"><strong>Admin</strong>, Please login</div>
+                      <form action="" class="form-horizontal" method="post">
+                      <div class="form-group">
+                          <div class="col-md-12">
+                              <input type="text" class="form-control" name="admin_username" placeholder="E-mail" required/>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-12">
+                              <input type="password" class="form-control" name="password" placeholder="Password" required/>
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-md-12">
+                              <button class="btn btn-info btn-block" name="adminlogin">Log In</button>
+                              </form>
+                          <br>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="login-footer">
+                      <div class="pull-left">
+                          &copy; 2019 NCA Staff Ideas Portal
+                      </div>
+                      <div class="pull-right">
+                          <a href="#">About</a> |
+                          <a href="#">Privacy</a> |
+                          <a href="#">Contact Us</a>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+      </body>
+
+
+  </html>
+
+<?php }
+ ?>
