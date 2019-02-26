@@ -2,10 +2,12 @@
 <html lang="en" class="body-full-height">
 <?php
 session_start();
+
 $e_val = "";
 if (isset($_SESSION['email'])) {
   $eval = $_SESSION['email'];
 }
+
 
 ?>
 
@@ -41,9 +43,6 @@ if (isset($_SESSION['email'])) {
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <?php if (isset($_SESSION['error'])) {
-                              echo $_SESSION['error']; session_unset(); session_destroy();
-                            } ?>
                             <input type="password" class="form-control" name="password" placeholder="Password" required/>
                         </div>
                     </div>

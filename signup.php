@@ -24,7 +24,6 @@
                 <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Welcome</strong>, SignUp Below</div>
-                    <?php session_start(); if (isset($_SESSION['error'])) { echo $_SESSION['error']; session_unset(); session_destroy();} ?>
                     <form action="handlers/ops.php" method="post" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-12">
