@@ -35,9 +35,6 @@ session_start();
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <?php if (isset($_SESSION['error'])) {
-                              echo $_SESSION['error']; session_unset(); session_destroy();
-                            } ?>
                             <input type="password" class="form-control" name="password" placeholder="Password" required/>
                         </div>
                     </div>
