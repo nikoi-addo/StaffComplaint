@@ -24,7 +24,7 @@
                 <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Welcome</strong>, SignUp Below</div>
-                    <form action="handlers/ops.php" method="post" class="form-horizontal">
+                    <form action="handlers/ops.php" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="email" class="form-control" name="user_email" placeholder="Enter Staff Mail" required id="user_email"/>

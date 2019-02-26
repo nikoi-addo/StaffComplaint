@@ -2,6 +2,9 @@
 <html lang="en" class="body-full-height">
 <?php
 session_start();
+if (isset($_SESSION['email'])) {
+  $u_email = $_SESSION['email'];
+}
 ?>
 
 
@@ -30,9 +33,10 @@ session_start();
                     <form action="handlers/ops.php" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" required/>
+                            <input type="e-mail" class="form-control" name="email" placeholder="E-mail" value="<?php if (isset($_SESSION['email'])){echo $u_email;} ?>" required/>
                         </div>
                     </div>
+                    <?php if(isset($_SESSION['error'])){echo $_SESSION['error'];} ?>
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="password" class="form-control" name="password" placeholder="Password" required/>
