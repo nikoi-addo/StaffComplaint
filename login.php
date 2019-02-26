@@ -6,7 +6,6 @@ session_start();
 if (isset($_SESSION['email'])) {
   $u_email = $_SESSION['email'];
 }
-
 $e_val = "";
 if (isset($_SESSION['email'])) {
   $eval = $_SESSION['email'];
