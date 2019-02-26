@@ -4,11 +4,11 @@
     include 'dbcon.php'; //Include the database connection
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      //Form Submitted
-      $form_type = $_POST['form_type'];
       //Users IP Address
       $ipaddress = $_SERVER["REMOTE_ADDR"];
       $cur_time = time();
+      //Form Submitted
+      $form_type = $_POST['form_type'];
 
       #########################################################
       #################### MAKE A COMPLAINT ###################
@@ -18,6 +18,8 @@
         $problem = $_POST['problem'];
         //Escape the special characters in the query
         $problem = mysqli_real_escape_string($link, $problem);
+        $user_id = $_POST['user_id'];
+        $username = $_POST['username'];
         //User Division
         if ($_POST['division'] === "Select Division (optional)") {
           $division = "";
@@ -39,7 +41,7 @@
           $stop_day = $n_responsetime;
         }
 
-        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display)";
+        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, u_fname, u_id) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$username', $user_id)";
 
         //Insert Complaint into Database
         $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
@@ -249,6 +251,7 @@
         );
         $id = $_POST['id'];
         $user_id = $_POST['user_id'];
+        $username = $_POST['username'];
         //Select Votes Cast for each category and Number of Votes
         $sql_getvotes = "SELECT p_votes, p_voters FROM poll WHERE p_id = $id";
         $success_getvotes = mysqli_query($link, $sql_getvotes);
@@ -262,10 +265,9 @@
           //Increate Voter count
           $voters = $row['p_voters'];
           $voters  += 1;
-          echo $id;
           $sql_updatepoll = "UPDATE poll SET p_votes ='$votes' , p_voters = $voters, p_last_vote_date = $cur_time WHERE p_id=$id";
           $success_updatepoll = mysqli_query($link,$sql_updatepoll);
-          $sql_votedetails = "INSERT INTO poll_voters(user_id, poll_id) VALUES($user_id, $id)";
+          $sql_votedetails = "INSERT INTO poll_voters(user_id, poll_id, username, vote_date) VALUES($user_id, $id, '$username', $cur_time)";
           $success_votedetails = mysqli_query($link, $sql_votedetails);
           if ($success_updatepoll && $success_votedetails) {
             header('location:../index.php');
@@ -380,7 +382,7 @@
           $success_updatelogin = mysqli_query($link, $sql_updatelogin);
           if ($success_updatelogin) {
             echo "<center>Password has been set. You will be redirected to the Login Page...</center>";
-            header("Refresh: 2;url='../login.php");
+            header("location../login.php");
           }
           else {
             echo "User Email has already been registered";
@@ -413,16 +415,19 @@
             $success_checkpassword = mysqli_query($link, $sql_checkpassword);
 
             if ($success_checkpassword->num_rows > 0) {
-              echo "You have logged in Sucessfully";
-              // header('location:../index.php');
-              header("Refresh: 5;url='../index.php'");
+              session_start();
+              while ($row = $success_checkpassword->fetch_assoc()) {
+                $_SESSION['u_id'] = $row['no'];
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = ucfirst(strtolower($_SESSION['username']));
+              }
+              header("location:../index.php'");
             }
             else {
-              echo "Password is Incorrect";
               session_start();
               $_SESSION['email'] = $u_mail;
               $_SESSION['error'] = "<div class='alert alert-danger fade in'><center>Password Incorrect</center><a class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>";
-              header("Refresh: 2;url='../login.php");
+              header("location:../login.php");
             }
           }
           else{

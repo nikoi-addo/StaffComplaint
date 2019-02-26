@@ -1,13 +1,16 @@
+<?php
+  session_start();
+  include 'handlers/dbcon.php';
+  $timely = time();
+
+  if (isset($_SESSION['loggedin']) && isset($_SESSION['u_id']) && isset($_SESSION['username'])) {
+    $user_id = $_SESSION['u_id'];
+    $username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-  include 'handlers/dbcon.php';
-  $timely = time();
-  $user_id = 23;
-?>
-
-<head>
+    <head>
         <!-- META SECTION -->
         <title>NCA Staff Ideas Portal</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,7 +40,7 @@
 
               <style type="text/css">
                 .fixed{z-index: 999;
-                	   position: fixed;
+                     position: fixed;
                        top: 0;
                        width: 100%;
                        overflow: hidden;
@@ -47,7 +50,7 @@
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
 
-                	<li class="xn-icon-button pull-left">
+                  <li class="xn-icon-button pull-left">
                        <img src="img/logo.png"/>
 
                     </li>
@@ -152,6 +155,8 @@
                                         <div class="col-md-12">
                                             <div class="btn-group pull-left">
                                             <input type="hidden" name="form_type" value="ComplainForm">
+                                            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                                            <input type="hidden" name="username" value="<?php echo $username; ?>">
                                             <!-- Add array and multiple attribute to show for multiple images -->
                                             <input type="file" name="images[]" accept="image/*" multiple />
 
@@ -229,7 +234,7 @@
                                                  //Display all the Options for the Poll
                                                  for ($i=0; $i < count($pollOptions) ; $i++) { ?>
                                                     <div class="col-md-6">
-                                                        <label class="check"><input type="radio" class="icheckbox" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                        <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
                                                     </div>
                                                   <?php
                                                   }
@@ -242,7 +247,8 @@
                                             <input type="hidden" name="id" value="<?php echo $poll['p_id']; ?>"/>
                                             <!-- Submit User's ID -->
                                             <input type="hidden" name="user_id" value="<?php echo $user_id?>">
-                                            <button name="pollvote"class="btn btn-default btn-warning col-md-1 pull-right" type="submit"><span class="fa fa-send"></span>Vote</button>
+                                            <input type="hidden" name="username" value="<?php echo $username;?>">
+                                            <button name="pollvote" class="btn btn-default btn-warning col-md-1 pull-right" type="submit"><span class="fa fa-send"></span>Vote</button>
                                         </div>
                                       </form>
                                     </div>
@@ -311,7 +317,7 @@
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
-                                             <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <?php if ($rows['c_division'] != "") {
+                                             <img src="assets/images/users/avatar.jpg"/> <b><?php echo ucfirst(strtolower($rows['u_fname'])); ?></b> <?php if ($rows['c_division'] != "") {
                                               echo "<i>from</i> <u>". $rows['c_division'];
                                              } ?></u> shared an idea
                                          </div>
@@ -500,3 +506,10 @@
 
 
 </html>
+
+<?php
+  }
+  else {
+    header('location:login.php');
+  }
+?>
