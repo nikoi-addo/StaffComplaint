@@ -27,8 +27,8 @@
                     <form action="handlers/ops.php" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="e-mail" class="form-control" placeholder="Enter Staff Mail"/>
-                            <button class="btn btn-info btn-block" name="requestpassword">Request Passord</button>
+                            <input type="e-mail" class="form-control" name="user_email" placeholder="Enter Staff Mail"/>
+                            <button class="btn btn-info btn-block" name="sendemail">Request Passord</button>
                         </div>
                     </div>
                     <form>
