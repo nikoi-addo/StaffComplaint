@@ -278,10 +278,6 @@
                                                  for ($i=0; $i < count($pollOptions) ; $i++) {
                                                    $votePercent = round(($votes[$i]/$poll['p_voters'])*100);
                                                   ?>
-                                                  <div class="row">
-                                                    <div class="col-md-4">
-                                                      <?php echo $pollOptions[$i];?>
-                                                    </div>
                                                     <div class="col-md-6">
                                                        <div class="progress">
                                                             <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
@@ -289,7 +285,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                  </div>
                                                   <?php
                                                   }
                                                   ?>
