@@ -99,6 +99,12 @@
                     </li>
                     <!-- END MESSAGES -->
 
+                    <!-- SIGN OUT -->
+                    <li class="xn-icon-button pull-right">
+                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+                    </li>
+                    <!-- END SIGN OUT -->
+
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->
 
@@ -431,6 +437,26 @@
             <ol class="indicator"></ol>
         </div>
         <!-- END BLUEIMP GALLERY -->
+
+         <!-- MESSAGE BOX-->
+        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+            <div class="mb-container">
+                <div class="mb-middle">
+                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                    <div class="mb-content">
+                        <p>Are you sure you want to log out?</p>
+                        <p>Press No if you want to continue work. Press Yes to logout .</p>
+                    </div>
+                    <div class="mb-footer">
+                        <div class="pull-right">
+                            <a href="logOut.php" class="btn btn-success btn-lg">Yes</a>
+                            <button class="btn btn-default btn-lg mb-control-close">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MESSAGE BOX-->
 
 
         <!-- START PRELOADS -->
