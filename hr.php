@@ -2,7 +2,7 @@
   session_start();
   include 'handlers/dbcon.php';
   $timely = time();
-  if (isset($_SESSION['loggedin']) == true && isset($_SESSION['user']) == 'admin') {
+  if (isset($_SESSION['loggedin']) == true && isset($_SESSION['admin']) == true) {
     ?>
     <!DOCTYPE html>
     <html lang="en">
