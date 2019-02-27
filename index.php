@@ -58,7 +58,7 @@
 
                     <!-- MESSAGES -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-inbox"></span></a>
+                        <a href="#mb-signout"><span class="fa fa-inbox"></span></a>
                         <div class="informer informer-danger">HR</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
