@@ -323,7 +323,7 @@
                                      <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                      <div class="timeline-item-content">
                                          <div class="timeline-heading">
-                                             <img src="assets/images/users/avatar.jpg"/> <b><?php echo ucfirst(strtolower($rows['u_fname'])); ?></b> <?php if ($rows['c_division'] != "") {
+                                             <img src="assets/images/users/avatar.jpg"/> <b>Anonymous</b> <?php if ($rows['c_division'] != "") {
                                               echo "<i>from</i> <u>". $rows['c_division'];
                                              } ?></u> shared an idea
                                          </div>
