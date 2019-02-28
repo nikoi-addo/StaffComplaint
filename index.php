@@ -168,6 +168,7 @@
 
                                             </div>
                                             <div class="pull-right">
+                                            	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal_basic"><span class="fa fa-thumbs-o-up"></span>  Run Poll </button>
                                                 <button type="submit" class="btn btn-success"><span class="fa fa-share"></span> SEND</button>
                                             </div>
                                         </div>
@@ -181,6 +182,55 @@
                         </div>
 
                     </div>
+
+
+                    <!-- MODALS -->
+            <div style="z-index: 999" class="modal" id="modal_basic" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="defModalHead">Run Polls</h4>
+                        </div>
+                        <div class="modal-body">
+                           <div class="panel-body has-warning">
+                             <form action="handlers/ops.php" method="post">
+                                <textarea class="form-control" placeholder="Ask Something..." name="question"></textarea>
+
+                            </div>
+                            <div class="panel-body has-success">
+                                <input type="text" name="opinion1" class="form-control" placeholder="Option 1"/>
+                                <input type="file" name="pollimages1[]" accept="image/*" /><br>
+                                
+                                <input type="text" name="opinion2" class="form-control" placeholder="Option 2"/>
+                                <input type="file" name="pollimages2[]" accept="image/*" /><br>
+                                <a data-toggle="collapse" href="#more_opinions">More Opinions +</a>
+                                <div id="more_opinions" class="collapse">
+                                  <br><input type="text" name="opinion3" placeholder="Option 3" class="form-control">
+                                  <input type="file" name="pollimages3[]" accept="image/*" /><br>
+                                  <a data-toggle="collapse" href="#more_opinions2">More Opinions +</a>
+                                  <div id="more_opinions2" class="collapse">
+                                    <br><input type="text" name="opinion4" placeholder="Option 4" class="form-control">
+                                    <input type="file" name="pollimages4[]" accept="image/*" />
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-md btn-warning pull-right col-md-4" name="postpoll"><span class="fa fa-share"></span>Post Poll</button>
+                            <select class="btn btn-warning pull-left" name="duration">
+                                    <option value="1">1 Day</option>
+                                    <option value="2">2 Day</option>
+                                    <option value="3">3 Day</option>
+                                    <option value="4">4 Day</option>
+                                    <option value="5">5 Day</option>
+                            </select>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
                     <div class="row">
                         <div class="col-md-12">
