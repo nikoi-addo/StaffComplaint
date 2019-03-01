@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2019 at 10:41 PM
+-- Generation Time: Mar 01, 2019 at 09:41 AM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -150,7 +150,8 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `c_date_created`, `c_
 (86, 'I want freedom', 'Administration Division', 1550878938, '127.0.0.1', 1551354138, 'NAZIR', 26),
 (87, 'Hello it\'s me again', 'Policy, Strategy and Innovation Division', 1551133063, '::1', 1551608263, 'RAHAINATU', 85),
 (88, 'hello people of God', 'Select Division (optional)', 1551178451, '::1', 1551653651, 'AARON', 24),
-(89, 'I want fufu Maybe', 'Administration Division', 1551220077, '127.0.0.1', 1551695277, 'Aaron', 24);
+(89, 'I want fufu Maybe', 'Administration Division', 1551220077, '127.0.0.1', 1551695277, 'AARON', 24),
+(90, 'Load', 'Select Division (optional)', 1551366377, '127.0.0.1', 1551841577, 'AARON', 24);
 
 -- --------------------------------------------------------
 
@@ -258,7 +259,8 @@ INSERT INTO `imagine` (`im_id`, `im_name`, `ref_id`, `ref_name`, `ref_status`) V
 (35, '1550598796_hr_500_F_95992405_I3gKQKglkE2TOF5C5b8UhxVYB7wRYflg.jpg', 50, 'hrmessage', 'active'),
 (36, '1550598796_hr_1559_D500_front.png', 50, 'hrmessage', 'active'),
 (37, '1550599119_hr_IMG-20160218-WA0004.jpg', 51, 'hrmessage', 'active'),
-(38, '1550599720_cm_IMG-20160218-WA0004.jpg', 81, 'complaint', 'active');
+(38, '1550599720_cm_IMG-20160218-WA0004.jpg', 81, 'complaint', 'active'),
+(39, '1551366378_cm_1550792550_cm_1219599.jpg', 90, 'complaint', 'active');
 
 -- --------------------------------------------------------
 
@@ -366,7 +368,7 @@ INSERT INTO `login_info` (`no`, `u_fname`, `u_lname`, `u_email`, `u_password`, `
 (89, 'RAFIAH', 'MUSAH', 'musah.rafia@nca.org.gh', '', 0, 'unactivated'),
 (57, 'NANA SERWAA', 'AKOTO AFRIYIE', 'nana.afriyie@nca.org.gh', '', 0, 'unactivated'),
 (117, 'NANA YAW', 'ESSILFIE AMOANYI', 'nana.essilfie@nca.org.gh', '', 0, 'unactivated'),
-(68, 'RUDY', 'ADDO NIKOI', 'nikoi.addo@nca.org.gh', '', 0, 'unactivated'),
+(68, 'RUDY', 'ADDO NIKOI', 'nikoi.addo@nca.org.gh', 0x3566346463633362356161373635643631643833323764656238383263663939, 1551222992, 'activated'),
 (115, 'OLIVIA', 'OPOKU-ASUMADU', 'olivia.opoku-asumadu@nca.org.gh', '', 0, 'unactivated'),
 (34, ' OPHELIA', 'WEMEGAH AKU', 'ophelia.wemegah@nca.org.gh', '', 0, 'unactivated'),
 (43, 'OSWIN', 'ADDOQUAYE TAGOE', 'oswin.tagoe@nca.org.gh', '', 0, 'unactivated'),
@@ -477,18 +479,22 @@ CREATE TABLE `poll` (
   `p_number_options` tinyint(3) NOT NULL,
   `p_timeout` double DEFAULT NULL,
   `p_voters` int(11) DEFAULT '0',
-  `p_last_vote_date` double DEFAULT '0'
+  `p_last_vote_date` double DEFAULT '0',
+  `u_id` int(11) NOT NULL DEFAULT '0',
+  `u_fname` varchar(64) NOT NULL DEFAULT 'HR'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `poll`
 --
 
-INSERT INTO `poll` (`p_id`, `p_question`, `p_date`, `p_options`, `p_votes`, `p_number_options`, `p_timeout`, `p_voters`, `p_last_vote_date`) VALUES
-(56, 'Who are you', 1550879748, 'I am me|I am myself', '7|4', 2, 1551127323, 11, 1551176143),
-(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|2', 4, 1551213723, 6, 1551176109),
-(71, 'Which Phone would you prefer?', 1551133646, 'Samsung Galaxy s10|iPhone Xs Max|Huawei Mate 20 pro|One plus 7T', '1|0|0|1', 4, 1551220046, 2, 1551176102),
-(72, 'Everything Goes to be alright', 1551193051, 'Ket |dajdkf', '1|1', 2, 1551279451, 2, 1551220712);
+INSERT INTO `poll` (`p_id`, `p_question`, `p_date`, `p_options`, `p_votes`, `p_number_options`, `p_timeout`, `p_voters`, `p_last_vote_date`, `u_id`, `u_fname`) VALUES
+(56, 'Who are you', 1550879748, 'I am me|I am myself', '7|4', 2, 1551127323, 11, 1551176143, 0, 'HUMAN RESOURCE DIVISION'),
+(57, 'What\'s your color', 1550879978, 'I want to|Kno\'|Find\'|Load\'s', '2|1|1|2', 4, 1551213723, 6, 1551176109, 0, 'HUMAN RESOURCE DIVISION'),
+(71, 'Which Phone would you prefer?', 1551133646, 'Samsung Galaxy s10|iPhone Xs Max|Huawei Mate 20 pro|One plus 7T', '1|0|0|1', 4, 1551220046, 2, 1551176102, 0, 'HUMAN RESOURCE DIVISION'),
+(72, 'Everything Goes to be alright', 1551193051, 'Ket |dajdkf', '1|1', 2, 1551279451, 2, 1551220712, 0, 'HUMAN RESOURCE DIVISION'),
+(137, 'Load', 1551394351, 'Timely|Zip', '0|0', 2, 1551480751, 0, 0, 24, 'AARON'),
+(138, 'Let me ask', 1551396817, 'Will you come along|come around', '0|0', 2, 1551483217, 0, 0, 85, 'RAHAINATU');
 
 -- --------------------------------------------------------
 
@@ -587,7 +593,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
@@ -602,7 +608,7 @@ ALTER TABLE `del_poll`
 -- AUTO_INCREMENT for table `imagine`
 --
 ALTER TABLE `imagine`
-  MODIFY `im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `login_info`
 --
@@ -617,7 +623,7 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `poll`
 --
 ALTER TABLE `poll`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 --
 -- AUTO_INCREMENT for table `poll_voters`
 --
