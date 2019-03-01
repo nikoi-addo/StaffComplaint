@@ -194,27 +194,27 @@
                         </div>
                         <div class="modal-body">
                            <div class="panel-body has-warning">
-                             <form action="handlers/ops.php" method="post">
-                                <textarea class="form-control" placeholder="Ask Something..." name="question"></textarea>
-
+                             <form action="handlers/ops.php" method="post" enctype="multipart/form-data">
+                                <textarea class="form-control" placeholder="Ask Something..." name="question" required></textarea>
                             </div>
                             <div class="panel-body has-success">
-                                <input type="text" name="opinion1" class="form-control" placeholder="Option 1"/>
-                                <input type="file" name="pollimages1[]" accept="image/*" /><br>
-                                
-                                <input type="text" name="opinion2" class="form-control" placeholder="Option 2"/>
-                                <input type="file" name="pollimages2[]" accept="image/*" /><br>
+                                <input type="text" name="opinion1" class="form-control" placeholder="Option 1" required/>
+                                <input type="file" name="pollimages[]" accept="image/*" /><br>
+                                <input type="text" name="opinion2" class="form-control" placeholder="Option 2" required/>
+                                <input type="file" name="pollimages[]" accept="image/*" /><br>
                                 <a data-toggle="collapse" href="#more_opinions">More Opinions +</a>
                                 <div id="more_opinions" class="collapse">
                                   <br><input type="text" name="opinion3" placeholder="Option 3" class="form-control">
-                                  <input type="file" name="pollimages3[]" accept="image/*" /><br>
+                                  <input type="file" name="pollimages[]" accept="image/*" /><br>
                                   <a data-toggle="collapse" href="#more_opinions2">More Opinions +</a>
                                   <div id="more_opinions2" class="collapse">
                                     <br><input type="text" name="opinion4" placeholder="Option 4" class="form-control">
-                                    <input type="file" name="pollimages4[]" accept="image/*" />
+                                    <input type="file" name="pollimages[]" accept="image/*" />
                                   </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="user_id" value="<?php echo $user_id;?>">
+                            <input type="hidden" name="username" value="<?php echo $username; ?>">
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-md btn-warning pull-right col-md-4" name="postpoll"><span class="fa fa-share"></span>Post Poll</button>
@@ -255,6 +255,7 @@
                                     $pollOptions = explode("|", $poll['p_options']);
                                     $votes = explode("|", $poll['p_votes']);
                                     $poll_id = $poll['p_id'];
+                                    $u_id = $poll['u_id'];
                                     //Check if user has voted already
                                     $sql_votestatus ="SELECT * FROM poll_voters WHERE user_id=$user_id AND poll_id=$poll_id";
                                     $success_votestatus = mysqli_query($link, $sql_votestatus);
@@ -276,7 +277,7 @@
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
-                                            <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
+                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
@@ -320,7 +321,7 @@
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
-                                            <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
+                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>

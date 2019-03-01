@@ -197,27 +197,27 @@
                         </div>
                         <div class="modal-body">
                            <div class="panel-body has-warning">
-                             <form action="handlers/ops.php" method="post">
-                                <textarea class="form-control" placeholder="Ask Something..." name="question"></textarea>
-
+                             <form action="handlers/ops.php" method="post" enctype="multipart/form-data">
+                                <textarea class="form-control" placeholder="Ask Something..." name="question" required></textarea>
                             </div>
                             <div class="panel-body has-success">
-                                <input type="text" name="opinion1" class="form-control" placeholder="Option 1"/>
-                                <input type="file" name="pollimages1[]" accept="image/*" /><br>
-                                
-                                <input type="text" name="opinion2" class="form-control" placeholder="Option 2"/>
-                                <input type="file" name="pollimages2[]" accept="image/*" /><br>
-                                <a data-toggle="collapse" href="#more_opinions">More Opinions +</a>
-                                <div id="more_opinions" class="collapse">
-                                  <br><input type="text" name="opinion3" placeholder="Option 3" class="form-control">
-                                  <input type="file" name="pollimages3[]" accept="image/*" /><br>
-                                  <a data-toggle="collapse" href="#more_opinions2">More Opinions +</a>
-                                  <div id="more_opinions2" class="collapse">
-                                    <br><input type="text" name="opinion4" placeholder="Option 4" class="form-control">
-                                    <input type="file" name="pollimages4[]" accept="image/*" />
-                                  </div>
+                              <input type="text" name="opinion1" class="form-control" placeholder="Option 1" required/>
+                              <input type="file" name="pollimages[]" accept="image/*" /><br>
+                              <input type="text" name="opinion2" class="form-control" placeholder="Option 2" required/>
+                              <input type="file" name="pollimages[]" accept="image/*" /><br>
+                              <a data-toggle="collapse" href="#more_opinions">More Opinions +</a>
+                              <div id="more_opinions" class="collapse">
+                                <br><input type="text" name="opinion3" placeholder="Option 3" class="form-control">
+                                <input type="file" name="pollimages[]" accept="image/*" /><br>
+                                <a data-toggle="collapse" href="#more_opinions2">More Opinions +</a>
+                                <div id="more_opinions2" class="collapse">
+                                  <br><input type="text" name="opinion4" placeholder="Option 4" class="form-control">
+                                  <input type="file" name="pollimages[]" accept="image/*" />
                                 </div>
+                              </div>
                             </div>
+                            <input type="hidden" name="user_id" value="0">
+                            <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-md btn-warning pull-right col-md-4" name="postpoll"><span class="fa fa-share"></span>Post Poll</button>
@@ -322,7 +322,8 @@
                                                             <input type="hidden" name="poll_voters" value="<?php echo $poll['p_voters']; ?> ">
                                                             <input type="hidden" name="poll_last_vote_date" value="<?php echo $poll['p_last_vote_date']; ?> ">
                                                             <input type="hidden" name="poll_id" value="<?php echo $poll_id; ?>">
-
+                                                            <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
+                                                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['u_id']; ?>">
                                                             <button class="btn btn-danger btn-lg" type="submit"  name="delpoll">Yes</a>
                                                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                                                             </form>

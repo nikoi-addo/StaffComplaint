@@ -215,7 +215,8 @@
         $opinion4 = mysqli_real_escape_string($link, $opinion4);
         $duration = $_POST['duration'];
         $poll_timeout = strtotime("+". $duration ." Days");
-
+        $user_id = $_POST['user_id'];
+        $username = $_POST['username'];
         $opinion1 = $opinion1 . "|" . $opinion2; //Setting Default Vote to 0|0
         //Check if there is a third opinion
         if (!empty($opinion3)) {
@@ -229,12 +230,25 @@
         }
         $number_options = count(explode("|", $opinion1));
         // $number_options = 2;
-        $sql_insertpoll = "INSERT INTO poll(p_question, p_date, p_options, p_votes, p_number_options, p_timeout) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, $poll_timeout)";
+        $sql_insertpoll = "INSERT INTO poll(p_question, p_date, p_options, p_votes, p_number_options, p_timeout, u_id, u_fname) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, $poll_timeout, $user_id, '$username')";
         $success = mysqli_query($link, $sql_insertpoll);
         if ($success) {
+          $last_insert_id = mysqli_insert_id($link);
+          foreach ($_FILES["pollimages"]["error"] as $key => $error) {
 
+              if ($error == UPLOAD_ERR_OK) {
+                  $tmp_name = $_FILES["pollimages"]["tmp_name"][$key];
+                  // basename() may prevent filesystem traversal attacks;
+                  // further validation/sanitation of the filename may be appropriate
+                  $name = time() . '_pl_' .basename($_FILES["pollimages"]["name"][$key]);
+                  if (move_uploaded_file($tmp_name, "../uploads/$name")) {
+                    $sql_insertimage = "INSERT INTO imagine(im_name, ref_id, ref_name) VALUES ('$name', $last_insert_id, 'poll')";
+                    mysqli_query($link, $sql_insertimage);
+                  }
+              }
 
-          header('location:../hr.php');
+          }
+          header('location:../index.php');
 
         }
       }
@@ -297,9 +311,11 @@
         $poll_timeout = $_POST['poll_timeout'];
         $poll_voters = $_POST['poll_voters'];
         $poll_last_vote_date = $_POST['poll_last_vote_date'];
+        $u_id = $_POST['user_id'];
+        $username = $_POST['username'];
 
         //Move complaint to del_poll table
-        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, p_date, p_options, p_votes, p_number_options, p_timeout, p_voters, p_last_vote_date) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date)";
+        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, p_date, p_options, p_votes, p_number_options, p_timeout, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date. $u_id, '$username')";
         //Delete complaint from poll table
         $sql_delpollfromtable = "DELETE FROM poll WHERE p_id = $poll_id";
         //Execute move complaint
@@ -419,6 +435,8 @@
               if ($u_mail == "nikoi.addo@nca.org.gh") {
                 $_SESSION['admin'] = true;
                 $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = "HUMAN RESOURCE DIVISION";
+                $_SESSION['u_id'] = 0;
                 header("location:../hr.php");
 
               }
@@ -426,7 +444,7 @@
                 while ($row = $success_checkpassword->fetch_assoc()) {
                   $_SESSION['u_id'] = $row['no'];
                   $_SESSION['loggedin'] = true;
-                  $_SESSION['username'] = ucfirst(strtolower($_SESSION['username']));
+                  $_SESSION['username'] = $row['u_fname'];
                 }
                 header("location:../index.php");
 
