@@ -3,7 +3,7 @@
   include 'handlers/dbcon.php';
   $timely = time();
 
-  if (isset($_SESSION['loggedin']) && isset($_SESSION['u_id']) && isset($_SESSION['username'])) {
+  if (isset($_SESSION['loggedin']) && isset($_SESSION['u_id']) && !isset($_SESSION['admin'])) {
     $user_id = $_SESSION['u_id'];
     $username = $_SESSION['username'];
 ?>
@@ -247,7 +247,7 @@
                                 <!-- START POLL TIMELINE ITEM -->
                                 <?php
                                   //Query to select polls that have not expired
-                                  $sql_polldisplay = "SELECT * FROM poll WHERE p_timeout > $timely ORDER BY p_date DESC";
+                                  $sql_polldisplay = "SELECT * FROM poll WHERE date_stop_display > $timely AND u_fname = 'HUMAN RESOURCE DIVISION' ORDER BY date_created DESC";
                                   $success_polldisplay = mysqli_query($link, $sql_polldisplay);
                                   if($success_polldisplay->num_rows > 0){
                                   while ($poll = $success_polldisplay->fetch_assoc()) {
@@ -259,7 +259,6 @@
                                     //Check if user has voted already
                                     $sql_votestatus ="SELECT * FROM poll_voters WHERE user_id=$user_id AND poll_id=$poll_id";
                                     $success_votestatus = mysqli_query($link, $sql_votestatus);
-                                    echo mysqli_error($link);
                                     if ($success_votestatus->num_rows > 0) {
                                       //Set Voted to Yes
                                       $voted = "y";
@@ -273,7 +272,7 @@
                                 ?>
                                 <!-- START POLL ITEM NOT VOTED -->
                                 <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['p_date']); ?></div>
+                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
@@ -285,18 +284,32 @@
                                         </div>
                                         <form action="handlers/ops.php" method="post">
                                         <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                               <div class="form-group">
+                                               <div class="row">
                                                  <?php
                                                  //Display all the Options for the Poll
-                                                 for ($i=0; $i < count($pollOptions) ; $i++) { ?>
-                                                    <div class="col-md-6">
-                                                        <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
-                                                    </div>
+                                                 for ($i=0; $i < count($pollOptions) ; $i++) {
+                                                   $sql_plimage = "SELECT pl_ref_option, pl_im_name FROM poll_imagine WHERE pl_ref_id = $poll_id AND pl_ref_option = $i";
+                                                   $success_plimage = mysqli_query($link, $sql_plimage);
+                                                   if ($success_plimage->num_rows > 0) {
+                                                     while ($pl_row = $success_plimage->fetch_assoc()) { ?>
+                                                       <div class="col-md-6">
+                                                           <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
+                                                               <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
+                                                           </a>
+                                                           <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                       </div>
                                                   <?php
+                                                     }
+                                                   }
+                                                   else {
+                                                     ?>
+                                                     <div class="col-md-6">
+                                                         <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                     </div>
+                                                  <?php
+                                                    }
                                                   }
                                                   ?>
-                                               </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer" style="clear: both;">
@@ -317,7 +330,7 @@
                                 ?>
                                 <!-- START POLL ITEM VOTED -->
                                 <div class="timeline-item timeline-item-right">
-                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['p_date']); ?></div>
+                                    <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
@@ -328,25 +341,41 @@
                                             <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                         </div>
                                         <div class="timeline-body comments">
-                                            <div class="comment-item">
-                                               <div class="form-group">
+                                            <div class="row">
                                                  <?php
                                                  //Display all the Options for the Poll
                                                  for ($i=0; $i < count($pollOptions) ; $i++) {
                                                    $votePercent = round(($votes[$i]/$poll['p_voters'])*100);
-                                                  ?>
-                                                    <div class="col-md-6">
-                                                       <div class="progress">
-                                                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
-                                                                <b style="color: black;"><?php echo $votePercent;  ?>%  <?php echo $pollOptions[$i]; ?></b>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                   $sql_plimage = "SELECT pl_ref_option, pl_im_name FROM poll_imagine WHERE pl_ref_id = $poll_id AND pl_ref_option = $i";
+                                                   $success_plimage = mysqli_query($link, $sql_plimage);
+                                                   if ($success_plimage->num_rows > 0) {
+                                                     while ($pl_row = $success_plimage->fetch_assoc()) { ?>
+                                                       <div class="col-md-6">
+                                                           <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
+                                                               <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
+                                                           </a>
+                                                           <div class="progress">
+                                                             <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
+                                                                 <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                             </div>
+                                                           </div>
+                                                       </div>
                                                   <?php
+                                                     }
+                                                   }
+                                                   else {
+                                                     ?>
+                                                     <div class="col-md-6">
+                                                        <div class="progress">
+                                                             <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
+                                                                 <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                  <?php
+                                                    }
                                                   }
                                                   ?>
-
-                                               </div>
                                             </div>
                                         </div>
                                     </div>
@@ -360,89 +389,243 @@
 
 
                                 <?php
-                                    //Complaint sql query
-                                    $sql_complaintdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $timely ORDER BY c_date_created DESC";
+                                    //Query to combine poll and complaint
+                                    $sql_pollcomplaintdisplay = "SELECT c_id, date_created, date_stop_display, table_type FROM complaints WHERE date_stop_display > $timely UNION ALL SELECT p_id, date_created, date_stop_display, table_type FROM poll WHERE u_fname != 'HUMAN RESOURCE DIVISION' AND date_stop_display > $timely ORDER BY date_created DESC";
                                     //Execution of Complaint Query
-                                    $success_complaintdisplay = mysqli_query($link, $sql_complaintdisplay);
+                                    $success_pollcomplaintdisplay = mysqli_query($link, $sql_pollcomplaintdisplay);
 
-                                    if ($success_complaintdisplay->num_rows > 0) {
-                                      while($rows = $success_complaintdisplay->fetch_assoc()){
-                                ?>
-                                <!-- START TIMELINE ITEM -->
-                                 <div class="timeline-item timeline-item-right">
-                                     <div class="timeline-item-info"> <?php echo date("d M G:i", $rows['c_date_created']); ?> </div>
-                                     <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
-                                     <div class="timeline-item-content">
-                                         <div class="timeline-heading">
-                                             <img src="assets/images/users/avatar.jpg"/> <b>Anonymous</b> <?php if ($rows['c_division'] != "") {
-                                              echo "<i>from</i> <u>". $rows['c_division'];
-                                             } ?></u> shared an idea
-                                         </div>
-                                         <div class="timeline-body">
-                                             <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])); ?></p>
+                                    if ($success_pollcomplaintdisplay->num_rows > 0) {
+                                      while($rows = $success_pollcomplaintdisplay->fetch_assoc()){
+                                        $id = $rows['c_id'];
+                                        if ($rows['table_type'] == 'complaint') {
+                                          $sql_compdisplay = "SELECT * FROM complaints WHERE c_id = $id";
+                                          $success_compdisplay = mysqli_query($link, $sql_compdisplay);
+                                          if ( $success_compdisplay->num_rows > 0) {
+                                            while ($cp_rows = $success_compdisplay->fetch_assoc()) {
+                                            ?>
+                                            <!-- START TIMELINE ITEM -->
+                                             <div class="timeline-item timeline-item-right">
+                                                 <div class="timeline-item-info"> <?php echo date("d M G:i", $cp_rows['date_created']); ?> </div>
+                                                 <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
+                                                 <div class="timeline-item-content">
+                                                     <div class="timeline-heading">
+                                                         <img src="assets/images/users/avatar.jpg"/> <b><?php echo $cp_rows['u_fname'] ?></b> <?php if ($cp_rows['c_division'] != "Select Division (optional)") {
+                                                          echo "<i>from</i> <u>". $cp_rows['c_division'];
+                                                         } ?></u> shared an idea
+                                                     </div>
+                                                     <div class="timeline-body">
+                                                         <p style="white-space:pre-wrap;"><?php echo (trim($cp_rows['c_value'])); ?></p>
 
-                                             <?php
-                                             //Check if an image exists for the specifice message
-                                             $sql_checkimage = "SELECT * FROM imagine WHERE ref_id = $rows[c_id] AND ref_name = 'complaint'";
-                                             $success_checkimage = mysqli_query($link, $sql_checkimage);
-                                             if ($success_checkimage): ?>
+                                                         <?php
+                                                         //Check if an image exists for the specifice message
+                                                         $sql_checkimage = "SELECT * FROM imagine WHERE ref_id = $cp_rows[c_id] AND ref_name = 'complaint'";
+                                                         $success_checkimage = mysqli_query($link, $sql_checkimage);
+                                                         if ($success_checkimage): ?>
 
-                                             <div class="row">
-                                               <?php while ($rowly = $success_checkimage->fetch_assoc()) {
-                                                 ?>
-                                               <div class="col-md-4" style="width: auto; height: 200px;">
-                                                 <div class="image">
-                                                   <a href="uploads/<?php echo (trim($rowly['im_name'])); ?>" data-gallery>
-                                                     <img src="uploads/<?php echo (trim($rowly['im_name'])) ; ?>" class="img-responsive img-text" style="width: auto; height: 200px;"/>
-                                                   </a>
+                                                         <div class="row">
+                                                           <?php while ($rowly = $success_checkimage->fetch_assoc()) {
+                                                             ?>
+                                                           <div class="col-md-4" style="width: auto; height: 200px;">
+                                                             <div class="image">
+                                                               <a href="uploads/<?php echo (trim($rowly['im_name'])); ?>" data-gallery>
+                                                                 <img src="uploads/<?php echo (trim($rowly['im_name'])) ; ?>" class="img-responsive img-text" style="width: auto; height: 200px;"/>
+                                                               </a>
+                                                             </div>
+                                                           </div>
+                                                         <?php }?>
+                                                         </div>
+
+                                                         <?php endif; ?>
+
+
+                                                     </div>
+
+                                                     <?php
+                                                      //Comment id
+                                                      $comment_id = $cp_rows['c_id'];
+                                                      //Query for comment display
+                                                      $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                                      //Execution for comment display
+                                                      $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
+
+                                                      if ($success_commentdisplay->num_rows > 0) {
+                                                        while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                                      ?>
+                                                      <!-- Comments -->
+                                                        <div class="timeline-body comments">
+                                                          <div class="comment-item">
+                                                              <img src="assets/images/users/avatar.jpg"/>
+                                                              <p class="comment-head">
+                                                                  <b>Human Resource Division</b>
+                                                                  <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+
+                                                              </p>
+                                                              <!-- Comment from Database -->
+                                                              <p><?php echo $cm_rows['cm_value']; ?><p>
+
+                                                          </div>
+
+                                                      </div>
+                                                      <?php
+                                                        }
+
+                                                      }
+                                                     ?>
+
+
                                                  </div>
-                                               </div>
-                                             <?php }?>
                                              </div>
 
-                                             <?php endif; ?>
+                                             <!-- END TIMELINE ITEM -->
+
+                                        <?php
+                                            }
+                                          }
+                                        }
+                                        elseif ($rows['table_type'] == 'poll') {
 
 
-                                         </div>
-
-                                         <?php
-                                          //Comment id
-                                          $comment_id = $rows['c_id'];
-                                          //Query for comment display
-                                          $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
-                                          //Execution for comment display
-                                          $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
-
-                                          if ($success_commentdisplay->num_rows > 0) {
-                                            while ($cm_rows = $success_commentdisplay->fetch_assoc()){
-                                          ?>
-                                          <!-- Comments -->
-                                            <div class="timeline-body comments">
-                                              <div class="comment-item">
-                                                  <img src="assets/images/users/avatar.jpg"/>
-                                                  <p class="comment-head">
-                                                      <b>Human Resource Division</b>
-                                                      <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
-
-                                                  </p>
-                                                  <!-- Comment from Database -->
-                                                  <p><?php echo $cm_rows['cm_value']; ?><p>
-
-                                              </div>
-
-                                          </div>
-                                          <?php
+                                          //Query to select polls that have not expired
+                                          $sql_pldisplay = "SELECT * FROM poll WHERE p_id = $id";
+                                          $success_pldisplay = mysqli_query($link, $sql_pldisplay);
+                                          if($success_pldisplay->num_rows > 0){
+                                          while ($poll = $success_pldisplay->fetch_assoc()) {
+                                            //Set Poll Options as an array
+                                            $pollOptions = explode("|", $poll['p_options']);
+                                            $votes = explode("|", $poll['p_votes']);
+                                            $poll_id = $poll['p_id'];
+                                            $u_id = $poll['u_id'];
+                                            //Check if user has voted already
+                                            $sql_votestatus ="SELECT * FROM poll_voters WHERE user_id=$user_id AND poll_id=$poll_id";
+                                            $success_votestatus = mysqli_query($link, $sql_votestatus);
+                                            if ($success_votestatus->num_rows > 0) {
+                                              //Set Voted to Yes
+                                              $voted = "y";
+                                            }
+                                            else {
+                                              //Set Voted to No
+                                              $voted = "n";
                                             }
 
+                                            if ($voted == "n") {
+                                        ?>
+                                        <!-- START POLL ITEM NOT VOTED -->
+                                        <div class="timeline-item timeline-item-right">
+                                            <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
+                                            <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
+                                            <div class="timeline-item-content">
+                                                <div class="timeline-heading">
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
+                                                    <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                                </div>
+                                                <form action="handlers/ops.php" method="post">
+                                                <div class="timeline-body comments">
+                                                  <div class="row">
+                                                    <?php
+                                                    //Display all the Options for the Poll
+                                                    for ($i=0; $i < count($pollOptions) ; $i++) {
+                                                      $sql_plimage = "SELECT pl_ref_option, pl_im_name FROM poll_imagine WHERE pl_ref_id = $poll_id AND pl_ref_option = $i";
+                                                      $success_plimage = mysqli_query($link, $sql_plimage);
+                                                      if ($success_plimage->num_rows > 0) {
+                                                        while ($pl_row = $success_plimage->fetch_assoc()) { ?>
+                                                          <div class="col-md-6">
+                                                              <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
+                                                                  <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
+                                                              </a>
+                                                              <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                          </div>
+                                                     <?php
+                                                        }
+                                                      }
+                                                      else {
+                                                        ?>
+                                                        <div class="col-md-6">
+                                                            <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                        </div>
+                                                     <?php
+                                                       }
+                                                     }
+                                                     ?>
+                                               </div>
+                                                </div>
+                                                <div class="modal-footer" style="clear: both;">
+                                                    <!-- Submit ID of Poll -->
+                                                    <input type="hidden" name="id" value="<?php echo $poll['p_id']; ?>"/>
+                                                    <!-- Submit User's ID -->
+                                                    <input type="hidden" name="user_id" value="<?php echo $user_id?>">
+                                                    <input type="hidden" name="username" value="<?php echo $username;?>">
+                                                    <button name="pollvote" class="btn btn-default btn-warning col-md-1 pull-right" type="submit"><span class="fa fa-send"></span>Vote</button>
+                                                </div>
+                                              </form>
+                                            </div>
+                                        </div>
+                                        <!-- END POLL ITEM NOT VOTED -->
+                                        <?php
+                                            }
+                                            if ($voted == "y") {
+                                        ?>
+                                        <!-- START POLL ITEM VOTED -->
+                                        <div class="timeline-item timeline-item-right">
+                                            <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
+                                            <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
+                                            <div class="timeline-item-content">
+                                                <div class="timeline-heading">
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
+                                                    <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                                </div>
+                                                <div class="timeline-body comments">
+                                                  <div class="row">
+                                                         <?php
+                                                         //Display all the Options for the Poll
+                                                         for ($i=0; $i < count($pollOptions) ; $i++) {
+                                                           $votePercent = round(($votes[$i]/$poll['p_voters'])*100);
+                                                           $sql_plimage = "SELECT pl_ref_option, pl_im_name FROM poll_imagine WHERE pl_ref_id = $poll_id AND pl_ref_option = $i";
+                                                           $success_plimage = mysqli_query($link, $sql_plimage);
+                                                           if ($success_plimage->num_rows > 0) {
+                                                             while ($pl_row = $success_plimage->fetch_assoc()) { ?>
+                                                               <div class="col-md-6">
+                                                                   <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
+                                                                       <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
+                                                                   </a>
+                                                                   <div class="progress">
+                                                                     <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
+                                                                         <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                                     </div>
+                                                                   </div>
+                                                               </div>
+                                                          <?php
+                                                             }
+                                                           }
+                                                           else {
+                                                             ?>
+                                                             <div class="col-md-6">
+                                                                <div class="progress">
+                                                                     <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
+                                                                         <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                          <?php
+                                                            }
+                                                          }
+                                                          ?>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END TIMELINE ITEM -->
+                                        <?php
+                                            }
                                           }
-                                         ?>
+                                        }
+                                        }
 
-
-                                     </div>
-                                 </div>
-
-                                 <!-- END TIMELINE ITEM -->
-                                <?php
                                       }
 
                                     }
@@ -587,6 +770,6 @@
 <?php
   }
   else {
-    header('location:login.php');
+    header('location:hr.php');
   }
 ?>

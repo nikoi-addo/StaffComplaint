@@ -250,7 +250,7 @@
                                     <!-- START POLL TIMELINE ITEM -->
                                     <?php
                                       //Query to select polls that have not expired
-                                      $sql_polldisplay = "SELECT * FROM poll WHERE p_timeout > $timely ORDER BY p_date DESC";
+                                      $sql_polldisplay = "SELECT * FROM poll WHERE date_stop_display > $timely ORDER BY date_created DESC";
                                       $success_polldisplay = mysqli_query($link, $sql_polldisplay);
                                       if($success_polldisplay->num_rows > 0){
                                       while ($poll = $success_polldisplay->fetch_assoc()) {
@@ -260,7 +260,7 @@
                                         $poll_id = $poll['p_id'];?>
                                         <!-- START POLL ITEM VOTED -->
                                         <div class="timeline-item timeline-item-right">
-                                            <div class="timeline-item-info"><?php echo date("d M G:i", $poll['p_date']); ?></div>
+                                            <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
@@ -275,26 +275,42 @@
                                                     <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                                 </div>
                                                 <div class="timeline-body comments">
-                                                    <div class="comment-item">
-                                                       <div class="form-group">
+                                                  <div class="row">
                                                          <?php
                                                          //Display all the Options for the Poll
                                                          for ($i=0; $i < count($pollOptions) ; $i++) {
                                                            $votePercent = round(($votes[$i]/$poll['p_voters'])*100);
-                                                          ?>
-                                                           <div class="col-md-6">
-                                                              <div class="progress">
-                                                                   <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
-                                                                       <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                           $sql_plimage = "SELECT pl_ref_option, pl_im_name FROM poll_imagine WHERE pl_ref_id = $poll_id AND pl_ref_option = $i";
+                                                           $success_plimage = mysqli_query($link, $sql_plimage);
+                                                           if ($success_plimage->num_rows > 0) {
+                                                             while ($pl_row = $success_plimage->fetch_assoc()) { ?>
+                                                               <div class="col-md-6">
+                                                                   <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
+                                                                       <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
+                                                                   </a>
+                                                                   <div class="progress">
+                                                                     <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
+                                                                         <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                                     </div>
                                                                    </div>
                                                                </div>
-                                                           </div>
                                                           <?php
+                                                             }
+                                                           }
+                                                           else {
+                                                             ?>
+                                                             <div class="col-md-6">
+                                                                <div class="progress">
+                                                                     <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">
+                                                                         <b style="color: black;"><?php echo "$votePercent";  ?>%  <?php echo $pollOptions[$i]; ?></b>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                          <?php
+                                                            }
                                                           }
                                                           ?>
-
-                                                       </div>
-                                                    </div>
+                                                  </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -340,7 +356,7 @@
 
                                     <?php
                                         //Complaint sql query
-                                        $sql_complaintdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $timely ORDER BY c_date_created DESC";
+                                        $sql_complaintdisplay = "SELECT * FROM complaints WHERE date_stop_display > $timely ORDER BY date_created DESC";
                                         //Execution of Complaint Query
                                         $success_complaintdisplay = mysqli_query($link, $sql_complaintdisplay);
 
@@ -350,7 +366,7 @@
 
                                     <!-- START TIMELINE ITEM -->
                                      <div class="timeline-item timeline-item-right">
-                                         <div class="timeline-item-info"> <?php echo date("d M G:i", $rows['c_date_created']); ?> </div>
+                                         <div class="timeline-item-info"> <?php echo date("d M G:i", $rows['date_created']); ?> </div>
                                          <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                          <div class="timeline-item-content">
                                              <div class="timeline-heading">
@@ -485,9 +501,9 @@
                                                          <!-- Pass complaint Information also hidden -->
                                                          <input type="hidden" name="complaint_value" value="<?php echo $rows['c_value']; ?> ">
                                                          <input type="hidden" name="complaint_division" value="<?php echo $rows['c_division']; ?> ">
-                                                         <input type="hidden" name="complaint_date_created" value="<?php echo $rows['c_date_created']; ?> ">
+                                                         <input type="hidden" name="complaint_date_created" value="<?php echo $rows['date_created']; ?> ">
                                                          <input type="hidden" name="complaint_ip_address" value="<?php echo $rows['c_ip_address']; ?> ">
-                                                         <input type="hidden" name="complaint_date_stop_display" value="<?php echo $rows['c_date_stop_display']; ?> ">
+                                                         <input type="hidden" name="complaint_date_stop_display" value="<?php echo $rows['date_stop_display']; ?> ">
                                                          <input type="hidden" name="complaint_image_name1" value="<?php echo $rows['c_image_name1']; ?> ">
                                                          <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?> ">
 
@@ -643,6 +659,6 @@
   <?php
   }
   else {
-    header('location:login.php');
+    header('location:index.php');
   }
 ?>

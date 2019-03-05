@@ -41,7 +41,7 @@
           $stop_day = $n_responsetime;
         }
 
-        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, c_date_created, c_ip_address, c_date_stop_display, u_fname, u_id) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$username', $user_id)";
+        $sql_insertcomplaint = "INSERT INTO complaints(c_value, c_division, date_created, c_ip_address, date_stop_display, u_fname, u_id) VALUES('$problem', '$division', $cur_time, '$ipaddress', $stop_display, '$username', $user_id)";
 
         //Insert Complaint into Database
         $success_insertcomplaint = mysqli_query($link, $sql_insertcomplaint);
@@ -122,7 +122,7 @@
         $complaint_date_stop_display = $_POST['complaint_date_stop_display'];
 
         //Move complaint to del_complaint table
-        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display)";
+        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, date_created, c_ip_address, date_stop_display) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display)";
         //Delete complaint from complaint table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
         //Update image table to show image as deleted
@@ -230,25 +230,29 @@
         }
         $number_options = count(explode("|", $opinion1));
         // $number_options = 2;
-        $sql_insertpoll = "INSERT INTO poll(p_question, p_date, p_options, p_votes, p_number_options, p_timeout, u_id, u_fname) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, $poll_timeout, $user_id, '$username')";
+        $sql_insertpoll = "INSERT INTO poll(p_question, date_created, p_options, p_votes, p_number_options, date_stop_display, u_id, u_fname) VALUES('$question', $cur_time, '$opinion1', '$d_votes', $number_options, $poll_timeout, $user_id, '$username')";
         $success = mysqli_query($link, $sql_insertpoll);
         if ($success) {
           $last_insert_id = mysqli_insert_id($link);
+          //Identify poll option with specific image
+          $i = 0;
           foreach ($_FILES["pollimages"]["error"] as $key => $error) {
-
               if ($error == UPLOAD_ERR_OK) {
                   $tmp_name = $_FILES["pollimages"]["tmp_name"][$key];
-                  // basename() may prevent filesystem traversal attacks;
-                  // further validation/sanitation of the filename may be appropriate
                   $name = time() . '_pl_' .basename($_FILES["pollimages"]["name"][$key]);
                   if (move_uploaded_file($tmp_name, "../uploads/$name")) {
-                    $sql_insertimage = "INSERT INTO imagine(im_name, ref_id, ref_name) VALUES ('$name', $last_insert_id, 'poll')";
+                    $sql_insertimage = "INSERT INTO poll_imagine(pl_im_name, pl_ref_id, pl_ref_option) VALUES ('$name', $last_insert_id, $i)";
                     mysqli_query($link, $sql_insertimage);
                   }
               }
-
+              $i++;
           }
+        if ($username == "HUMAN RESOURCE DIVISION") {
+          header('location:../hr.php');
+        }
+        else {
           header('location:../index.php');
+        }
 
         }
       }
@@ -315,7 +319,7 @@
         $username = $_POST['username'];
 
         //Move complaint to del_poll table
-        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, p_date, p_options, p_votes, p_number_options, p_timeout, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date. $u_id, '$username')";
+        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, p_date, p_options, p_votes, p_number_options, date_stop_display, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date. $u_id, '$username')";
         //Delete complaint from poll table
         $sql_delpollfromtable = "DELETE FROM poll WHERE p_id = $poll_id";
         //Execute move complaint
@@ -385,7 +389,7 @@
       // }
 
       #########################################################
-      ###################### SIGNUP ####################
+      ########################## SIGNUP #######################
       #########################################################
       if (isset($_POST['signup'])) {
         $user_email = $_POST['user_email'];
@@ -410,6 +414,7 @@
           header("location:../signup.php");
         }
       }
+
 
       #########################################################
       ###################### USER LOGIN ####################
