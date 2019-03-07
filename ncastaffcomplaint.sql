@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2019 at 11:57 PM
+-- Generation Time: Mar 07, 2019 at 09:30 PM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -167,33 +167,35 @@ CREATE TABLE `del_complaints` (
   `c_division` varchar(64) NOT NULL,
   `date_created` double NOT NULL,
   `c_ip_address` varchar(64) NOT NULL,
-  `date_stop_display` int(16) NOT NULL
+  `date_stop_display` int(16) NOT NULL,
+  `u_fname` varchar(255) NOT NULL,
+  `u_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `del_complaints`
 --
 
-INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `date_created`, `c_ip_address`, `date_stop_display`) VALUES
-(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596),
-(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713),
-(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350),
-(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433),
-(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899),
-(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886),
-(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985),
-(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677),
-(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213),
-(20, 74, ' helpers ', ' Select Division (optional) ', 1550576149, ' ::1 ', 1551051349),
-(21, 75, ' Laughter is healthy  ', ' Information Technology (IT) Division ', 1550577038, ' 192.168.43.137 ', 1551052238),
-(22, 81, ' Index me ', ' Policy, Strategy and Innovation Division ', 1550599720, ' ::1 ', 1551074920),
-(23, 78, ' Three ', ' Finance Division ', 1550591483, ' 192.168.43.137 ', 1551066683),
-(24, 80, '', ' Regulatory Administration Division ', 1550594793, ' 192.168.43.137 ', 1551069993),
-(25, 79, '', ' Select Division (optional) ', 1550591968, ' 192.168.43.137 ', 1551067168),
-(26, 85, '', ' Select Division (optional) ', 1550604219, ' 192.168.43.137 ', 1551079419),
-(27, 84, '', ' Select Division (optional) ', 1550604175, ' ::1 ', 1551079375),
-(28, 83, '', ' Select Division (optional) ', 1550604164, ' 192.168.43.137 ', 1551079364),
-(29, 77, '', ' Cybersecurity Division ', 1550581588, ' 192.168.43.137 ', 1551056788);
+INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `date_created`, `c_ip_address`, `date_stop_display`, `u_fname`, `u_id`) VALUES
+(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596, 'HUMAN RESOURCE DIVISION', 0),
+(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713, 'HUMAN RESOURCE DIVISION', 0),
+(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350, 'HUMAN RESOURCE DIVISION', 0),
+(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433, 'HUMAN RESOURCE DIVISION', 0),
+(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899, 'HUMAN RESOURCE DIVISION', 0),
+(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886, 'HUMAN RESOURCE DIVISION', 0),
+(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, 'HUMAN RESOURCE DIVISION', 0),
+(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677, 'HUMAN RESOURCE DIVISION', 0),
+(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213, 'HUMAN RESOURCE DIVISION', 0),
+(20, 74, ' helpers ', ' Select Division (optional) ', 1550576149, ' ::1 ', 1551051349, 'HUMAN RESOURCE DIVISION', 0),
+(21, 75, ' Laughter is healthy  ', ' Information Technology (IT) Division ', 1550577038, ' 192.168.43.137 ', 1551052238, 'HUMAN RESOURCE DIVISION', 0),
+(22, 81, ' Index me ', ' Policy, Strategy and Innovation Division ', 1550599720, ' ::1 ', 1551074920, 'HUMAN RESOURCE DIVISION', 0),
+(23, 78, ' Three ', ' Finance Division ', 1550591483, ' 192.168.43.137 ', 1551066683, 'HUMAN RESOURCE DIVISION', 0),
+(24, 80, '', ' Regulatory Administration Division ', 1550594793, ' 192.168.43.137 ', 1551069993, 'HUMAN RESOURCE DIVISION', 0),
+(25, 79, '', ' Select Division (optional) ', 1550591968, ' 192.168.43.137 ', 1551067168, 'HUMAN RESOURCE DIVISION', 0),
+(26, 85, '', ' Select Division (optional) ', 1550604219, ' 192.168.43.137 ', 1551079419, 'HUMAN RESOURCE DIVISION', 0),
+(27, 84, '', ' Select Division (optional) ', 1550604175, ' ::1 ', 1551079375, 'HUMAN RESOURCE DIVISION', 0),
+(28, 83, '', ' Select Division (optional) ', 1550604164, ' 192.168.43.137 ', 1551079364, 'HUMAN RESOURCE DIVISION', 0),
+(29, 77, '', ' Cybersecurity Division ', 1550581588, ' 192.168.43.137 ', 1551056788, 'HUMAN RESOURCE DIVISION', 0);
 
 -- --------------------------------------------------------
 
@@ -211,17 +213,19 @@ CREATE TABLE `del_poll` (
   `p_number_options` tinyint(4) NOT NULL,
   `date_stop_display` double NOT NULL,
   `p_voters` int(11) NOT NULL,
-  `p_last_vote_date` double NOT NULL
+  `p_last_vote_date` double NOT NULL,
+  `u_id` int(11) NOT NULL DEFAULT '0',
+  `u_fname` varchar(128) NOT NULL DEFAULT 'HUMAN RESOURCE DIVISION'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `del_poll`
 --
 
-INSERT INTO `del_poll` (`del_p_id`, `p_id`, `p_question`, `date_created`, `p_options`, `p_votes`, `p_number_options`, `date_stop_display`, `p_voters`, `p_last_vote_date`) VALUES
-(18, 68, 'Time and time again', 1551130091, 'Let us see|Let us know ', '0|0 ', 2, 1551216491, 0, 0),
-(19, 69, 'Last time', 1551130222, 'Time is running |Debugging is not even star ', '0|0 ', 2, 1551216622, 0, 0),
-(20, 70, 'I love you .....Reply as boyfriend.', 1551132081, 'I love you too|Hell no ', '1|0 ', 2, 1551304881, 1, 1551133212);
+INSERT INTO `del_poll` (`del_p_id`, `p_id`, `p_question`, `date_created`, `p_options`, `p_votes`, `p_number_options`, `date_stop_display`, `p_voters`, `p_last_vote_date`, `u_id`, `u_fname`) VALUES
+(18, 68, 'Time and time again', 1551130091, 'Let us see|Let us know ', '0|0 ', 2, 1551216491, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
+(19, 69, 'Last time', 1551130222, 'Time is running |Debugging is not even star ', '0|0 ', 2, 1551216622, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
+(20, 70, 'I love you .....Reply as boyfriend.', 1551132081, 'I love you too|Hell no ', '1|0 ', 2, 1551304881, 1, 1551133212, 0, 'HUMAN RESOURCE DIVISION');
 
 -- --------------------------------------------------------
 

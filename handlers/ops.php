@@ -120,9 +120,11 @@
         $complaint_date_created = $_POST['complaint_date_created'];
         $complaint_ip_address = $_POST['complaint_ip_address'];
         $complaint_date_stop_display = $_POST['complaint_date_stop_display'];
+        $username = $_POST['username'];
+        $user_id = $_POST['user_id'];
 
         //Move complaint to del_complaint table
-        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, date_created, c_ip_address, date_stop_display) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display)";
+        $sql_movecomplaint = "INSERT INTO del_complaints(c_id, c_value, c_division, date_created, c_ip_address, date_stop_display, u_fname, u_id) VALUES($complaint_id, '$complaint_value', '$complaint_division', $complaint_date_created, '$complaint_ip_address', $complaint_date_stop_display, '$username', $user_id)";
         //Delete complaint from complaint table
         $sql_delcompfromtable = "DELETE FROM complaints WHERE c_id = $complaint_id";
         //Update image table to show image as deleted
@@ -319,7 +321,7 @@
         $username = $_POST['username'];
 
         //Move complaint to del_poll table
-        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, p_date, p_options, p_votes, p_number_options, date_stop_display, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date. $u_id, '$username')";
+        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, date_created, p_options, p_votes, p_number_options, date_stop_display, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date. $u_id, '$username')";
         //Delete complaint from poll table
         $sql_delpollfromtable = "DELETE FROM poll WHERE p_id = $poll_id";
         //Execute move complaint

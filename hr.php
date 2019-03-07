@@ -506,7 +506,8 @@
                                                          <input type="hidden" name="complaint_date_stop_display" value="<?php echo $rows['date_stop_display']; ?> ">
                                                          <input type="hidden" name="complaint_image_name1" value="<?php echo $rows['c_image_name1']; ?> ">
                                                          <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?> ">
-
+                                                         <input type="hidden" name="user_id" value="<?php echo $rows['u_id']; ?>">
+                                                         <input type="hidden" name="username" value="<?php echo $rows['u_fname'] ?>">
                                                          <button class="btn btn-danger btn-lg" type="submit">Yes</a>
                                                          <button class="btn btn-default btn-lg mb-control-close">No</button>
                                                          </form>
