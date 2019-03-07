@@ -330,11 +330,11 @@
                                                           <form class="" action="handlers/ops.php" method="post">
                                                             <!-- Pass complaint Information also hidden -->
                                                             <input type="hidden" name="poll_question" value="<?php echo $poll['p_question']; ?>">
-                                                            <input type="hidden" name="poll_date" value="<?php echo $poll['p_date']; ?> ">
+                                                            <input type="hidden" name="poll_date" value="<?php echo $poll['date_created']; ?> ">
                                                             <input type="hidden" name="poll_options" value="<?php echo $poll['p_options']; ?> ">
                                                             <input type="hidden" name="poll_votes" value="<?php echo $poll['p_votes']; ?> ">
                                                             <input type="hidden" name="poll_number_options" value="<?php echo $poll['p_number_options']; ?> ">
-                                                            <input type="hidden" name="poll_timeout" value="<?php echo $poll['p_timeout']; ?> ">
+                                                            <input type="hidden" name="poll_timeout" value="<?php echo $poll['date_stop_display']; ?> ">
                                                             <input type="hidden" name="poll_voters" value="<?php echo $poll['p_voters']; ?> ">
                                                             <input type="hidden" name="poll_last_vote_date" value="<?php echo $poll['p_last_vote_date']; ?> ">
                                                             <input type="hidden" name="poll_id" value="<?php echo $poll_id; ?>">

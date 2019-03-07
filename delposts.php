@@ -162,11 +162,11 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                   </td>
                                                   <td><?php
                                                     //Display time not exceeded
-                                                    if ($cur_time < $rows['c_date_stop_display']) {
+                                                    if ($cur_time < $rows['date_stop_display']) {
                                                       echo "<span class='label label-success'>Active</span>";
                                                     }
                                                     //Display time exceeded
-                                                    elseif ($cur_time > $rows['c_date_stop_display']){
+                                                    elseif ($cur_time > $rows['date_stop_display']){
                                                       echo "<span class='label label-danger'>Inactive</span>";
                                                     } ?>
                                                     </td>

@@ -141,7 +141,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                         <tbody>
                                           <?php
                                             //Select only those whose stop time has elapsed
-                                            $sql_delpolldisplay = "SELECT * FROM poll WHERE p_timeout < $curr_time ORDER BY p_date DESC";
+                                            $sql_delpolldisplay = "SELECT * FROM poll WHERE date_stop_display < $curr_time ORDER BY date_created DESC";
                                             $success_delpolldisplay = mysqli_query($link, $sql_delpolldisplay);
                                             $cur_time = time();
                                             if ($success_delpolldisplay->num_rows > 0) {
@@ -153,7 +153,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                   <td><strong><?php echo $rows['p_question']; ?></strong></td>
                                                   <td><?php echo $rows['p_options']; ?></td>
                                                   <td><?php echo "<span class='label label-danger'>Inactive</span>";?></td>
-                                                  <td><?php echo date("M d, Y @ h:i a", $rows['p_date']); ?></td>
+                                                  <td><?php echo date("M d, Y @ h:i a", $rows['date_created']); ?></td>
                                                   <td><?php echo date("M d, Y @ h:i a", $rows['p_last_vote_date']); ?></td>
                                                   <td><?php echo $rows['p_voters']; ?></td>
                                                 </tr>

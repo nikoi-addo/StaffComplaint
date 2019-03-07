@@ -147,7 +147,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                         <tbody>
                                                 <?php
                                                   //Union of the two tables
-                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, c_date_created, c_ip_address, c_date_stop_display FROM del_complaints ORDER BY c_date_created";
+                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM del_complaints ORDER BY c_date_created";
                                                   $success_adminpostdisplay = mysqli_query($link, $sql_adminpostdisplay);
 
                                                   if($success_adminpostdisplay->num_rows > 0){
@@ -169,11 +169,11 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                           </td>
                                                           <td><?php
                                                             //Display time not exceeded
-                                                            if ($curr_time < $rows['c_date_stop_display']) {
+                                                            if ($curr_time < $rows['date_stop_display']) {
                                                               echo "<span class='label label-success'>Active</span>";
                                                             }
                                                             //Display time exceeded
-                                                            elseif ($curr_time > $rows['c_date_stop_display']){
+                                                            elseif ($curr_time > $rows['date_stop_display']){
                                                               echo "<span class='label label-danger'>Inactive</span>";
                                                             }
                                                             //Check and Display if the item is deleted

@@ -153,16 +153,16 @@
                                                   <td><?php echo $rows['p_options']; ?></td>
                                                   <td><?php
                                                     //Display time not exceeded
-                                                    if ($cur_time < $rows['p_timeout']) {
+                                                    if ($cur_time < $rows['date_stop_display']) {
                                                       echo "<span class='label label-success'>Active</span>";
                                                     }
                                                     //Display time exceeded
-                                                    elseif ($cur_time > $rows['p_timeout']){
+                                                    elseif ($cur_time > $rows['date_stop_display']){
                                                       echo "<span class='label label-danger'>Inactive</span>";
                                                     } ?>
                                                     </td>
-                                                    <td><?php echo date("M d, Y @ h:i a", $rows['p_date']); ?></td>
-                                                    <td><?php echo date("M d, Y @ h:i a", $rows['p_timeout']); ?></td>
+                                                    <td><?php echo date("M d, Y @ h:i a", $rows['date_created']); ?></td>
+                                                    <td><?php echo date("M d, Y @ h:i a", $rows['date_stop_display']); ?></td>
                                                     <td><?php echo $rows['p_voters']; ?></td>
                                                 </tr>
                                           <?php

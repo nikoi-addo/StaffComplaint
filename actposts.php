@@ -175,7 +175,7 @@ session_start();
                                         <tbody>
                                           <?php
                                             //Select only those whose time has not elapsed.
-                                            $sql_actpostdisplay = "SELECT * FROM complaints WHERE c_date_stop_display > $curr_time ORDER BY c_date_created DESC";
+                                            $sql_actpostdisplay = "SELECT * FROM complaints WHERE date_stop_display > $curr_time ORDER BY date_created DESC";
                                             $success_actpostdisplay = mysqli_query($link, $sql_actpostdisplay);
                                             if ($success_actpostdisplay->num_rows > 0) {
                                               $i = 1;
@@ -198,11 +198,11 @@ session_start();
                                             </td>
                                             <td><?php
                                               //Display time not exceeded
-                                              if ($curr_time < $rows['c_date_stop_display']) {
+                                              if ($curr_time < $rows['date_stop_display']) {
                                                 echo "<span class='label label-success'>Active</span>";
                                               }
                                               //Display time exceeded
-                                              elseif ($curr_time > $rows['c_date_stop_display']){
+                                              elseif ($curr_time > $rows['date_stop_display']){
                                                 echo "<span class='label label-danger'>Inactive</span>";
                                               } ?>
                                               </td>
