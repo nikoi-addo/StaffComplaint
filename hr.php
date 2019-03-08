@@ -264,7 +264,7 @@
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
-                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#">The Human Resource Division</a> added a poll
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
                                                     <div class="pull-right">
                                                     <!-- Delete button -->
                                                     <button href="#" data-box="#mb-delpoll<?php echo $poll_id; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>
@@ -370,7 +370,7 @@
                                          <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                          <div class="timeline-item-content">
                                              <div class="timeline-heading">
-                                                 <img src="assets/images/users/avatar.jpg"/> <b>Anonymus</b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> shared an idea
+                                                 <img src="assets/images/users/avatar.jpg"/> <b><?php echo $rows['u_fname']; ?></b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> shared an idea
                                                  <div class="pull-right">
                                                  <!-- Delete button -->
                                                  <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>

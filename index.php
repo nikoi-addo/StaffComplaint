@@ -3,9 +3,9 @@
   include 'handlers/dbcon.php';
   $timely = time();
 
-  if (isset($_SESSION['loggedin']) && isset($_SESSION['u_id']) && !isset($_SESSION['admin'])) {
-    $user_id = $_SESSION['u_id'];
-    $username = $_SESSION['username'];
+  $user_id = $_SESSION['u_id'];
+  $username = $_SESSION['username'];
+  if (isset($_SESSION['loggedin']) && isset($_SESSION['u_id']) && $user_id != 0) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -770,6 +770,6 @@
 <?php
   }
   else {
-    header('location:hr.php');
+    header('location:login.php');
   }
 ?>
