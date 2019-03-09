@@ -320,9 +320,9 @@
         $u_id = $_POST['user_id'];
         $username = $_POST['username'];
 
-        //Move complaint to del_poll table
-        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, date_created, p_options, p_votes, p_number_options, date_stop_display, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date. $u_id, '$username')";
-        //Delete complaint from poll table
+        //Move Pol to del_poll table
+        $sql_movepoll = "INSERT INTO del_poll(p_id, p_question, date_created, p_options, p_votes, p_number_options, date_stop_display, p_voters, p_last_vote_date, u_id, u_fname) VALUES($poll_id, '$poll_question', $poll_date, '$poll_options', '$poll_votes', $poll_number_options, $poll_timeout, $poll_voters, $poll_last_vote_date, $u_id, '$username')";
+        //Delete Poll from poll table
         $sql_delpollfromtable = "DELETE FROM poll WHERE p_id = $poll_id";
         //Execute move complaint
         $success_movepoll = mysqli_query($link, $sql_movepoll);

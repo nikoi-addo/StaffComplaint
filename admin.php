@@ -147,7 +147,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                         <tbody>
                                                 <?php
                                                   //Union of the two tables
-                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM del_complaints ORDER BY c_date_created";
+                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM del_complaints ORDER BY date_created";
                                                   $success_adminpostdisplay = mysqli_query($link, $sql_adminpostdisplay);
 
                                                   if($success_adminpostdisplay->num_rows > 0){
@@ -185,7 +185,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                             ?>
                                                             </td>
                                                             <td><?php echo $rows['c_ip_address']; ?></td>
-                                                            <td><?php echo date("M d, Y @ h:i a", $rows['c_date_created']); ?></td>
+                                                            <td><?php echo date("M d, Y @ h:i a", $rows['date_created']); ?></td>
                                                             <td>Yet to decide</td>
                                                       </tr>
                                                   <?php
@@ -228,7 +228,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="logOut.php" class="btn btn-success btn-lg">Yes</a>
+                            <a href="logout.php" class="btn btn-success btn-lg">Yes</a>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>
