@@ -286,7 +286,7 @@
                                                              while ($pl_row = $success_plimage->fetch_assoc()) { ?>
                                                                <div class="col-md-6">
                                                                    <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
-                                                                       <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
+                                                                       <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" style="width: auto; height: 200px;"/>
                                                                    </a>
                                                                    <div class="progress">
                                                                      <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo "$votePercent"; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $votePercent;  ?>%">

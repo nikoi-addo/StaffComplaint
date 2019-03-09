@@ -85,10 +85,10 @@
                     <div class="content-frame-body">
                           <div class="panel panel-default">
                               <div class="panel-heading">
-                                  <div class="pull-left">
+                                  <!--<div class="pull-left">
                                       <img src="assets/images/users/avatar.jpg" class="panel-title-image" alt="John Doe"/>
                                       <h3 class="panel-title"><?php echo $rows['m_division']; ?></h3>
-                                  </div>
+                                  </div>-->
 
                               </div>
                               <div class="panel-body">
