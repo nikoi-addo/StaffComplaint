@@ -76,6 +76,17 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                    <li>
                        <a href="actpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
                    </li>
+
+                   <li class="xn-title"><b>Staff Polls Records</b></li>
+                     <li>
+                        <a href="staffdelpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
+                    </li>
+                     <li>
+                        <a href="staffinactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
+                    </li>
+                    <li>
+                        <a href="staffactpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
+                    </li>
                   </ul>
 
 
