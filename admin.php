@@ -123,12 +123,12 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 
                     <ul class="breadcrumb">
 
-                    <li class="active">Deleted . Active . Inactive Database for Admin</li>
+                    <li class="active">Admin</li>
                 </ul>
 
                 <!-- PAGE TITLE -->
-                <div class="page-title">
-                    <h2><span class="fa fa-users"></span> Admin Table for <b>Ideas</b></h2>
+                <div class="page-title" style="padding-left: 400px;">
+                    <h2><span class="fa fa-users"></span> Welcome to <b>Ideas Portal</b></h2>
                 </div>
                 <!-- END PAGE TITLE -->
 
@@ -138,86 +138,74 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" >
 
-                            <!-- START DATATABLE EXPORT -->
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <table id="customers2" class="table datatable">
-                                        <thead>
-                                          <tr>
-                                              <th width="50">id</th>
-                                              <th width="300">Post</th>
-                                              <th width="100">Reply from HR</th>
-                                              <th width="100">Status</th>
-                                              <th width="100">IP Address</th>
-                                              <th width="100">Date</th>
-                                              <th width="100">Actions</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                                <?php
-                                                  //Union of the two tables
-                                                  $sql_adminpostdisplay = "SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM complaints UNION ALL SELECT c_id, c_value, c_division, date_created, c_ip_address, date_stop_display FROM del_complaints ORDER BY date_created";
-                                                  $success_adminpostdisplay = mysqli_query($link, $sql_adminpostdisplay);
-
-                                                  if($success_adminpostdisplay->num_rows > 0){
-                                                    while ($rows = $success_adminpostdisplay->fetch_assoc()){
-                                                      $id = $rows['c_id'];
-                                                      $sql_commentpresent = "SELECT * FROM comments WHERE c_id = '$id'";
-                                                      $success_commentpresent = mysqli_query($link, $sql_commentpresent);
-                                                      ?>
-                                                      <tr id="trow_1<?php echo $id; ?>">
-                                                          <td class="text-center"><?php echo $id; ?></td>
-                                                          <td><strong><?php echo $rows['c_value']; ?></strong></td>
-                                                          <td><?php
-                                                          if ($success_commentpresent->num_rows > 0) {?>
-                                                              <span class='label label-success'>Responded</span>
-                                                          <?php }
-                                                          elseif ($success_commentpresent->num_rows == 0) {?>
-                                                            <span class='label label-danger'>Not Responded</span>
-                                                          <?php } ?>
-                                                          </td>
-                                                          <td><?php
-                                                            //Display time not exceeded
-                                                            if ($curr_time < $rows['date_stop_display']) {
-                                                              echo "<span class='label label-success'>Active</span>";
-                                                            }
-                                                            //Display time exceeded
-                                                            elseif ($curr_time > $rows['date_stop_display']){
-                                                              echo "<span class='label label-danger'>Inactive</span>";
-                                                            }
-                                                            //Check and Display if the item is deleted
-                                                            $sql_checkdelete = "SELECT * FROM del_complaints WHERE c_id = $id";
-                                                            $success_checkdelete = mysqli_query($link, $sql_checkdelete);
-                                                            if ($success_checkdelete->num_rows > 0) {
-                                                              echo "<span class='label label-danger'>Deleted</span>";
-                                                            }
-                                                            ?>
-                                                            </td>
-                                                            <td><?php echo $rows['c_ip_address']; ?></td>
-                                                            <td><?php echo date("M d, Y @ h:i a", $rows['date_created']); ?></td>
-                                                            <td>Yet to decide</td>
-                                                      </tr>
-                                                  <?php
-                                                    }
-                                                  }
-                                                  else {
-                                                    echo mysqli_error($link);
-                                                  }
-
-                                                ?>
-                                              </tbody>
-                                    </table>
-
+                            <div class="col-md-4">
+                            
+                            <!-- START WIDGET MESSAGES -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-envelope"></span>
+                                </div>                             
+                                <div class="widget-data">
+                                    <div class="widget-int num-count">48</div>
+                                    <div class="widget-title">New iDea</div>
+                                    <div class="widget-subtitle">Number OF iDEAS Generated</div>
+                                </div>      
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                                 </div>
-                            </div>
-                            <!-- END DATATABLE EXPORT -->
-
-
-
+                            </div>                            
+                            <!-- END WIDGET MESSAGES -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET REGISTRED -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-user"></span>
+                                </div>
+                                <div class="widget-data">
+                                    <div class="widget-int num-count">375</div>
+                                    <div class="widget-title">Registred Staff</div>
+                                    <div class="widget-subtitle">On the iDeas Portal</div>
+                                </div>
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>                            
+                            </div>                            
+                            <!-- END WIDGET REGISTRED -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET CLOCK -->
+                            <div class="widget widget-info widget-padding-sm">
+                                <div class="widget-big-int plugin-clock">00:00</div>                            
+                                <div class="widget-subtitle plugin-date">Loading...</div>
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>                            
+                                <div class="widget-buttons widget-c3">
+                                    <div class="col">
+                                        <a href="#"><span class="fa fa-clock-o"></span></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#"><span class="fa fa-bell"></span></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#"><span class="fa fa-calendar"></span></a>
+                                    </div>
+                                </div>                            
+                            </div>                        
+                            <!-- END WIDGET CLOCK -->
+                            
                         </div>
                     </div>
+                    <!-- END WIDGETS -->                    
+                    
+                    
 
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->
