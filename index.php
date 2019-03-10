@@ -88,7 +88,7 @@
                                 <?php }
                                 }
                                 else {
-                                  echo "Error here";
+                                  echo "Messages connection Problem";
                                   echo mysqli_error($link);
                                 }
 
