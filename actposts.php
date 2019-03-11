@@ -252,7 +252,7 @@ session_start();
                                               } ?>
                                               </td>
                                               <td><?php echo $rows['c_ip_address']; ?></td>
-                                              <td><?php echo date("M d, Y @ h:i a", $rows['c_date_created']); ?></td>
+                                              <td><?php echo date("M d, Y @ h:i a", $rows['date_created']); ?></td>
                                               <td>Yet to decide</td>
                                           </tr>
                                           <?php
