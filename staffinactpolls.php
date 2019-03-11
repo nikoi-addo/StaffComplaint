@@ -71,7 +71,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                     <li>
                        <a href="delpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                    </li>
-                    <li  class="active">
+                    <li>
                        <a href="inactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
                    </li>
                    <li>
@@ -82,7 +82,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                      <li>
                         <a href="staffdelpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                     </li>
-                     <li>
+                     <li  class="active">
                         <a href="staffinactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
                     </li>
                     <li>
@@ -152,7 +152,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                         <tbody>
                                           <?php
                                             //Select only those whose stop time has elapsed
-                                            $sql_delpolldisplay = "SELECT * FROM poll WHERE date_stop_display < $curr_time ORDER BY date_created DESC";
+                                            $sql_delpolldisplay = "SELECT * FROM poll WHERE date_stop_display < $curr_time AND u_id = 0 ORDER BY date_created DESC";
                                             $success_delpolldisplay = mysqli_query($link, $sql_delpolldisplay);
                                             $cur_time = time();
                                             if ($success_delpolldisplay->num_rows > 0) {

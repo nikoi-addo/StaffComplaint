@@ -9,6 +9,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
   <html lang="en">
 
 
+
   <head>
           <!-- META SECTION -->
           <title>Internal Complaint - Admin Active Posts</title>
@@ -74,7 +75,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                       <li>
                          <a href="inactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
                      </li>
-                     <li class="active">
+                     <li>
                          <a href="actpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
                      </li>
 
@@ -82,7 +83,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                      <li>
                         <a href="staffdelpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                     </li>
-                     <li>
+                     <li class="active">
                         <a href="staffinactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
                     </li>
                     <li>
@@ -152,7 +153,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                           <tbody>
                                             <?php
                                               //Select only those whose time has not elapsed.
-                                              $sql_actpolldisplay = "SELECT * FROM poll WHERE date_stop_display > $curr_time ORDER BY date_created DESC";
+                                              $sql_actpolldisplay = "SELECT * FROM poll WHERE date_stop_display > $curr_time AND u_id = 0 ORDER BY date_created DESC";
                                               $success_actpolldisplay = mysqli_query($link, $sql_actpolldisplay);
                                               if ($success_actpolldisplay->num_rows > 0) {
                                                 $i = 1;

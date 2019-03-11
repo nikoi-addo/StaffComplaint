@@ -312,6 +312,60 @@
                                                           ?>
                                                   </div>
                                                 </div>
+
+                                                <!-- Display comments for a  poll -->
+                                                <?php
+                                                 //Comment id
+                                                 $comment_id = $poll['p_id'];
+                                                 //Query for comment display
+                                                 $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                                 //Execution for comment display
+                                                 $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
+
+                                                 if ($success_commentdisplay->num_rows > 0) {
+                                                   while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                                 ?>
+                                                 <!-- Comments -->
+                                                   <div class="timeline-body comments">
+                                                     <div class="comment-item">
+                                                         <img src="assets/images/users/avatar.jpg"/>
+                                                         <p class="comment-head">
+                                                             <b>Human Resource Division</b>
+                                                              <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+                                                         </p>
+                                                         <!-- Comment from Database -->
+                                                         <p><?php echo $cm_rows['cm_value']; ?></p>
+
+                                                     </div>
+
+                                                 </div>
+                                                 <?php
+                                                   }
+
+                                                 }
+                                                ?>
+
+
+                                                <!-- Insert new comment for a poll -->
+                                                <div class="timeline-body comments">
+                                                 <div class="comment-write">
+                                                  <form action="handlers/ops.php" method="post">
+                                                    <input type="hidden" name="form_type" value="UploadComment">
+                                                    <input type="hidden" name="poll_id" value="<?php echo $poll['p_id']; ?>">
+                                                    <input type="hidden" name="comment_type" value="1">
+
+                                                    <div class="comment-write col-md-11">
+                                                      <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
+                                                      <?php
+                                                         if (isset($_GET['cmrsp']) && $_GET['rsp'] == $poll['p_id'] && $_GET['cmtyp'] == 0) {
+                                                         //Focus on the comment you just sent
+                                                         echo "autofocus";
+                                                         } ?> required>
+                                                     </div>
+                                                     <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                 </form>
+                                               </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- END TIMELINE ITEM -->
@@ -447,31 +501,12 @@
                                                <form action="handlers/ops.php" method="post" name>
                                                  <input type="hidden" name="form_type" value="UploadComment">
                                                  <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
+                                                 <input type="hidden" name="comment_type" value="0">
 
-                                                 <!-- Check if a comment has been submitted -->
-                                                 <?php
-                                                 // If comment is sent successfully
-                                                 // if (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 1) {
-                                                 //   $msg ="<div class='alert alert-success'>
-                                                 //     <center>Comment Sent!!!
-                                                 //     <a class='close' data-dismiss='alert'>&times;</a>
-                                                 //     </center>
-                                                 //   </div>";
-                                                 //   echo $msg;
-                                                 // }
-                                                 //If comment is not sent
-                                                 // elseif (isset($_GET['cmrsp']) && isset($_GET['rsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmrsp'] == 0) {
-                                                 //   $msg ="<div class='alert alert-danger'>
-                                                 //     <center>Unable to Upload Comment. Retry!!!
-                                                 //     <a class='close' data-dismiss='alert'>&times;</a>
-                                                 //     </center>
-                                                 //   </div>";
-                                                 //   echo $msg;
-                                                 // } ?>
                                                  <div class="comment-write col-md-11">
-                                                <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
+                                                   <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
                                                    <?php
-                                                      if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id']) {
+                                                      if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmtyp'] == 0) {
                                                       //Focus on the comment you just sent
                                                       echo "autofocus";
                                                       } ?> required>

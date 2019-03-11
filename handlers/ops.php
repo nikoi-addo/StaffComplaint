@@ -77,7 +77,7 @@
 
 
       #########################################################
-      ################# COMMENT ON A COMPLAINT ################
+      ################# COMMENT ON A COMPLAINT OR POLL ################
       #########################################################
 
       if ($form_type == 'UploadComment') {
@@ -86,20 +86,28 @@
         //Escape comments to take care of apostrophes in comment side
         $comment = mysqli_real_escape_string($link, $comment);
 
+        $comment_type = $_POST['comment_type'];
+
         //Complaint ID
-        $complaint_id = $_POST['complaint_id'];
+        if ($comment_type == 0) {
+          $idea_id = $_POST['complaint_id'];
+        }
+        //POll ID
+        elseif ($comment_type == 1) {
+          $idea_id = $_POST['poll_id'];
+        }
         //Query to Insert Comment in DB
-        $sql_uploadcomment = "INSERT INTO comments(cm_value, cm_ip_address, c_id, cm_date) VALUES('$comment', '$ipaddress', $complaint_id, $cur_time)";
+        $sql_uploadcomment = "INSERT INTO comments(cm_value, cm_ip_address, c_id, cm_date, cm_type) VALUES('$comment', '$ipaddress', $idea_id, $cur_time, $comment_type)";
         //Execute query
         $success_uploadcomment = mysqli_query($link, $sql_uploadcomment);
 
         if ($success_uploadcomment) {
           //Upload comment success
-          header("location:../hr.php?rsp=$complaint_id&cmrsp=1");
+          header("location:../hr.php?rsp=$idea_id&cmrsp=1&cm_typ=$comment_type");
         }
         else{
           //Error in comment success
-          header("location:../hr.php?rsp=$complaint_id&cmrsp=0");
+          header("location:../hr.php?rsp=$idea_id&cmrsp=0&cm_typ=$comment_type");
 
         }
       }

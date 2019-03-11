@@ -9,6 +9,7 @@
 <html lang="en">
 
 
+
 <head>
         <!-- META SECTION -->
         <title>Internal Complaint - Admin Deleted Posts</title>
@@ -68,7 +69,7 @@
                     </li>
 
                     <li class="xn-title"><b>Polls Records</b></li>
-                    <li  class="active">
+                    <li>
                        <a href="delpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                    </li>
                     <li>
@@ -79,7 +80,7 @@
                    </li>
 
                    <li class="xn-title"><b>Staff Polls Records</b></li>
-                     <li>
+                     <li  class="active">
                         <a href="staffdelpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                     </li>
                      <li>
@@ -151,7 +152,7 @@
                                         <tbody>
                                           <?php
                                             //Read from the Deleted Complaints table
-                                            $sql_delpolldisplay = "SELECT * FROM del_poll";
+                                            $sql_delpolldisplay = "SELECT * FROM del_poll WHERE u_id = 0";
                                             $success_delpolldisplay = mysqli_query($link, $sql_delpolldisplay);
                                             $cur_time = time();
                                             if ($success_delpolldisplay->num_rows > 0) {

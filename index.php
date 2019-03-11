@@ -321,6 +321,39 @@
                                             <button name="pollvote" class="btn btn-default btn-warning col-md-1 pull-right" type="submit"><span class="fa fa-send"></span>Vote</button>
                                         </div>
                                       </form>
+
+                                      <!-- Display Comments on the poll -->
+                                      <?php
+                                       //Comment id
+                                       $comment_id = $poll['p_id'];
+                                       //Query for comment display
+                                       $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                       //Execution for comment display
+                                       $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
+
+                                       if ($success_commentdisplay->num_rows > 0) {
+                                         while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                       ?>
+                                       <!-- Comments -->
+                                         <div class="timeline-body comments">
+                                           <div class="comment-item">
+                                               <img src="assets/images/users/avatar.jpg"/>
+                                               <p class="comment-head">
+                                                   <b>Human Resource Division</b>
+                                                   <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+
+                                               </p>
+                                               <!-- Comment from Database -->
+                                               <p><?php echo $cm_rows['cm_value']; ?><p>
+
+                                           </div>
+
+                                       </div>
+                                       <?php
+                                         }
+
+                                       }
+                                      ?>
                                     </div>
                                 </div>
                                 <!-- END POLL ITEM NOT VOTED -->
@@ -560,6 +593,38 @@
                                                     <button name="pollvote" class="btn btn-default btn-warning col-md-1 pull-right" type="submit"><span class="fa fa-send"></span>Vote</button>
                                                 </div>
                                               </form>
+                                              <!-- Display Comments on the poll -->
+                                              <?php
+                                               //Comment id
+                                               $comment_id = $poll['p_id'];
+                                               //Query for comment display
+                                               $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                               //Execution for comment display
+                                               $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
+
+                                               if ($success_commentdisplay->num_rows > 0) {
+                                                 while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                               ?>
+                                               <!-- Comments -->
+                                                 <div class="timeline-body comments">
+                                                   <div class="comment-item">
+                                                       <img src="assets/images/users/avatar.jpg"/>
+                                                       <p class="comment-head">
+                                                           <b>Human Resource Division</b>
+                                                           <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+
+                                                       </p>
+                                                       <!-- Comment from Database -->
+                                                       <p><?php echo $cm_rows['cm_value']; ?><p>
+
+                                                   </div>
+
+                                               </div>
+                                               <?php
+                                                 }
+
+                                               }
+                                              ?>
                                             </div>
                                         </div>
                                         <!-- END POLL ITEM NOT VOTED -->
@@ -617,6 +682,39 @@
                                                           ?>
                                                   </div>
                                                 </div>
+
+                                                <!-- Display Comments on the poll -->
+                                                <?php
+                                                 //Comment id
+                                                 $comment_id = $poll['p_id'];
+                                                 //Query for comment display
+                                                 $sql_commentdisplay = "SELECT * FROM comments WHERE c_id = $comment_id";
+                                                 //Execution for comment display
+                                                 $success_commentdisplay = mysqli_query($link, $sql_commentdisplay);
+
+                                                 if ($success_commentdisplay->num_rows > 0) {
+                                                   while ($cm_rows = $success_commentdisplay->fetch_assoc()){
+                                                 ?>
+                                                 <!-- Comments -->
+                                                   <div class="timeline-body comments">
+                                                     <div class="comment-item">
+                                                         <img src="assets/images/users/avatar.jpg"/>
+                                                         <p class="comment-head">
+                                                             <b>Human Resource Division</b>
+                                                             <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+
+                                                         </p>
+                                                         <!-- Comment from Database -->
+                                                         <p><?php echo $cm_rows['cm_value']; ?><p>
+
+                                                     </div>
+
+                                                 </div>
+                                                 <?php
+                                                   }
+
+                                                 }
+                                                ?>
                                             </div>
                                         </div>
                                         <!-- END TIMELINE ITEM -->

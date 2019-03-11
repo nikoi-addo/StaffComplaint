@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
         <!-- META SECTION -->
         <title>Internal Complaint - Admin Deleted Posts</title>
@@ -151,7 +150,7 @@
                                         <tbody>
                                           <?php
                                             //Read from the Deleted Complaints table
-                                            $sql_delpolldisplay = "SELECT * FROM del_poll";
+                                            $sql_delpolldisplay = "SELECT * FROM del_poll WHERE u_id > 0 ";
                                             $success_delpolldisplay = mysqli_query($link, $sql_delpolldisplay);
                                             $cur_time = time();
                                             if ($success_delpolldisplay->num_rows > 0) {

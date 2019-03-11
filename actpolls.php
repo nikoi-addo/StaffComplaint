@@ -8,7 +8,6 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
   <!DOCTYPE html>
   <html lang="en">
 
-
   <head>
           <!-- META SECTION -->
           <title>Internal Complaint - Admin Active Posts</title>
@@ -152,7 +151,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                           <tbody>
                                             <?php
                                               //Select only those whose time has not elapsed.
-                                              $sql_actpolldisplay = "SELECT * FROM poll WHERE date_stop_display > $curr_time ORDER BY date_created DESC";
+                                              $sql_actpolldisplay = "SELECT * FROM poll WHERE date_stop_display > $curr_time AND u_id > 0 ORDER BY date_created DESC";
                                               $success_actpolldisplay = mysqli_query($link, $sql_actpolldisplay);
                                               if ($success_actpolldisplay->num_rows > 0) {
                                                 $i = 1;

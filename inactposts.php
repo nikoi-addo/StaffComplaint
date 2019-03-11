@@ -166,7 +166,42 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                   <td>
                                                     <?php
                                                     if ($success_commentpresent->num_rows > 0) {?>
-                                                        <span class='label label-success'>Responded</span>
+                                                      <a href="#commentmodal<?php echo $id; ?>" data-toggle="modal"><span class='label label-success'>Responded</span></a>
+
+                                                      <div style="z-index: 999" class="modal" id="commentmodal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+                                                          <div class="modal-dialog">
+                                                              <div class="modal-content">
+                                                                  <div class="modal-header">
+                                                                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                                      <h4 class="modal-title" id="defModalHead"><?php echo $rows['c_value']; ?></h4>
+                                                                  </div>
+                                                                  <div class="modal-body">
+                                                                     <div class="panel-body has-warning">
+                                                                       <?php
+                                                                       while ($cm_rows = $success_commentpresent->fetch_assoc()){
+                                                                     ?>
+                                                                     <!-- Comments -->
+                                                                       <div class="timeline-body comments">
+                                                                         <div class="comment-item">
+                                                                             <img src="assets/images/users/avatar.jpg"/>
+                                                                             <p class="comment-head">
+                                                                                 <b>Human Resource Division</b>
+                                                                                  <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
+                                                                             </p>
+                                                                             <!-- Comment from Database -->
+                                                                             <p><?php echo $cm_rows['cm_value']; ?></p>
+
+                                                                         </div>
+
+                                                                     </div>
+                                                                     <?php
+                                                                       }
+                                                                       ?>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
                                                     <?php }
                                                     elseif ($success_commentpresent->num_rows == 0) {?>
                                                       <span class='label label-danger'>Not Responded</span>
