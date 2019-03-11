@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2019 at 09:30 PM
+-- Generation Time: Mar 11, 2019 at 07:41 PM
 -- Server version: 5.7.25-0ubuntu0.16.04.2
 -- PHP Version: 7.0.33-0ubuntu0.16.04.1
 
@@ -31,33 +31,41 @@ CREATE TABLE `comments` (
   `cm_value` varchar(1024) NOT NULL,
   `cm_ip_address` varchar(64) NOT NULL,
   `c_id` int(32) NOT NULL,
-  `cm_date` int(16) NOT NULL
+  `cm_date` int(16) NOT NULL,
+  `cm_type` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`) VALUES
-(2, 'How are we going about today', '127.0.0.1', 4, 1547730000),
-(3, 'How are we going about when we end', '127.0.0.1', 4, 1547730223),
-(4, 'How are we going about in the very end when all begins', '127.0.0.1', 4, 1547730328),
-(5, 'Hope comes to be still', '127.0.0.1', 16, 1548030635),
-(6, 'I like this program', '127.0.0.1', 13, 1548341130),
-(7, 'I think there should be more on this sometime soon', '127.0.0.1', 14, 1548341368),
-(8, 'We would gladly support you guys on this', '127.0.0.1', 24, 1548341409),
-(9, 'I want to check something here', '127.0.0.1', 25, 1548364928),
-(10, 'Let us see about this side too if hope doth indeed come alive', '127.0.0.1', 13, 1548364953),
-(11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977),
-(12, 'ok sure', '::1', 57, 1548674149),
-(13, 'okay I get it now', '::1', 69, 1550574688),
-(14, 'Anon from Admin division we\'ll get back to you shortly', '::1', 69, 1550574699),
-(15, 'hello', '::1', 68, 1550574815),
-(16, 'yes sir', '::1', 68, 1550574844),
-(17, 'nice gun....Who\'s is it?', '::1', 70, 1550575716),
-(18, 'don\'t be stupid', '::1', 78, 1550591801),
-(19, 'and so what?', '192.168.43.137', 79, 1550592008),
-(20, 'Comments are coming', '127.0.0.1', 86, 1550878972);
+INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`, `cm_type`) VALUES
+(2, 'How are we going about today', '127.0.0.1', 4, 1547730000, 0),
+(3, 'How are we going about when we end', '127.0.0.1', 4, 1547730223, 0),
+(4, 'How are we going about in the very end when all begins', '127.0.0.1', 4, 1547730328, 0),
+(5, 'Hope comes to be still', '127.0.0.1', 16, 1548030635, 0),
+(6, 'I like this program', '127.0.0.1', 13, 1548341130, 0),
+(7, 'I think there should be more on this sometime soon', '127.0.0.1', 14, 1548341368, 0),
+(8, 'We would gladly support you guys on this', '127.0.0.1', 24, 1548341409, 0),
+(9, 'I want to check something here', '127.0.0.1', 25, 1548364928, 0),
+(10, 'Let us see about this side too if hope doth indeed come alive', '127.0.0.1', 13, 1548364953, 0),
+(11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977, 0),
+(12, 'ok sure', '::1', 57, 1548674149, 0),
+(13, 'okay I get it now', '::1', 69, 1550574688, 0),
+(14, 'Anon from Admin division we\'ll get back to you shortly', '::1', 69, 1550574699, 0),
+(15, 'hello', '::1', 68, 1550574815, 0),
+(16, 'yes sir', '::1', 68, 1550574844, 0),
+(17, 'nice gun....Who\'s is it?', '::1', 70, 1550575716, 0),
+(18, 'don\'t be stupid', '::1', 78, 1550591801, 0),
+(19, 'and so what?', '192.168.43.137', 79, 1550592008, 0),
+(20, 'Comments are coming', '127.0.0.1', 86, 1550878972, 0),
+(21, 'I am coming out now', '127.0.0.1', 151, 1552322240, 1),
+(22, 'Let\'s check the final option then', '127.0.0.1', 151, 1552322534, 1),
+(23, 'I am trying hard', '127.0.0.1', 151, 1552322873, 1),
+(24, 'Let us see finally', '127.0.0.1', 91, 1552323178, 0),
+(25, 'Really laidat you are', '127.0.0.1', 91, 1552323186, 0),
+(26, 'Is you still working goodly?', '127.0.0.1', 151, 1552323197, 1),
+(27, 'I want to acknowledge you for this post', '127.0.0.1', 152, 1552323719, 1);
 
 -- --------------------------------------------------------
 
@@ -152,7 +160,8 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `date_created`, `c_ip
 (87, 'Hello it\'s me again', 'Policy, Strategy and Innovation Division', 1551133063, '::1', 1551608263, 'RAHAINATU', 85, 'complaint'),
 (88, 'hello people of God', 'Select Division (optional)', 1551178451, '::1', 1551653651, 'AARON', 24, 'complaint'),
 (89, 'I want fufu Maybe', 'Administration Division', 1551220077, '127.0.0.1', 1551695277, 'AARON', 24, 'complaint'),
-(90, 'Load', 'Select Division (optional)', 1551366377, '127.0.0.1', 1551841577, 'AARON', 24, 'complaint');
+(90, 'Load', 'Select Division (optional)', 1551366377, '127.0.0.1', 1551841577, 'AARON', 24, 'complaint'),
+(91, 'I want Fufu', 'Administration Division', 1552040265, '127.0.0.1', 1552515465, 'AARON', 24, 'complaint');
 
 -- --------------------------------------------------------
 
@@ -225,7 +234,8 @@ CREATE TABLE `del_poll` (
 INSERT INTO `del_poll` (`del_p_id`, `p_id`, `p_question`, `date_created`, `p_options`, `p_votes`, `p_number_options`, `date_stop_display`, `p_voters`, `p_last_vote_date`, `u_id`, `u_fname`) VALUES
 (18, 68, 'Time and time again', 1551130091, 'Let us see|Let us know ', '0|0 ', 2, 1551216491, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
 (19, 69, 'Last time', 1551130222, 'Time is running |Debugging is not even star ', '0|0 ', 2, 1551216622, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
-(20, 70, 'I love you .....Reply as boyfriend.', 1551132081, 'I love you too|Hell no ', '1|0 ', 2, 1551304881, 1, 1551133212, 0, 'HUMAN RESOURCE DIVISION');
+(20, 70, 'I love you .....Reply as boyfriend.', 1551132081, 'I love you too|Hell no ', '1|0 ', 2, 1551304881, 1, 1551133212, 0, 'HUMAN RESOURCE DIVISION'),
+(21, 149, 'What is Fufu', 1552040309, 'Don\'t know|Will find out later ', '0|0 ', 2, 1552126709, 0, 0, 0, 'HUMAN RESOURCE DIVISION');
 
 -- --------------------------------------------------------
 
@@ -273,7 +283,8 @@ INSERT INTO `imagine` (`im_id`, `im_name`, `ref_id`, `ref_name`, `ref_status`) V
 (44, '1551819935_pl_1550792550_cm_1219599.jpg', 142, 'poll0', 'active'),
 (45, '1551819935_pl_1550575486_cm_DeTZYhpWkAE6K70.jpg', 142, 'poll3', 'active'),
 (46, '1551820025_pl_1551819935_pl_1550792550_cm_1219599.jpg', 143, 'poll0', 'active'),
-(47, '1551820025_pl_1550598796_hr_1559_D500_front.png', 143, 'poll3', 'active');
+(47, '1551820025_pl_1550598796_hr_1559_D500_front.png', 143, 'poll3', 'active'),
+(48, '1552040265_cm_tt.png', 91, 'complaint', 'active');
 
 -- --------------------------------------------------------
 
@@ -518,7 +529,10 @@ INSERT INTO `poll` (`p_id`, `p_question`, `date_created`, `p_options`, `p_votes`
 (145, 'One', 1551826100, 'Two|Three', '0|0', 2, 1551912500, 0, 0, 85, 'RAHAINATU', 'poll'),
 (146, 'Four', 1551826140, 'Five|Six', '0|0', 2, 1551912540, 0, 0, 0, 'HUMAN RESOURCE DIVISION', 'poll'),
 (147, 'Seven', 1551826182, 'Eight|Nine', '0|0', 2, 1551912582, 0, 0, 24, 'AARON', 'poll'),
-(148, 'Ten', 1551826352, 'Eleven|Twelve', '1|0', 2, 1551912752, 1, 1551829992, 24, 'AARON', 'poll');
+(148, 'Ten', 1551826352, 'Eleven|Twelve', '1|0', 2, 1551912752, 1, 1551829992, 24, 'AARON', 'poll'),
+(150, 'Who is asking', 1552040943, 'I don\'t know|Let me know', '0|1', 2, 1552127343, 1, 1552040954, 24, 'AARON', 'poll'),
+(151, 'What is ongoing?', 1552253253, 'Load|Loader|Loaderi|Loadering', '0|1|0|0', 4, 1552339653, 1, 1552253264, 24, 'AARON', 'poll'),
+(152, 'Check on something', 1552323691, 'Wil you play|Are you sure', '0|0', 2, 1552410091, 0, 0, 24, 'AARON', 'poll');
 
 -- --------------------------------------------------------
 
@@ -542,7 +556,13 @@ INSERT INTO `poll_imagine` (`pl_im_id`, `pl_im_name`, `pl_ref_id`, `pl_ref_statu
 (1, '1551820503_pl_1548407548_picture014.jpg', 144, 'active', 0),
 (2, '1551820503_pl_1548376941_MRV_20171106_22_36_17.jpg', 144, 'active', 1),
 (3, '1551826353_pl_GIT.jpeg', 148, 'active', 0),
-(4, '1551826353_pl_Untitled 1.jpg', 148, 'active', 1);
+(4, '1551826353_pl_Untitled 1.jpg', 148, 'active', 1),
+(5, '1552040943_pl_GIT.jpeg', 150, 'active', 0),
+(6, '1552040943_pl_lion-image_01582298_22.jpg', 150, 'active', 1),
+(7, '1552253253_pl_comments.png', 151, 'active', 0),
+(8, '1552253253_pl_Screenshot from 2018-12-17 22-19-10.png', 151, 'active', 1),
+(9, '1552253253_pl_Screenshot from 2018-12-14 15-20-02.png', 151, 'active', 2),
+(10, '1552253253_pl_Complaints.png', 151, 'active', 3);
 
 -- --------------------------------------------------------
 
@@ -569,7 +589,9 @@ INSERT INTO `poll_voters` (`id`, `user_id`, `poll_id`, `username`, `vote_date`) 
 (17, 23, 72, '', 1551220400),
 (19, 24, 72, 'Aaron', 1551220712),
 (20, 24, 140, 'AARON', 1551825505),
-(21, 24, 148, 'AARON', 1551829992);
+(21, 24, 148, 'AARON', 1551829992),
+(22, 24, 150, 'AARON', 1552040954),
+(23, 24, 151, 'AARON', 1552253264);
 
 --
 -- Indexes for dumped tables
@@ -644,12 +666,12 @@ ALTER TABLE `poll_voters`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
@@ -659,12 +681,12 @@ ALTER TABLE `del_complaints`
 -- AUTO_INCREMENT for table `del_poll`
 --
 ALTER TABLE `del_poll`
-  MODIFY `del_p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `del_p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `imagine`
 --
 ALTER TABLE `imagine`
-  MODIFY `im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `login_info`
 --
@@ -679,17 +701,17 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `poll`
 --
 ALTER TABLE `poll`
-  MODIFY `p_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `p_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 --
 -- AUTO_INCREMENT for table `poll_imagine`
 --
 ALTER TABLE `poll_imagine`
-  MODIFY `pl_im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pl_im_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `poll_voters`
 --
 ALTER TABLE `poll_voters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
