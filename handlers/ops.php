@@ -7,6 +7,7 @@
       //Users IP Address
       $ipaddress = $_SERVER["REMOTE_ADDR"];
       $cur_time = time();
+      $form_type = "";
       //Form Submitted
       if(isset($_POST['form_type'])){
         $form_type = $_POST['form_type'];
