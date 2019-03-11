@@ -151,7 +151,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                         <tbody>
                                           <?php
                                             //Select only those whose stop time has elapsed
-                                            $sql_delpolldisplay = "SELECT * FROM poll WHERE date_stop_display < $curr_time AND u_id > 0 ORDER BY date_created DESC";
+                                            $sql_delpolldisplay = "SELECT * FROM poll WHERE date_stop_display < $curr_time AND u_id = 0 ORDER BY date_created DESC";
                                             $success_delpolldisplay = mysqli_query($link, $sql_delpolldisplay);
                                             $cur_time = time();
                                             if ($success_delpolldisplay->num_rows > 0) {
