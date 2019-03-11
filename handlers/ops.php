@@ -8,7 +8,9 @@
       $ipaddress = $_SERVER["REMOTE_ADDR"];
       $cur_time = time();
       //Form Submitted
-      $form_type = $_POST['form_type'];
+      if(isset($_POST['form_type'])){
+        $form_type = $_POST['form_type'];
+      }
 
       #########################################################
       #################### MAKE A COMPLAINT ###################
