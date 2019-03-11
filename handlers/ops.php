@@ -407,6 +407,7 @@
         $confirm_password = $_POST['confirm_password'];
         $confirm_password = md5($confirm_password);
         $success_checkemail = mysqli_query($link, "SELECT u_email FROM login_info WHERE u_email = '$user_email' AND u_status='unactivated'");
+        $form_type = "";
         if ($success_checkemail->num_rows > 0 ) {
           $sql_updatelogin = "UPDATE login_info SET u_password = '$confirm_password', u_signup_date='$cur_time', u_status = 'activated' WHERE u_email = '$user_email'";
           $success_updatelogin = mysqli_query($link, $sql_updatelogin);
