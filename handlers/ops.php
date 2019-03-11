@@ -103,11 +103,11 @@
 
         if ($success_uploadcomment) {
           //Upload comment success
-          header("location:../hr.php?rsp=$idea_id&cmrsp=1&cm_typ=$comment_type");
+          header("location:../hr.php?rsp=$idea_id&cmrsp=1&cmtyp=$comment_type");
         }
         else{
           //Error in comment success
-          header("location:../hr.php?rsp=$idea_id&cmrsp=0&cm_typ=$comment_type");
+          header("location:../hr.php?rsp=$idea_id&cmrsp=0&cmtyp=$comment_type");
 
         }
       }
