@@ -71,7 +71,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                         <a href="actposts.php"><span class="fa fa-check-circle-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Posts</span></a>
                     </li>
 
-                     <li class="xn-title"><b>Polls Records</b></li>
+                     <li class="xn-title"><b>Human Resource Polls</b></li>
                      <li>
                         <a href="delpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                     </li>
@@ -82,7 +82,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                         <a href="actpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
                     </li>
 
-                    <li class="xn-title"><b>Staff Polls Records</b></li>
+                    <li class="xn-title"><b>Staff Polls</b></li>
                      <li>
                         <a href="staffdelpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                     </li>
