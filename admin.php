@@ -167,15 +167,13 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                     <span class="fa fa-user"></span>
                                 </div>
                                 <?php
-                                $sql_usercount = "SELECT COUNT(*) AS Total FROM login_info WHERE u_status = activated";
-
+                                $sql_usercount = "SELECT * FROM login_info WHERE u_status ='activated'";
                                 $success_usercount = mysqli_query($link, $sql_usercount);
-                                if ($$success_usercount->num_rows > 0) {
-                                  $row = $success_usercount->fetch_assoc();
-                                }
+                                $rows = mysqli_num_rows($success_usercount);
+
                                 ?>
                                 <div class="widget-data">
-                                    <div class="widget-int num-count"><?php echo $row[0]; ?></div>
+                                    <div class="widget-int num-count"><?php echo $rows; ?></div>
                                     <div class="widget-title">Registred Staff</div>
                                     <div class="widget-subtitle">On the iDeas Portal</div>
                                 </div>

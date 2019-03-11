@@ -392,8 +392,8 @@
                                                             <input type="hidden" name="poll_voters" value="<?php echo $poll['p_voters']; ?> ">
                                                             <input type="hidden" name="poll_last_vote_date" value="<?php echo $poll['p_last_vote_date']; ?> ">
                                                             <input type="hidden" name="poll_id" value="<?php echo $poll_id; ?>">
-                                                            <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
-                                                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['u_id']; ?>">
+                                                            <input type="hidden" name="username" value="<?php echo $poll['username']; ?>">
+                                                            <input type="hidden" name="user_id" value="<?php echo $poll['u_id']; ?>">
                                                             <button class="btn btn-danger btn-lg" type="submit"  name="delpoll">Yes</a>
                                                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                                                             </form>
