@@ -120,7 +120,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">
-                    <h2><span class="fa fa-users"></span> Admin Table for Deleted Posts</h2>
+                    <h2><span class="fa fa-users"style="padding-left: 400px"></span> Admin Table for Deleted Posts</h2>
                 </div>
                 <!-- END PAGE TITLE -->
 

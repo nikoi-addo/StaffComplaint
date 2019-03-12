@@ -12,7 +12,7 @@
 
 <head>
         <!-- META SECTION -->
-        <title>Internal Complaint - Admin Deleted Posts</title>
+        <title>iDeas Portal - Staff Deleted Polls</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -122,7 +122,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">
-                    <h2><span class="fa fa-users"></span> Admin Table for Deleted Posts</h2>
+                    <h2><span class="fa fa-users" style="padding-left: 400px;"></span> Admin Table for Staff Deleted Polls</h2>
                 </div>
                 <!-- END PAGE TITLE -->
 

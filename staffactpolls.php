@@ -83,10 +83,11 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                      <li>
                         <a href="staffdelpolls.php"><span class="fa fa-trash-o" style="color: white;"></span> <span class="xn-text" style="color: white;">Deleted Polls</span></a>
                     </li>
-                     <li class="active">
+                     
                         <a href="staffinactpolls.php"><span class="fa fa-lock" style="color: white;"></span> <span class="xn-text" style="color: white;">Inactive Polls</span></a>
                     </li>
                     <li>
+                        <li class="active">
                         <a href="staffactpolls.php"><span class="fa fa-bullhorn" style="color: white;"></span> <span class="xn-text" style="color: white;">Active Polls</span></a>
                     </li>
                     </ul>
@@ -122,7 +123,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 
                   <!-- PAGE TITLE -->
                   <div class="page-title">
-                      <h2><span class="fa fa-users"></span> Admin Table for <i><b>Active Staff Polls</b></i></h2>
+                      <h2><span class="fa fa-users" style="padding-left: 400px;"></span> Admin Table for <i><b>Active Staff Polls</b></i></h2>
                   </div>
                   <!-- END PAGE TITLE -->
 
