@@ -276,7 +276,7 @@
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
-                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
+                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous </b></a> added a poll
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
@@ -367,7 +367,7 @@
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
-                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
+                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
@@ -442,7 +442,7 @@
                                                  <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                                  <div class="timeline-item-content">
                                                      <div class="timeline-heading">
-                                                         <img src="assets/images/users/avatar.jpg"/> <b><?php echo $cp_rows['u_fname'] ?></b> <?php if ($cp_rows['c_division'] != "Select Division (optional)") {
+                                                         <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
                                                          } ?></u> shared an idea
                                                      </div>
@@ -548,7 +548,7 @@
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
-                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
                                                 </div>
                                                 <div class="timeline-body">
                                                     <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
@@ -638,7 +638,7 @@
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
-                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><?php echo $poll['u_fname']; ?></a> added a poll
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
                                                 </div>
                                                 <div class="timeline-body">
                                                     <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>

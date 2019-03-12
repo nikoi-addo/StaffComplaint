@@ -12,7 +12,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 
   <head>
           <!-- META SECTION -->
-          <title>Internal Complaint - Admin Active Posts</title>
+          <title>iDeas Portal - Admin Active Posts</title>
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,7 +46,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                               </div>
                               <div class="profile-data">
                                   <div class="profile-data-name">Admin</div>
-                                  <div class="profile-data-title">Internal Issues</div>
+                                  <div class="profile-data-title">iDeas Portal</div>
                               </div>
 
                           </div>
@@ -122,7 +122,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
 
                   <!-- PAGE TITLE -->
                   <div class="page-title">
-                      <h2><span class="fa fa-users"></span> Admin Table for <i><b>Active Posts</b></i></h2>
+                      <h2><span class="fa fa-users"></span> Admin Table for <i><b>Active Staff Polls</b></i></h2>
                   </div>
                   <!-- END PAGE TITLE -->
 
