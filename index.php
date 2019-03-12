@@ -296,7 +296,7 @@
                                                            <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
                                                                <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" style="width: auto; height: 200px;"/>
                                                            </a>
-                                                           <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                           <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>" required/> <?php echo $pollOptions[$i]; ?> </label>
                                                        </div>
                                                   <?php
                                                      }
@@ -304,7 +304,7 @@
                                                    else {
                                                      ?>
                                                      <div class="col-md-6">
-                                                         <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                         <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>" required/> <?php echo $pollOptions[$i]; ?> </label>
                                                      </div>
                                                   <?php
                                                     }
@@ -568,7 +568,7 @@
                                                               <a href="uploads/<?php echo $pl_row['pl_im_name']; ?>" data-gallery>
                                                                   <img src="uploads/<?php echo $pl_row['pl_im_name']; ?>" class="img-responsive img-text" width="200"/>
                                                               </a>
-                                                              <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                              <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>" required/> <?php echo $pollOptions[$i]; ?> </label>
                                                           </div>
                                                      <?php
                                                         }
@@ -576,7 +576,7 @@
                                                       else {
                                                         ?>
                                                         <div class="col-md-6">
-                                                            <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>"/> <?php echo $pollOptions[$i]; ?> </label>
+                                                            <label class="check"><input type="radio" name="option" value="<?php echo $i; ?>" required/> <?php echo $pollOptions[$i]; ?> </label>
                                                         </div>
                                                      <?php
                                                        }
