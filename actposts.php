@@ -211,7 +211,7 @@ session_start();
                                                                   <div class="timeline-body comments">
                                                                       <div class="comment-item">
                                                                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                                          <?php echo $rows['c_value']; ?>
+                                                                          <b><?php echo $rows['c_value']; ?></b>
                                                                       </div>
                                                                      <?php
                                                                      while ($cm_rows = $success_commentpresent->fetch_assoc()){
