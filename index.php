@@ -730,7 +730,7 @@
                                     else {?>
                                       <div class="timeline-item timeline-item-right">
                                         <div class="timeline-item-content"> <br><center>
-                                          <h3>No Complaints available currently</h3></center>
+                                          <h3>No Post available currently</h3></center>
                                         </div>
                                       </div>
                                     <?php }
