@@ -59,7 +59,7 @@ if (isset($_SESSION['email'])) {
                 </div>
                 <div class="login-footer">
                     <div class="pull-left">
-                        &copy; 2019 NCA Staff Ideas Portal
+                        &copy; 2019 rudynikoiaddo
                     </div>
                     <div class="pull-right">
                         <a href="#">About</a> |
