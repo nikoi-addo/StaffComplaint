@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2019 at 07:41 PM
--- Server version: 5.7.25-0ubuntu0.16.04.2
--- PHP Version: 7.0.33-0ubuntu0.16.04.1
+-- Generation Time: Jun 28, 2019 at 06:15 PM
+-- Server version: 5.7.26-0ubuntu0.16.04.1
+-- PHP Version: 7.0.33-0ubuntu0.16.04.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,40 +32,43 @@ CREATE TABLE `comments` (
   `cm_ip_address` varchar(64) NOT NULL,
   `c_id` int(32) NOT NULL,
   `cm_date` int(16) NOT NULL,
-  `cm_type` smallint(6) NOT NULL
+  `cm_type` smallint(6) NOT NULL,
+  `cm_author` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`, `cm_type`) VALUES
-(2, 'How are we going about today', '127.0.0.1', 4, 1547730000, 0),
-(3, 'How are we going about when we end', '127.0.0.1', 4, 1547730223, 0),
-(4, 'How are we going about in the very end when all begins', '127.0.0.1', 4, 1547730328, 0),
-(5, 'Hope comes to be still', '127.0.0.1', 16, 1548030635, 0),
-(6, 'I like this program', '127.0.0.1', 13, 1548341130, 0),
-(7, 'I think there should be more on this sometime soon', '127.0.0.1', 14, 1548341368, 0),
-(8, 'We would gladly support you guys on this', '127.0.0.1', 24, 1548341409, 0),
-(9, 'I want to check something here', '127.0.0.1', 25, 1548364928, 0),
-(10, 'Let us see about this side too if hope doth indeed come alive', '127.0.0.1', 13, 1548364953, 0),
-(11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977, 0),
-(12, 'ok sure', '::1', 57, 1548674149, 0),
-(13, 'okay I get it now', '::1', 69, 1550574688, 0),
-(14, 'Anon from Admin division we\'ll get back to you shortly', '::1', 69, 1550574699, 0),
-(15, 'hello', '::1', 68, 1550574815, 0),
-(16, 'yes sir', '::1', 68, 1550574844, 0),
-(17, 'nice gun....Who\'s is it?', '::1', 70, 1550575716, 0),
-(18, 'don\'t be stupid', '::1', 78, 1550591801, 0),
-(19, 'and so what?', '192.168.43.137', 79, 1550592008, 0),
-(20, 'Comments are coming', '127.0.0.1', 86, 1550878972, 0),
-(21, 'I am coming out now', '127.0.0.1', 151, 1552322240, 1),
-(22, 'Let\'s check the final option then', '127.0.0.1', 151, 1552322534, 1),
-(23, 'I am trying hard', '127.0.0.1', 151, 1552322873, 1),
-(24, 'Let us see finally', '127.0.0.1', 91, 1552323178, 0),
-(25, 'Really laidat you are', '127.0.0.1', 91, 1552323186, 0),
-(26, 'Is you still working goodly?', '127.0.0.1', 151, 1552323197, 1),
-(27, 'I want to acknowledge you for this post', '127.0.0.1', 152, 1552323719, 1);
+INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`, `cm_type`, `cm_author`) VALUES
+(2, 'How are we going about today', '127.0.0.1', 4, 1547730000, 0, ''),
+(3, 'How are we going about when we end', '127.0.0.1', 4, 1547730223, 0, ''),
+(4, 'How are we going about in the very end when all begins', '127.0.0.1', 4, 1547730328, 0, ''),
+(5, 'Hope comes to be still', '127.0.0.1', 16, 1548030635, 0, ''),
+(6, 'I like this program', '127.0.0.1', 13, 1548341130, 0, ''),
+(7, 'I think there should be more on this sometime soon', '127.0.0.1', 14, 1548341368, 0, ''),
+(8, 'We would gladly support you guys on this', '127.0.0.1', 24, 1548341409, 0, ''),
+(9, 'I want to check something here', '127.0.0.1', 25, 1548364928, 0, ''),
+(10, 'Let us see about this side too if hope doth indeed come alive', '127.0.0.1', 13, 1548364953, 0, ''),
+(11, 'I will have to check it out again', '127.0.0.1', 13, 1548364977, 0, ''),
+(12, 'ok sure', '::1', 57, 1548674149, 0, ''),
+(13, 'okay I get it now', '::1', 69, 1550574688, 0, ''),
+(14, 'Anon from Admin division we\'ll get back to you shortly', '::1', 69, 1550574699, 0, ''),
+(15, 'hello', '::1', 68, 1550574815, 0, ''),
+(16, 'yes sir', '::1', 68, 1550574844, 0, ''),
+(17, 'nice gun....Who\'s is it?', '::1', 70, 1550575716, 0, ''),
+(18, 'don\'t be stupid', '::1', 78, 1550591801, 0, ''),
+(19, 'and so what?', '192.168.43.137', 79, 1550592008, 0, ''),
+(20, 'Comments are coming', '127.0.0.1', 86, 1550878972, 0, ''),
+(21, 'I am coming out now', '127.0.0.1', 151, 1552322240, 1, ''),
+(22, 'Let\'s check the final option then', '127.0.0.1', 151, 1552322534, 1, ''),
+(23, 'I am trying hard', '127.0.0.1', 151, 1552322873, 1, ''),
+(24, 'Let us see finally', '127.0.0.1', 91, 1552323178, 0, ''),
+(25, 'Really laidat you are', '127.0.0.1', 91, 1552323186, 0, ''),
+(26, 'Is you still working goodly?', '127.0.0.1', 151, 1552323197, 1, ''),
+(27, 'I want to acknowledge you for this post', '127.0.0.1', 152, 1552323719, 1, ''),
+(28, 'Hello Rudy', '127.0.0.1', 92, 1561726866, 0, 'Human Resource Division'),
+(29, 'Hello there some', '127.0.0.1', 92, 1561727672, 0, 'Anonymous');
 
 -- --------------------------------------------------------
 
@@ -161,7 +164,8 @@ INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `date_created`, `c_ip
 (88, 'hello people of God', 'Select Division (optional)', 1551178451, '::1', 1551653651, 'AARON', 24, 'complaint'),
 (89, 'I want fufu Maybe', 'Administration Division', 1551220077, '127.0.0.1', 1551695277, 'AARON', 24, 'complaint'),
 (90, 'Load', 'Select Division (optional)', 1551366377, '127.0.0.1', 1551841577, 'AARON', 24, 'complaint'),
-(91, 'I want Fufu', 'Administration Division', 1552040265, '127.0.0.1', 1552515465, 'AARON', 24, 'complaint');
+(91, 'I want Fufu', 'Administration Division', 1552040265, '127.0.0.1', 1552515465, 'AARON', 24, 'complaint'),
+(92, 'Where do the lights go in the night?', 'Select Division (optional)', 1561726804, '127.0.0.1', 1562202004, 'AARON', 24, 'complaint');
 
 -- --------------------------------------------------------
 
@@ -235,7 +239,9 @@ INSERT INTO `del_poll` (`del_p_id`, `p_id`, `p_question`, `date_created`, `p_opt
 (18, 68, 'Time and time again', 1551130091, 'Let us see|Let us know ', '0|0 ', 2, 1551216491, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
 (19, 69, 'Last time', 1551130222, 'Time is running |Debugging is not even star ', '0|0 ', 2, 1551216622, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
 (20, 70, 'I love you .....Reply as boyfriend.', 1551132081, 'I love you too|Hell no ', '1|0 ', 2, 1551304881, 1, 1551133212, 0, 'HUMAN RESOURCE DIVISION'),
-(21, 149, 'What is Fufu', 1552040309, 'Don\'t know|Will find out later ', '0|0 ', 2, 1552126709, 0, 0, 0, 'HUMAN RESOURCE DIVISION');
+(21, 149, 'What is Fufu', 1552040309, 'Don\'t know|Will find out later ', '0|0 ', 2, 1552126709, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
+(22, 152, 'Check on something', 1552323691, 'Wil you play|Are you sure ', '0|0 ', 2, 1552410091, 0, 0, 0, 'HUMAN RESOURCE DIVISION'),
+(23, 154, 'My turn', 1552344525, 'one|two ', '0|0 ', 2, 1552430925, 0, 0, 24, '');
 
 -- --------------------------------------------------------
 
@@ -299,132 +305,133 @@ CREATE TABLE `login_info` (
   `u_email` varchar(50) NOT NULL,
   `u_password` blob NOT NULL,
   `u_signup_date` double NOT NULL,
-  `u_status` varchar(16) NOT NULL DEFAULT 'unactivated'
+  `u_status` varchar(16) NOT NULL DEFAULT 'unactivated',
+  `u_unreadmessage` varchar(255) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login_info`
 --
 
-INSERT INTO `login_info` (`no`, `u_fname`, `u_lname`, `u_email`, `u_password`, `u_signup_date`, `u_status`) VALUES
-(24, 'AARON', 'APPIAH-NUAMAH', 'aaron.appiah-nuamah@nca.org.gh', 0x3862656261386131616434343737363466633761303162366338383135313062, 1551200508, 'activated'),
-(85, 'RAHAINATU', 'ABDUL RAHMAN', 'abdul-rahman.ruhainatu@nca.org', 0x6632393831393830616231346237323831303463616630626265643463393830, 1551209905, 'activated'),
-(26, 'NAZIR', 'ABDUL-KARIM', 'abdul.nazir@nca.org.gh', 0x6632393831393830616231346237323831303463616630626265643463393830, 1551213289, 'activated'),
-(88, 'RASHID', 'ABDULAI-ABDUL', 'abdulai.abduli-rashid@nca.org.', '', 0, 'unactivated'),
-(72, 'RASHIDA', 'BADIWE ABDULLAI', 'abdulai.rashida@nca.org.gh', '', 0, 'unactivated'),
-(83, 'ADAM', 'FUSEINI', 'adam.fuseini@nca.org.gh', '', 0, 'unactivated'),
-(84, 'SALAHUDEEN', 'ADAM MOHAMMED', 'adam.salahudeen@nca.org.gh', '', 0, 'unactivated'),
-(13, 'AFUA', 'MENSAH-AGYAPONG', 'afua.mensah-agyapong@nca.org.gh', '', 0, 'unactivated'),
-(6, 'AKOSUA', 'AMPAW ASANTE', 'akosua.asante@nca.org.gh', '', 0, 'unactivated'),
-(40, 'MAAME AKUA', 'TWUM-BAAH ', 'akua.twum-baah@nca.org.gh', '', 0, 'unactivated'),
-(35, 'ALBERTA', 'ASARE', 'alberta.asare@nca.org.gh', '', 0, 'unactivated'),
-(62, 'ALICE', 'PECKU OTUKO', 'alice.pecku@nca.org.gh', '', 0, 'unactivated'),
-(90, 'ALIMATU', 'SHIRAZU SADIA', 'alimatu.shirazu@nca.org.gh', '', 0, 'unactivated'),
-(4, 'ALVIN', 'ANUM ADJEI', 'alvin.anum@nca.org.gh', '', 0, 'unactivated'),
-(10, 'AMANDA', 'OFORI NAKIE', 'amanda.ofori@nca.org.gh', '', 0, 'unactivated'),
-(116, 'AMANDA', 'VIDZA EMEFA', 'amanda.vidza@nca.org.gh', '', 0, 'unactivated'),
-(45, 'SALIM', 'AMINU AHMED', 'aminu.salim@nca.org.gh', '', 0, 'unactivated'),
-(53, 'NANA AMOAKO', 'SARPONG', 'amoako.sarpong@nca.org.gh', '', 0, 'unactivated'),
-(16, 'GAMEL', 'AWUDU', 'awudu.gamel@nca.org.gh', '', 0, 'unactivated'),
-(50, 'BASSIT', 'AYITA MOHAMMED', 'ayita.bassit@nca.org.gh', '', 0, 'unactivated'),
-(37, 'BARNABAS MIZPAH', 'OKANTAH NII OTOO', 'barnabas.okantah@nca.org.gh', '', 0, 'unactivated'),
-(74, 'BENJAMIN', 'SARPONG', 'benjamin.sarpong@nca.org.gh', '', 0, 'unactivated'),
-(96, 'BRIDGET', 'AYEKPA', 'bridget.ayekpa@nca.org.gh', '', 0, 'unactivated'),
-(107, 'CASTIN', 'BOAKYE', 'castin.boakye@nca.org.gh', '', 0, 'unactivated'),
-(77, 'CHRISTOPHER', 'MENSAH AMOAKO', 'christopher.amoako@nca.org.gh', '', 0, 'unactivated'),
-(20, 'COURAGE', 'TSIKUDO', 'courage.tsikudo@nca.org.gh', '', 0, 'unactivated'),
-(55, 'DANIEL', 'DUODU', 'daniel.duodu@nca.org.gh', '', 0, 'unactivated'),
-(47, 'DANIEL', 'OMARI', 'daniel.omari@nca.org.gh', '', 0, 'unactivated'),
-(110, 'DANIEL', 'ONYANSANI WIAFE', 'daniel.onyansani@nca.org.gh', '', 0, 'unactivated'),
-(25, 'DAVID', 'ASIAMAH BEDU', 'david.asiamah@nca.org.gh', '', 0, 'unactivated'),
-(17, 'DAVID', 'ATTIAH KUMAH', 'david.attiah@nca.org.gh', '', 0, 'unactivated'),
-(7, 'DONALD', 'ADDAI ODEHE', 'donald.addai@nca.org.gh', '', 0, 'unactivated'),
-(100, 'DONNE ELVIS', 'YEVUGAH', 'donne.yevugah@nca.org.gh', '', 0, 'unactivated'),
-(18, 'DRAMANI', 'YAHAYA', 'dramani.yahaya@nca.org.gh', '', 0, 'unactivated'),
-(28, 'ELIZABETH-SOFIA', 'SARFO', 'elizabeth.sarfo@nca.org.gh', '', 0, 'unactivated'),
-(30, 'EMMANUEL', 'APPIAH', 'emmanuel.appiah@nca.org.gh', '', 0, 'unactivated'),
-(91, 'EMMANUEL', 'ASANTE KOFI', 'emmanuel.asante@nca.org.gh', '', 0, 'unactivated'),
-(33, 'EMMANUEL', 'BOTCHEY', 'emmanuel.botchey@nca.org.gh', '', 0, 'unactivated'),
-(38, 'EMMANUEL', 'DANSO', 'emmanuel.danso@nca.org.gh', '', 0, 'unactivated'),
-(23, 'ENOCH', 'ACKOMEAH', 'enoch.ackomeah@nca.org.gh', '', 0, 'unactivated'),
-(81, 'FAWZIA', 'JIBRILL', 'fawzia.jibrill@nca.org.gh', '', 0, 'unactivated'),
-(51, 'FERUZA', 'YEHUZA', 'feruza.yehuza@nca.org.gh', '', 0, 'unactivated'),
-(112, 'GEORGE', 'DANSO', 'george.danso@nca.org.gh', '', 0, 'unactivated'),
-(29, 'GIFTY', 'BAAFI ADOMAKOA', 'gifty.baafi@nca.org.gh', '', 0, 'unactivated'),
-(44, 'GLORIA', 'ACHEAMPONG AMA BOATEMAA', 'gloria.acheampong@nca.org.gh', '', 0, 'unactivated'),
-(103, 'GRACE', 'AMOAH', 'grace.amoah@nca.org.gh', '', 0, 'unactivated'),
-(102, 'HAJARATU', 'ASIEDU ANIMWAA', 'hajaratu.asiedu@nca.org.gh', '', 0, 'unactivated'),
-(73, 'HILLARY', 'BINDER MAUD', 'hillary.binder@nca.org.gh', '', 0, 'unactivated'),
-(15, 'IBRAHIM', 'ABASS MUSAH NAN', 'ibrahim.abass@nca.org.gh', '', 0, 'unactivated'),
-(118, 'ABDUL', 'HAFIZ IBRAHIM ADAM', 'ibrahim.abdul-hafiz@nca.org.gh', '', 0, 'unactivated'),
-(76, 'KELLI', 'IDDRISU JIMAH', 'iddrisu.kelli@nca.org.gh', '', 0, 'unactivated'),
-(3, 'IMAN', 'MOHAMMED', 'iman.mohammed@nca.org.gh', '', 0, 'unactivated'),
-(78, 'HAMIDATU', 'ISSAH', 'issah.hamidatu@nca.org.gh', '', 0, 'unactivated'),
-(66, 'IVY', 'ASAFU-ADJEI', 'ivy.asafu-adjei@nca.org.gh', '', 0, 'unactivated'),
-(64, 'JACQUELINE', 'KUSI', 'jacqueline.kusi@nca.org.gh', '', 0, 'unactivated'),
-(87, 'JEFFERY', 'ADDA STANLEY', 'jeffrey.adda@nca.org.gh', '', 0, 'unactivated'),
-(48, 'JEFFERY', 'MENSAH', 'jeffrey.mensah@nca.org.gh', '', 0, 'unactivated'),
-(39, 'JEFFERY', 'ODOOM', 'jeffrey.odoom@nca.org.gh', '', 0, 'unactivated'),
-(94, 'JONAS', 'DARIKPOLO NA-ELE', 'jonas.darikpolo@nca.org.gh', '', 0, 'unactivated'),
-(41, 'JOSEPH', 'BOATENG JERMAINE', 'joseph.boateng@nca.org.gh', '', 0, 'unactivated'),
-(21, 'JOSEPH', 'LARBI', 'joseph.larbi@nca.org.gh', '', 0, 'unactivated'),
-(54, 'JOSEPH', 'OSEI-TUTU', 'joseph.osei-tutu@nca.org.gh', '', 0, 'unactivated'),
-(52, 'JOYCE', 'AMOAH', 'joyce.amoah@nca.org.gh', '', 0, 'unactivated'),
-(111, 'JOYCE', 'MENSAH-SARPONG', 'joyce.mensah-sarpong@nca.org.gh', '', 0, 'unactivated'),
-(2, 'JOYCE', 'KORKOR TACHIE', 'joyce.tachie@nca.org.gh', '', 0, 'unactivated'),
-(114, 'JULIANA', 'OBENG ADWOA', 'juliana.obeng@nca.org.gh', '', 0, 'unactivated'),
-(104, 'JUSTIN', 'NKRUMAH YAW', 'justice.nkrumah@nca.org.gh', '', 0, 'unactivated'),
-(58, 'JUSTICE', 'OPOKU', 'justice.opoku@nca.org.gh', '', 0, 'unactivated'),
-(79, 'JAKUUR', 'KONLAN KANFITIB', 'kanfitib.jakuur@nca.org.gh', '', 0, 'unactivated'),
-(82, 'KISURA', 'HAROON MMATOGMAH', 'kisura.haroon@nca.org.gh', '', 0, 'unactivated'),
-(93, 'NANA KWABENA', 'ACHEAMPONG', 'kwabena.acheampong@nca.org.gh', '', 0, 'unactivated'),
-(71, 'KWEINUA', 'GODMAN', 'kweniua.godman@nca.org.gh', '', 0, 'unactivated'),
-(14, 'LAUD', 'AMMAH', 'laud.ammah@nca.org.gh', '', 0, 'unactivated'),
-(31, 'LAWRENCE', 'AMLADO KOFI', 'lawrence.amlado@nca.org.gh', '', 0, 'unactivated'),
-(59, 'LAWRENCE', 'ANKOMAH', 'lawrence.ankomah@nca.org.gh', '', 0, 'unactivated'),
-(86, 'MAHDI', 'ABDUL-MUMIN', 'mahdi.abdul-mumin@nca.org.gh', '', 0, 'unactivated'),
-(80, 'MARIAM', 'MOHAMMED', 'mariam.mohammed@nca.org.gh', '', 0, 'unactivated'),
-(63, 'MARVELLOUS', 'MENSAH', 'marvellous.mensah@nca.org.gh', '', 0, 'unactivated'),
-(109, 'MARY', 'DORNYAH MENSAH', 'mary.mensah@nca.org.gh', '', 0, 'unactivated'),
-(12, 'MICHAEL', 'PHILEMON BROWN', 'michael.brown@nca.org.gh', '', 0, 'unactivated'),
-(113, 'MOHAMMED', 'TUNKARA', 'mohammed.tunkara@nca.org.gh', '', 0, 'unactivated'),
-(92, 'OSMAN', 'MUFIDA KONO-KUNBAA', 'mufida.osman@nca.org.gh', '', 0, 'unactivated'),
-(89, 'RAFIAH', 'MUSAH', 'musah.rafia@nca.org.gh', '', 0, 'unactivated'),
-(57, 'NANA SERWAA', 'AKOTO AFRIYIE', 'nana.afriyie@nca.org.gh', '', 0, 'unactivated'),
-(117, 'NANA YAW', 'ESSILFIE AMOANYI', 'nana.essilfie@nca.org.gh', '', 0, 'unactivated'),
-(68, 'RUDY', 'ADDO NIKOI', 'nikoi.addo@nca.org.gh', 0x3566346463633362356161373635643631643833323764656238383263663939, 1551222992, 'activated'),
-(115, 'OLIVIA', 'OPOKU-ASUMADU', 'olivia.opoku-asumadu@nca.org.gh', '', 0, 'unactivated'),
-(34, ' OPHELIA', 'WEMEGAH AKU', 'ophelia.wemegah@nca.org.gh', '', 0, 'unactivated'),
-(43, 'OSWIN', 'ADDOQUAYE TAGOE', 'oswin.tagoe@nca.org.gh', '', 0, 'unactivated'),
-(22, 'PAMELA', 'ADABLAH DELALI', 'pamela.adablah@nca.org.gh', '', 0, 'unactivated'),
-(99, 'PEARL', 'MOTTEY SEFAKOR', 'pearl.sefakor@nca.org.gh', '', 0, 'unactivated'),
-(32, 'PHILIP', 'ACKOM', 'philip.ackom@nca.org.gh', '', 0, 'unactivated'),
-(98, 'PRAISE', 'KATAPU EDZORDZI', 'praise.katapu@nca.org.gh', '', 0, 'unactivated'),
-(5, 'RAYMOND', 'TUFFOUR', 'raymond.tuffour@nca.org.gh', '', 0, 'unactivated'),
-(67, 'REJOICE', 'OLERKUOR TETTEH-NARH', 'rejoice.tetteh-narh@nca.org.gh', '', 0, 'unactivated'),
-(56, 'RICHMOND', 'DOMPREH RAPHAEL', 'richmond.dompreh@nca.org.gh', '', 0, 'unactivated'),
-(69, 'RICHMOND', 'KUTIN', 'richmond.kutin@nca.org.gh', '', 0, 'unactivated'),
-(70, 'RUBY', 'KORTEY', 'ruby.kortey@nca.org.gh', '', 0, 'unactivated'),
-(65, 'SAMIR', 'OSUMAN', 'samir.osuman@nca.org.gh', '', 0, 'unactivated'),
-(46, 'SANDRA', 'OPPONG', 'sandra.oppong@nca.org.gh', '', 0, 'unactivated'),
-(49, 'SARAH', 'SARFO OFORIWAA', 'sarah.sarfo@nca.org.gh', '', 0, 'unactivated'),
-(75, 'YVONNE', 'HEVI SELASIE', 'selasie.hevi@nca.org.gh', '', 0, 'unactivated'),
-(8, 'SHARON', 'MARTINSON ODEIBEA', 'sharon.martinson@nca.org.gh', '', 0, 'unactivated'),
-(19, 'SOLOMON', 'ASHIA', 'solomon.ashia@nca.org.gh', '', 0, 'unactivated'),
-(11, 'STEPHEN', 'AGYEI KUSI', 'stephen.agyei@nca.org.gh', '', 0, 'unactivated'),
-(9, 'STEPHEN', 'GBENA', 'stephen.gbena@nca.org.gh', '', 0, 'unactivated'),
-(27, 'SUSANA', 'OKYERE AYEBEA', 'susana.ayebea@nca.org.gh', '', 0, 'unactivated'),
-(108, 'THEODORA', 'PARKER-DADSON', 'theodora.parker-dadson@nca.org.gh', '', 0, 'unactivated'),
-(105, 'THEOPHILUS', 'AMOAH-ARTHUR', 'theophilus.amoah-arthur@nca.org.gh', '', 0, 'unactivated'),
-(1, 'THEOPHILUS', 'NII OKAI OKAI', 'theophilus.okai@nca.org.gh', '', 0, 'unactivated'),
-(36, 'PROSPER', 'VIBER', 'viber.prosper@nca.org.gh', '', 0, 'unactivated'),
-(60, 'VICTORIA', 'ANSAH', 'victoria.ansah@nca.org.gh', '', 0, 'unactivated'),
-(61, 'VICTORIA', 'DOE', 'victoria.doe@nca.org.gh', '', 0, 'unactivated'),
-(106, 'WILLIAM', 'ORHIN PANYIN NKWEFI', 'william.orhin@nca.org.gh', '', 0, 'unactivated'),
-(97, 'SAMUEL', 'AMEWU WORLANYO', 'worlanyo.amewu@nca.org.gh', '', 0, 'unactivated'),
-(101, 'YAW', 'OFOSU ASARE', 'yaw.asare@nca.org.gh', '', 0, 'unactivated'),
-(95, 'BABA YUNUS', 'SAMIHA SIMLI', 'yunus.samiha@nca.org.gh', '', 0, 'unactivated'),
-(42, 'YVONNE', 'AHIABLE ELIKPLIM', 'yvonne.ahiable@nca.org.gh', '', 0, 'unactivated');
+INSERT INTO `login_info` (`no`, `u_fname`, `u_lname`, `u_email`, `u_password`, `u_signup_date`, `u_status`, `u_unreadmessage`) VALUES
+(24, 'AARON', 'APPIAH-NUAMAH', 'aaron.appiah-nuamah@nca.org.gh', 0x3862656261386131616434343737363466633761303162366338383135313062, 1551200508, 'activated', '0|76|77|78|79|80|81|82'),
+(85, 'RAHAINATU', 'ABDUL RAHMAN', 'abdul-rahman.ruhainatu@nca.org', 0x6632393831393830616231346237323831303463616630626265643463393830, 1551209905, 'activated', '0|76|77|78|79|80|81|82'),
+(26, 'NAZIR', 'ABDUL-KARIM', 'abdul.nazir@nca.org.gh', 0x6632393831393830616231346237323831303463616630626265643463393830, 1551213289, 'activated', '0|76|77|78|79|80|81|82'),
+(88, 'RASHID', 'ABDULAI-ABDUL', 'abdulai.abduli-rashid@nca.org', 0x3566346463633362356161373635643631643833323764656238383263663939, 1552345378, 'activated', '0|76|77|78|79|80|81|82'),
+(72, 'RASHIDA', 'BADIWE ABDULLAI', 'abdulai.rashida@nca.org.gh', '', 0, 'unactivated', ''),
+(83, 'ADAM', 'FUSEINI', 'adam.fuseini@nca.org.gh', '', 0, 'unactivated', ''),
+(84, 'SALAHUDEEN', 'ADAM MOHAMMED', 'adam.salahudeen@nca.org.gh', '', 0, 'unactivated', ''),
+(13, 'AFUA', 'MENSAH-AGYAPONG', 'afua.mensah-agyapong@nca.org.gh', '', 0, 'unactivated', ''),
+(6, 'AKOSUA', 'AMPAW ASANTE', 'akosua.asante@nca.org.gh', '', 0, 'unactivated', ''),
+(40, 'MAAME AKUA', 'TWUM-BAAH ', 'akua.twum-baah@nca.org.gh', '', 0, 'unactivated', ''),
+(35, 'ALBERTA', 'ASARE', 'alberta.asare@nca.org.gh', '', 0, 'unactivated', ''),
+(62, 'ALICE', 'PECKU OTUKO', 'alice.pecku@nca.org.gh', '', 0, 'unactivated', ''),
+(90, 'ALIMATU', 'SHIRAZU SADIA', 'alimatu.shirazu@nca.org.gh', '', 0, 'unactivated', ''),
+(4, 'ALVIN', 'ANUM ADJEI', 'alvin.anum@nca.org.gh', '', 0, 'unactivated', ''),
+(10, 'AMANDA', 'OFORI NAKIE', 'amanda.ofori@nca.org.gh', '', 0, 'unactivated', ''),
+(116, 'AMANDA', 'VIDZA EMEFA', 'amanda.vidza@nca.org.gh', '', 0, 'unactivated', ''),
+(45, 'SALIM', 'AMINU AHMED', 'aminu.salim@nca.org.gh', '', 0, 'unactivated', ''),
+(53, 'NANA AMOAKO', 'SARPONG', 'amoako.sarpong@nca.org.gh', '', 0, 'unactivated', ''),
+(16, 'GAMEL', 'AWUDU', 'awudu.gamel@nca.org.gh', '', 0, 'unactivated', ''),
+(50, 'BASSIT', 'AYITA MOHAMMED', 'ayita.bassit@nca.org.gh', '', 0, 'unactivated', ''),
+(37, 'BARNABAS MIZPAH', 'OKANTAH NII OTOO', 'barnabas.okantah@nca.org.gh', '', 0, 'unactivated', ''),
+(74, 'BENJAMIN', 'SARPONG', 'benjamin.sarpong@nca.org.gh', '', 0, 'unactivated', ''),
+(96, 'BRIDGET', 'AYEKPA', 'bridget.ayekpa@nca.org.gh', '', 0, 'unactivated', ''),
+(107, 'CASTIN', 'BOAKYE', 'castin.boakye@nca.org.gh', '', 0, 'unactivated', ''),
+(77, 'CHRISTOPHER', 'MENSAH AMOAKO', 'christopher.amoako@nca.org.gh', '', 0, 'unactivated', ''),
+(20, 'COURAGE', 'TSIKUDO', 'courage.tsikudo@nca.org.gh', '', 0, 'unactivated', ''),
+(55, 'DANIEL', 'DUODU', 'daniel.duodu@nca.org.gh', '', 0, 'unactivated', ''),
+(47, 'DANIEL', 'OMARI', 'daniel.omari@nca.org.gh', '', 0, 'unactivated', ''),
+(110, 'DANIEL', 'ONYANSANI WIAFE', 'daniel.onyansani@nca.org.gh', '', 0, 'unactivated', ''),
+(25, 'DAVID', 'ASIAMAH BEDU', 'david.asiamah@nca.org.gh', '', 0, 'unactivated', ''),
+(17, 'DAVID', 'ATTIAH KUMAH', 'david.attiah@nca.org.gh', '', 0, 'unactivated', ''),
+(7, 'DONALD', 'ADDAI ODEHE', 'donald.addai@nca.org.gh', '', 0, 'unactivated', ''),
+(100, 'DONNE ELVIS', 'YEVUGAH', 'donne.yevugah@nca.org.gh', '', 0, 'unactivated', ''),
+(18, 'DRAMANI', 'YAHAYA', 'dramani.yahaya@nca.org.gh', '', 0, 'unactivated', ''),
+(28, 'ELIZABETH-SOFIA', 'SARFO', 'elizabeth.sarfo@nca.org.gh', '', 0, 'unactivated', ''),
+(30, 'EMMANUEL', 'APPIAH', 'emmanuel.appiah@nca.org.gh', '', 0, 'unactivated', ''),
+(91, 'EMMANUEL', 'ASANTE KOFI', 'emmanuel.asante@nca.org.gh', '', 0, 'unactivated', ''),
+(33, 'EMMANUEL', 'BOTCHEY', 'emmanuel.botchey@nca.org.gh', '', 0, 'unactivated', ''),
+(38, 'EMMANUEL', 'DANSO', 'emmanuel.danso@nca.org.gh', '', 0, 'unactivated', ''),
+(23, 'ENOCH', 'ACKOMEAH', 'enoch.ackomeah@nca.org.gh', '', 0, 'unactivated', ''),
+(81, 'FAWZIA', 'JIBRILL', 'fawzia.jibrill@nca.org.gh', '', 0, 'unactivated', ''),
+(51, 'FERUZA', 'YEHUZA', 'feruza.yehuza@nca.org.gh', '', 0, 'unactivated', ''),
+(112, 'GEORGE', 'DANSO', 'george.danso@nca.org.gh', '', 0, 'unactivated', ''),
+(29, 'GIFTY', 'BAAFI ADOMAKOA', 'gifty.baafi@nca.org.gh', '', 0, 'unactivated', ''),
+(44, 'GLORIA', 'ACHEAMPONG AMA BOATEMAA', 'gloria.acheampong@nca.org.gh', '', 0, 'unactivated', ''),
+(103, 'GRACE', 'AMOAH', 'grace.amoah@nca.org.gh', '', 0, 'unactivated', ''),
+(102, 'HAJARATU', 'ASIEDU ANIMWAA', 'hajaratu.asiedu@nca.org.gh', '', 0, 'unactivated', ''),
+(73, 'HILLARY', 'BINDER MAUD', 'hillary.binder@nca.org.gh', '', 0, 'unactivated', ''),
+(15, 'IBRAHIM', 'ABASS MUSAH NAN', 'ibrahim.abass@nca.org.gh', '', 0, 'unactivated', ''),
+(118, 'ABDUL', 'HAFIZ IBRAHIM ADAM', 'ibrahim.abdul-hafiz@nca.org.gh', '', 0, 'unactivated', ''),
+(76, 'KELLI', 'IDDRISU JIMAH', 'iddrisu.kelli@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(3, 'IMAN', 'MOHAMMED', 'iman.mohammed@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(78, 'HAMIDATU', 'ISSAH', 'issah.hamidatu@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(66, 'IVY', 'ASAFU-ADJEI', 'ivy.asafu-adjei@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(64, 'JACQUELINE', 'KUSI', 'jacqueline.kusi@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(87, 'JEFFERY', 'ADDA STANLEY', 'jeffrey.adda@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(48, 'JEFFERY', 'MENSAH', 'jeffrey.mensah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(39, 'JEFFERY', 'ODOOM', 'jeffrey.odoom@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(94, 'JONAS', 'DARIKPOLO NA-ELE', 'jonas.darikpolo@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(41, 'JOSEPH', 'BOATENG JERMAINE', 'joseph.boateng@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(21, 'JOSEPH', 'LARBI', 'joseph.larbi@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(54, 'JOSEPH', 'OSEI-TUTU', 'joseph.osei-tutu@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(52, 'JOYCE', 'AMOAH', 'joyce.amoah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(111, 'JOYCE', 'MENSAH-SARPONG', 'joyce.mensah-sarpong@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(2, 'JOYCE', 'KORKOR TACHIE', 'joyce.tachie@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(114, 'JULIANA', 'OBENG ADWOA', 'juliana.obeng@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(104, 'JUSTIN', 'NKRUMAH YAW', 'justice.nkrumah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(58, 'JUSTICE', 'OPOKU', 'justice.opoku@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(79, 'JAKUUR', 'KONLAN KANFITIB', 'kanfitib.jakuur@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(82, 'KISURA', 'HAROON MMATOGMAH', 'kisura.haroon@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(93, 'NANA KWABENA', 'ACHEAMPONG', 'kwabena.acheampong@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(71, 'KWEINUA', 'GODMAN', 'kweniua.godman@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(14, 'LAUD', 'AMMAH', 'laud.ammah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(31, 'LAWRENCE', 'AMLADO KOFI', 'lawrence.amlado@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(59, 'LAWRENCE', 'ANKOMAH', 'lawrence.ankomah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(86, 'MAHDI', 'ABDUL-MUMIN', 'mahdi.abdul-mumin@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(80, 'MARIAM', 'MOHAMMED', 'mariam.mohammed@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(63, 'MARVELLOUS', 'MENSAH', 'marvellous.mensah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(109, 'MARY', 'DORNYAH MENSAH', 'mary.mensah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(12, 'MICHAEL', 'PHILEMON BROWN', 'michael.brown@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(113, 'MOHAMMED', 'TUNKARA', 'mohammed.tunkara@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(92, 'OSMAN', 'MUFIDA KONO-KUNBAA', 'mufida.osman@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(89, 'RAFIAH', 'MUSAH', 'musah.rafia@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(57, 'NANA SERWAA', 'AKOTO AFRIYIE', 'nana.afriyie@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(117, 'NANA YAW', 'ESSILFIE AMOANYI', 'nana.essilfie@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(68, 'RUDY', 'ADDO NIKOI', 'nikoi.addo@nca.org.gh', 0x3566346463633362356161373635643631643833323764656238383263663939, 1551222992, 'activated', 'Array|66|76|77|78|79|80|81|82'),
+(115, 'OLIVIA', 'OPOKU-ASUMADU', 'olivia.opoku-asumadu@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(34, ' OPHELIA', 'WEMEGAH AKU', 'ophelia.wemegah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(43, 'OSWIN', 'ADDOQUAYE TAGOE', 'oswin.tagoe@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(22, 'PAMELA', 'ADABLAH DELALI', 'pamela.adablah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(99, 'PEARL', 'MOTTEY SEFAKOR', 'pearl.sefakor@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(32, 'PHILIP', 'ACKOM', 'philip.ackom@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(98, 'PRAISE', 'KATAPU EDZORDZI', 'praise.katapu@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(5, 'RAYMOND', 'TUFFOUR', 'raymond.tuffour@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(67, 'REJOICE', 'OLERKUOR TETTEH-NARH', 'rejoice.tetteh-narh@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(56, 'RICHMOND', 'DOMPREH RAPHAEL', 'richmond.dompreh@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(69, 'RICHMOND', 'KUTIN', 'richmond.kutin@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(70, 'RUBY', 'KORTEY', 'ruby.kortey@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(65, 'SAMIR', 'OSUMAN', 'samir.osuman@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(46, 'SANDRA', 'OPPONG', 'sandra.oppong@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(49, 'SARAH', 'SARFO OFORIWAA', 'sarah.sarfo@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(75, 'YVONNE', 'HEVI SELASIE', 'selasie.hevi@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(8, 'SHARON', 'MARTINSON ODEIBEA', 'sharon.martinson@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(19, 'SOLOMON', 'ASHIA', 'solomon.ashia@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(11, 'STEPHEN', 'AGYEI KUSI', 'stephen.agyei@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(9, 'STEPHEN', 'GBENA', 'stephen.gbena@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(27, 'SUSANA', 'OKYERE AYEBEA', 'susana.ayebea@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(108, 'THEODORA', 'PARKER-DADSON', 'theodora.parker-dadson@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(105, 'THEOPHILUS', 'AMOAH-ARTHUR', 'theophilus.amoah-arthur@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(1, 'THEOPHILUS', 'NII OKAI OKAI', 'theophilus.okai@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(36, 'PROSPER', 'VIBER', 'viber.prosper@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(60, 'VICTORIA', 'ANSAH', 'victoria.ansah@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(61, 'VICTORIA', 'DOE', 'victoria.doe@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(106, 'WILLIAM', 'ORHIN PANYIN NKWEFI', 'william.orhin@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(97, 'SAMUEL', 'AMEWU WORLANYO', 'worlanyo.amewu@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(101, 'YAW', 'OFOSU ASARE', 'yaw.asare@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(95, 'BABA YUNUS', 'SAMIHA SIMLI', 'yunus.samiha@nca.org.gh', '', 0, 'unactivated', 'Array|66'),
+(42, 'YVONNE', 'AHIABLE ELIKPLIM', 'yvonne.ahiable@nca.org.gh', '', 0, 'unactivated', 'Array|66');
 
 -- --------------------------------------------------------
 
@@ -446,6 +453,7 @@ CREATE TABLE `messagehr` (
 --
 
 INSERT INTO `messagehr` (`m_id`, `m_message`, `m_subject`, `m_ip_address`, `m_division`, `m_date_created`) VALUES
+(0, 'Welcome to the Ideas Portal, feel free to get acquainted with the system. The system is designed to be highly intuitive and easy to work with. If you have any questions, do well to reach out to us. We\'d be more than glad to be of help.', 'Welcome', '', 'All Divisions', 1550077269),
 (11, 'Something gotta give it gets pretty hard to go from here with the many accounts that have been given but we will get by in due course and time I believe so and it will be all that I have to see from the time we start even to the time it ain\'t good to stay', 'Lets see', '127.0.0.1', 'All Divisions (optional)', 1550077269),
 (12, 'I will tell you in a bit', 'Another one', '127.0.0.1', 'Administration Division', 1550078567),
 (13, 'I will tell you soon', 'something for the other guys', '127.0.0.1', 'Legal Division', 1550078787),
@@ -486,7 +494,37 @@ INSERT INTO `messagehr` (`m_id`, `m_message`, `m_subject`, `m_ip_address`, `m_di
 (49, 'jldajlkdjlakfjldkajfklajfkl', 'alkjdkljalk', '127.0.0.1', 'All Divisions', 1550535290),
 (50, 'Love is good', 'Love', '::1', 'All Divisions', 1550598796),
 (51, 'Live is good', 'Love 2', '::1', 'All Divisions', 1550599119),
-(52, 'Someone call 911', 'Loads', '127.0.0.1', 'All Divisions', 1550878983);
+(52, 'Someone call 911', 'Loads', '127.0.0.1', 'All Divisions', 1550878983),
+(53, 'We are trying plenty things', 'Load', '127.0.0.1', 'All Divisions', 1557867938),
+(54, 'Let us', 'Somber', '127.0.0.1', 'All Divisions', 1557868025),
+(55, 'We are of that same view and form', 'Somber stuff are super exciting', '127.0.0.1', 'All Divisions', 1557868179),
+(56, 'We are of that same view and form', 'Somber stuff are super exciting', '127.0.0.1', 'All Divisions', 1557868228),
+(57, 'We are of that same view and form', 'Somber stuff are super exciting', '127.0.0.1', 'All Divisions', 1557868255),
+(58, 'Look at this ', 'Trying again to see', '127.0.0.1', 'All Divisions', 1557868515),
+(59, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557868875),
+(60, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557868901),
+(61, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557868966),
+(62, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557869055),
+(63, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557869080),
+(64, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557869105),
+(65, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557869138),
+(66, 'Load and work it out', 'Tried again', '127.0.0.1', 'All Divisions', 1557869159),
+(67, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869520),
+(68, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869571),
+(69, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869681),
+(70, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869727),
+(71, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869743),
+(72, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869823),
+(73, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869924),
+(74, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557869962),
+(75, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557870008),
+(76, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557870040),
+(77, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557870062),
+(78, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557870106),
+(79, 'UP BEYONd everything else', 'LuftedUP', '127.0.0.1', 'All Divisions', 1557870157),
+(80, 'Onething I desire ist to be free', 'One last from', '127.0.0.1', 'All Divisions', 1557870178),
+(81, 'We are organizing a welcome address to the President of the United States.', 'Welcome Address', '127.0.0.1', 'All Divisions', 1558438240),
+(82, 'We are gonna make it look extremely interesting and precious for all to see.', 'Last Report', '127.0.0.1', 'All Divisions', 1558438312);
 
 -- --------------------------------------------------------
 
@@ -532,7 +570,7 @@ INSERT INTO `poll` (`p_id`, `p_question`, `date_created`, `p_options`, `p_votes`
 (148, 'Ten', 1551826352, 'Eleven|Twelve', '1|0', 2, 1551912752, 1, 1551829992, 24, 'AARON', 'poll'),
 (150, 'Who is asking', 1552040943, 'I don\'t know|Let me know', '0|1', 2, 1552127343, 1, 1552040954, 24, 'AARON', 'poll'),
 (151, 'What is ongoing?', 1552253253, 'Load|Loader|Loaderi|Loadering', '0|1|0|0', 4, 1552339653, 1, 1552253264, 24, 'AARON', 'poll'),
-(152, 'Check on something', 1552323691, 'Wil you play|Are you sure', '0|0', 2, 1552410091, 0, 0, 24, 'AARON', 'poll');
+(153, 'Let us see', 1552343326, 'One|Two', '0|0', 2, 1552429726, 0, 0, 0, 'HUMAN RESOURCE DIVISION', 'poll');
 
 -- --------------------------------------------------------
 
@@ -666,12 +704,12 @@ ALTER TABLE `poll_voters`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
@@ -681,7 +719,7 @@ ALTER TABLE `del_complaints`
 -- AUTO_INCREMENT for table `del_poll`
 --
 ALTER TABLE `del_poll`
-  MODIFY `del_p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `del_p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `imagine`
 --
@@ -696,12 +734,12 @@ ALTER TABLE `login_info`
 -- AUTO_INCREMENT for table `messagehr`
 --
 ALTER TABLE `messagehr`
-  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `m_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `poll`
 --
 ALTER TABLE `poll`
-  MODIFY `p_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `p_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 --
 -- AUTO_INCREMENT for table `poll_imagine`
 --
