@@ -25,6 +25,23 @@
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->
 
+        <script type="text/javascript">
+        //Function accepting two values to update views
+        function updateviews(str, hlp){
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+              //Replace views value with new value from responseText
+              document.getElementById("views"+str).innerHTML = xmlhttp.responseText;
+            }
+          };
+          //Connect and submit postid and userid using POST method
+          xmlhttp.open("POST", "handlers/views.php", true);
+          xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xmlhttp.send("postid=" +str+"&userid="+hlp);
+        }
+        </script>
+
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
@@ -80,7 +97,7 @@
                                 if ($success_showhrmessages->num_rows > 0) {
                                     while($mrows = $success_showhrmessages->fetch_assoc()){?>
                                   <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
-                                      <div class="list-group-status status-online"></div>
+                                      <div class="list-group-status status-offline"></div>
                                       <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
                                       <!-- Use the substr() function to get a specific length of the message to show -->
                                       <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
@@ -339,7 +356,7 @@
                                            <div class="comment-item">
                                                <img src="assets/images/users/avatar.jpg"/>
                                                <p class="comment-head">
-                                                   <b>Human Resource Division</b>
+                                                   <b><?php echo $cm_rows['cm_author']; ?></b>
                                                    <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
 
                                                </p>
@@ -437,20 +454,21 @@
                                             while ($cp_rows = $success_compdisplay->fetch_assoc()) {
                                             ?>
                                             <!-- START TIMELINE ITEM -->
-                                             <div class="timeline-item timeline-item-right">
+                                            <!-- Added function to activate xml request to update number of views onmousehover -->
+                                             <div class="timeline-item timeline-item-right" onmouseover="updateviews(<?php echo "$id"; ?>, <?php echo "$user_id" ?>)">
                                                  <div class="timeline-item-info"> <?php echo date("d M G:i", $cp_rows['date_created']); ?> </div>
                                                  <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                                  <div class="timeline-item-content">
                                                      <div class="timeline-heading">
                                                          <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
-                                                         } ?></u> shared an idea
+                                                        } ?></u> shared an idea <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $cp_rows['c_views']. " views"; ?></span>
                                                      </div>
                                                      <div class="timeline-body">
                                                          <p style="white-space:pre-wrap;"><?php echo (trim($cp_rows['c_value'])); ?></p>
 
                                                          <?php
-                                                         //Check if an image exists for the specifice message
+                                                         //Check if an image exists for the specific message
                                                          $sql_checkimage = "SELECT * FROM imagine WHERE ref_id = $cp_rows[c_id] AND ref_name = 'complaint'";
                                                          $success_checkimage = mysqli_query($link, $sql_checkimage);
                                                          if ($success_checkimage): ?>
@@ -489,7 +507,7 @@
                                                           <div class="comment-item">
                                                               <img src="assets/images/users/avatar.jpg"/>
                                                               <p class="comment-head">
-                                                                  <b>Human Resource Division</b>
+                                                                  <b><?php echo $cm_rows['cm_author']; ?></b>
                                                                   <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
 
                                                               </p>
@@ -504,6 +522,29 @@
 
                                                       }
                                                      ?>
+                                                     <!-- Insert new comment -->
+                                                     <div class="timeline-body comments">
+                                                      <div class="comment-write">
+                                                       <form action="handlers/ops.php" method="post">
+                                                         <input type="hidden" name="form_type" value="UploadComment">
+                                                         <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
+                                                         <input type="hidden" name="comment_type" value="0">
+                                                         <input type="hidden" name="username" value="<?php echo $username; ?>">
+
+                                                         <div class="comment-write col-md-11">
+                                                           <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
+                                                           <?php
+                                                              if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmtyp'] == 0) {
+                                                              //Focus on the comment you just sent
+                                                              echo "autofocus";
+                                                              } ?> required>
+                                                          </div>
+                                                          <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                      </form>
+                                                    </div>
+                                                     </div>
+
+
 
 
                                                  </div>
@@ -610,7 +651,7 @@
                                                    <div class="comment-item">
                                                        <img src="assets/images/users/avatar.jpg"/>
                                                        <p class="comment-head">
-                                                           <b>Human Resource Division</b>
+                                                           <b><?php echo $cm_rows['cm_author']; ?></b>
                                                            <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
 
                                                        </p>
@@ -700,7 +741,7 @@
                                                      <div class="comment-item">
                                                          <img src="assets/images/users/avatar.jpg"/>
                                                          <p class="comment-head">
-                                                             <b>Human Resource Division</b>
+                                                             <b><?php echo $cm_rows['cm_author']; ?></b>
                                                              <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
 
                                                          </p>

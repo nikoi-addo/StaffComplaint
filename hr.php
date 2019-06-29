@@ -2,6 +2,7 @@
   session_start();
   include 'handlers/dbcon.php';
   $timely = time();
+  $username = "Human Resource Division";
   if (isset($_SESSION['loggedin']) == true && isset($_SESSION['admin']) == true) {
     ?>
     <!DOCTYPE html>
@@ -67,7 +68,7 @@
                                     if ($success_showhrmessages->num_rows > 0) {
                                         while($mrows = $success_showhrmessages->fetch_assoc()){?>
                                       <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
-                                          <div class="list-group-status status-online"></div>
+                                          <div class="list-group-status status-offline"></div>
                                           <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
                                           <!-- Use the substr() function to get a specific length of the message to show -->
                                           <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
@@ -330,7 +331,7 @@
                                                      <div class="comment-item">
                                                          <img src="assets/images/users/avatar.jpg"/>
                                                          <p class="comment-head">
-                                                             <b>Human Resource Division</b>
+                                                             <b><?php echo $cm_rows['cm_author']?></b>
                                                               <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
                                                          </p>
                                                          <!-- Comment from Database -->
@@ -353,6 +354,7 @@
                                                     <input type="hidden" name="form_type" value="UploadComment">
                                                     <input type="hidden" name="poll_id" value="<?php echo $poll['p_id']; ?>">
                                                     <input type="hidden" name="comment_type" value="1">
+                                                    <input type="hidden" name="username" value="<?php echo $username; ?>">
 
                                                     <div class="comment-write col-md-11">
                                                       <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
@@ -481,7 +483,7 @@
                                                   <div class="comment-item">
                                                       <img src="assets/images/users/avatar.jpg"/>
                                                       <p class="comment-head">
-                                                          <b>Human Resource Division</b>
+                                                          <b><?php echo $cm_rows['cm_author'];?></b>
                                                            <small class="text-muted pull-right"><?php echo date("d M @ h:i a", $cm_rows['cm_date']); ?></small>
                                                       </p>
                                                       <!-- Comment from Database -->
@@ -498,10 +500,11 @@
                                              <!-- Insert new comment -->
                                              <div class="timeline-body comments">
                                               <div class="comment-write">
-                                               <form action="handlers/ops.php" method="post" name>
+                                               <form action="handlers/ops.php" method="post">
                                                  <input type="hidden" name="form_type" value="UploadComment">
                                                  <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
                                                  <input type="hidden" name="comment_type" value="0">
+                                                 <input type="hidden" name="username" value="<?php echo $username; ?>">
 
                                                  <div class="comment-write col-md-11">
                                                    <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
