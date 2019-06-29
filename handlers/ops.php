@@ -86,8 +86,10 @@
       if ($form_type == 'UploadComment') {
         //HR Comment
         $comment = $_POST['comment'];
+        $username = $_POST['username'];
         //Escape comments to take care of apostrophes in comment side
         $comment = mysqli_real_escape_string($link, $comment);
+        $username = mysqli_real_escape_string($link, $username);
 
         $comment_type = $_POST['comment_type'];
 
@@ -100,7 +102,7 @@
           $idea_id = $_POST['poll_id'];
         }
         //Query to Insert Comment in DB
-        $sql_uploadcomment = "INSERT INTO comments(cm_value, cm_ip_address, c_id, cm_date, cm_type) VALUES('$comment', '$ipaddress', $idea_id, $cur_time, $comment_type)";
+        $sql_uploadcomment = "INSERT INTO comments(cm_value, cm_ip_address, c_id, cm_date, cm_type, cm_author) VALUES('$comment', '$ipaddress', $idea_id, $cur_time, $comment_type, '$username')";
         //Execute query
         $success_uploadcomment = mysqli_query($link, $sql_uploadcomment);
 
