@@ -435,6 +435,8 @@
                                              <div class="timeline-body">
                                                <div class="row">
                                                  <div class="col-md-10">
+                                                   <!-- Display Number of Views for the complaint -->
+                                                   <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views"; ?></span>
                                                    <!-- Display Complaint from Database -->
                                                    <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])) ; ?></p>
                                                  </div>
