@@ -366,11 +366,14 @@
                                            </div>
 
                                        </div>
+
+
                                        <?php
                                          }
 
                                        }
                                       ?>
+
                                     </div>
                                 </div>
                                 <!-- END POLL ITEM NOT VOTED -->
@@ -668,6 +671,31 @@
 
                                                }
                                               ?>
+                                              <!-- Allowing user to write comments on only the polls that he has creeated on not voted yets-->
+                                              <?php if ($poll['u_id'] == $user_id): ?>
+                                                <!-- Insert new comment for a poll -->
+                                                <div class="timeline-body comments">
+                                                 <div class="comment-write">
+                                                  <form action="handlers/ops.php" method="post">
+                                                    <input type="hidden" name="form_type" value="UploadComment">
+                                                    <input type="hidden" name="poll_id" value="<?php echo $poll['p_id']; ?>">
+                                                    <input type="hidden" name="comment_type" value="1">
+                                                    <input type="hidden" name="username" value="<?php echo $username; ?>">
+
+                                                    <div class="comment-write col-md-11">
+                                                      <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
+                                                      <?php
+                                                         if (isset($_GET['cmrsp']) && $_GET['rsp'] == $poll['p_id'] && $_GET['cmtyp'] == 0) {
+                                                         //Focus on the comment you just sent
+                                                         echo "autofocus";
+                                                         } ?> required>
+                                                     </div>
+                                                     <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                 </form>
+                                               </div>
+                                                </div>
+                                              <?php endif; ?>
+
                                             </div>
                                         </div>
                                         <!-- END POLL ITEM NOT VOTED -->
@@ -758,6 +786,32 @@
 
                                                  }
                                                 ?>
+
+                                                <!-- Allowing user to write comments on only the polls that he has creeated on the voted polls-->
+                                                <?php if ($poll['u_id'] == $user_id): ?>
+                                                  <!-- Insert new comment for a poll -->
+                                                  <div class="timeline-body comments">
+                                                   <div class="comment-write">
+                                                    <form action="handlers/ops.php" method="post">
+                                                      <input type="hidden" name="form_type" value="UploadComment">
+                                                      <input type="hidden" name="poll_id" value="<?php echo $poll['p_id']; ?>">
+                                                      <input type="hidden" name="comment_type" value="1">
+                                                      <input type="hidden" name="username" value="<?php echo $username; ?>">
+
+                                                      <div class="comment-write col-md-11">
+                                                        <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
+                                                        <?php
+                                                           if (isset($_GET['cmrsp']) && $_GET['rsp'] == $poll['p_id'] && $_GET['cmtyp'] == 0) {
+                                                           //Focus on the comment you just sent
+                                                           echo "autofocus";
+                                                           } ?> required>
+                                                       </div>
+                                                       <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                   </form>
+                                                 </div>
+                                                  </div>
+                                                <?php endif; ?>
+
                                             </div>
                                         </div>
                                         <!-- END TIMELINE ITEM -->
