@@ -523,26 +523,28 @@
                                                       }
                                                      ?>
                                                      <!-- Insert new comment -->
-                                                     <div class="timeline-body comments">
-                                                      <div class="comment-write">
-                                                       <form action="handlers/ops.php" method="post">
-                                                         <input type="hidden" name="form_type" value="UploadComment">
-                                                         <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
-                                                         <input type="hidden" name="comment_type" value="0">
-                                                         <input type="hidden" name="username" value="<?php echo $username; ?>">
+                                                     <?php if ($cp_rows['u_id'] == $user_id): ?>
+                                                       <div class="timeline-body comments">
+                                                        <div class="comment-write">
+                                                         <form action="handlers/ops.php" method="post">
+                                                           <input type="hidden" name="form_type" value="UploadComment">
+                                                           <input type="hidden" name="complaint_id" value="<?php echo $rows['c_id']; ?>">
+                                                           <input type="hidden" name="comment_type" value="0">
+                                                           <input type="hidden" name="username" value="<?php echo $username; ?>">
 
-                                                         <div class="comment-write col-md-11">
-                                                           <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
-                                                           <?php
-                                                              if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmtyp'] == 0) {
-                                                              //Focus on the comment you just sent
-                                                              echo "autofocus";
-                                                              } ?> required>
-                                                          </div>
-                                                          <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
-                                                      </form>
-                                                    </div>
-                                                     </div>
+                                                           <div class="comment-write col-md-11">
+                                                             <input class="form-control" type="text" name="comment" placeholder="Share feedback here(Limit: 1024 Characters)"
+                                                             <?php
+                                                                if (isset($_GET['cmrsp']) && $_GET['rsp'] == $rows['c_id'] && $_GET['cmtyp'] == 0) {
+                                                                //Focus on the comment you just sent
+                                                                echo "autofocus";
+                                                                } ?> required>
+                                                            </div>
+                                                            <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                        </form>
+                                                      </div>
+                                                       </div>
+                                                     <?php endif; ?>
 
 
 
