@@ -142,7 +142,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                 <th width="300">Post</th>
                                                 <th width="100">Reply from HR</th>
                                                 <th width="100">Status</th>
-                                                <th width="100">IP Address</th>
+                                                
                                                 <th width="100">Date</th>
                                                 <th width="100">Actions</th>
                                             </tr>
@@ -214,7 +214,7 @@ if (isset($_SESSION['loggedin']) && isset($_SESSION['adminpanel'])) {
                                                       echo "<span class='label label-danger'>Inactive</span>";
                                                     } ?>
                                                     </td>
-                                                    <td><?php echo $rows['c_ip_address']; ?></td>
+                                                    
                                                     <td><?php echo date("M d, Y @ h:i a", $rows['date_created']); ?></td>
                                                     <td>Yet to decide</td>
                                                 </tr>
