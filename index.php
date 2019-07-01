@@ -31,14 +31,14 @@
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
             if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-              //Replace views value with new value from responseText
+              //Replace id views value with new value from responseText
               document.getElementById("views"+str).innerHTML = xmlhttp.responseText;
             }
           };
           //Connect and submit postid and userid using POST method
           xmlhttp.open("POST", "handlers/views.php", true);
           xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xmlhttp.send("postid=" +str+"&userid="+hlp);
+          xmlhttp.send("postid="+str+"&userid="+hlp);
         }
         </script>
 
