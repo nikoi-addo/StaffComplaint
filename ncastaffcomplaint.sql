@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 28, 2019 at 11:37 PM
+-- Generation Time: Jul 02, 2019 at 12:04 PM
 -- Server version: 5.7.26-0ubuntu0.16.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.5
 
@@ -70,7 +70,15 @@ INSERT INTO `comments` (`cm_id`, `cm_value`, `cm_ip_address`, `c_id`, `cm_date`,
 (28, 'Hello Rudy', '127.0.0.1', 92, 1561726866, 0, 'Human Resource Division'),
 (29, 'Hello there some', '127.0.0.1', 92, 1561727672, 0, 'Anonymous'),
 (30, 'It gets interesting from all this', '127.0.0.1', 92, 1561752183, 0, 'AARON'),
-(31, 'Allow it to be', '127.0.0.1', 92, 1561752321, 0, 'Human Resource Division');
+(31, 'Allow it to be', '127.0.0.1', 92, 1561752321, 0, 'Human Resource Division'),
+(32, 'Trident', '127.0.0.1', 154, 1561773121, 1, 'AARON'),
+(33, 'Me said', '127.0.0.1', 154, 1561804788, 1, 'AARON'),
+(34, 'Lead', '127.0.0.1', 156, 1561805679, 1, 'AARON'),
+(35, 'Sompa', '127.0.0.1', 155, 1561805690, 1, 'AARON'),
+(36, 'I can comment', '127.0.0.1', 157, 1561806133, 1, 'RASHID'),
+(37, 'Lately', '127.0.0.1', 157, 1561806373, 1, 'RASHID'),
+(38, 'Last part', '127.0.0.1', 157, 1561806517, 1, 'RASHID'),
+(39, 'It still works so hurray', '127.0.0.1', 157, 1561806713, 1, 'RASHID');
 
 -- --------------------------------------------------------
 
@@ -88,88 +96,119 @@ CREATE TABLE `complaints` (
   `u_fname` varchar(255) NOT NULL,
   `u_id` int(11) NOT NULL,
   `table_type` varchar(16) NOT NULL DEFAULT 'complaint',
-  `c_views` int(16) NOT NULL DEFAULT '0'
+  `c_views` int(16) NOT NULL DEFAULT '0',
+  `c_votes` int(16) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `complaints`
 --
 
-INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `date_created`, `c_ip_address`, `date_stop_display`, `u_fname`, `u_id`, `table_type`, `c_views`) VALUES
-(1, 'The form which I submitted is not seen properly, could you help me out.', 'Administration Division', 1547719533, 'We are going forward', 1548194733, '', 0, 'complaint', 0),
-(2, 'The form is loading but it takes a very long time.', 'Cybersecurity Division', 1547722495, 'We are going forward', 1548197695, '', 0, 'complaint', 0),
-(3, 'How to load the internet.', 'Engineering Division', 1547722692, 'We are going forward', 1548197892, '', 0, 'complaint', 0),
-(4, 'How is it possible to be connected in a simple method.', 'Legal Division', 1547722835, 'We are going forward', 1548198035, '', 0, 'complaint', 0),
-(5, 'My account is not working poperly', 'Finance Division', 1547722882, 'We are going forward', 1548198082, '', 0, 'complaint', 0),
-(6, 'I need to Delete my Account.', '', 1547723245, '127.0.0.1', 1548198445, '', 0, 'complaint', 0),
-(7, 'I am having problems with my image', 'Finance Division', 1547723266, '127.0.0.1', 1548198466, '', 0, 'complaint', 0),
-(8, 'The image is intensely round.', 'Regulatory Administration Division', 1547723383, '127.0.0.1', 1548198583, '', 0, 'complaint', 0),
-(9, 'We will see about the rest', '', 1547737190, '127.0.0.1', 1548212390, '', 0, 'complaint', 0),
-(10, 'How be it', '', 1547854324, '127.0.0.1', 1548329524, '', 0, 'complaint', 0),
-(11, 'Show forth something interesting', '', 1547855046, '127.0.0.1', 1548330246, '', 0, 'complaint', 0),
-(12, 'Haha, he asks of what to do with me and for me', '', 1547855090, '127.0.0.1', 1548330290, '', 0, 'complaint', 0),
-(15, 'Hope comes alive some place still', 'Cybersecurity Division', 1548025328, '127.0.0.1', 1548500528, '', 0, 'complaint', 0),
-(16, 'Hope comes alive some place still when we persevere', 'Cybersecurity Division', 1548025358, '127.0.0.1', 1548500558, '', 0, 'complaint', 0),
-(17, 'Hello everyone', 'Human Resource Division', 1548330930, '127.0.0.1', 1548806130, '', 0, 'complaint', 0),
-(18, 'Help me then', 'Cybersecurity Division', 1548331107, '127.0.0.1', 1548806307, '', 0, 'complaint', 0),
-(19, 'Seems we had a problem with the folder', 'Engineering Division', 1548331305, '127.0.0.1', 1548806505, '', 0, 'complaint', 0),
-(20, 'Resolved now', 'Human Resource Division', 1548331337, '127.0.0.1', 1548806537, '', 0, 'complaint', 0),
-(21, 'Something scary', 'Engineering Division', 1548331460, '127.0.0.1', 1548806660, '', 0, 'complaint', 0),
-(22, 'I will check once more', 'Cybersecurity Division', 1548331675, '127.0.0.1', 1548806875, '', 0, 'complaint', 0),
-(23, 'Hello everyone', 'Select Division (optional)', 1548332170, '127.0.0.1', 1548807370, '', 0, 'complaint', 0),
-(26, 'Hope', 'Select Division (optional)', 1548372361, '127.0.0.1', 1548847561, '', 0, 'complaint', 0),
-(27, 'lojkll', 'Select Division (optional)', 1548373279, '127.0.0.1', 1548848479, '', 0, 'complaint', 0),
-(28, 'Hola', 'Select Division (optional)', 1548373379, '127.0.0.1', 1548848579, '', 0, 'complaint', 0),
-(29, 'Let us look at something', 'Select Division (optional)', 1548373426, '127.0.0.1', 1548848626, '', 0, 'complaint', 0),
-(30, 'Trials are pretty tumultous', 'Select Division (optional)', 1548373801, '127.0.0.1', 1548849001, '', 0, 'complaint', 0),
-(31, 'lET US SEE NOW', 'Select Division (optional)', 1548373934, '127.0.0.1', 1548849134, '', 0, 'complaint', 0),
-(32, 'fINALY WORK OUT', 'Select Division (optional)', 1548373948, '127.0.0.1', 1548849148, '', 0, 'complaint', 0),
-(33, 'fINAL DRAFT AND DEEALLING', 'Select Division (optional)', 1548373978, '127.0.0.1', 1548849178, '', 0, 'complaint', 0),
-(34, 'lOTA', 'Select Division (optional)', 1548374030, '127.0.0.1', 1548849230, '', 0, 'complaint', 0),
-(35, 'tRY LAST TIME ADN I AM OFF TO BED', 'Select Division (optional)', 1548374441, '127.0.0.1', 1548849641, '', 0, 'complaint', 0),
-(36, 'tRY WITH THE IMAGE', 'Select Division (optional)', 1548374458, '127.0.0.1', 1548849658, '', 0, 'complaint', 0),
-(37, 'lET US SEE', 'Select Division (optional)', 1548374487, '127.0.0.1', 1548849687, '', 0, 'complaint', 0),
-(38, 'LAST ATTEMPT', 'Select Division (optional)', 1548374537, '127.0.0.1', 1548849737, '', 0, 'complaint', 0),
-(39, 'LALST', 'Select Division (optional)', 1548374549, '127.0.0.1', 1548849749, '', 0, 'complaint', 0),
-(40, 'Lota', 'Select Division (optional)', 1548374614, '127.0.0.1', 1548849814, '', 0, 'complaint', 0),
-(41, 'Trials and errors are supper annoying', 'Select Division (optional)', 1548374646, '127.0.0.1', 1548849846, '', 0, 'complaint', 0),
-(42, 'hope some more', 'Select Division (optional)', 1548374709, '127.0.0.1', 1548849909, '', 0, 'complaint', 0),
-(43, 'Last firm', 'Select Division (optional)', 1548374794, '127.0.0.1', 1548849994, '', 0, 'complaint', 0),
-(44, 'rDJALJDK', 'Select Division (optional)', 1548374826, '127.0.0.1', 1548850026, '', 0, 'complaint', 0),
-(45, 'HOPE', 'Select Division (optional)', 1548374870, '127.0.0.1', 1548850070, '', 0, 'complaint', 0),
-(46, 'one', 'Select Division (optional)', 1548374894, '127.0.0.1', 1548850094, '', 0, 'complaint', 0),
-(47, 'One', 'Select Division (optional)', 1548374917, '127.0.0.1', 1548850117, '', 0, 'complaint', 0),
-(48, 'hope', 'Select Division (optional)', 1548374928, '127.0.0.1', 1548850128, '', 0, 'complaint', 0),
-(49, 'akjdljfk', 'Select Division (optional)', 1548374948, '127.0.0.1', 1548850148, '', 0, 'complaint', 0),
-(50, 'ajfkajdl', 'Select Division (optional)', 1548374960, '127.0.0.1', 1548850160, '', 0, 'complaint', 0),
-(51, 'jljkajlfj', 'Select Division (optional)', 1548375775, '127.0.0.1', 1548850975, '', 0, 'complaint', 0),
-(55, 'Hope comes to be yet still', 'Select Division (optional)', 1548631007, '127.0.0.1', 1549106207, '', 0, 'complaint', 0),
-(56, 'Hope with a file', 'Select Division (optional)', 1548631019, '127.0.0.1', 1549106219, '', 0, 'complaint', 0),
-(57, 'dfsjhfdjhoriejgitjhge', 'Select Division (optional)', 1548674006, '::1', 1549149206, '', 0, 'complaint', 0),
-(60, 'Let me see', 'Consumer and Corporate Affairs Division', 1550099448, '127.0.0.1', 1550574648, '', 0, 'complaint', 0),
-(61, 'Let me see again', 'Consumer and Corporate Affairs Division', 1550099555, '127.0.0.1', 1550574755, '', 0, 'complaint', 0),
-(62, 'Let me see again', 'Consumer and Corporate Affairs Division', 1550099699, '127.0.0.1', 1550574899, '', 0, 'complaint', 0),
-(63, '&quot;any ideas', 'Select Division (optional)', 1550520739, '127.0.0.1', 1550995939, '', 0, 'complaint', 0),
-(64, '\'something funny very funny', 'Select Division (optional)', 1550522506, '127.0.0.1', 1550997706, '', 0, 'complaint', 0),
-(65, 'Other thing\'s are "getting on my nerves"', 'Select Division (optional)', 1550522527, '127.0.0.1', 1550997727, '', 0, 'complaint', 0),
-(66, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536392, '127.0.0.1', 1551011592, '', 0, 'complaint', 0),
-(67, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536523, '127.0.0.1', 1551011723, '', 0, 'complaint', 0),
-(68, 'Another one maybe', 'Consumer and Corporate Affairs Division', 1550537389, '127.0.0.1', 1551012589, '', 0, 'complaint', 0),
-(69, 'I think I got it now', 'Select Division (optional)', 1550537668, '127.0.0.1', 1551012868, '', 0, 'complaint', 0),
-(70, 'sile', 'Select Division (optional)', 1550575428, '::1', 1551050628, '', 0, 'complaint', 0),
-(71, 'sile', 'Select Division (optional)', 1550575486, '::1', 1551050686, '', 0, 'complaint', 0),
-(72, 'slow one', 'Engineering Division', 1550575999, '::1', 1551051199, '', 0, 'complaint', 0),
-(73, 'Helper', 'Research and Business Development', 1550576080, '::1', 1551051280, '', 0, 'complaint', 0),
-(76, 'I\'m in love with Jesus ', 'Engineering Division', 1550581432, '192.168.43.137', 1551056632, '', 0, 'complaint', 0),
-(82, 'Love', 'Select Division (optional)', 1550604137, '192.168.43.137', 1551079337, '', 26, 'complaint', 0),
-(86, 'I want freedom', 'Administration Division', 1550878938, '127.0.0.1', 1551354138, 'NAZIR', 26, 'complaint', 0),
-(87, 'Hello it\'s me again', 'Policy, Strategy and Innovation Division', 1551133063, '::1', 1551608263, 'RAHAINATU', 85, 'complaint', 0),
-(88, 'hello people of God', 'Select Division (optional)', 1551178451, '::1', 1551653651, 'AARON', 24, 'complaint', 0),
-(89, 'I want fufu Maybe', 'Administration Division', 1551220077, '127.0.0.1', 1551695277, 'AARON', 24, 'complaint', 0),
-(90, 'Load', 'Select Division (optional)', 1551366377, '127.0.0.1', 1551841577, 'AARON', 24, 'complaint', 0),
-(91, 'I want Fufu', 'Administration Division', 1552040265, '127.0.0.1', 1552515465, 'AARON', 24, 'complaint', 0),
-(92, 'Where do the lights go in the night?', 'Select Division (optional)', 1561726804, '127.0.0.1', 1562202004, 'AARON', 24, 'complaint', 2),
-(93, 'I want to ask about others too will they still be blessed as me', 'Select Division (optional)', 1561759873, '127.0.0.1', 1562235073, 'AARON', 24, 'complaint', 2);
+INSERT INTO `complaints` (`c_id`, `c_value`, `c_division`, `date_created`, `c_ip_address`, `date_stop_display`, `u_fname`, `u_id`, `table_type`, `c_views`, `c_votes`) VALUES
+(1, 'The form which I submitted is not seen properly, could you help me out.', 'Administration Division', 1547719533, 'We are going forward', 1548194733, '', 0, 'complaint', 0, 0),
+(2, 'The form is loading but it takes a very long time.', 'Cybersecurity Division', 1547722495, 'We are going forward', 1548197695, '', 0, 'complaint', 0, 0),
+(3, 'How to load the internet.', 'Engineering Division', 1547722692, 'We are going forward', 1548197892, '', 0, 'complaint', 0, 0),
+(4, 'How is it possible to be connected in a simple method.', 'Legal Division', 1547722835, 'We are going forward', 1548198035, '', 0, 'complaint', 0, 0),
+(5, 'My account is not working poperly', 'Finance Division', 1547722882, 'We are going forward', 1548198082, '', 0, 'complaint', 0, 0),
+(6, 'I need to Delete my Account.', '', 1547723245, '127.0.0.1', 1548198445, '', 0, 'complaint', 0, 0),
+(7, 'I am having problems with my image', 'Finance Division', 1547723266, '127.0.0.1', 1548198466, '', 0, 'complaint', 0, 0),
+(8, 'The image is intensely round.', 'Regulatory Administration Division', 1547723383, '127.0.0.1', 1548198583, '', 0, 'complaint', 0, 0),
+(9, 'We will see about the rest', '', 1547737190, '127.0.0.1', 1548212390, '', 0, 'complaint', 0, 0),
+(10, 'How be it', '', 1547854324, '127.0.0.1', 1548329524, '', 0, 'complaint', 0, 0),
+(11, 'Show forth something interesting', '', 1547855046, '127.0.0.1', 1548330246, '', 0, 'complaint', 0, 0),
+(12, 'Haha, he asks of what to do with me and for me', '', 1547855090, '127.0.0.1', 1548330290, '', 0, 'complaint', 0, 0),
+(15, 'Hope comes alive some place still', 'Cybersecurity Division', 1548025328, '127.0.0.1', 1548500528, '', 0, 'complaint', 0, 0),
+(16, 'Hope comes alive some place still when we persevere', 'Cybersecurity Division', 1548025358, '127.0.0.1', 1548500558, '', 0, 'complaint', 0, 0),
+(17, 'Hello everyone', 'Human Resource Division', 1548330930, '127.0.0.1', 1548806130, '', 0, 'complaint', 0, 0),
+(18, 'Help me then', 'Cybersecurity Division', 1548331107, '127.0.0.1', 1548806307, '', 0, 'complaint', 0, 0),
+(19, 'Seems we had a problem with the folder', 'Engineering Division', 1548331305, '127.0.0.1', 1548806505, '', 0, 'complaint', 0, 0),
+(20, 'Resolved now', 'Human Resource Division', 1548331337, '127.0.0.1', 1548806537, '', 0, 'complaint', 0, 0),
+(21, 'Something scary', 'Engineering Division', 1548331460, '127.0.0.1', 1548806660, '', 0, 'complaint', 0, 0),
+(22, 'I will check once more', 'Cybersecurity Division', 1548331675, '127.0.0.1', 1548806875, '', 0, 'complaint', 0, 0),
+(23, 'Hello everyone', 'Select Division (optional)', 1548332170, '127.0.0.1', 1548807370, '', 0, 'complaint', 0, 0),
+(26, 'Hope', 'Select Division (optional)', 1548372361, '127.0.0.1', 1548847561, '', 0, 'complaint', 0, 0),
+(27, 'lojkll', 'Select Division (optional)', 1548373279, '127.0.0.1', 1548848479, '', 0, 'complaint', 0, 0),
+(28, 'Hola', 'Select Division (optional)', 1548373379, '127.0.0.1', 1548848579, '', 0, 'complaint', 0, 0),
+(29, 'Let us look at something', 'Select Division (optional)', 1548373426, '127.0.0.1', 1548848626, '', 0, 'complaint', 0, 0),
+(30, 'Trials are pretty tumultous', 'Select Division (optional)', 1548373801, '127.0.0.1', 1548849001, '', 0, 'complaint', 0, 0),
+(31, 'lET US SEE NOW', 'Select Division (optional)', 1548373934, '127.0.0.1', 1548849134, '', 0, 'complaint', 0, 0),
+(32, 'fINALY WORK OUT', 'Select Division (optional)', 1548373948, '127.0.0.1', 1548849148, '', 0, 'complaint', 0, 0),
+(33, 'fINAL DRAFT AND DEEALLING', 'Select Division (optional)', 1548373978, '127.0.0.1', 1548849178, '', 0, 'complaint', 0, 0),
+(34, 'lOTA', 'Select Division (optional)', 1548374030, '127.0.0.1', 1548849230, '', 0, 'complaint', 0, 0),
+(35, 'tRY LAST TIME ADN I AM OFF TO BED', 'Select Division (optional)', 1548374441, '127.0.0.1', 1548849641, '', 0, 'complaint', 0, 0),
+(36, 'tRY WITH THE IMAGE', 'Select Division (optional)', 1548374458, '127.0.0.1', 1548849658, '', 0, 'complaint', 0, 0),
+(37, 'lET US SEE', 'Select Division (optional)', 1548374487, '127.0.0.1', 1548849687, '', 0, 'complaint', 0, 0),
+(38, 'LAST ATTEMPT', 'Select Division (optional)', 1548374537, '127.0.0.1', 1548849737, '', 0, 'complaint', 0, 0),
+(39, 'LALST', 'Select Division (optional)', 1548374549, '127.0.0.1', 1548849749, '', 0, 'complaint', 0, 0),
+(40, 'Lota', 'Select Division (optional)', 1548374614, '127.0.0.1', 1548849814, '', 0, 'complaint', 0, 0),
+(41, 'Trials and errors are supper annoying', 'Select Division (optional)', 1548374646, '127.0.0.1', 1548849846, '', 0, 'complaint', 0, 0),
+(42, 'hope some more', 'Select Division (optional)', 1548374709, '127.0.0.1', 1548849909, '', 0, 'complaint', 0, 0),
+(43, 'Last firm', 'Select Division (optional)', 1548374794, '127.0.0.1', 1548849994, '', 0, 'complaint', 0, 0),
+(44, 'rDJALJDK', 'Select Division (optional)', 1548374826, '127.0.0.1', 1548850026, '', 0, 'complaint', 0, 0),
+(45, 'HOPE', 'Select Division (optional)', 1548374870, '127.0.0.1', 1548850070, '', 0, 'complaint', 0, 0),
+(46, 'one', 'Select Division (optional)', 1548374894, '127.0.0.1', 1548850094, '', 0, 'complaint', 0, 0),
+(47, 'One', 'Select Division (optional)', 1548374917, '127.0.0.1', 1548850117, '', 0, 'complaint', 0, 0),
+(48, 'hope', 'Select Division (optional)', 1548374928, '127.0.0.1', 1548850128, '', 0, 'complaint', 0, 0),
+(49, 'akjdljfk', 'Select Division (optional)', 1548374948, '127.0.0.1', 1548850148, '', 0, 'complaint', 0, 0),
+(50, 'ajfkajdl', 'Select Division (optional)', 1548374960, '127.0.0.1', 1548850160, '', 0, 'complaint', 0, 0),
+(51, 'jljkajlfj', 'Select Division (optional)', 1548375775, '127.0.0.1', 1548850975, '', 0, 'complaint', 0, 0),
+(55, 'Hope comes to be yet still', 'Select Division (optional)', 1548631007, '127.0.0.1', 1549106207, '', 0, 'complaint', 0, 0),
+(56, 'Hope with a file', 'Select Division (optional)', 1548631019, '127.0.0.1', 1549106219, '', 0, 'complaint', 0, 0),
+(57, 'dfsjhfdjhoriejgitjhge', 'Select Division (optional)', 1548674006, '::1', 1549149206, '', 0, 'complaint', 0, 0),
+(60, 'Let me see', 'Consumer and Corporate Affairs Division', 1550099448, '127.0.0.1', 1550574648, '', 0, 'complaint', 0, 0),
+(61, 'Let me see again', 'Consumer and Corporate Affairs Division', 1550099555, '127.0.0.1', 1550574755, '', 0, 'complaint', 0, 0),
+(62, 'Let me see again', 'Consumer and Corporate Affairs Division', 1550099699, '127.0.0.1', 1550574899, '', 0, 'complaint', 0, 0),
+(63, '&quot;any ideas', 'Select Division (optional)', 1550520739, '127.0.0.1', 1550995939, '', 0, 'complaint', 0, 0),
+(64, '\'something funny very funny', 'Select Division (optional)', 1550522506, '127.0.0.1', 1550997706, '', 0, 'complaint', 0, 0),
+(65, 'Other thing\'s are "getting on my nerves"', 'Select Division (optional)', 1550522527, '127.0.0.1', 1550997727, '', 0, 'complaint', 0, 0),
+(66, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536392, '127.0.0.1', 1551011592, '', 0, 'complaint', 0, 0),
+(67, 'Let me know someting thou\'g', 'Select Division (optional)', 1550536523, '127.0.0.1', 1551011723, '', 0, 'complaint', 0, 0),
+(68, 'Another one maybe', 'Consumer and Corporate Affairs Division', 1550537389, '127.0.0.1', 1551012589, '', 0, 'complaint', 0, 0),
+(69, 'I think I got it now', 'Select Division (optional)', 1550537668, '127.0.0.1', 1551012868, '', 0, 'complaint', 0, 0),
+(70, 'sile', 'Select Division (optional)', 1550575428, '::1', 1551050628, '', 0, 'complaint', 0, 0),
+(71, 'sile', 'Select Division (optional)', 1550575486, '::1', 1551050686, '', 0, 'complaint', 0, 0),
+(72, 'slow one', 'Engineering Division', 1550575999, '::1', 1551051199, '', 0, 'complaint', 0, 0),
+(73, 'Helper', 'Research and Business Development', 1550576080, '::1', 1551051280, '', 0, 'complaint', 0, 0),
+(76, 'I\'m in love with Jesus ', 'Engineering Division', 1550581432, '192.168.43.137', 1551056632, '', 0, 'complaint', 0, 0),
+(82, 'Love', 'Select Division (optional)', 1550604137, '192.168.43.137', 1551079337, '', 26, 'complaint', 0, 0),
+(86, 'I want freedom', 'Administration Division', 1550878938, '127.0.0.1', 1551354138, 'NAZIR', 26, 'complaint', 0, 0),
+(87, 'Hello it\'s me again', 'Policy, Strategy and Innovation Division', 1551133063, '::1', 1551608263, 'RAHAINATU', 85, 'complaint', 0, 0),
+(88, 'hello people of God', 'Select Division (optional)', 1551178451, '::1', 1551653651, 'AARON', 24, 'complaint', 0, 0),
+(89, 'I want fufu Maybe', 'Administration Division', 1551220077, '127.0.0.1', 1551695277, 'AARON', 24, 'complaint', 0, 0),
+(90, 'Load', 'Select Division (optional)', 1551366377, '127.0.0.1', 1551841577, 'AARON', 24, 'complaint', 0, 0),
+(91, 'I want Fufu', 'Administration Division', 1552040265, '127.0.0.1', 1552515465, 'AARON', 24, 'complaint', 0, 0),
+(92, 'Where do the lights go in the night?', 'Select Division (optional)', 1561726804, '127.0.0.1', 1562202004, 'AARON', 24, 'complaint', 3, 3),
+(93, 'I want to ask about others too will they still be blessed as me', 'Select Division (optional)', 1561759873, '127.0.0.1', 1562235073, 'AARON', 24, 'complaint', 3, 3),
+(94, 'I will come back to this in a second', 'Select Division (optional)', 1561765183, '127.0.0.1', 1562240383, 'AARON', 24, 'complaint', 3, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `complaints_vote`
+--
+
+CREATE TABLE `complaints_vote` (
+  `id` int(16) NOT NULL,
+  `c_id` int(32) NOT NULL,
+  `u_id` int(10) NOT NULL,
+  `vote` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `complaints_vote`
+--
+
+INSERT INTO `complaints_vote` (`id`, `c_id`, `u_id`, `vote`) VALUES
+(1, 10000, 1000, 'up'),
+(2, 94, 24, 'up'),
+(3, 93, 24, 'down'),
+(4, 92, 24, 'down'),
+(5, 94, 88, 'down'),
+(6, 93, 88, 'down'),
+(7, 92, 88, 'up'),
+(8, 94, 85, 'up'),
+(9, 93, 85, 'up'),
+(10, 92, 85, 'up');
 
 -- --------------------------------------------------------
 
@@ -186,33 +225,36 @@ CREATE TABLE `del_complaints` (
   `c_ip_address` varchar(64) NOT NULL,
   `date_stop_display` int(16) NOT NULL,
   `u_fname` varchar(255) NOT NULL,
-  `u_id` int(11) NOT NULL
+  `u_id` int(11) NOT NULL,
+  `table_type` varchar(16) NOT NULL,
+  `c_views` int(16) NOT NULL,
+  `c_votes` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `del_complaints`
 --
 
-INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `date_created`, `c_ip_address`, `date_stop_display`, `u_fname`, `u_id`) VALUES
-(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596, 'HUMAN RESOURCE DIVISION', 0),
-(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713, 'HUMAN RESOURCE DIVISION', 0),
-(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350, 'HUMAN RESOURCE DIVISION', 0),
-(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433, 'HUMAN RESOURCE DIVISION', 0),
-(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899, 'HUMAN RESOURCE DIVISION', 0),
-(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886, 'HUMAN RESOURCE DIVISION', 0),
-(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, 'HUMAN RESOURCE DIVISION', 0),
-(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677, 'HUMAN RESOURCE DIVISION', 0),
-(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213, 'HUMAN RESOURCE DIVISION', 0),
-(20, 74, ' helpers ', ' Select Division (optional) ', 1550576149, ' ::1 ', 1551051349, 'HUMAN RESOURCE DIVISION', 0),
-(21, 75, ' Laughter is healthy  ', ' Information Technology (IT) Division ', 1550577038, ' 192.168.43.137 ', 1551052238, 'HUMAN RESOURCE DIVISION', 0),
-(22, 81, ' Index me ', ' Policy, Strategy and Innovation Division ', 1550599720, ' ::1 ', 1551074920, 'HUMAN RESOURCE DIVISION', 0),
-(23, 78, ' Three ', ' Finance Division ', 1550591483, ' 192.168.43.137 ', 1551066683, 'HUMAN RESOURCE DIVISION', 0),
-(24, 80, '', ' Regulatory Administration Division ', 1550594793, ' 192.168.43.137 ', 1551069993, 'HUMAN RESOURCE DIVISION', 0),
-(25, 79, '', ' Select Division (optional) ', 1550591968, ' 192.168.43.137 ', 1551067168, 'HUMAN RESOURCE DIVISION', 0),
-(26, 85, '', ' Select Division (optional) ', 1550604219, ' 192.168.43.137 ', 1551079419, 'HUMAN RESOURCE DIVISION', 0),
-(27, 84, '', ' Select Division (optional) ', 1550604175, ' ::1 ', 1551079375, 'HUMAN RESOURCE DIVISION', 0),
-(28, 83, '', ' Select Division (optional) ', 1550604164, ' 192.168.43.137 ', 1551079364, 'HUMAN RESOURCE DIVISION', 0),
-(29, 77, '', ' Cybersecurity Division ', 1550581588, ' 192.168.43.137 ', 1551056788, 'HUMAN RESOURCE DIVISION', 0);
+INSERT INTO `del_complaints` (`del_c_id`, `c_id`, `c_value`, `c_division`, `date_created`, `c_ip_address`, `date_stop_display`, `u_fname`, `u_id`, `table_type`, `c_views`, `c_votes`) VALUES
+(7, 13, ' Hope comes alive some place still when we persevere yet some more ', ' Cybersecurity Division ', 1548025396, '127.0.0.1', 1548500596, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(8, 14, ' Finally we are on to something ', ' Engineering Division ', 1548340513, '127.0.0.1', 1548815713, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(9, 24, ' Hope comes alive ', ' Cybersecurity Division ', 1548025150, '127.0.0.1', 1548500350, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(10, 25, ' Something ought to give now ', ' Select Division (optional) ', 1548332233, '172.17.3.5', 1548807433, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(15, 54, ' with ', ' Select Division (optional) ', 1548376699, '', 1548851899, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(16, 53, ' without ', ' Select Division (optional) ', 1548376686, '', 1548851886, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(17, 52, ' Without file ', ' Select Division (optional) ', 1548375785, ' 127.0.0.1 ', 1548850985, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(18, 58, ' I love you ', ' Select Division (optional) ', 1549378477, ' ::1 ', 1549853677, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(19, 58, ' fdhnghbrtgdsrtghb ', ' Select Division (optional) ', 1550053013, ' ::1 ', 1550528213, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(20, 74, ' helpers ', ' Select Division (optional) ', 1550576149, ' ::1 ', 1551051349, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(21, 75, ' Laughter is healthy  ', ' Information Technology (IT) Division ', 1550577038, ' 192.168.43.137 ', 1551052238, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(22, 81, ' Index me ', ' Policy, Strategy and Innovation Division ', 1550599720, ' ::1 ', 1551074920, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(23, 78, ' Three ', ' Finance Division ', 1550591483, ' 192.168.43.137 ', 1551066683, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(24, 80, '', ' Regulatory Administration Division ', 1550594793, ' 192.168.43.137 ', 1551069993, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(25, 79, '', ' Select Division (optional) ', 1550591968, ' 192.168.43.137 ', 1551067168, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(26, 85, '', ' Select Division (optional) ', 1550604219, ' 192.168.43.137 ', 1551079419, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(27, 84, '', ' Select Division (optional) ', 1550604175, ' ::1 ', 1551079375, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(28, 83, '', ' Select Division (optional) ', 1550604164, ' 192.168.43.137 ', 1551079364, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0),
+(29, 77, '', ' Cybersecurity Division ', 1550581588, ' 192.168.43.137 ', 1551056788, 'HUMAN RESOURCE DIVISION', 0, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -574,7 +616,11 @@ INSERT INTO `poll` (`p_id`, `p_question`, `date_created`, `p_options`, `p_votes`
 (148, 'Ten', 1551826352, 'Eleven|Twelve', '1|0', 2, 1551912752, 1, 1551829992, 24, 'AARON', 'poll'),
 (150, 'Who is asking', 1552040943, 'I don\'t know|Let me know', '0|1', 2, 1552127343, 1, 1552040954, 24, 'AARON', 'poll'),
 (151, 'What is ongoing?', 1552253253, 'Load|Loader|Loaderi|Loadering', '0|1|0|0', 4, 1552339653, 1, 1552253264, 24, 'AARON', 'poll'),
-(153, 'Let us see', 1552343326, 'One|Two', '0|0', 2, 1552429726, 0, 0, 0, 'HUMAN RESOURCE DIVISION', 'poll');
+(153, 'Let us see', 1552343326, 'One|Two', '0|0', 2, 1552429726, 0, 0, 0, 'HUMAN RESOURCE DIVISION', 'poll'),
+(154, 'Who said this', 1561771470, '1|2', '0|0', 2, 1561857870, 0, 0, 0, 'HUMAN RESOURCE DIVISION', 'poll'),
+(155, 'Load', 1561773313, 's|d', '0|1', 2, 1561859713, 1, 1561805701, 24, 'AARON', 'poll'),
+(156, 'Colorwise of the sky?', 1561804509, 'Red|Blue', '1|0', 2, 1561890909, 1, 1561805912, 24, 'AARON', 'poll'),
+(157, 'My turn to make something happen', 1561806121, 'First fill|Second fill', '1|0', 2, 1561892521, 1, 1561806699, 88, 'RASHID', 'poll');
 
 -- --------------------------------------------------------
 
@@ -633,7 +679,10 @@ INSERT INTO `poll_voters` (`id`, `user_id`, `poll_id`, `username`, `vote_date`) 
 (20, 24, 140, 'AARON', 1551825505),
 (21, 24, 148, 'AARON', 1551829992),
 (22, 24, 150, 'AARON', 1552040954),
-(23, 24, 151, 'AARON', 1552253264);
+(23, 24, 151, 'AARON', 1552253264),
+(24, 24, 155, 'AARON', 1561805701),
+(25, 24, 156, 'AARON', 1561805912),
+(26, 88, 157, 'RASHID', 1561806699);
 
 -- --------------------------------------------------------
 
@@ -653,9 +702,14 @@ CREATE TABLE `views` (
 
 INSERT INTO `views` (`c_id`, `type`, `u_id`) VALUES
 (92, 0, 24),
+(92, 0, 85),
 (92, 0, 88),
 (93, 0, 24),
-(93, 0, 88);
+(93, 0, 85),
+(93, 0, 88),
+(94, 0, 24),
+(94, 0, 85),
+(94, 0, 88);
 
 --
 -- Indexes for dumped tables
@@ -672,6 +726,12 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `complaints`
   ADD PRIMARY KEY (`c_id`);
+
+--
+-- Indexes for table `complaints_vote`
+--
+ALTER TABLE `complaints_vote`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `del_complaints`
@@ -736,12 +796,17 @@ ALTER TABLE `views`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `cm_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `c_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+--
+-- AUTO_INCREMENT for table `complaints_vote`
+--
+ALTER TABLE `complaints_vote`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `del_complaints`
 --
@@ -771,7 +836,7 @@ ALTER TABLE `messagehr`
 -- AUTO_INCREMENT for table `poll`
 --
 ALTER TABLE `poll`
-  MODIFY `p_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `p_id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 --
 -- AUTO_INCREMENT for table `poll_imagine`
 --
@@ -781,7 +846,7 @@ ALTER TABLE `poll_imagine`
 -- AUTO_INCREMENT for table `poll_voters`
 --
 ALTER TABLE `poll_voters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

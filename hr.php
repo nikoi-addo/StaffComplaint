@@ -433,12 +433,20 @@
                                                  </div>
                                              </div>
                                              <div class="timeline-body">
+                                               <!-- Section to show user votes for Complaints -->
+                                               <div class="pull-right" id="votes<?php echo $$rows['c_id']; ?>">
+                                                 <!-- upvote function accepts three parameters complaintid state of vote and userid -->
+                                                 <img id = "up<?php echo $rows['c_id']; ?>"  src="img/up.png" alt="Upvote">
+                                                 <br>Total - <a id="totalvotes<?php echo $rows['c_id']; ?>"><?php echo $rows['c_votes']; ?></a> votes<br>
+                                                 <img id ="down<?php echo $rows['c_id']; ?>"   src="img/down.png" alt="Downvote">
+                                               </div>
                                                <div class="row">
                                                  <div class="col-md-10">
-                                                   <!-- Display Number of Views for the complaint -->
-                                                   <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views"; ?></span>
                                                    <!-- Display Complaint from Database -->
                                                    <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])) ; ?></p>
+                                                   <!-- Display Number of Views for the complaint -->
+                                                   <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views"; ?></span>
+                                                   <!-- End of Section to show user votes for complaints -->
                                                  </div>
                                                  <div class="col-md-2">
 

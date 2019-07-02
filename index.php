@@ -24,23 +24,8 @@
         <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->
-
-        <script type="text/javascript">
-        //Function accepting two values to update views
-        function updateviews(str, hlp){
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
-            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-              //Replace id views value with new value from responseText
-              document.getElementById("views"+str).innerHTML = xmlhttp.responseText;
-            }
-          };
-          //Connect and submit postid and userid using POST method
-          xmlhttp.open("POST", "handlers/views.php", true);
-          xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xmlhttp.send("postid="+str+"&userid="+hlp);
-        }
-        </script>
+        <!-- Add script for various functions especially ajax functions -->
+        <script type="text/javascript" src="js/functions.js"></script>
 
     </head>
     <body>
@@ -455,7 +440,16 @@
                                           $success_compdisplay = mysqli_query($link, $sql_compdisplay);
                                           if ( $success_compdisplay->num_rows > 0) {
                                             while ($cp_rows = $success_compdisplay->fetch_assoc()) {
+                                              //Query UpDownVote on complaints_vote
+                                              $sql_udvote = "SELECT * FROM complaints_vote WHERE c_id = $id AND u_id = $user_id";
+                                              $success_udvote = mysqli_query($link, $sql_udvote);
+                                              $udvote = $success_udvote->num_rows;
+                                              $row_udvote = $success_udvote->fetch_assoc();
+
                                             ?>
+
+
+
                                             <!-- START TIMELINE ITEM -->
                                             <!-- Added function to activate xml request to update number of views onmousehover -->
                                              <div class="timeline-item timeline-item-right" onmouseover="updateviews(<?php echo "$id"; ?>, <?php echo "$user_id" ?>)">
@@ -466,6 +460,16 @@
                                                          <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
                                                         } ?></u> shared an idea <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $cp_rows['c_views']. " views"; ?></span>
+
+                                                        <!-- Section to show user votes for Complaints -->
+                                                        <div class="pull-right" id="votes<?php echo $id; ?>">
+                                                          <!-- upvote function accepts three parameters complaintid state of vote and userid -->
+                                                          <img id = "up<?php echo $id; ?>" onclick="upvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0; } elseif ($row_udvote['vote'] == 'down'){ echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/up_off.png';} elseif($row_udvote['vote'] == 'up') { echo '/up.png';} elseif($row_udvote['vote'] !== 'up'){echo '/up_off.png';} ?>" alt="Upvote">
+                                                          <br>Total - <a id="totalvotes<?php echo $id; ?>"><?php echo $cp_rows['c_votes']; ?></a> votes<br>
+                                                          <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
+                                                        </div>
+                                                        <!-- End of Section to show user votes for complaints -->
+
                                                      </div>
                                                      <div class="timeline-body">
                                                          <p style="white-space:pre-wrap;"><?php echo (trim($cp_rows['c_value'])); ?></p>
