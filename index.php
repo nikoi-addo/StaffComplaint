@@ -476,7 +476,7 @@
                                                           
                                                           <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
 
-                                                          <br><b><a id="totalvotes<?php echo $id; ?>"><?php echo $totalvotes; ?></a> votes</b><br>
+                                                          <b><a id="totalvotes<?php echo $id; ?>"><?php echo $totalvotes; ?></a> votes  </b>
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
 
