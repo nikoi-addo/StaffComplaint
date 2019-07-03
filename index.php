@@ -466,14 +466,17 @@
                                                      <div class="timeline-heading">
                                                          <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
-                                                        } ?></u> shared an idea <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $cp_rows['c_views']. " views"; ?></span>
+                                                        } ?></u> shared an idea 
+                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $cp_rows['c_views']. " <i class='fa fa-eye'></i>"; ?></span>
 
                                                         <!-- Section to show user votes for Complaints -->
                                                         <div class="pull-right" id="votes<?php echo $id; ?>">
                                                           <!-- upvote function accepts three parameters complaintid state of vote and userid -->
                                                           <img id = "up<?php echo $id; ?>" onclick="upvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0; } elseif ($row_udvote['vote'] == 'down'){ echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/up_off.png';} elseif($row_udvote['vote'] == 'up') { echo '/up.png';} elseif($row_udvote['vote'] !== 'up'){echo '/up_off.png';} ?>" alt="Upvote">
-                                                          <br>Total : <a id="totalvotes<?php echo $id; ?>"><?php echo $totalvotes; ?></a> votes<br>
+                                                          
                                                           <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
+
+                                                          <br><b><a id="totalvotes<?php echo $id; ?>"><?php echo $totalvotes; ?></a> votes</b><br>
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
 
