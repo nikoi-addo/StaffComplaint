@@ -25,13 +25,17 @@
       $success_insertupvote = mysqli_query($link, $sql_insertupvote);
       //Increment number of votes for the complaint
       if ($success_insertupvote) {
-        // echo "we are in";
-        // echo "Vote cast";
         $success_updatevotecount = mysqli_query($link, $sql_updatevotecount);
-        // if ($success_updatevotecount) {
-          // echo "Vote Count Updated";
-        // }
-        $totalvotes = $totalvotes + 1;
+        if ($success_updatevotecount) {
+          $sql_countupvote = "SELECT * FROM complaints_vote WHERE c_id = $complaint_id AND vote = 'up'";
+          $sql_countdownvote = "SELECT * FROM complaints_vote WHERE c_id = $complaint_id AND vote = 'down'";
+          $success_countupvote = mysqli_query ($link, $sql_countupvote);
+          $success_countdownvote = mysqli_query ($link, $sql_countdownvote);
+          $countupvote = $success_countupvote->num_rows;
+          $countdownvote = $success_countdownvote->num_rows;
+          $totalvotes = $countupvote - $countdownvote;
+        }
+
       }
     }
 
@@ -40,12 +44,16 @@
       $sql_changetodownvote = "UPDATE complaints_vote SET vote = 'down' WHERE c_id = $complaint_id AND u_id = $user_id";
       $success_changetodownvote = mysqli_query($link, $sql_changetodownvote);
 
-      // if ($success_changetodownvote) {
-      //   echo "Votechange to downvote";
-      // }
-      // else {
-      //   echo "Unable to change vote";
-      // }
+      if ($success_changetodownvote) {
+        $sql_countupvote = "SELECT * FROM complaints_vote WHERE c_id = $complaint_id AND vote = 'up'";
+        $sql_countdownvote = "SELECT * FROM complaints_vote WHERE c_id = $complaint_id AND vote = 'down'";
+        $success_countupvote = mysqli_query ($link, $sql_countupvote);
+        $success_countdownvote = mysqli_query ($link, $sql_countdownvote);
+        $countupvote = $success_countupvote->num_rows;
+        $countdownvote = $success_countdownvote->num_rows;
+        $totalvotes = $countupvote - $countdownvote;
+      }
+
     }
 
     echo $totalvotes;

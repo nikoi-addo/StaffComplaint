@@ -446,6 +446,13 @@
                                               $udvote = $success_udvote->num_rows;
                                               $row_udvote = $success_udvote->fetch_assoc();
 
+                                              $sql_countupvote = "SELECT * FROM complaints_vote WHERE c_id = $id AND vote = 'up'";
+                                              $sql_countdownvote = "SELECT * FROM complaints_vote WHERE c_id = $id AND vote = 'down'";
+                                              $success_countupvote = mysqli_query ($link, $sql_countupvote);
+                                              $success_countdownvote = mysqli_query ($link, $sql_countdownvote);
+                                              $countupvote = $success_countupvote->num_rows;
+                                              $countdownvote = $success_countdownvote->num_rows;
+                                              $totalvotes = $countupvote - $countdownvote;
                                             ?>
 
 
@@ -465,7 +472,7 @@
                                                         <div class="pull-right" id="votes<?php echo $id; ?>">
                                                           <!-- upvote function accepts three parameters complaintid state of vote and userid -->
                                                           <img id = "up<?php echo $id; ?>" onclick="upvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0; } elseif ($row_udvote['vote'] == 'down'){ echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/up_off.png';} elseif($row_udvote['vote'] == 'up') { echo '/up.png';} elseif($row_udvote['vote'] !== 'up'){echo '/up_off.png';} ?>" alt="Upvote">
-                                                          <br>Total - <a id="totalvotes<?php echo $id; ?>"><?php echo $cp_rows['c_votes']; ?></a> votes<br>
+                                                          <br>Total - <a id="totalvotes<?php echo $id; ?>"><?php echo $totalvotes; ?></a> votes<br>
                                                           <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
