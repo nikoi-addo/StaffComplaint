@@ -2,7 +2,6 @@
   session_start();
   include 'handlers/dbcon.php';
   $timely = time();
-
   $user_id = $_SESSION['u_id'];
   $username = $_SESSION['username'];
   if (isset($_SESSION['loggedin']) && isset($_SESSION['u_id']) && $user_id != 0) {
