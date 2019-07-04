@@ -480,11 +480,8 @@
                                                          <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
 
-                                                        } ?></u> shared an idea 
-                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $cp_rows['c_views']. " <i class='fa fa-eye'></i>"; ?></span> 
-
                                                         } ?></u> shared an idea
-                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. " <i class='fa fa-eye'></i> "; ?></span>
+                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. " views <i class='fa fa-eye'></i> "; ?></span>
 
 
                                                         <!-- Section to show user votes for Complaints -->
