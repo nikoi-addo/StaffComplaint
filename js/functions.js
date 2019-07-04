@@ -67,6 +67,24 @@ function downvote(c_id, state, userid){
   xmlhttp.send("complaintid="+c_id+"&userid="+userid);
 }
 
+//Function to mark a message as read
+function unreadmessages(messageid, userid){
+  var xmlhttp = new XMLHttpRequest();
+
+  //Direct to see full message
+  xmlhttp.onreadystatechange = function() {
+    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+      alert('done');
+    }
+  };
+
+  //Connect and submit message
+  xmlhttp.open("POST", "handlers/msgstate.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("messageid="+messageid+"userid="+userid);
+
+}
+
 function hovering(id, upordown){
   if(upordown == 'up'){
     document.getElementById("up"+id).src = "img/up.png";

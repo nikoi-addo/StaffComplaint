@@ -57,11 +57,23 @@
 
                     </li>
 
+                    <?php
+                    //Query to extract array of unreadmessages
+                    $sql_unreadmessages = "SELECT * FROM login_info WHERE no=$user_id";
+                    $success_unreadmessages = mysqli_query($link, $sql_unreadmessages);
+                    if ($success_unreadmessages) {
+                      $unreadmessages = $success_unreadmessages->fetch_assoc();
+                      $listunreadmessages = $unreadmessages['u_unreadmessage'];
+                      $listunreadmessages = explode("|", $listunreadmessages);
+                      $countunreadmessages = count($listunreadmessages);
+                    }
+
+                    ?>
 
                     <!-- MESSAGES -->
                     <li class="xn-icon-button pull-right">
                         <a href="#mb-signout"><span class="fa fa-inbox"></span></a>
-                        <div class="informer informer-danger">HR</div>
+                        <div class="informer informer-danger"><?php echo $countunreadmessages; ?></div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
@@ -74,24 +86,26 @@
                              <?php
                                 //SQL Query to show messages
                                 $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created DESC";
-                                // The type of user signed in will determine as to which query to give to the division
                                 //Execture show HR messages query
                                 $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
+                                // Get users unreadmessages and put in an array
 
                                 //Check if execution returned true
                                 if ($success_showhrmessages->num_rows > 0) {
-                                    while($mrows = $success_showhrmessages->fetch_assoc()){?>
-                                  <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
-                                      <div class="list-group-status status-offline"></div>
-                                      <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
-                                      <!-- Use the substr() function to get a specific length of the message to show -->
-                                      <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
-                                  </a>
+                                    while($mrows = $success_showhrmessages->fetch_assoc()){
+                                      $msgid = $mrows['m_id'];?>
+
+                                      <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
+                                          <div class="list-group-status <?php if (in_array($msgid, $listunreadmessages)) {echo "status-online";} else{echo "status-offline";}?>"></div>
+                                          <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
+                                          <!-- Use the substr() function to get a specific length of the message to show -->
+                                          <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
+                                      </a>
+
                                 <?php }
                                 }
                                 else {
-                                  echo "Messages connection Problem";
-                                  echo mysqli_error($link);
+                                  echo "Unable to Show Messages";
                                 }
 
 
@@ -466,17 +480,17 @@
                                                      <div class="timeline-heading">
                                                          <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
-                                                        } ?></u> shared an idea 
-                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $cp_rows['c_views']. " <i class='fa fa-eye'></i>"; ?></span>
+                                                        } ?></u> shared an idea
+                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. " <i class='fa fa-eye'></i> "; ?></span>
 
                                                         <!-- Section to show user votes for Complaints -->
                                                         <div class="pull-right" id="votes<?php echo $id; ?>">
                                                           <!-- upvote function accepts three parameters complaintid state of vote and userid -->
                                                           <img id = "up<?php echo $id; ?>" onclick="upvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0; } elseif ($row_udvote['vote'] == 'down'){ echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/up_off.png';} elseif($row_udvote['vote'] == 'up') { echo '/up.png';} elseif($row_udvote['vote'] !== 'up'){echo '/up_off.png';} ?>" alt="Upvote">
-                                                          
+
                                                           <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
 
-                                                          <b><a id="totalvotes<?php echo $id; ?>"><?php echo $totalvotes; ?></a> votes  </b>
+                                                          <b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> votes</b><br>
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
 

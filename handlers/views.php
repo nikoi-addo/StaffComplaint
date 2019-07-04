@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
 
       //Update Post Views
-      echo $totalviews . " views";
+      echo $totalviews . " <i class='fa fa-eye'>";
 
     }
 
