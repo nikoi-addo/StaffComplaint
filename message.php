@@ -1,7 +1,9 @@
 <?php
+  session_start();
   include 'handlers/dbcon.php';
   if (isset($_GET) && isset($_GET['msgid'])) {
     $msgid = $_GET['msgid'];
+    $user_id = $_SESSION['u_id'];
   }
   //If a message is not requested to be shown then redirect to home
   else {
@@ -74,6 +76,28 @@
                     <!-- END CONTENT FRAME TOP -->
 
                     <?php
+                    $sql_unreadmessages = "SELECT * FROM login_info WHERE no=$user_id";
+                    $success_unreadmessages = mysqli_query($link, $sql_unreadmessages);
+                    if ($success_unreadmessages) {
+                      $loadunreadmessages = $success_unreadmessages->fetch_assoc();
+                      $listunreadmessages = $loadunreadmessages['u_unreadmessage'];
+                      $listunreadmessages = explode("|", $listunreadmessages);
+                      //Value to remove from login_info
+                      $to_remove = array($msgid);
+                      //Remove message as unread
+                      $unreadmessages = array_diff($listunreadmessages, $to_remove);
+                      $finalunreadmessages = implode("|", $unreadmessages);
+
+                      if (in_array($msgid, $listunreadmessages)){
+                        //Query to update unread messages
+                        echo $finalunreadmessages;
+                        $sql_updtunreadmessages = "UPDATE login_info SET u_unreadmessage = '$finalunreadmessages' WHERE no = $user_id";
+                        $success_updtunreadmessages = mysqli_query($link, $sql_updtunreadmessages);
+                        echo mysqli_query($link);
+                      }
+                    }
+
+
                     $sql_displaymessage = "SELECT * FROM messagehr WHERE m_id = '$msgid'";
                     $sql_displaymessage = test_input($sql_displaymessage);
                     $success_displaymessage = mysqli_query($link, $sql_displaymessage);
