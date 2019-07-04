@@ -64,7 +64,12 @@
                       $unreadmessages = $success_unreadmessages->fetch_assoc();
                       $listunreadmessages = $unreadmessages['u_unreadmessage'];
                       $listunreadmessages = explode("|", $listunreadmessages);
-                      $countunreadmessages = count($listunreadmessages);
+                      if ($listunreadmessages !== "") {
+                        $countunreadmessages = 0;
+                      }
+                      else {
+                        $countunreadmessages = count($listunreadmessages);
+                      }
                     }
 
                     ?>
