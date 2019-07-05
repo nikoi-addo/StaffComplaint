@@ -154,16 +154,6 @@
                         $sql_updtunreadmessages = "UPDATE login_info SET u_unreadmessage = '$finalunreadmessages' WHERE no = $user_id";
                         $success_updtunreadmessages = mysqli_query($link, $sql_updtunreadmessages);
 
-<<<<<<< HEAD
-=======
-
-
-
-
-                        echo mysqli_query($link , $success_updtunreadmessages);
-
-
->>>>>>> 9855d89c1425ee33e7317e450cc77ba729d51eea
                       }
                     }
 
