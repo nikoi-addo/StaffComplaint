@@ -44,16 +44,16 @@
 
                         </li>
 
+
+
                         <!-- MESSAGES -->
                         <li class="xn-icon-button pull-right">
                             <a href="#"><span class="fa fa-inbox"></span></a>
-                            <div class="informer informer-danger">HR</div>
+                           
                             <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
-                                    <div class="pull-right">
-                                        <span class="label label-danger"></span>
-                                    </div>
+                                    
                                 </div>
                                 <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
 
@@ -436,15 +436,15 @@
                                                <!-- Section to show user votes for Complaints -->
                                                <div class="pull-right" id="votes<?php echo $$rows['c_id']; ?>">
                                                 
-                                                	<br>Total : <a id="totalvotes<?php echo $rows['c_id']; ?>"><?php echo $rows['c_votes']; ?></a> votes<br>
-                                                 
+                                                	Total : <a id="totalvotes<?php echo $rows['c_id']; ?>"><?php echo $rows['c_votes']; ?></a> <b>votes</b>&nbsp;
+                                                   <!-- Display Number of Views for the complaint -->
+                                                   <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views "; ?></span>
                                                </div>
                                                <div class="row">
                                                  <div class="col-md-12">
                                                    <!-- Display Complaint from Database -->
                                                    <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])) ; ?></p>
-                                                   <!-- Display Number of Views for the complaint -->
-                                                   <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views"; ?></span>
+                                                  
                                                    <!-- End of Section to show user votes for complaints -->
                                                  </div>
                                                  <div class="col-md-2">
@@ -523,7 +523,7 @@
                                                       echo "autofocus";
                                                       } ?> required>
                                                   </div>
-                                                  <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                  
                                               </form>
                                             </div>
                                              </div>

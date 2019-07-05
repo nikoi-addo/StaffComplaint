@@ -49,68 +49,8 @@
 
                     </li>
 
-                    <?php
-                    //Query to extract array of unreadmessages
-                    $sql_unreadmessages = "SELECT * FROM login_info WHERE no=$user_id";
-                    $success_unreadmessages = mysqli_query($link, $sql_unreadmessages);
-                    if ($success_unreadmessages) {
-                      $unreadmessages = $success_unreadmessages->fetch_assoc();
-                      $listunreadmessages = $unreadmessages['u_unreadmessage'];
-                      $listunreadmessages = explode("|", $listunreadmessages);
-                      if ($listunreadmessages !== "") {
-                        $countunreadmessages = 0;
-                      }
-                      else {
-                        $countunreadmessages = count($listunreadmessages);
-                      }
-                    }
 
-                    ?>
-
-                    <!-- MESSAGES -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#mb-signout"><span class="fa fa-inbox"></span></a>
-                        <div class="informer informer-danger"><?php echo $countunreadmessages; ?></div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
-                                <div class="pull-right">
-                                    <span class="label label-danger"></span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-
-                             <?php
-                                //SQL Query to show messages
-                                $sql_showhrmessages = "SELECT * FROM messagehr ORDER BY m_date_created DESC";
-                                //Execture show HR messages query
-                                $success_showhrmessages = mysqli_query($link, $sql_showhrmessages);
-                                // Get users unreadmessages and put in an array
-
-                                //Check if execution returned true
-                                if ($success_showhrmessages->num_rows > 0) {
-                                    while($mrows = $success_showhrmessages->fetch_assoc()){
-                                      $msgid = $mrows['m_id'];?>
-
-                                      <a href="message.php?msgid=<?php echo $mrows['m_id']; ?>" class="list-group-item">
-                                          <div class="list-group-status <?php if (in_array($msgid, $listunreadmessages)) {echo "status-online";} else{echo "status-offline";}?>"></div>
-                                          <span class="contacts-title"><?php echo $mrows['m_subject']; ?></span>
-                                          <!-- Use the substr() function to get a specific length of the message to show -->
-                                          <p><?php echo substr($mrows['m_message'], 0, 110) . " ...";?></p>
-                                      </a>
-
-                                <?php }
-                                }
-                                else {
-                                  echo "Unable to Show Messages";
-                                }
-
-
-                              ?>
-
-                        </div>
-                    </li>
-                    <!-- END MESSAGES -->
+                  
 
 
 

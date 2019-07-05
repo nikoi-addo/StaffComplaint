@@ -81,9 +81,7 @@
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
-                                <div class="pull-right">
-                                    <span class="label label-danger"></span>
-                                </div>
+                               
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
 
@@ -480,7 +478,7 @@
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
 
                                                         } ?></u> shared an idea
-                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. "<i class='fa fa-eye'></i> "; ?></span>
+                                                       
 
 
                                                         <!-- Section to show user votes for Complaints -->
@@ -490,7 +488,10 @@
 
                                                           <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
 
-                                                          <div><b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> votes </b></div>
+                                                      <b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> votes </b>&nbsp;
+
+                                                           
+                                          <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. " views"; ?></span>
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
 
