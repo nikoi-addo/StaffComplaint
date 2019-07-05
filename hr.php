@@ -436,7 +436,7 @@
                                                <!-- Section to show user votes for Complaints -->
                                                <div class="pull-right" id="votes<?php echo $$rows['c_id']; ?>">
                                                 
-                                                	Total : <a id="totalvotes<?php echo $rows['c_id']; ?>"><?php echo $rows['c_votes']; ?></a> <b>votes</b>&nbsp;
+                                                	Total : <a id="totalvotes<?php echo $rows['c_id']; ?>"><?php echo $rows['c_votes']; ?></a> <b>votes</b>&nbsp; &nbsp;
                                                    <!-- Display Number of Views for the complaint -->
                                                    <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views "; ?></span>
                                                </div>
