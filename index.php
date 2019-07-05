@@ -463,14 +463,8 @@
                                               $success_udvote = mysqli_query($link, $sql_udvote);
                                               $udvote = $success_udvote->num_rows;
                                               $row_udvote = $success_udvote->fetch_assoc();
+                                              $totalvotes = $cp_rows['c_votes'];
 
-                                              $sql_countupvote = "SELECT * FROM complaints_vote WHERE c_id = $id AND vote = 'up'";
-                                              $sql_countdownvote = "SELECT * FROM complaints_vote WHERE c_id = $id AND vote = 'down'";
-                                              $success_countupvote = mysqli_query ($link, $sql_countupvote);
-                                              $success_countdownvote = mysqli_query ($link, $sql_countdownvote);
-                                              $countupvote = $success_countupvote->num_rows;
-                                              $countdownvote = $success_countdownvote->num_rows;
-                                              $totalvotes = $countupvote - $countdownvote;
                                             ?>
 
 
@@ -496,7 +490,7 @@
 
                                                           <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
 
-                                                          <b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> votes</b><br>
+                                                          <div><b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> votes </b></div>
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
 
@@ -577,7 +571,7 @@
                                                                 echo "autofocus";
                                                                 } ?> required>
                                                             </div>
-                                                          
+
                                                         </form>
                                                       </div>
                                                        </div>
@@ -724,7 +718,7 @@
                                                          echo "autofocus";
                                                          } ?> required>
                                                      </div>
-                                                   
+
                                                  </form>
                                                </div>
                                                 </div>
@@ -840,7 +834,7 @@
                                                            echo "autofocus";
                                                            } ?> required>
                                                        </div>
-                                                     
+
                                                    </form>
                                                  </div>
                                                   </div>
