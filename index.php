@@ -486,7 +486,7 @@
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
 
                                                         } ?></u> shared an idea
-                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. " views <i class='fa fa-eye'></i> "; ?></span>
+                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. "<i class='fa fa-eye'></i> "; ?></span>
 
 
                                                         <!-- Section to show user votes for Complaints -->
@@ -577,7 +577,7 @@
                                                                 echo "autofocus";
                                                                 } ?> required>
                                                             </div>
-                                                            <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                          
                                                         </form>
                                                       </div>
                                                        </div>
@@ -724,7 +724,7 @@
                                                          echo "autofocus";
                                                          } ?> required>
                                                      </div>
-                                                     <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                   
                                                  </form>
                                                </div>
                                                 </div>
@@ -840,7 +840,7 @@
                                                            echo "autofocus";
                                                            } ?> required>
                                                        </div>
-                                                       <!-- <button class="btn btn-default col-md-1" type="submit"><span class="fa fa-send"></span></button> -->
+                                                     
                                                    </form>
                                                  </div>
                                                   </div>
