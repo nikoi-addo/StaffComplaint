@@ -65,10 +65,10 @@
                       $listunreadmessages = $unreadmessages['u_unreadmessage'];
                       $listunreadmessages = explode("|", $listunreadmessages);
                       if ($listunreadmessages !== "") {
-                        $countunreadmessages = 0;
+                        $countunreadmessages = count($listunreadmessages);
                       }
                       else {
-                        $countunreadmessages = count($listunreadmessages);
+                        $countunreadmessages = 0;
                       }
                     }
 

@@ -189,7 +189,20 @@
         if ($success_sendhrmessage) {
           //Get id for inserted message
           $last_insert_id = mysqli_insert_id($link);
-
+          $sql_viewallactivated = "SELECT * FROM login_info WHERE u_status='activated'";
+          $success_viewallactivated = mysqli_query($link, $sql_viewallactivated);
+          if ($success_viewallactivated) {
+            while ($rowactivated = $success_viewallactivated->fetch_assoc()) {
+              $valunreadmessage = $rowactivated['u_unreadmessage'];
+              if ($valunreadmessage == "") {
+                $valunreadmessage = 0;
+              }
+              $id = $rowactivated['no'];
+              $newvalueunreadmessage = $valunreadmessage. "|" . $last_insert_id;
+              $sql_updatevalueunreadmessage = "UPDATE login_info SET u_unreadmessage = '$newvalueunreadmessage' WHERE no = $id";
+              $success_updatevalueunreadmessage = mysqli_query($link, $sql_updatevalueunreadmessage);
+            }
+          }
           //Upload each of the images
           foreach ($_FILES["hrimages"]["error"] as $key => $error) {
               if ($error == UPLOAD_ERR_OK) {
