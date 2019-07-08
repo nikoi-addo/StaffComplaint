@@ -36,19 +36,19 @@
     }
 
     //If user has already voted, update the vote to reflect current decision to upvote
-    else {
-      $sql_changetoupvote = "UPDATE complaints_vote SET vote = 'up' WHERE c_id = $complaint_id AND u_id = $user_id";
-      $sql_updatevotecount = "UPDATE complaints SET c_votes = $totalvotes+1 WHERE c_id = $complaint_id";
-      $success_changetoupvote = mysqli_query($link, $sql_changetoupvote);
-
-      if ($success_changetoupvote) {
-        $success_updatevotecount = mysqli_query($link, $sql_updatevotecount);
-        if ($success_updatevotecount) {
-          $totalvotes = $totalvotes+1;
-          echo $totalvotes;
-        }
-      }
-
-    }
+    // else {
+    //   $sql_changetoupvote = "UPDATE complaints_vote SET vote = 'up' WHERE c_id = $complaint_id AND u_id = $user_id";
+    //   $sql_updatevotecount = "UPDATE complaints SET c_votes = $totalvotes+1 WHERE c_id = $complaint_id";
+    //   $success_changetoupvote = mysqli_query($link, $sql_changetoupvote);
+    //
+    //   if ($success_changetoupvote) {
+    //     $success_updatevotecount = mysqli_query($link, $sql_updatevotecount);
+    //     if ($success_updatevotecount) {
+    //       $totalvotes = $totalvotes+1;
+    //       echo $totalvotes;
+    //     }
+    //   }
+    //
+    // }
 
 ?>
