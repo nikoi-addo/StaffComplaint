@@ -81,7 +81,9 @@
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
-                               
+                                <div class="pull-right">
+                                    <span class="label label-danger"></span>
+                                </div>
                             </div>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
 
@@ -462,7 +464,13 @@
                                               $udvote = $success_udvote->num_rows;
                                               $row_udvote = $success_udvote->fetch_assoc();
                                               $totalvotes = $cp_rows['c_votes'];
-
+                                              //Count Up and Down Votes
+                                              $sql_countupvotes = "SELECT * FROM complaints_vote WHERE c_id = $id AND vote = 'up'";
+                                              $sql_countdownvotes = "SELECT * FROM complaints_vote WHERE c_id = $id AND vote = 'down'";
+                                              $success_countupvotes = mysqli_query($link, $sql_countupvotes);
+                                              $success_countdownvotes = mysqli_query($link, $sql_countdownvotes);
+                                              $countupvotes = $success_countupvotes->num_rows;
+                                              $countdownvotes = $success_countdownvotes->num_rows;
                                             ?>
 
 
@@ -478,20 +486,17 @@
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
 
                                                         } ?></u> shared an idea
-                                                       
+                                                        <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. "<i class='fa fa-eye'></i> "; ?></span>
 
 
                                                         <!-- Section to show user votes for Complaints -->
                                                         <div class="pull-right" id="votes<?php echo $id; ?>">
                                                           <!-- upvote function accepts three parameters complaintid state of vote and userid -->
-                                                          <img id = "up<?php echo $id; ?>" onclick="upvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0; } elseif ($row_udvote['vote'] == 'down'){ echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/up_off.png';} elseif($row_udvote['vote'] == 'up') { echo '/up.png';} elseif($row_udvote['vote'] !== 'up'){echo '/up_off.png';} ?>" alt="Upvote">
+                                                          <span id="ucount<?php echo $id; ?>"><?php echo $countupvotes; ?></span><img id = "up<?php echo $id; ?>" onclick="upvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0; } else { echo 1; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/up_off.png';} elseif($row_udvote['vote'] == 'up') { echo '/up.png';} elseif($row_udvote['vote'] !== 'up'){echo '/up_off.png';} ?>" alt="Upvote">
 
-                                                          <img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} elseif ($row_udvote['vote'] == 'up') { echo 0; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
+                                                          <span id="dcount<?php echo $id; ?>"><?php echo $countdownvotes; ?></span><img id ="down<?php echo $id; ?>"  onclick="downvote(<?php echo $id; ?>, <?php if ($udvote == 0){ echo 0;} else { echo 1; } ?>, <?php echo $user_id; ?>)" src="img<?php if ($udvote == 0) {echo '/down_off.png';} elseif($row_udvote['vote'] == 'down'){ echo '/down.png';} elseif($row_udvote['vote'] !== 'down'){echo '/down_off.png';} ?>" alt="Downvote">
 
-                                                      <b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> votes </b>&nbsp; &nbsp;
-
-                                                           
-                                          <span id='views<?php echo $id; ?>' class="pull-right"><?php echo "  ". $cp_rows['c_views']. " views"; ?></span>
+                                                          <div><b><a id="totalvotes<?php echo $id; ?>"><?php echo " ". $totalvotes; ?></a> vote(s) </b></div>
                                                         </div>
                                                         <!-- End of Section to show user votes for complaints -->
 
