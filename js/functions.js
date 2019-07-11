@@ -1,16 +1,31 @@
 //Function accepting two values to update views
-function updateviews(str, hlp){
+function updateviews(complaintid, userid){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function() {
     if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
       //Replace id views value with new value from responseText
-      document.getElementById("views"+str).innerHTML = xmlhttp.responseText;
+      document.getElementById("views"+complaintid).innerHTML = xmlhttp.responseText;
     }
   };
   //Connect and submit postid and userid using POST method
   xmlhttp.open("POST", "handlers/views.php", true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.send("postid="+str+"&userid="+hlp);
+  xmlhttp.send("postid="+complaintid+"&userid="+userid);
+}
+
+//Function accepting two values to update poll views
+function plupdateviews(pollid, userid){
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+      //Replace id views value with new value from responseText
+      document.getElementById("plviews"+pollid).innerHTML = xmlhttp.responseText;
+    }
+  };
+  //Connect and submit postid and userid using POST method
+  xmlhttp.open("POST", "handlers/plviews.php", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("postid="+pollid+"&userid="+userid);
 }
 
 //Function for upvoting

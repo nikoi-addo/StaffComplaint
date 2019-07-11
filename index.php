@@ -63,11 +63,11 @@
                     if ($success_unreadmessages) {
                       $unreadmessages = $success_unreadmessages->fetch_assoc();
                       $listunreadmessages = $unreadmessages['u_unreadmessage'];
-                      $listunreadmessages = explode("|", $listunreadmessages);
                       if ($listunreadmessages !== "") {
+                        $listunreadmessages = explode("|", $listunreadmessages);
                         $countunreadmessages = count($listunreadmessages);
                       }
-                      else {
+                      else if($listunreadmessages == ""){
                         $countunreadmessages = 0;
                       }
                     }
@@ -291,7 +291,7 @@
                                     if ($voted == "n") {
                                 ?>
                                 <!-- START POLL ITEM NOT VOTED -->
-                                <div class="timeline-item timeline-item-right">
+                                <div class="timeline-item timeline-item-right"  onmouseover="plupdateviews(<?php echo $poll['p_id']; ?>, <?php echo $user_id; ?>)">
                                     <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
@@ -300,7 +300,7 @@
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
-                                            <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                            <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span><br><span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                         </div>
                                         <form action="handlers/ops.php" method="post">
                                         <div class="timeline-body comments">
@@ -385,7 +385,7 @@
                                     if ($voted == "y") {
                                 ?>
                                 <!-- START POLL ITEM VOTED -->
-                                <div class="timeline-item timeline-item-right">
+                                <div class="timeline-item timeline-item-right" onmouseover="plupdateviews(<?php echo $poll['p_id']; ?>, <?php echo $user_id; ?>)">
                                     <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
@@ -394,7 +394,7 @@
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
-                                            <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                            <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span><br><span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                         </div>
                                         <div class="timeline-body comments">
                                             <div class="row">
@@ -623,7 +623,7 @@
                                             if ($voted == "n") {
                                         ?>
                                         <!-- START POLL ITEM NOT VOTED -->
-                                        <div class="timeline-item timeline-item-right">
+                                        <div class="timeline-item timeline-item-right"  onmouseover="plupdateviews(<?php echo $poll['p_id']; ?>, <?php echo $user_id; ?>)">
                                             <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
@@ -632,7 +632,7 @@
                                                 </div>
                                                 <div class="timeline-body">
                                                     <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
-                                                    <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                                    <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span><br><span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                                 </div>
                                                 <form action="handlers/ops.php" method="post">
                                                 <div class="timeline-body comments">
@@ -738,7 +738,7 @@
                                             if ($voted == "y") {
                                         ?>
                                         <!-- START POLL ITEM VOTED -->
-                                        <div class="timeline-item timeline-item-right">
+                                        <div class="timeline-item timeline-item-right"  onmouseover="plupdateviews(<?php echo $poll['p_id']; ?>, <?php echo $user_id; ?>)">
                                             <div class="timeline-item-info"><?php echo date("d M G:i", $poll['date_created']); ?></div>
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
@@ -747,7 +747,7 @@
                                                 </div>
                                                 <div class="timeline-body">
                                                     <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
-                                                    <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                                    <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span><br><span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                                 </div>
                                                 <div class="timeline-body comments">
                                                   <div class="row">
