@@ -297,10 +297,11 @@
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
                                             <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous </b></a> added a poll
+                                            <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span>
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
-                                            <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span><br><span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
+                                            <span class="pull-right"><?php echo $poll['p_voters']; ?> Votes</span>
                                         </div>
                                         <form action="handlers/ops.php" method="post">
                                         <div class="timeline-body comments">
