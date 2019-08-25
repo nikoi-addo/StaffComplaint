@@ -49,11 +49,11 @@
                         <!-- MESSAGES -->
                         <li class="xn-icon-button pull-right">
                             <a href="#"><span class="fa fa-inbox"></span></a>
-                           
+
                             <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><span class="fa fa-inbox"></span> Messages From HR</h3>
-                                    
+
                                 </div>
                                 <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
 
@@ -265,7 +265,7 @@
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
-                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b><?php echo $poll['u_fname']; ?></b></a> added a poll
                                                     <div class="pull-right">
                                                     <!-- Delete button -->
                                                     <button href="#" data-box="#mb-delpoll<?php echo $poll_id; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>
@@ -426,7 +426,10 @@
                                          <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                          <div class="timeline-item-content">
                                              <div class="timeline-heading">
-                                                 <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b> <i>from</i> <u><?php echo $rows['c_division']; ?></u> shared an idea
+                                                 <img src="assets/images/users/avatar.jpg"/> <b><?php echo $rows['u_fname']; ?> </b> <?php if ($rows['c_division'] != "Select Division (optional)") {
+                                                  echo "<i>from</i> <u>". $rows['c_division'];
+
+                                                } ?> shared an idea
                                                  <div class="pull-right">
                                                  <!-- Delete button -->
                                                  <button href="#" data-box="#mb-delcomp<?php echo $rows['c_id']; ?>" class="mb-control btn btn-default" type="submit"><span class="fa fa-trash-o"></span></button>
@@ -435,7 +438,7 @@
                                              <div class="timeline-body">
                                                <!-- Section to show user votes for Complaints -->
                                                <div class="pull-right" id="votes<?php echo $$rows['c_id']; ?>">
-                                                
+
                                                 	Total : <a id="totalvotes<?php echo $rows['c_id']; ?>"><?php echo $rows['c_votes']; ?></a> <b>votes</b>&nbsp; &nbsp;
                                                    <!-- Display Number of Views for the complaint -->
                                                    <span id='views<?php echo $id; ?>' class="pull-right"><?php echo $rows['c_views']. " views "; ?></span>
@@ -444,7 +447,7 @@
                                                  <div class="col-md-12">
                                                    <!-- Display Complaint from Database -->
                                                    <p style="white-space:pre-wrap;"><?php echo (trim($rows['c_value'])) ; ?></p>
-                                                  
+
                                                    <!-- End of Section to show user votes for complaints -->
                                                  </div>
                                                  <div class="col-md-2">
@@ -523,7 +526,7 @@
                                                       echo "autofocus";
                                                       } ?> required>
                                                   </div>
-                                                  
+
                                               </form>
                                             </div>
                                              </div>
