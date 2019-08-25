@@ -438,7 +438,7 @@
                 while ($row = $success_checkpassword->fetch_assoc()) {
                   $_SESSION['u_id'] = $row['no'];
                   $_SESSION['loggedin'] = true;
-                  $_SESSION['username'] = $row['u_fname'];
+                  $_SESSION['username'] = $row['u_fname'] . " " . $row['u_lname'];
                 }
                 header("location:../index.php");
 
