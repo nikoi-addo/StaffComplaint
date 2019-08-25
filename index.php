@@ -296,7 +296,7 @@
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
-                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous </b></a> added a poll
+                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><b><?php echo $poll['u_fname']; ?></b></a> added a poll
                                             <span class="pull-right" id="plviews<?php echo $poll['p_id']; ?>"><?php echo $poll['p_views'];?><i class='fa fa-eye'> </i> </span>
                                         </div>
                                         <div class="timeline-body">
@@ -391,7 +391,7 @@
                                     <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                     <div class="timeline-item-content">
                                         <div class="timeline-heading">
-                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
+                                            <img src="assets/images/users/avatar.jpg"/> <a href="#"><b><?php echo $poll['u_fname']; ?></b></a> added a poll
                                         </div>
                                         <div class="timeline-body">
                                             <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
@@ -483,7 +483,7 @@
                                                  <div class="timeline-item-icon"><span class="fa fa-bullhorn"></span></div>
                                                  <div class="timeline-item-content">
                                                      <div class="timeline-heading">
-                                                         <img src="assets/images/users/avatar.jpg"/> <b>Anonymous </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
+                                                         <img src="assets/images/users/avatar.jpg"/> <b><?php echo $cp_rows['u_fname']; ?> </b><?php if ($cp_rows['c_division'] != "Select Division (optional)") {
                                                           echo "<i>from</i> <u>". $cp_rows['c_division'];
 
                                                         } ?></u> shared an idea
@@ -561,7 +561,6 @@
                                                       }
                                                      ?>
                                                      <!-- Insert new comment -->
-                                                     <?php if ($cp_rows['u_id'] == $user_id): ?>
                                                        <div class="timeline-body comments">
                                                         <div class="comment-write">
                                                          <form action="handlers/ops.php" method="post">
@@ -582,11 +581,7 @@
                                                         </form>
                                                       </div>
                                                        </div>
-                                                     <?php endif; ?>
-
-
-
-
+                                                       
                                                  </div>
                                              </div>
 
@@ -629,7 +624,7 @@
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
-                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b><?php echo $poll['u_fname']; ?></b></a> added a poll
                                                 </div>
                                                 <div class="timeline-body">
                                                     <p style="white-space:pre-wrap;"><?php echo(trim($poll['p_question'])); ?></p>
@@ -706,8 +701,6 @@
 
                                                }
                                               ?>
-                                              <!-- Allowing user to write comments on only the polls that he has creeated on not voted yets-->
-                                              <?php if ($poll['u_id'] == $user_id): ?>
                                                 <!-- Insert new comment for a poll -->
                                                 <div class="timeline-body comments">
                                                  <div class="comment-write">
@@ -729,7 +722,6 @@
                                                  </form>
                                                </div>
                                                 </div>
-                                              <?php endif; ?>
 
                                             </div>
                                         </div>
@@ -744,7 +736,7 @@
                                             <div class="timeline-item-icon"><span class="fa fa-thumbs-up"></span></span></div>
                                             <div class="timeline-item-content">
                                                 <div class="timeline-heading">
-                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b>Anonymous</b></a> added a poll
+                                                    <img src="assets/images/users/avatar.jpg"/> <a href="#"><b><?php echo $poll['u_fname']; ?></b></a> added a poll
                                                 </div>
                                                 <div class="timeline-body">
                                                     <p style="white-space:pre-wrap;"><?php echo (trim($poll['p_question'])); ?></p>
@@ -821,9 +813,6 @@
 
                                                  }
                                                 ?>
-
-                                                <!-- Allowing user to write comments on only the polls that he has creeated on the voted polls-->
-                                                <?php if ($poll['u_id'] == $user_id): ?>
                                                   <!-- Insert new comment for a poll -->
                                                   <div class="timeline-body comments">
                                                    <div class="comment-write">
@@ -845,7 +834,6 @@
                                                    </form>
                                                  </div>
                                                   </div>
-                                                <?php endif; ?>
 
                                             </div>
                                         </div>
